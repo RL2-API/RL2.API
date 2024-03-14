@@ -1,4 +1,10 @@
-@@ -42,4 +_,5 @@
+using System.Globalization;
+using System.IO;
++using RL2.ModLoader;
+using SceneManagement_RL;
+using UnityEngine;
+
+@@ -40,5 +_,7 @@
 
         Application.focusChanged += OnFocusChanged;
         ConfineMouseToGameWindow(!SaveManager.ConfigData.DisableCursorConfine);
