@@ -1,0 +1,6 @@
+@@ -42,4 +_,5 @@
+
+        Application.focusChanged += OnFocusChanged;
+        ConfineMouseToGameWindow(!SaveManager.ConfigData.DisableCursorConfine);
++       ModLoader.LoadMods();
+    }
