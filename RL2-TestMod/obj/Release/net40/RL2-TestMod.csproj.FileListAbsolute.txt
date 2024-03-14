@@ -1,0 +1,12 @@
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net40\RL2-TestMod.csproj.AssemblyReference.cache
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net40\RL2-TestMod.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net40\RL2-TestMod.AssemblyInfoInputs.cache
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net40\RL2-TestMod.AssemblyInfo.cs
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net40\RL2-TestMod.csproj.CoreCompileInputs.cache
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net40\RL2-TestMod.sourcelink.json
+D:\GitRepos\RL2\RL2-TestMod\bin\Release\net40\RL2-TestMod.dll
+D:\GitRepos\RL2\RL2-TestMod\bin\Release\net40\RL2-TestMod.pdb
+D:\GitRepos\RL2\RL2-TestMod\bin\Release\net40\Assembly-CSharp.dll
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net40\RL2-TestMod.csproj.CopyComplete
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net40\RL2-TestMod.dll
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net40\RL2-TestMod.pdb

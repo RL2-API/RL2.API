@@ -1,0 +1,15 @@
+D:\GitRepos\RL2\RL2-TestMod\bin\Release\net6.0\RL2-TestMod.deps.json
+D:\GitRepos\RL2\RL2-TestMod\bin\Release\net6.0\RL2-TestMod.dll
+D:\GitRepos\RL2\RL2-TestMod\bin\Release\net6.0\RL2-TestMod.pdb
+D:\GitRepos\RL2\RL2-TestMod\bin\Release\net6.0\Assembly-CSharp.dll
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net6.0\RL2-TestMod.csproj.AssemblyReference.cache
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net6.0\RL2-TestMod.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net6.0\RL2-TestMod.AssemblyInfoInputs.cache
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net6.0\RL2-TestMod.AssemblyInfo.cs
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net6.0\RL2-TestMod.csproj.CoreCompileInputs.cache
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net6.0\RL2-TestMod.sourcelink.json
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net6.0\RL2-TestMod.csproj.CopyComplete
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net6.0\RL2-TestMod.dll
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net6.0\refint\RL2-TestMod.dll
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net6.0\RL2-TestMod.pdb
+D:\GitRepos\RL2\RL2-TestMod\obj\Release\net6.0\ref\RL2-TestMod.dll

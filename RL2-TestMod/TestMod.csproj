@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net40</TargetFramework>
+		<RootNamespace>TestMod</RootNamespace>
+		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
+	</PropertyGroup>
+	<PropertyGroup>
+		<LangVersion>11.0</LangVersion>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<PropertyGroup>
+		<BaseOutputPath>D:\GitRepos\RL2\bin</BaseOutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="bin\**" />
+	  <EmbeddedResource Remove="bin\**" />
+	  <None Remove="bin\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Assembly-CSharp\Assembly-CSharp.csproj" />
+	</ItemGroup>
+</Project>
