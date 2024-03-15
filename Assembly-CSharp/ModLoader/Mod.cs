@@ -2,7 +2,7 @@
 
 //Very useful, trust, trust
 
-public class Mod
+public abstract class Mod
 {
     public virtual void OnLoad() { }
     public virtual void OnUnload() { }

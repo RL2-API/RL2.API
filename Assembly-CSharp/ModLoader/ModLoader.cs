@@ -8,7 +8,8 @@ using System.Collections.Generic;
 namespace RL2.ModLoader;
 
 public class ModLoader {
-    public static readonly string ModPath = Application.dataPath.Replace("/", "\\") + "\\Mods"; // No, it cannot be const
+    public static readonly string dataPath = Application.dataPath.Replace("/", "\\");
+    public static readonly string ModPath =  dataPath + "\\Mods"; // No, it cannot be const
     public static ModInstance[] LoadedMods;
 
     public static void LoadMods()
@@ -19,7 +20,7 @@ public class ModLoader {
         foreach (FileInfo file in files)
         {
             AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(file.FullName));
-            Log($"Found {file.FullName}");
+            Log("Found " + file.FullName.Replace(dataPath, ""));
         }
 
         Assembly[] modAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.Location == $"{ModPath}\\{x.GetName().Name}.dll").ToArray();
@@ -28,18 +29,18 @@ public class ModLoader {
         foreach (Assembly assembly in modAssemblies)
         {
             Type[] types = assembly.GetTypes();
-            Mod modClassInstance = new Mod();
+            Mod[] modClassInstance = new Mod[1];
             List<ModSystem> modSystems = new();
             foreach (Type type in types)
             {
                 switch (type.BaseType.FullName) {
-                    case "RL2.Modloader.Mod":
+                    case "RL2.ModLoader.Mod":
                         if (type.Name != assembly.GetName().Name)
                         {
                             Log($"Failed to load the {type.Name} Mod class - the Mod class should be named the same as your assembly");
                             break;
                         }
-                        modClassInstance = (Mod)Activator.CreateInstance(type);
+                        modClassInstance[0] = (Mod)(Activator.CreateInstance(type));
                         break;
                     case "RL2.ModLoader.ModSystem":
                         modSystems.Add((ModSystem)Activator.CreateInstance(type));
@@ -47,11 +48,15 @@ public class ModLoader {
                 }
             }
 
-            ModInstance mod = new ModInstance(modClassInstance, modSystems.ToArray());
+            if (modClassInstance[0] == null)
+            {
+                Log($"Failed to load the Mod class - the Mod class was not found");
+                break;
+            }
+            ModInstance mod = new ModInstance(modClassInstance[0], modSystems.ToArray());
             LoadedMods[modCount] = mod;
             modCount++;
         }
-        Log(ModPath);
     }
 
     public static void Log(string message)

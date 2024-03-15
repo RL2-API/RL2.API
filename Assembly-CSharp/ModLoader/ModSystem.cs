@@ -1,6 +1,6 @@
 ﻿namespace RL2.ModLoader;
 
-public class ModSystem 
+public abstract class ModSystem 
 {
     
 }
