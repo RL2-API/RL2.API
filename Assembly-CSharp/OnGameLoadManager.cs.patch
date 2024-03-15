@@ -1,12 +1,17 @@
+@@ -0,4 +_,5 @@
 using System.Globalization;
 using System.IO;
 +using RL2.ModLoader;
 using SceneManagement_RL;
 using UnityEngine;
 
-@@ -40,4 +_,5 @@
-
+@@ -40,4 +_,8 @@
+        Application.focusChanged -= OnFocusChanged;
         Application.focusChanged += OnFocusChanged;
         ConfineMouseToGameWindow(!SaveManager.ConfigData.DisableCursorConfine);
 +       ModLoader.LoadMods();
++       foreach (var mod in ModLoader.LoadedMods)
++       {
++               mod.ModClassInstance.OnLoad();
++       }
     }

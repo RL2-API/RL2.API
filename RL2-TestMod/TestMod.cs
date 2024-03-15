@@ -8,4 +8,9 @@ public class TestMod : Mod
     {
         ModLoader.Log("TestMod loaded and OnLoad was ran!");
     }
+
+    public override void OnUnload()
+    {
+        ModLoader.Log("TestMod.OnUnload was ran!");
+    }
 }

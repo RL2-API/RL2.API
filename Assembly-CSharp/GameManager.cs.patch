@@ -1,0 +1,19 @@
+@@ -0,4 +_,5 @@
+using System.Collections;
+using RL_Windows;
++using RL2.ModLoader;
+using Steamworks;
+using UnityEngine;
+
+@@ -83,7 +_,11 @@
+
+	private void OnApplicationQuit()
+	{
++       foreach (var mod in ModLoader.LoadedMods)
++       {
++           mod.ModClassInstance.OnUnload();
+        }
+        Debug.Log("Application is closing...");
+		IsApplicationClosing = true;
+		Rewired_RL.SetGamepadColor(Color.clear);
+	}
