@@ -18,5 +18,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Assembly-CSharp\Assembly-CSharp.csproj" />
+		<Reference Include="..\Assembly-CSharp\lib\*.dll">
+			<Private>true</Private>
+		</Reference>
 	</ItemGroup>
 </Project>

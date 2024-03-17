@@ -1,9 +1,9 @@
 ﻿namespace RL2.ModLoader;
 
-//Very useful, trust, trust
-
 public abstract class Mod
 {
+    public abstract string Name { get; }
+
     public virtual void OnLoad() { }
     public virtual void OnUnload() { }
 }
