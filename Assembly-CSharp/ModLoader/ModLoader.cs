@@ -10,7 +10,7 @@ namespace RL2.ModLoader;
 public class ModLoader {
     public static readonly string dataPath = Application.dataPath.Replace("/", "\\");
     public static readonly string ModPath =  dataPath + "\\Mods"; // No, it cannot be const
-    public static ModInstance[] LoadedMods;
+    public static Mod[] LoadedMods;
 
     public static void LoadMods()
     {
@@ -24,36 +24,19 @@ public class ModLoader {
         }
 
         Assembly[] modAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.Location == $"{ModPath}\\{x.GetName().Name}.dll").ToArray();
-        LoadedMods = new ModInstance[modAssemblies.Length];
+        LoadedMods = new Mod[modAssemblies.Length];
         int modCount = 0;
         foreach (Assembly assembly in modAssemblies)
         {
-            Type[] types = assembly.GetTypes();
-            Mod[] modClassInstance = new Mod[1];
-            List<ModSystem> modSystems = new();
-            foreach (Type type in types)
-            {
-                switch (type.BaseType.FullName) {
-                    case "RL2.ModLoader.Mod":
-                        if (type.Name != assembly.GetName().Name)
-                        {
-                            Log($"Failed to load the {type.Name} Mod class - the Mod class should be named the same as your assembly");
-                            break;
-                        }
-                        modClassInstance[0] = (Mod)(Activator.CreateInstance(type));
-                        break;
-                    case "RL2.ModLoader.ModSystem":
-                        modSystems.Add((ModSystem)Activator.CreateInstance(type));
-                        break;
-                }
-            }
+            Type[] types = assembly.GetTypes().Where(x => x.Name == assembly.GetName().Name && x.BaseType.FullName == nameof(Mod)).ToArray();
+            Mod mod = (Mod)Activator.CreateInstance(types[0]);
 
-            if (modClassInstance[0] == null)
+            if (mod == null)
             {
                 Log($"Failed to load the Mod class - the Mod class was not found");
                 break;
             }
-            ModInstance mod = new ModInstance(modClassInstance[0], modSystems.ToArray());
+
             LoadedMods[modCount] = mod;
             modCount++;
         }

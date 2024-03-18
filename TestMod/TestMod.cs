@@ -1,35 +1,41 @@
 ﻿using RL2.ModLoader;
 using System;
 using UnityEngine;
+using TestMod.Systems;
 
 namespace TestMod;
 
 public class TestMod : Mod
 {
     public override string Name { get => "TestMod"; }
-
-    public Action<MonoBehaviour, EventArgs> ActionOnJump;
-    public Action<MonoBehaviour, EventArgs> ActionOnAttack;
-
-    public override void OnLoad()
+    public override void Load()
     {
-        ActionOnJump = OnJump;
-        ActionOnAttack = OnAttack;
-        Messenger<GameMessenger, GameEvent>.AddListener(GameEvent.PlayerJump, ActionOnJump);
-        Messenger<GameMessenger, GameEvent>.AddListener(GameEvent.PlayerWeaponAbilityCast, ActionOnAttack);
-        ModLoader.Log("Attached listener to GameEvent.PlayerJump");
+        Messenger<GameMessenger, GameEvent>.AddListener(GameEvent.PlayerJump, OnJump);
+        Messenger<GameMessenger, GameEvent>.AddListener(GameEvent.PlayerWeaponAbilityCast, OnAttack);
+        Messenger<ModMessenger, ModLoaderEvent>.AddListener(ModLoaderEvent.Load, OnLoad);
+        Messenger<ModMessenger, ModLoaderEvent>.AddListener(ModLoaderEvent.Load, TestModSystem.TestSystemRun);
+        Messenger<ModMessenger, ModLoaderEvent>.AddListener(ModLoaderEvent.Unload, OnUnload);
+        Log($"{Name} loaded!");
     }
 
-    public override void OnUnload()
+    public void OnLoad(MonoBehaviour sender, EventArgs eventArgs)
     {
-        Messenger<GameMessenger, GameEvent>.RemoveListener(GameEvent.PlayerJump, ActionOnJump);
-        Messenger<GameMessenger, GameEvent>.RemoveListener(GameEvent.PlayerWeaponAbilityCast, ActionOnAttack);
-        ModLoader.Log("OnUnload was ran!");
+        Log("Cawabunga");
+    }
+
+    public void OnUnload(MonoBehaviour sender, EventArgs eventArgs)
+    {
+        Messenger<GameMessenger, GameEvent>.RemoveListener(GameEvent.PlayerJump, OnJump);
+        Messenger<GameMessenger, GameEvent>.RemoveListener(GameEvent.PlayerWeaponAbilityCast, OnAttack);
+        Messenger<ModMessenger, ModLoaderEvent>.RemoveListener(ModLoaderEvent.Load, OnLoad);
+        Messenger<ModMessenger, ModLoaderEvent>.RemoveListener(ModLoaderEvent.Load, TestModSystem.TestSystemRun);
+        Messenger<ModMessenger, ModLoaderEvent>.RemoveListener(ModLoaderEvent.Unload, OnUnload);
+        Log($"{Name} unloaded!");
     }
 
     public void OnJump(MonoBehaviour sender, EventArgs eventArgs)
     {
-        ModLoader.Log($"Player jumped, args: {eventArgs}");
+        Log($"Player jumped, args: {eventArgs}");
     }
 
     public void OnAttack(MonoBehaviour sender, EventArgs eventArgs)
@@ -38,5 +44,10 @@ public class TestMod : Mod
         {
             Messenger<DebugMessenger, DebugEvent>.Broadcast(DebugEvent.ToggleFPSCounter, null, null);
         }
+    }
+
+    public new static void Log(string message)
+    {
+        Debug.Log($"[TestMod]: {message}");
     }
 }

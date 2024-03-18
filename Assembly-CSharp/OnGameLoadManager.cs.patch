@@ -5,13 +5,14 @@ using System.IO;
 using SceneManagement_RL;
 using UnityEngine;
 
-@@ -40,4 +_,8 @@
+@@ -40,4 +_,10 @@
         Application.focusChanged -= OnFocusChanged;
         Application.focusChanged += OnFocusChanged;
         ConfineMouseToGameWindow(!SaveManager.ConfigData.DisableCursorConfine);
 +       ModLoader.LoadMods();
 +       foreach (var mod in ModLoader.LoadedMods)
 +       {
-+               mod.ModClassInstance.OnLoad();
++               mod.Load();
 +       }
++       Messenger<ModMessenger, ModLoaderEvent>.Broadcast(ModLoaderEvent.Load, null, null);
     }

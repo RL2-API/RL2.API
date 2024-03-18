@@ -1,5 +1,11 @@
-﻿using RL2.ModLoader;
+﻿using System;
+using UnityEngine;
 
 namespace TestMod.Systems;
 
-public class TestSystem : ModSystem { }
+public static class TestModSystem {
+    public static void TestSystemRun(MonoBehaviour sender, EventArgs eventArgs)
+    {
+        TestMod.Log("TestSystemRan");
+    }
+}

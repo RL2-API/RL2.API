@@ -5,14 +5,11 @@ using RL_Windows;
 using Steamworks;
 using UnityEngine;
 
-@@ -83,7 +_,11 @@
+@@ -83,7 +_,8 @@
 
 	private void OnApplicationQuit()
 	{
-+       foreach (var mod in ModLoader.LoadedMods)
-+       {
-+           mod.ModClassInstance.OnUnload();
-        }
++       Messenger<ModMessenger, ModLoaderEvent>.Broadcast(ModLoaderEvent.Unload, null, null);
         Debug.Log("Application is closing...");
 		IsApplicationClosing = true;
 		Rewired_RL.SetGamepadColor(Color.clear);
