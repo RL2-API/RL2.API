@@ -1,0 +1,18 @@
++using RL2.ModLoader;
+using System;
+using UnityEngine;
+
+public class PlayerManager : MonoBehaviour
+{
++	private static InputReader InputReader = new InputReader();
+
+	private const string PLAYERMANAGER_NAME = "PlayerManager";
+
+@@ -114,3 +_,8 @@
+	}
++
++	private void FixedUpdate()
++	{
++       InputReader.CheckInput();
++	}
+}
