@@ -28,7 +28,7 @@ public class ModLoader {
         int modCount = 0;
         foreach (Assembly assembly in modAssemblies)
         {
-            Type[] types = assembly.GetTypes().Where(x => x.Name == assembly.GetName().Name && x.BaseType.FullName == nameof(Mod)).ToArray();
+            Type[] types = assembly.GetTypes().Where(x => x.Name == assembly.GetName().Name && x.BaseType.FullName == "RL2.ModLoader.Mod").ToArray();
             Mod mod = (Mod)Activator.CreateInstance(types[0]);
 
             if (mod == null)
