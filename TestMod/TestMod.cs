@@ -23,8 +23,6 @@ public class TestMod : Mod
 
     public void OnUnload(MonoBehaviour sender, EventArgs eventArgs)
     {
-        Messenger<ModMessenger, ModLoaderEvent>.RemoveListener(ModLoaderEvent.Load, OnLoad);
-        Messenger<ModMessenger, ModLoaderEvent>.RemoveListener(ModLoaderEvent.Unload, OnUnload);
         Log($"{Name} unloaded!");
     }
 

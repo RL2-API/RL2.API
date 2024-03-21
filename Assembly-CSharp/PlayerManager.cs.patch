@@ -2,17 +2,9 @@
 using System;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
-{
-+	private static InputReader InputReader = new InputReader();
-
-	private const string PLAYERMANAGER_NAME = "PlayerManager";
-
-@@ -114,3 +_,8 @@
+@@ -84,3 +_,4 @@
+	private void Awake()
+	{
+		Initialize();
++       gameObject.AddComponent<UnityHook>();
 	}
-+
-+	private void FixedUpdate()
-+	{
-+       InputReader.CheckInput();
-+	}
-}
