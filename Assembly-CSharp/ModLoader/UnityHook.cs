@@ -6,11 +6,13 @@ namespace RL2.ModLoader;
 
 public class UnityHook : MonoBehaviour
 {
-    private static InputReader InputReader = new InputReader();
+    public static InputReader InputReader = new InputReader();
+    public static Console Console = new Console();
 
     public void Awake()
     {
         DontDestroyOnLoad(this);
+        gameObejct.AddComponent<Console>();
     }
 
     public void FixedUpdate()
