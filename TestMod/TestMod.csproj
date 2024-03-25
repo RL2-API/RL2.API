@@ -9,7 +9,7 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup>
-		<BaseOutputPath>D:\GitRepos\RL2\bin</BaseOutputPath>
+		<BaseOutputPath>..\bin</BaseOutputPath>
 	</PropertyGroup>
 	<ItemGroup>
 	  <Compile Remove="bin\**" />
