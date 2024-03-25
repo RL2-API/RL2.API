@@ -30,9 +30,4 @@ public class TestMod : Mod
     {
         Messenger<DebugMessenger, DebugEvent>.Broadcast(DebugEvent.ToggleFPSCounter, null, null);
     }
-
-    public new static void Log(string message)
-    {
-        Debug.Log($"[TestMod]: {message}");
-    }
 }
