@@ -12,7 +12,6 @@ public class TestMod : Mod
     {
         Messenger<ModMessenger, ModLoaderEvent>.AddListener(ModLoaderEvent.Load, OnLoad);
         Messenger<ModMessenger, ModLoaderEvent>.AddListener(ModLoaderEvent.Unload, OnUnload);
-        Messenger<InputMessenger, KeyCode>.AddListener(KeyCode.BackQuote, ShowFPS);
         Log($"{Name} loaded!");
     }
 
@@ -26,7 +25,8 @@ public class TestMod : Mod
         Log($"{Name} unloaded!");
     }
 
-    public void ShowFPS(MonoBehaviour sender, EventArgs eventArgs)
+    [Command("fps")]
+    public static void ShowFpsCommand()
     {
         Messenger<DebugMessenger, DebugEvent>.Broadcast(DebugEvent.ToggleFPSCounter, null, null);
     }

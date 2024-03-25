@@ -7,6 +7,7 @@ using System.Linq;
 namespace RL2.ModLoader;
 
 public class ModLoader {
+
     public static readonly string dataPath = Application.dataPath.Replace("/", "\\");
     public static readonly string ModPath =  dataPath + "\\Mods"; // No, it cannot be const
     public static Mod[] LoadedMods;
@@ -36,6 +37,7 @@ public class ModLoader {
                 break;
             }
 
+            CommandManager.RegisterCommands(assembly);
             LoadedMods[modCount] = mod;
             modCount++;
         }

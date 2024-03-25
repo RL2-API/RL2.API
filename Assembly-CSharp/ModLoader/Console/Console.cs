@@ -10,6 +10,8 @@ public class Console : MonoBehaviour
     uint qsize = 15;  // number of messages to keep
     Queue myLogQueue = new Queue();
 
+    string command = string.Empty;
+
     void OnEnable()
     {
         Application.logMessageReceived += HandleLog;
@@ -33,21 +35,38 @@ public class Console : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.BackQuote))
-        {
-            visible = !visible;
-        }
-    }
+    void Update() { }
 
     void OnGUI()
     {
+        if (Event.current.type == EventType.KeyDown)
+        {
+            if (Event.current.keyCode == KeyCode.BackQuote)
+            {
+                visible = !visible;
+            }
+            if (Event.current.keyCode == KeyCode.Return)
+            {
+                CommandManager.RunCommand(command);
+                command = string.Empty;
+            }
+        }
+
         if (visible)
         {
-            GUILayout.BeginArea(new Rect(Screen.width - 500, Screen.height, 500, 300));
+            GUILayout.BeginArea(new Rect((Screen.width - Screen.width * 0.9f) * 0.5f, (Screen.height - 15 * (myLogQueue.ToArray().Length + 5)), Screen.width * 0.9f, Screen.height * 0.9f));
+
             GUILayout.Label("\n" + string.Join("\n", myLogQueue.ToArray()));
+
+            GUI.SetNextControlName("command");
+            command = GUILayout.TextField(command);
+            if (command.EndsWith("`"))
+            {
+                command = string.Empty;
+            }
             GUILayout.EndArea();
+
+            GUI.FocusControl("command");
         }
     }
 }
