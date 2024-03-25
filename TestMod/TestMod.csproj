@@ -9,15 +9,15 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup>
-		<BaseOutputPath>..\bin</BaseOutputPath>
+		<BaseOutputPath>../bin</BaseOutputPath>
 	</PropertyGroup>
 	<ItemGroup>
-	  <Compile Remove="bin\**" />
-	  <EmbeddedResource Remove="bin\**" />
-	  <None Remove="bin\**" />
+		<Compile Remove="bin\**" />
+		<EmbeddedResource Remove="bin\**" />
+		<None Remove="bin\**" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Assembly-CSharp\Assembly-CSharp.csproj" />
+		<ProjectReference Include="..\Assembly-CSharp\Assembly-CSharp.csproj" />
 		<Reference Include="..\Assembly-CSharp\lib\*.dll">
 			<Private>true</Private>
 		</Reference>

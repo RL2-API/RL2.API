@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<AssemblyName>Assembly-CSharp</AssemblyName>
+		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<TargetFramework>net40</TargetFramework>
+		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
+	</PropertyGroup>
+	<PropertyGroup>
+		<LangVersion>11.0</LangVersion>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<PropertyGroup>
+		<BaseOutputPath>../bin</BaseOutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="lib\*.dll">
+			<Private>true</Private>
+		</Reference>
+	</ItemGroup>
+</Project>

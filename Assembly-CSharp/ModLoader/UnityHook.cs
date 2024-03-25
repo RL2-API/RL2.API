@@ -12,7 +12,7 @@ public class UnityHook : MonoBehaviour
     public void Awake()
     {
         DontDestroyOnLoad(this);
-        gameObejct.AddComponent<Console>();
+        gameObject.AddComponent<Console>();
     }
 
     public void FixedUpdate()

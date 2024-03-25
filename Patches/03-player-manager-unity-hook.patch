@@ -1,0 +1,19 @@
+diff --git a/RL2-Source/PlayerManager.cs b/RL2-Source-patched/PlayerManager.cs
+index d12acac..1abd77e 100755
+--- a/RL2-Source/PlayerManager.cs
++++ b/RL2-Source-patched/PlayerManager.cs
+@@ -1,5 +1,6 @@
+ using System;
+ using UnityEngine;
++using RL2.ModLoader;
+ 
+ public class PlayerManager : MonoBehaviour
+ {
+@@ -82,6 +82,7 @@ public class PlayerManager : MonoBehaviour
+ 	private void Awake()
+ 	{
+ 		Initialize();
++		gameObject.AddComponent<UnityHook>();
+ 	}
+ 
+ 	public void Initialize()

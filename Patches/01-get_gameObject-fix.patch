@@ -1,0 +1,1492 @@
+diff --git a/RL2-Source/AboveGroundSkillTreeShop.cs b/RL2-Source-patched/AboveGroundSkillTreeShop.cs
+index 37098c1..3e4b946 100755
+--- a/RL2-Source/AboveGroundSkillTreeShop.cs
++++ b/RL2-Source-patched/AboveGroundSkillTreeShop.cs
+@@ -81,10 +81,9 @@ public class AboveGroundSkillTreeShop : MonoBehaviour, IRootObj, IAudioEventEmit
+ 		yield return PlayerMovementHelper.MoveTo(playerPos, checkXAxisOnly: true);
+ 		PlayerMovementHelper.ResumeAllMovementInput();
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Background.cs b/RL2-Source-patched/Background.cs
+index fd2b26e..9fa91d5 100755
+--- a/RL2-Source/Background.cs
++++ b/RL2-Source-patched/Background.cs
+@@ -52,10 +52,9 @@ public class Background : MonoBehaviour, IGenericPoolObj
+ 	{
+ 		DisablePooledObjectManager.DisablePooledObject(this);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/BaneStatusEffect.cs b/RL2-Source-patched/BaneStatusEffect.cs
+index a69a6ad..880946e 100755
+--- a/RL2-Source/BaneStatusEffect.cs
++++ b/RL2-Source-patched/BaneStatusEffect.cs
+@@ -194,10 +194,9 @@ public class BaneStatusEffect : BaseStatusEffect, IDamageObj
+ 			m_baneEffect.Stop(EffectStopType.Gracefully);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IDamageObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IDamageObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/BaseCharacterController.cs b/RL2-Source-patched/BaseCharacterController.cs
+index acae217..511ede8 100755
+--- a/RL2-Source/BaseCharacterController.cs
++++ b/RL2-Source-patched/BaseCharacterController.cs
+@@ -984,22 +984,19 @@ public abstract class BaseCharacterController : MonoBehaviour, IHealth, IDefense
+ 		m_healthChangeEventArgs = null;
+ 		m_cachedVisualBounds = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IEffectVelocity.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IEffectVelocity.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IPreOnDisable.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IPreOnDisable.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/BaseEffect.cs b/RL2-Source-patched/BaseEffect.cs
+index 94ff6b0..116862f 100755
+--- a/RL2-Source/BaseEffect.cs
++++ b/RL2-Source-patched/BaseEffect.cs
+@@ -141,10 +141,9 @@ public abstract class BaseEffect : MonoBehaviour, IGenericPoolObj
+ 		Source = null;
+ 		SourceAnimator = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/BaseItemDrop.cs b/RL2-Source-patched/BaseItemDrop.cs
+index 5c2f525..08c1a8d 100755
+--- a/RL2-Source/BaseItemDrop.cs
++++ b/RL2-Source-patched/BaseItemDrop.cs
+@@ -409,10 +409,9 @@ public abstract class BaseItemDrop : MonoBehaviour, ITerrainOnEnterHitResponse,
+ 		Messenger<GameMessenger, GameEvent>.RemoveListener(GameEvent.PlayerExitRoom, m_onPlayerExitRoom);
+ 		DisablePooledObjectManager.DisablePooledObject(this);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/BaseRoom.cs b/RL2-Source-patched/BaseRoom.cs
+index 54151b0..9f9e70e 100755
+--- a/RL2-Source/BaseRoom.cs
++++ b/RL2-Source-patched/BaseRoom.cs
+@@ -409,10 +409,9 @@ public abstract class BaseRoom : MonoBehaviour, ISummoner, ILevelConsumer
+ 		m_playerExitRelay.Dispatch(this, m_roomViaDoorEventArgs);
+ 		Messenger<GameMessenger, GameEvent>.Broadcast(GameEvent.PlayerExitRoom, this, m_roomViaDoorEventArgs);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISummoner.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISummoner.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/BlacksmithShop.cs b/RL2-Source-patched/BlacksmithShop.cs
+index 2b2ebd4..1723d9b 100755
+--- a/RL2-Source/BlacksmithShop.cs
++++ b/RL2-Source-patched/BlacksmithShop.cs
+@@ -389,10 +389,9 @@ public class BlacksmithShop : MonoBehaviour, IRootObj, IDisplaySpeechBubble, IAu
+ 			m_blacksmith.SetNPCState(NPCState.Idle);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/BleedStatusEffect.cs b/RL2-Source-patched/BleedStatusEffect.cs
+index 9aef3ec..4f6d9ce 100755
+--- a/RL2-Source/BleedStatusEffect.cs
++++ b/RL2-Source-patched/BleedStatusEffect.cs
+@@ -194,10 +194,9 @@ public class BleedStatusEffect : BaseStatusEffect, IDamageObj
+ 			m_bleedEffect.Stop(EffectStopType.Gracefully);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IDamageObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IDamageObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/BouncePlatform.cs b/RL2-Source-patched/BouncePlatform.cs
+index 58368db..03cfc7f 100755
+--- a/RL2-Source/BouncePlatform.cs
++++ b/RL2-Source-patched/BouncePlatform.cs
+@@ -8,10 +8,9 @@ public class BouncePlatform : SpecialPlatform, IRootObj
+ 	public override void SetState(StateID state)
+ 	{
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Breakable.cs b/RL2-Source-patched/Breakable.cs
+index 9f64af0..3379158 100755
+--- a/RL2-Source/Breakable.cs
++++ b/RL2-Source-patched/Breakable.cs
+@@ -490,16 +490,14 @@ public class Breakable : MonoBehaviour, IBodyOnEnterHitResponse, IHitResponse, I
+ 		InitializeHitEventArgs(damageObj);
+ 		Messenger<GameMessenger, GameEvent>.Broadcast(GameEvent.BreakableHit, this, m_hitEventArgs);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IPreOnDisable.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IPreOnDisable.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Breakable_VoidDashOnly.cs b/RL2-Source-patched/Breakable_VoidDashOnly.cs
+index 6031f0f..112f3b8 100755
+--- a/RL2-Source/Breakable_VoidDashOnly.cs
++++ b/RL2-Source-patched/Breakable_VoidDashOnly.cs
+@@ -65,10 +65,9 @@ public class Breakable_VoidDashOnly : Breakable, IDamageObj
+ 		}
+ 		base.ForceBrokenState(isBroken);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IDamageObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IDamageObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/BurnStatusEffect.cs b/RL2-Source-patched/BurnStatusEffect.cs
+index 9d0b768..5ecd1ab 100755
+--- a/RL2-Source/BurnStatusEffect.cs
++++ b/RL2-Source-patched/BurnStatusEffect.cs
+@@ -240,10 +240,9 @@ public class BurnStatusEffect : BaseStatusEffect, IDamageObj
+ 			m_burnEffect.Stop(EffectStopType.Gracefully);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IDamageObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IDamageObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/CameraLayerController.cs b/RL2-Source-patched/CameraLayerController.cs
+index d91f4a7..31ba3b0 100755
+--- a/RL2-Source/CameraLayerController.cs
++++ b/RL2-Source-patched/CameraLayerController.cs
+@@ -387,10 +387,9 @@ public class CameraLayerController : MonoBehaviour, ICameraLayerController, IRoo
+ 			m_childCameraLayerControllers[j].SetSubLayer(m_childCameraLayerControllers[j].SubLayer);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/ChallengeShop.cs b/RL2-Source-patched/ChallengeShop.cs
+index 7ff8dae..a8b5f0a 100755
+--- a/RL2-Source/ChallengeShop.cs
++++ b/RL2-Source-patched/ChallengeShop.cs
+@@ -324,10 +324,9 @@ public class ChallengeShop : MonoBehaviour, IRootObj, IDisplaySpeechBubble, IAud
+ 		m_speechBubble.SetSpeechBubbleType(BubbleType);
+ 		m_speechBubble.SetSpeechBubbleEnabled(enable: true);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/CharonShop.cs b/RL2-Source-patched/CharonShop.cs
+index 78351c4..55572e8 100755
+--- a/RL2-Source/CharonShop.cs
++++ b/RL2-Source-patched/CharonShop.cs
+@@ -430,10 +430,9 @@ public class CharonShop : MonoBehaviour, IRootObj, IDisplaySpeechBubble, IAudioE
+ 		m_playerBoatMoveTween.StopTweenWithConditionChecks(runEndHandlers: false, "PlayerBoatTween");
+ 		PlayerManager.GetCurrentPlayerRoom().gameObject.FindObjectReference<TunnelSpawnController>("DocksTunnel").Tunnel.ForceEnterTunnel(animate: false);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/ChestObj.cs b/RL2-Source-patched/ChestObj.cs
+index f3789bf..05f1461 100755
+--- a/RL2-Source/ChestObj.cs
++++ b/RL2-Source-patched/ChestObj.cs
+@@ -708,16 +708,14 @@ public class ChestObj : MonoBehaviour, IRoomConsumer, IRootObj, IGenericPoolObj,
+ 		m_hitboxController.GetCollider(HitboxType.Terrain).enabled = true;
+ 		IsOpen = false;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/ChestSpawnController.cs b/RL2-Source-patched/ChestSpawnController.cs
+index f6bc84d..1a0444f 100755
+--- a/RL2-Source/ChestSpawnController.cs
++++ b/RL2-Source-patched/ChestSpawnController.cs
+@@ -324,10 +324,9 @@ public class ChestSpawnController : MonoBehaviour, ISimpleSpawnController, ISpaw
+ 			ChestInstance = null;
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISpawnController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISpawnController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Cloud.cs b/RL2-Source-patched/Cloud.cs
+index d67429b..69139cd 100755
+--- a/RL2-Source/Cloud.cs
++++ b/RL2-Source-patched/Cloud.cs
+@@ -389,10 +389,9 @@ public class Cloud : MonoBehaviour, IDamageObj, IRoomConsumer, ITerrainOnEnterHi
+ 	{
+ 		TerrainOnEnterHitResponse(otherHBController);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IDamageObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IDamageObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/ComplexSpawnController.cs b/RL2-Source-patched/ComplexSpawnController.cs
+index 7df6815..0ac1c59 100755
+--- a/RL2-Source/ComplexSpawnController.cs
++++ b/RL2-Source-patched/ComplexSpawnController.cs
+@@ -133,10 +133,9 @@ public abstract class ComplexSpawnController : MonoBehaviour, IComplexSpawnContr
+ 		Room = null;
+ 		m_spawnLogicController = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISpawnController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISpawnController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/CorgiController_RL.cs b/RL2-Source-patched/CorgiController_RL.cs
+index 746423b..071565b 100755
+--- a/RL2-Source/CorgiController_RL.cs
++++ b/RL2-Source-patched/CorgiController_RL.cs
+@@ -1166,10 +1166,9 @@ public class CorgiController_RL : CorgiController, IRootObj
+ 	{
+ 		m_character = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/CrumblePlatform.cs b/RL2-Source-patched/CrumblePlatform.cs
+index ae9b196..fbbf4ad 100755
+--- a/RL2-Source/CrumblePlatform.cs
++++ b/RL2-Source-patched/CrumblePlatform.cs
+@@ -161,10 +161,9 @@ public class CrumblePlatform : SpecialPlatform, ITerrainOnStayHitResponse, IHitR
+ 			Room.PlayerExitRelay.RemoveListener(OnPlayerExitRoom);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/CurioShop.cs b/RL2-Source-patched/CurioShop.cs
+index cb48fea..ecd0d95 100755
+--- a/RL2-Source/CurioShop.cs
++++ b/RL2-Source-patched/CurioShop.cs
+@@ -26,10 +26,9 @@ public class CurioShop : MonoBehaviour, IRootObj
+ 			base.transform.SetLocalScaleX(base.transform.localScale.x * -1f);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/DashBouncePlatform.cs b/RL2-Source-patched/DashBouncePlatform.cs
+index 902659c..a04978c 100755
+--- a/RL2-Source/DashBouncePlatform.cs
++++ b/RL2-Source-patched/DashBouncePlatform.cs
+@@ -22,10 +22,9 @@ public class DashBouncePlatform : SpecialPlatform, IRootObj
+ 		EffectManager.PlayEffect(playerController.gameObject, playerController.Animator, m_bounceEffectName, base.transform.position, -1f, EffectStopType.Gracefully);
+ 		EffectManager.PlayEffect(base.gameObject, null, "VoidBounce_Effect", base.transform.position, 0f, EffectStopType.Gracefully);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Deco.cs b/RL2-Source-patched/Deco.cs
+index 7774e80..01e3162 100755
+--- a/RL2-Source/Deco.cs
++++ b/RL2-Source-patched/Deco.cs
+@@ -102,10 +102,9 @@ public class Deco : MonoBehaviour, IGenericPoolObj
+ 	{
+ 		DisablePooledObjectManager.DisablePooledObject(this);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/DownstrikeKnockbackOverride.cs b/RL2-Source-patched/DownstrikeKnockbackOverride.cs
+index a40979b..14beb59 100755
+--- a/RL2-Source/DownstrikeKnockbackOverride.cs
++++ b/RL2-Source-patched/DownstrikeKnockbackOverride.cs
+@@ -8,9 +8,9 @@ public class DownstrikeKnockbackOverride : MonoBehaviour, IRootObj
+ 
+ 	public float Value => m_knockbackOverride;
+ 
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/EnchantressShop.cs b/RL2-Source-patched/EnchantressShop.cs
+index 4c7f7d7..8eb2c51 100755
+--- a/RL2-Source/EnchantressShop.cs
++++ b/RL2-Source-patched/EnchantressShop.cs
+@@ -292,10 +292,9 @@ public class EnchantressShop : MonoBehaviour, IRootObj, IDisplaySpeechBubble, IA
+ 		m_interactable.SetIsInteractableActive(isActive: true);
+ 		m_enchantress.SetNPCState(NPCState.Idle);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/EnemyController.cs b/RL2-Source-patched/EnemyController.cs
+index 46662a8..abe2c19 100755
+--- a/RL2-Source/EnemyController.cs
++++ b/RL2-Source-patched/EnemyController.cs
+@@ -2308,28 +2308,24 @@ public class EnemyController : BaseCharacterController, IRoomConsumer, ILevelCon
+ 		m_enemyData = null;
+ 		m_preventPlatformDropObj = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISummoner.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISummoner.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IDamageObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IDamageObj.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IOffscreenObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IOffscreenObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/EnemySpawnController.cs b/RL2-Source-patched/EnemySpawnController.cs
+index b38fa6d..23fdd39 100755
+--- a/RL2-Source/EnemySpawnController.cs
++++ b/RL2-Source-patched/EnemySpawnController.cs
+@@ -563,10 +563,9 @@ public class EnemySpawnController : MonoBehaviour, ISpawnController, IHasProject
+ 		m_spawnCollider = null;
+ 		m_projectileNameArray = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISpawnController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISpawnController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/ExhaustPoint_Hazard.cs b/RL2-Source-patched/ExhaustPoint_Hazard.cs
+index 15508f3..e107fcf 100755
+--- a/RL2-Source/ExhaustPoint_Hazard.cs
++++ b/RL2-Source-patched/ExhaustPoint_Hazard.cs
+@@ -117,10 +117,9 @@ public class ExhaustPoint_Hazard : Hazard, IPointHazard, IHazard, IRootObj
+ 		Vector3 localScale = new Vector3(m_storedWarningScaleAmount, m_storedWarningScaleAmount, m_storedWarningScaleAmount);
+ 		m_exhaustPointWarningSprite.gameObject.transform.localScale = localScale;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/GlobalTeleporterController.cs b/RL2-Source-patched/GlobalTeleporterController.cs
+index 579d8bc..62444e2 100755
+--- a/RL2-Source/GlobalTeleporterController.cs
++++ b/RL2-Source-patched/GlobalTeleporterController.cs
+@@ -217,10 +217,9 @@ public class GlobalTeleporterController : MonoBehaviour, IRootObj
+ 			RewiredMapController.SetIsInCutscene(inCutscene: false);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Hazard.cs b/RL2-Source-patched/Hazard.cs
+index eaa2098..4b92c50 100755
+--- a/RL2-Source/Hazard.cs
++++ b/RL2-Source-patched/Hazard.cs
+@@ -161,22 +161,19 @@ public abstract class Hazard : MonoBehaviour, IHazard, IRootObj, IDamageObj, IGe
+ 	{
+ 		DisablePooledObjectManager.DisablePooledObject(this);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IDamageObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IDamageObj.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/HazardSpawnControllerBase.cs b/RL2-Source-patched/HazardSpawnControllerBase.cs
+index 83da2fb..ee66c85 100755
+--- a/RL2-Source/HazardSpawnControllerBase.cs
++++ b/RL2-Source-patched/HazardSpawnControllerBase.cs
+@@ -179,10 +179,9 @@ public abstract class HazardSpawnControllerBase : ComplexSpawnController, IHazar
+ 		m_hazardArgs = null;
+ 		m_projectileNameArray = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISpawnController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISpawnController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/HitboxController.cs b/RL2-Source-patched/HitboxController.cs
+index ad2b269..8b91a6c 100755
+--- a/RL2-Source/HitboxController.cs
++++ b/RL2-Source-patched/HitboxController.cs
+@@ -1529,10 +1529,9 @@ public class HitboxController : MonoBehaviour, IHitboxController
+ 		LastCollidedWith = null;
+ 		RootGameObject = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IHitboxController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IHitboxController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/HitboxControllerLite.cs b/RL2-Source-patched/HitboxControllerLite.cs
+index 59d606f..bca939e 100755
+--- a/RL2-Source/HitboxControllerLite.cs
++++ b/RL2-Source-patched/HitboxControllerLite.cs
+@@ -1226,10 +1226,9 @@ public class HitboxControllerLite : MonoBehaviour, IHitboxController
+ 		m_terrainOnStayHitResponse = null;
+ 		m_terrainOnExitHitResponse = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IHitboxController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IHitboxController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/HomingVine_Hazard.cs b/RL2-Source-patched/HomingVine_Hazard.cs
+index b9d9971..ce8cf8b 100755
+--- a/RL2-Source/HomingVine_Hazard.cs
++++ b/RL2-Source-patched/HomingVine_Hazard.cs
+@@ -30,10 +30,9 @@ public class HomingVine_Hazard : Hazard, IPointHazard, IHazard, IRootObj
+ 		m_length = 0f;
+ 		m_vineSprite.size = new Vector2(m_vineSprite.size.x, 0f);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/IceCrystal_Hazard.cs b/RL2-Source-patched/IceCrystal_Hazard.cs
+index 28a75ab..9cb0a48 100755
+--- a/RL2-Source/IceCrystal_Hazard.cs
++++ b/RL2-Source-patched/IceCrystal_Hazard.cs
+@@ -181,10 +181,9 @@ public class IceCrystal_Hazard : Hazard, IPointHazard, IHazard, IRootObj, IBodyO
+ 		base.Animator.speed = 1f;
+ 		m_hitEffects.SetActive(value: false);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/LineHazardSpawnController.cs b/RL2-Source-patched/LineHazardSpawnController.cs
+index e8235f5..1a30922 100755
+--- a/RL2-Source/LineHazardSpawnController.cs
++++ b/RL2-Source-patched/LineHazardSpawnController.cs
+@@ -153,10 +153,9 @@ public class LineHazardSpawnController : HazardSpawnControllerBase, IHazardSpawn
+ 			Debug.LogFormat("<color=red>| {0} | Hazard is null, but should not be. Please add a bug report to Pivotal</color>", this);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISpawnController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISpawnController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/LocalTeleporterController.cs b/RL2-Source-patched/LocalTeleporterController.cs
+index 3bd3d4d..46aa67d 100755
+--- a/RL2-Source/LocalTeleporterController.cs
++++ b/RL2-Source-patched/LocalTeleporterController.cs
+@@ -364,10 +364,9 @@ public class LocalTeleporterController : MonoBehaviour, IRootObj
+ 		m_closestTeleporter_STATIC = null;
+ 		m_isTeleporting = false;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/MagicPlatform.cs b/RL2-Source-patched/MagicPlatform.cs
+index 0532490..5196f2d 100755
+--- a/RL2-Source/MagicPlatform.cs
++++ b/RL2-Source-patched/MagicPlatform.cs
+@@ -172,10 +172,9 @@ public class MagicPlatform : SpecialPlatform, ITerrainOnStayHitResponse, IHitRes
+ 			Messenger<GameMessenger, GameEvent>.RemoveListener(GameEvent.PlayerJump, OnPlayerJump);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/ManorTransitionShop.cs b/RL2-Source-patched/ManorTransitionShop.cs
+index a2ca948..671a588 100755
+--- a/RL2-Source/ManorTransitionShop.cs
++++ b/RL2-Source-patched/ManorTransitionShop.cs
+@@ -39,10 +39,9 @@ public class ManorTransitionShop : MonoBehaviour, IRootObj
+ 		PlayerManager.GetPlayerController().SetFacing(faceRight: true);
+ 		yield break;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/MergeRoom.cs b/RL2-Source-patched/MergeRoom.cs
+index a3e1042..a9e5f4e 100755
+--- a/RL2-Source/MergeRoom.cs
++++ b/RL2-Source-patched/MergeRoom.cs
+@@ -295,10 +295,9 @@ public class MergeRoom : BaseRoom, ISummoner, ILevelConsumer
+ 		StandaloneGridPointManagers = null;
+ 		StandaloneRoomBounds = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISummoner.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISummoner.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/NewGamePlusShop.cs b/RL2-Source-patched/NewGamePlusShop.cs
+index 206ba32..3f4d9e4 100755
+--- a/RL2-Source/NewGamePlusShop.cs
++++ b/RL2-Source-patched/NewGamePlusShop.cs
+@@ -294,10 +294,9 @@ public class NewGamePlusShop : MonoBehaviour, IDisplaySpeechBubble, IRoomConsume
+ 		}
+ 		PlayerMovementHelper.ResumeAllMovementInput();
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/NoManaCap_Trait.cs b/RL2-Source-patched/NoManaCap_Trait.cs
+index cac26a9..5d0e7c2 100755
+--- a/RL2-Source/NoManaCap_Trait.cs
++++ b/RL2-Source-patched/NoManaCap_Trait.cs
+@@ -42,10 +42,9 @@ public class NoManaCap_Trait : BaseTrait, IDamageObj
+ 		m_playerController = PlayerManager.GetPlayerController();
+ 		m_damageTickStartTime = Time.time;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IDamageObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IDamageObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/OffscreenIconObj.cs b/RL2-Source-patched/OffscreenIconObj.cs
+index 79e2bc1..623967d 100755
+--- a/RL2-Source/OffscreenIconObj.cs
++++ b/RL2-Source-patched/OffscreenIconObj.cs
+@@ -166,10 +166,9 @@ public class OffscreenIconObj : MonoBehaviour, IGenericPoolObj
+ 	public void ResetValues()
+ 	{
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Orbiter_Hazard.cs b/RL2-Source-patched/Orbiter_Hazard.cs
+index 3d6f9cb..9f71742 100755
+--- a/RL2-Source/Orbiter_Hazard.cs
++++ b/RL2-Source-patched/Orbiter_Hazard.cs
+@@ -207,10 +207,9 @@ public class Orbiter_Hazard : Hazard, IPointHazard, IHazard, IRootObj
+ 	{
+ 		m_orbiterRotationSpeed = rotationSpeed;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/ParadeTransition.cs b/RL2-Source-patched/ParadeTransition.cs
+index 32716d4..fbbbf85 100755
+--- a/RL2-Source/ParadeTransition.cs
++++ b/RL2-Source-patched/ParadeTransition.cs
+@@ -33,10 +33,9 @@ public class ParadeTransition : MonoBehaviour, IRootObj
+ 		yield return transition.TransitionOut();
+ 		transition.GameObject.SetActive(value: false);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/PlayerController.cs b/RL2-Source-patched/PlayerController.cs
+index b7642ef..7ea9580 100755
+--- a/RL2-Source/PlayerController.cs
++++ b/RL2-Source-patched/PlayerController.cs
+@@ -2280,10 +2280,9 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 		DamageAuraProjectile = null;
+ 		Rewired_RL.SetGamepadColor(Color.clear);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IDamageObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IDamageObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/PoisonStatusEffect.cs b/RL2-Source-patched/PoisonStatusEffect.cs
+index 6cd2f59..9381f1d 100755
+--- a/RL2-Source/PoisonStatusEffect.cs
++++ b/RL2-Source-patched/PoisonStatusEffect.cs
+@@ -258,10 +258,9 @@ public class PoisonStatusEffect : BaseStatusEffect, IDamageObj
+ 			m_poisonEffect.Stop(EffectStopType.Gracefully);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IDamageObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IDamageObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Projectile_RL.cs b/RL2-Source-patched/Projectile_RL.cs
+index 8527adf..9b05398 100755
+--- a/RL2-Source/Projectile_RL.cs
++++ b/RL2-Source-patched/Projectile_RL.cs
+@@ -1731,40 +1731,34 @@ public class Projectile_RL : MonoBehaviour, IDamageObj, ITerrainOnEnterHitRespon
+ 			m_spriteRenderer.color = m_startingColor;
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IDamageObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IDamageObj.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IEffectVelocity.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IEffectVelocity.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IPreOnDisable.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IPreOnDisable.gameObject {
++		get => base.gameObject;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IOffscreenObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IOffscreenObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Prop.cs b/RL2-Source-patched/Prop.cs
+index 5ee420b..112844f 100755
+--- a/RL2-Source/Prop.cs
++++ b/RL2-Source-patched/Prop.cs
+@@ -354,10 +354,9 @@ public class Prop : MonoBehaviour, IGenericPoolObj, IMirror, IPivotObj
+ 		CameraLayerController = null;
+ 		HitboxController = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/PropSpawnController.cs b/RL2-Source-patched/PropSpawnController.cs
+index 5aa709f..b2fb9c9 100755
+--- a/RL2-Source/PropSpawnController.cs
++++ b/RL2-Source-patched/PropSpawnController.cs
+@@ -639,10 +639,9 @@ public class PropSpawnController : MonoBehaviour, ISimpleSpawnController, ISpawn
+ 	public void SetSubLayer(int subLayer, bool isDeco = false)
+ 	{
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISpawnController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISpawnController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/ProximityMine_Hazard.cs b/RL2-Source-patched/ProximityMine_Hazard.cs
+index 9074743..6263faf 100755
+--- a/RL2-Source/ProximityMine_Hazard.cs
++++ b/RL2-Source-patched/ProximityMine_Hazard.cs
+@@ -127,10 +127,9 @@ public class ProximityMine_Hazard : Hazard, IPointHazard, IHazard, IRootObj, IHa
+ 			base.Animator.WriteDefaultValues();
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/ProximityProjectile_Hazard.cs b/RL2-Source-patched/ProximityProjectile_Hazard.cs
+index 8b7a57a..7528ac0 100755
+--- a/RL2-Source/ProximityProjectile_Hazard.cs
++++ b/RL2-Source-patched/ProximityProjectile_Hazard.cs
+@@ -95,10 +95,9 @@ public class ProximityProjectile_Hazard : Hazard, IPointHazard, IHazard, IRootOb
+ 		base.Animator.SetBool("Active", value: false);
+ 		base.Animator.SetBool("Attacking", value: false);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/RicochetObj.cs b/RL2-Source-patched/RicochetObj.cs
+index 437a34a..20fa4fe 100755
+--- a/RL2-Source/RicochetObj.cs
++++ b/RL2-Source-patched/RicochetObj.cs
+@@ -17,10 +17,9 @@ public class RicochetObj : MonoBehaviour, IRicochetObj, IRootObj
+ 			m_externalRicochetKnockbackAmount = value;
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Room.cs b/RL2-Source-patched/Room.cs
+index 134f267..adc802f 100755
+--- a/RL2-Source/Room.cs
++++ b/RL2-Source-patched/Room.cs
+@@ -734,10 +734,9 @@ public class Room : BaseRoom, ISummoner, ILevelConsumer
+ 	{
+ 		m_bounds = default(Bounds);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISummoner.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISummoner.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/RootObj.cs b/RL2-Source-patched/RootObj.cs
+index a386fca..98c8605 100755
+--- a/RL2-Source/RootObj.cs
++++ b/RL2-Source-patched/RootObj.cs
+@@ -3,9 +3,9 @@ using UnityEngine;
+ 
+ public class RootObj : MonoBehaviour, IRootObj
+ {
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/SegmentedBreakablePlatform.cs b/RL2-Source-patched/SegmentedBreakablePlatform.cs
+index 6c2a9a1..7c0967b 100755
+--- a/RL2-Source/SegmentedBreakablePlatform.cs
++++ b/RL2-Source-patched/SegmentedBreakablePlatform.cs
+@@ -180,10 +180,9 @@ public class SegmentedBreakablePlatform : SpecialPlatform, ITerrainOnStayHitResp
+ 			Room.PlayerExitRelay.RemoveListener(OnPlayerExitRoom);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/SentryWithIce_Hazard.cs b/RL2-Source-patched/SentryWithIce_Hazard.cs
+index 4f61791..5e70182 100755
+--- a/RL2-Source/SentryWithIce_Hazard.cs
++++ b/RL2-Source-patched/SentryWithIce_Hazard.cs
+@@ -95,10 +95,9 @@ public class SentryWithIce_Hazard : Hazard, IPointHazard, IHazard, IRootObj, IHa
+ 		}
+ 		base.OnDisable();
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Sentry_Hazard.cs b/RL2-Source-patched/Sentry_Hazard.cs
+index 7c11ae6..2660f02 100755
+--- a/RL2-Source/Sentry_Hazard.cs
++++ b/RL2-Source-patched/Sentry_Hazard.cs
+@@ -329,10 +329,9 @@ public class Sentry_Hazard : Hazard, IPointHazard, IHazard, IRootObj, IHasProjec
+ 	{
+ 		m_restDurationOverride = duration;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/SimpleSpawnController.cs b/RL2-Source-patched/SimpleSpawnController.cs
+index 43b680a..62d145d 100755
+--- a/RL2-Source/SimpleSpawnController.cs
++++ b/RL2-Source-patched/SimpleSpawnController.cs
+@@ -99,10 +99,9 @@ public class SimpleSpawnController : MonoBehaviour, IRoomConsumer, ISimpleSpawnC
+ 	{
+ 		base.gameObject.SetActive(value: false);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISpawnController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISpawnController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/SkillTreeShop.cs b/RL2-Source-patched/SkillTreeShop.cs
+index ce4195c..43015e1 100755
+--- a/RL2-Source/SkillTreeShop.cs
++++ b/RL2-Source-patched/SkillTreeShop.cs
+@@ -136,10 +136,9 @@ public class SkillTreeShop : MonoBehaviour, IRootObj, IAudioEventEmitter
+ 		yield return MovePlayerToPosition(m_playerExitPositionObj.transform.position);
+ 		m_isSkillTreeOpen = false;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/SoulShopShop.cs b/RL2-Source-patched/SoulShopShop.cs
+index 37f8c5a..b3110ba 100755
+--- a/RL2-Source/SoulShopShop.cs
++++ b/RL2-Source-patched/SoulShopShop.cs
+@@ -230,10 +230,9 @@ public class SoulShopShop : MonoBehaviour, IDisplaySpeechBubble, IRootObj, IAudi
+ 		}
+ 		PlayerMovementHelper.ResumeAllMovementInput();
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/SpecialPlatformSpawnController.cs b/RL2-Source-patched/SpecialPlatformSpawnController.cs
+index 6a0da9d..4dfeabb 100755
+--- a/RL2-Source/SpecialPlatformSpawnController.cs
++++ b/RL2-Source-patched/SpecialPlatformSpawnController.cs
+@@ -227,10 +227,9 @@ public class SpecialPlatformSpawnController : MonoBehaviour, ISimpleSpawnControl
+ 		}
+ 		return false;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISpawnController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISpawnController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/StatusBarEntry.cs b/RL2-Source-patched/StatusBarEntry.cs
+index 8acb1f7..91ae4f5 100755
+--- a/RL2-Source/StatusBarEntry.cs
++++ b/RL2-Source-patched/StatusBarEntry.cs
+@@ -145,10 +145,9 @@ public class StatusBarEntry : MonoBehaviour, IGenericPoolObj
+ 	{
+ 		DisablePooledObjectManager.DisablePooledObject(this);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/SuperBouncePlatform.cs b/RL2-Source-patched/SuperBouncePlatform.cs
+index 22ddc40..349daf6 100755
+--- a/RL2-Source/SuperBouncePlatform.cs
++++ b/RL2-Source-patched/SuperBouncePlatform.cs
+@@ -12,10 +12,9 @@ public class SuperBouncePlatform : SpecialPlatform, IRootObj
+ 	public override void SetState(StateID state)
+ 	{
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/TallSpike_Hazard.cs b/RL2-Source-patched/TallSpike_Hazard.cs
+index 21eb8f4..248fdc9 100755
+--- a/RL2-Source/TallSpike_Hazard.cs
++++ b/RL2-Source-patched/TallSpike_Hazard.cs
+@@ -100,10 +100,9 @@ public class TallSpike_Hazard : Hazard, IFerr2DHazard, IHazard, IRootObj, IMirro
+ 		}
+ 		m_collidersFlipped = true;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/TextPopupObj.cs b/RL2-Source-patched/TextPopupObj.cs
+index f829a76..58c3a4c 100755
+--- a/RL2-Source/TextPopupObj.cs
++++ b/RL2-Source-patched/TextPopupObj.cs
+@@ -166,10 +166,9 @@ public abstract class TextPopupObj : MonoBehaviour, IGenericPoolObj
+ 		InitialDelay = 0f;
+ 		Source = null;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/TotemShop.cs b/RL2-Source-patched/TotemShop.cs
+index 71fd00b..6aff84f 100755
+--- a/RL2-Source/TotemShop.cs
++++ b/RL2-Source-patched/TotemShop.cs
+@@ -171,10 +171,9 @@ public class TotemShop : MonoBehaviour, IRootObj, IDisplaySpeechBubble, IAudioEv
+ 		AudioManager.PlayOneShotAttached(this, m_farewellAudioEvent, base.gameObject);
+ 		m_interactable.SetIsInteractableActive(isActive: true);
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Triple_Orbiter_Hazard.cs b/RL2-Source-patched/Triple_Orbiter_Hazard.cs
+index dbc26be..1340afc 100755
+--- a/RL2-Source/Triple_Orbiter_Hazard.cs
++++ b/RL2-Source-patched/Triple_Orbiter_Hazard.cs
+@@ -54,10 +54,9 @@ public class Triple_Orbiter_Hazard : Hazard, IPointHazard, IHazard, IRootObj
+ 		}
+ 		base.OnDisable();
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Tunnel.cs b/RL2-Source-patched/Tunnel.cs
+index d467f34..b9db6aa 100755
+--- a/RL2-Source/Tunnel.cs
++++ b/RL2-Source-patched/Tunnel.cs
+@@ -298,10 +298,9 @@ public class Tunnel : MonoBehaviour, IRoomConsumer, IRootObj
+ 			m_visuals.SetActive(isVisible);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/TunnelSpawnController.cs b/RL2-Source-patched/TunnelSpawnController.cs
+index fb3b1f5..6680e8f 100755
+--- a/RL2-Source/TunnelSpawnController.cs
++++ b/RL2-Source-patched/TunnelSpawnController.cs
+@@ -242,10 +242,9 @@ public class TunnelSpawnController : MonoBehaviour, ISimpleSpawnController, ISpa
+ 			DestinationRoomPrefab = roomMetaData.GetPrefab();
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISpawnController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISpawnController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/TurretHazardSpawnController.cs b/RL2-Source-patched/TurretHazardSpawnController.cs
+index 9a47779..cdfefbb 100755
+--- a/RL2-Source/TurretHazardSpawnController.cs
++++ b/RL2-Source-patched/TurretHazardSpawnController.cs
+@@ -64,10 +64,9 @@ public class TurretHazardSpawnController : LineHazardSpawnController, IHazardSpa
+ 			(base.Hazard as Multi_Hazard).Initialize(base.PivotPoint, base.Width, m_hazardArgs);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject ISpawnController.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject ISpawnController.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Tween.cs b/RL2-Source-patched/Tween.cs
+index b8f20e2..8e869e9 100755
+--- a/RL2-Source/Tween.cs
++++ b/RL2-Source-patched/Tween.cs
+@@ -655,10 +655,9 @@ public class Tween : MonoBehaviour, IGenericPoolObj
+ 			Array.Clear(m_methodArgs, 0, m_methodArgs.Length);
+ 		}
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IGenericPoolObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IGenericPoolObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/VoidTrap_Hazard.cs b/RL2-Source-patched/VoidTrap_Hazard.cs
+index 12b9ec6..daafcf6 100755
+--- a/RL2-Source/VoidTrap_Hazard.cs
++++ b/RL2-Source-patched/VoidTrap_Hazard.cs
+@@ -146,10 +146,9 @@ public class VoidTrap_Hazard : Hazard, IPointHazard, IHazard, IRootObj, IHasProj
+ 		m_state = VoidTrapState.Idle;
+ 		m_renderer.color = Color.white;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }
+diff --git a/RL2-Source/Windmill_Hazard.cs b/RL2-Source-patched/Windmill_Hazard.cs
+index aa640a7..8ceaa9f 100755
+--- a/RL2-Source/Windmill_Hazard.cs
++++ b/RL2-Source-patched/Windmill_Hazard.cs
+@@ -68,10 +68,9 @@ public class Windmill_Hazard : Hazard, IPointHazard, IHazard, IRootObj
+ 		CurrentRotation = 0f;
+ 		m_pivot.transform.localEulerAngles = Vector3.zero;
+ 	}
+-
++	
+ 	[SpecialName]
+-	GameObject IRootObj.get_gameObject()
+-	{
+-		return base.gameObject;
++	GameObject IRootObj.gameObject {
++		get => base.gameObject;
+ 	}
+ }

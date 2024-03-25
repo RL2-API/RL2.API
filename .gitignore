@@ -396,3 +396,10 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Rogue Legacy 2 Source Code
+RL2-Source
+Assembly-CSharp/**/*.cs
+!Assembly-CSharp/ModLoader
+!Assembly-CSharp/Assembly-CSharp.csproj
+Assembly-CSharp/lib
