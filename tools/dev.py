@@ -66,7 +66,7 @@ def ensure_ilspycmd():
 def cmd_decompile(patch_only = False):
 	ensure_dotnet()
 	ensure_ilspycmd()
-	managed_path = input("Managed folder path: ")
+	managed_path = input("Managed folder absolute path: ")
 	assembly_orig_path = os.path.join(managed_path, "Assembly-CSharp-original.dll")
 	assembly_path = os.path.join(managed_path, "Assembly-CSharp.dll")
 	if os.path.exists(assembly_orig_path):
