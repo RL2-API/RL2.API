@@ -4,12 +4,11 @@ import os
 import shutil
 import platform
 
-patchtool = "patch.exe" if platform.system() == "Windows" else "patch"
+import patch_ng as patch
 
 dirname = os.path.dirname(__file__)
 
 argv = sys.argv
-
 
 def print_help():
 	print("Toolchain utility for the RL2 Mod Loader")
@@ -64,33 +63,9 @@ def ensure_ilspycmd():
 		print(str(e))
 		exit(1)
 
-
-def ensure_patch():
-	global patchtool
-	try:
-		ver = subprocess.run([patchtool, "--version"], capture_output=True)
-		print("patch version", ver.stdout.decode("utf-8").split("\n")[0].rstrip())
-	except Exception as e:
-		print(f"{patchtool} binary not available, please install it (GNU patch)")
-		print(
-			f"If the error message below says something about permissions, rename your patch file to p4tch.exe"
-		)
-		print(str(e))
-		try:
-			patchtool = "p4tch.exe"
-			attempt2 = subprocess.run([patchtool, "--version"], capture_output=True)
-			print(
-				"patch version", attempt2.stdout.decode("utf-8").split("\n")[0].rstrip()
-			)
-		except Exception as e2:
-			print(f"2nd attempt with {patchtool} failed, aborting...")
-			print(str(e2))
-			exit(1)
-
 def cmd_decompile(patch_only = False):
 	ensure_dotnet()
 	ensure_ilspycmd()
-	ensure_patch()
 	assembly_path = input("Assembly-CSharp.dll path: ")
 	if not os.path.exists(assembly_path):
 		print("Assembly-CSharp.dll not found, aborting...")
@@ -114,25 +89,11 @@ def cmd_decompile(patch_only = False):
 		if not os.path.isfile(patch_path):
 			continue
 		print(f"- {file}")
-		try:
-			cmd = [patchtool, "-i", patch_path, "-p", "1", "--binary"]
-			# Why is this so dumb?
-			if platform.system() == "Windows":
-				og = patch_path.replace("\\", "/")
-				cmd = [
-					"wsl.exe",
-					"patch",
-					"-i",
-					"/mnt/" + og[0].lower() + og[2:],
-					"-p",
-					"1",
-					"--binary"
-				]
-			patch = subprocess.run(cmd)
-		except Exception as e:
+		ptch = patch.fromfile(patch_path)
+		if not ptch.apply(1, output_dir):
 			print("Failed to apply patch, aborting...")
-			print(str(e))
 			exit(1)
+		
 	print("Patches have been applied, copying the source code")
 	if patch_only:
 		print("Stopping decompilation process as patch-only mode has been requested")
