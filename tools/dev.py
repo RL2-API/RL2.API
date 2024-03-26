@@ -66,14 +66,21 @@ def ensure_ilspycmd():
 def cmd_decompile(patch_only = False):
 	ensure_dotnet()
 	ensure_ilspycmd()
-	assembly_path = input("Assembly-CSharp.dll path: ")
+	managed_path = input("Managed folder path: ")
+	assembly_orig_path = os.path.join(managed_path, "Assembly-CSharp-original.dll")
+	assembly_path = os.path.join(managed_path, "Assembly-CSharp.dll")
+	if os.path.exists(assembly_orig_path):
+		print("Found Assembly-CSharp-original.dll, using it instead")
+		assembly_path = assembly_orig_path
 	if not os.path.exists(assembly_path):
 		print("Assembly-CSharp.dll not found, aborting...")
 		exit(1)
+	if not os.path.exists(assembly_orig_path):
+		print("Assembly-CSharp-original.dll doesn't exist, creating it")
+		shutil.copy(assembly_path, assembly_orig_path)
 	output_dir = os.path.join(dirname, "../RL2-Source")
 	if os.path.exists(output_dir):
 		shutil.rmtree(output_dir)
-		shutil
 	os.mkdir(output_dir)
 	cmd = ["ilspycmd", "--nested-directories", "-p", "-o", output_dir, assembly_path]
 	print("Decompiling the game...", cmd)
@@ -108,18 +115,17 @@ def cmd_decompile(patch_only = False):
 		if os.path.isdir(path):
 			shutil.rmtree(path)
 	for file in os.listdir(output_dir):
-		if file == "Assembly-CSharp.csproj":
+		if file == "Assembly-CSharp.csproj" or file == "Assembly-CSharp-original.csproj":
 			continue
 		shutil.move(os.path.join(output_dir, file), target_dir)
 	shutil.rmtree(output_dir)
 	print("Source code is ready, copying libs...")
-	lib_dir = os.path.dirname(os.path.abspath(assembly_path))
+	lib_dir = managed_path
 	target_lib_dir = os.path.join(target_dir, "lib")
-	print(target_lib_dir)
 	if not os.path.exists(target_lib_dir):
 		os.mkdir(target_lib_dir)
 	for file in os.listdir(lib_dir):
-		if file == "Assembly-CSharp.dll":
+		if file == "Assembly-CSharp.dll" or file == "Assembly-CSharp-original.dll":
 			continue
 		path = os.path.join(lib_dir, file)
 		shutil.copyfile(path, os.path.join(target_lib_dir, file))
