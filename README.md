@@ -1,2 +1,2 @@
-# RL2-ModLoader-public
-A work in progreess Rogue Legacy mod loader and API
+# RL2-ModLoader
+A work-in-progress Rogue Legacy 2 mod loader and API
