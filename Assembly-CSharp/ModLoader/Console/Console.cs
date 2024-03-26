@@ -54,7 +54,7 @@ public class Console : MonoBehaviour
 
         if (visible)
         {
-            GUILayout.BeginArea(new Rect((Screen.width - Screen.width * 0.9f) * 0.5f, (Screen.height - 15 * (myLogQueue.ToArray().Length + 5)), Screen.width * 0.9f, Screen.height * 0.9f));
+            GUILayout.BeginArea(new Rect(Screen.width * 0.05f, (Screen.height - 15 * (myLogQueue.ToArray().Length + 5)), Screen.width * 0.9f, Screen.height * 0.9f));
 
             GUILayout.Label("\n" + string.Join("\n", myLogQueue.ToArray()));
 
