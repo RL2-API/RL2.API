@@ -2,6 +2,7 @@
 A work-in-progress Rogue Legacy 2 mod loader and API
 
 # Setting up the developer environment
+0. Make sure you have python installed and on your PATH
 1. Clone this repository and go to that directory.
 2. Open your terminal in the directory.
 	- Make sure you have python installed as well as the dotnet development tools.
