@@ -14,7 +14,7 @@ index 7ea9580..de800cd 100755
  
  	private int m_baseVitality;
  
-+	public PlayerBonuses playerBonuses;
++	public PlayerBonuses playerBonuses = new PlayerBonuses();
 +
  	private CharacterDash_RL m_characterDash;
  
