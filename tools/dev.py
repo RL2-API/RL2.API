@@ -2,11 +2,12 @@ import sys
 import subprocess
 import os
 import shutil
-import platform
+import json
 
 import patch_ng as patch
 
 dirname = os.path.dirname(__file__)
+config_path = os.path.join(dirname, "config.json")
 
 argv = sys.argv
 
@@ -16,6 +17,8 @@ def print_help():
 	print()
 	print("Allowed commands:")
 	print(" - help - Display this message")
+	print(" - configure - Configure the toolchain")
+	print(" - reset-config - Reset the toolchain configuration")
 	print(" - decompile - Decompile the game assembly")
 	print(" - prepare-to-patch - Decompile the game assembly but stop after applying patches")
 	print(" - cleanup - Remove all generated files")
@@ -34,6 +37,10 @@ def main():
 			cmd_cleanup()
 		case "prepare-to-patch":
 			cmd_decompile(True)
+		case "reset-config":
+			cmd_reset_config()
+		case "configure":
+			cmd_configure()
 		case _:
 			print_help()
 			exit(1)
@@ -63,10 +70,24 @@ def ensure_ilspycmd():
 		print(str(e))
 		exit(1)
 
+def get_config():
+	if not os.path.exists(config_path):
+		print("Configuration file doesn't exist, please run the \"configure\" command first")
+		exit(1)
+	with open(config_path, encoding="utf-8") as f:
+		data = f.read()
+		config = json.loads(data)
+		return {
+			"install_dir": config["install_dir"],
+			"dll_folder": config["dll_folder"],
+			"mod_dir": config["mod_dir"]
+		}
+
 def cmd_decompile(patch_only = False):
 	ensure_dotnet()
 	ensure_ilspycmd()
-	managed_path = input("Managed folder absolute path: ")
+	config = get_config()
+	managed_path = config["dll_folder"]
 	assembly_orig_path = os.path.join(managed_path, "Assembly-CSharp-original.dll")
 	assembly_path = os.path.join(managed_path, "Assembly-CSharp.dll")
 	if os.path.exists(assembly_orig_path):
@@ -145,6 +166,24 @@ def cmd_cleanup():
 			shutil.rmtree(path)
 	if os.path.exists(output_dir):
 		shutil.rmtree(output_dir)
+
+def cmd_reset_config():
+	if os.path.exists(config_path):
+		os.remove(config_path)
+
+def cmd_configure():
+	print("Toolchain Configuration Utility")
+	if os.path.exists(config_path):
+		print("A configuration file already exists, if you want to continue run the \"reset-config\" command")
+		exit(1)
+	config = {}
+	config["install_dir"] = input("Game installation directory: ")
+	config["dll_folder"] = os.path.join(config["install_dir"], "Rogue Legacy 2_Data", "Managed")
+	config["mod_dir"] = os.path.join(config["install_dir"], "Rogue Legacy 2_Data", "Mods")
+	
+	config_json = json.dumps(config)
+	with open(config_path, "w+", encoding="utf-8") as f:
+		f.write(config_json)
 
 if __name__ == "__main__":
 	main()
