@@ -7,3 +7,54 @@ body {
 
 	color: #DCFFFF;
 }
+
+a:link {
+	color: #16B219;
+	background-color: transparent;
+	text-decoration: underline;
+}
+
+a:visited {
+  color: #3BC442;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+div.options {
+	display: grid;
+	grid-template-columns: 100% 100%;
+	gap: 2vw;
+
+	text-align: center;
+	justify-content: center;
+}
+
+div.choice {
+	height: auto;
+	margin: .4vw;
+	padding: 2vw;
+	background-color: #000025;
+	text-align: center;
+}
+
+div.choice:hover {
+	transform: scale(1.025);
+	background-color: #000030;
+	box-shadow: .4vw .4vw #000038;
+}
+
+div.clickable {
+	cursor: pointer;
+}
+
+/*
+Text        	- #DCFFFF
+Background  	- #000020
+Primary     	- #16B219
+Secondary   	- #DCFFFF
+Accent      	- #3BC442
+
+Box color 		- #000025
+Box highlight	- #000030
+Box shadow 		- #000038
+*/
