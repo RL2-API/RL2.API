@@ -10,17 +10,17 @@ public static class CommandManager
 
     public static void RegisterCommands(Assembly assembly)
     {
-        var methods = assembly.GetTypes()
+        MethodInfo[] methods = assembly.GetTypes()
                       .SelectMany(t => t.GetMethods())
                       .Where(m => m.GetCustomAttributes(typeof(CommandAttribute), false).Length > 0)
                       .Where(m => m.IsStatic)
                       .ToArray();
 
-        foreach (var method in methods)
+        foreach (MethodInfo method in methods)
         {
-            var command = method.GetCustomAttribute<CommandAttribute>(true);
+            CommandAttribute command = method.GetCustomAttribute<CommandAttribute>(true);
 
-            commands.TryGetValue(command.commandName, out var alreadyExists);
+            commands.TryGetValue(command.commandName, out MethodInfo alreadyExists);
             if (alreadyExists is not null)
             {
                 ModLoader.Log($"Command with name {command.commandName} already exists");
@@ -33,7 +33,7 @@ public static class CommandManager
 
     public static void RunCommand(string name)
     {
-        if (!commands.TryGetValue(name, out var command))
+        if (!commands.TryGetValue(name, out MethodInfo command))
         {
             return;
         }
