@@ -23,10 +23,7 @@ public abstract class ModPlayer : MonoBehaviour
     /// </summary>
     public virtual void ModifyStats() { }
 
-    /// <summary>
-    /// TODO: Decide how should we approach saving
-    /// </summary>
+    // TODO: Decide how should we approach saving
     //public virtual void SaveData() { }
-    
     //public virtual void LoadData() { }
 }
