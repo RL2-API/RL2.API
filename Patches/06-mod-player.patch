@@ -1,49 +1,42 @@
 diff --git a/RL2-Source/PlayerController.cs b/Assembly-CSharp/PlayerController.cs
-index cbcba94..79e533a 100644
+index cbcba94..f156207 100644
 --- a/RL2-Source/PlayerController.cs
 +++ b/Assembly-CSharp/PlayerController.cs
-@@ -750,11 +750,17 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
- 	public void UpdateFrameAccumulatedLifeSteal(float amount)
- 	{
- 		m_updateAccumulatedLifeSteal += amount;
-	}
+@@ -754,6 +754,12 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
  
  	private void LateUpdate()
  	{
-		if (m_updateAccumulatedXP > 0f)
-+        statBonuses.ResetAll();
-+        ModPlayer[] modPlayers = gameObject.GetComponents<ModPlayer>();
-+        foreach (var modPlayer in modPlayers)
-+        {
-+            modPlayer.PreUpdate();
-+        }
++		statBonuses.ResetAll();
++		ModPlayer[] modPlayers = gameObject.GetComponents<ModPlayer>();
++		foreach(ModPlayer modPlayer in modPlayers)
++		{
++			modPlayer.PreUpdate();
++		}
+ 		if (m_updateAccumulatedXP > 0f)
  		{
  			if ((bool)m_xpPopup && m_xpPopup.gameObject.activeSelf)
- 			{
-@@ -774,7 +780,17 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+@@ -774,6 +780,16 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
  			TextPopupManager.DisplayTextDefaultPos(TextPopupType.HPGained, text2, this, attachToSource: true);
  			m_updateAccumulatedLifeSteal = 0f;
  		}
--	}
-+        foreach (var modPlayer in modPlayers)
++		foreach (ModPlayer modPlayer in modPlayers)
 +		{
 +			modPlayer.ModifyStats();
 +		}
 +		InitializeAbilities();
 +		InitializeAllMods(resetHP: false, resetMP: false);
-+        foreach (var modPlayer in modPlayers)
-+        {
-+            modPlayer.PostUpdate();
-+        }
-+    }
++		foreach (ModPlayer modPlayer in modPlayers)
++		{
++			modPlayer.PostUpdate();
++		}
+ 	}
  
  	protected override void OnJustGrounded()
- 	{
 @@ -846,6 +862,10 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
  		m_onRelicChanged = OnRelicChanged;
  		m_applyPermanentStatusEffects = ApplyPermanentStatusEffects;
  		m_onHouseRulesChanged = OnHouseRulesChanged;
-+		foreach (Type modPlayer in ModLoader.LoadedModPlayers)
++		foreach(Type modPlayer in ModLoader.LoadedModPlayers)
 +		{
 +			gameObject.AddComponent(modPlayer);
 +		}
