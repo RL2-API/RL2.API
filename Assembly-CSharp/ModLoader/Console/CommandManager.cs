@@ -12,13 +12,13 @@ public static class CommandManager
     {
         var methods = assembly.GetTypes()
                       .SelectMany(t => t.GetMethods())
-                      .Where(m => m.GetCustomAttributes(typeof(Command), false).Length > 0)
+                      .Where(m => m.GetCustomAttributes(typeof(CommandAttribute), false).Length > 0)
                       .Where(m => m.IsStatic)
                       .ToArray();
 
         foreach (var method in methods)
         {
-            var command = method.GetCustomAttribute<Command>(true);
+            var command = method.GetCustomAttribute<CommandAttribute>(true);
 
             commands.TryGetValue(command.commandName, out var alreadyExists);
             if (alreadyExists is not null)
