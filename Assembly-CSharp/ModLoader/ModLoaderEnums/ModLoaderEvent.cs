@@ -1,5 +1,5 @@
 ﻿public enum ModLoaderEvent
 {
-    Load,
-    Unload,
+	Load,
+	Unload,
 }

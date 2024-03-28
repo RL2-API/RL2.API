@@ -1,5 +1,5 @@
 public enum UnityHookEvent
 {
-    Update,
-    FixedUpdate,
+	Update,
+	FixedUpdate,
 }

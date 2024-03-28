@@ -1,10 +1,9 @@
 ﻿using System;
-using UnityEngine;
 
 namespace RL2.ModLoader;
 
 public class InputReader
-{ 
+{
 	public void CheckInput()
 	{
 		foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
