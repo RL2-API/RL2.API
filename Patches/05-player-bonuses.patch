@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/PlayerController.cs b/Assembly-CSharp/PlayerController.cs
-index 7ea9580..de800cd 100755
+index fe5c816..cbcba94 100644
 --- a/RL2-Source/PlayerController.cs
 +++ b/Assembly-CSharp/PlayerController.cs
 @@ -8,6 +8,7 @@ using Rewired;
@@ -14,7 +14,7 @@ index 7ea9580..de800cd 100755
  
  	private int m_baseVitality;
  
-+	public PlayerBonuses playerBonuses = new PlayerBonuses();
++	public StatBonuses statBonuses = new StatBonuses();
 +
  	private CharacterDash_RL m_characterDash;
  
@@ -24,7 +24,7 @@ index 7ea9580..de800cd 100755
  				num2 = 2.5f;
  			}
 -			return Mathf.Clamp((num2 + ResolveAdd) * (1f + ResolveMod), num, float.MaxValue);
-+			return Mathf.Clamp((num2 + ResolveAdd + playerBonuses.resolveBonus) * (1f + ResolveMod), num, float.MaxValue);
++			return Mathf.Clamp((num2 + ResolveAdd + statBonuses.resolve) * (1f + ResolveMod), num, float.MaxValue);
  		}
  	}
  
@@ -33,7 +33,7 @@ index 7ea9580..de800cd 100755
  		get
  		{
 -			float num = Mathf.Clamp((BaseDexterity + DexterityAdd + DexterityTemporaryAdd) * (1f + DexterityMod + DexterityTemporaryMod), 0f, float.MaxValue);
-+			float num = Mathf.Clamp((BaseDexterity + DexterityAdd + DexterityTemporaryAdd + playerBonuses.dexterityBonus) * (1f + DexterityMod + DexterityTemporaryMod), 0f, float.MaxValue);
++			float num = Mathf.Clamp((BaseDexterity + DexterityAdd + DexterityTemporaryAdd + statBonuses.dexterity) * (1f + DexterityMod + DexterityTemporaryMod), 0f, float.MaxValue);
  			if (ChallengeManager.IsInChallenge)
  			{
  				num = ChallengeManager.ApplyStatCap(num, isDexterityOrFocus: true);
@@ -42,7 +42,7 @@ index 7ea9580..de800cd 100755
  	}
  
 -	public override float ActualCritDamage => Mathf.Clamp(BaseCritDamage + CritDamageAdd + CritDamageTemporaryAdd, 0f, float.MaxValue);
-+	public override float ActualCritDamage => Mathf.Clamp(BaseCritDamage + CritDamageAdd + CritDamageTemporaryAdd + playerBonuses.critDamageBonus, 0f, float.MaxValue);
++	public override float ActualCritDamage => Mathf.Clamp(BaseCritDamage + CritDamageAdd + CritDamageTemporaryAdd + statBonuses.critDamage, 0f, float.MaxValue);
  
  	public virtual float CritDamageAdd { get; set; }
  
@@ -51,7 +51,7 @@ index 7ea9580..de800cd 100755
  		get
  		{
 -			float num = Mathf.Clamp((BaseFocus + FocusAdd + FocusTemporaryAdd) * (1f + FocusMod + FocusTemporaryMod), 0f, float.MaxValue);
-+			float num = Mathf.Clamp((BaseFocus + FocusAdd + FocusTemporaryAdd + playerBonuses.focusBonus) * (1f + FocusMod + FocusTemporaryMod), 0f, float.MaxValue);
++			float num = Mathf.Clamp((BaseFocus + FocusAdd + FocusTemporaryAdd + statBonuses.focus) * (1f + FocusMod + FocusTemporaryMod), 0f, float.MaxValue);
  			if (ChallengeManager.IsInChallenge)
  			{
  				num = ChallengeManager.ApplyStatCap(num, isDexterityOrFocus: true);
@@ -60,7 +60,7 @@ index 7ea9580..de800cd 100755
  	}
  
 -	public float ActualMagicCritDamage => Mathf.Clamp(BaseMagicCritDamage + MagicCritDamageAdd + MagicCritDamageTemporaryAdd, 0f, float.MaxValue);
-+	public float ActualMagicCritDamage => Mathf.Clamp(BaseMagicCritDamage + MagicCritDamageAdd + MagicCritDamageTemporaryAdd + playerBonuses.magicCritDamageBonus, 0f, float.MaxValue);
++	public float ActualMagicCritDamage => Mathf.Clamp(BaseMagicCritDamage + MagicCritDamageAdd + MagicCritDamageTemporaryAdd + statBonuses.magicCritDamage, 0f, float.MaxValue);
  
  	public float MagicCritDamageAdd { get; set; }
  
@@ -69,7 +69,7 @@ index 7ea9580..de800cd 100755
  	}
  
 -	public int ActualArmor => Mathf.Clamp(BaseArmor + ArmorAdds, 0, int.MaxValue);
-+	public int ActualArmor => Mathf.Clamp(BaseArmor + ArmorAdds + playerBonuses.armorBonus, 0, int.MaxValue);
++	public int ActualArmor => Mathf.Clamp(BaseArmor + ArmorAdds + statBonuses.armor, 0, int.MaxValue);
  
  	public int ArmorAdds { get; set; }
  
@@ -78,7 +78,7 @@ index 7ea9580..de800cd 100755
  		get
  		{
 -			float num = base.ActualStrength;
-+			float num = base.ActualStrength + playerBonuses.strengthBonus;
++			float num = base.ActualStrength + statBonuses.strength;
  			if (ChallengeManager.IsInChallenge)
  			{
  				num = ChallengeManager.ApplyStatCap(num);
@@ -87,7 +87,7 @@ index 7ea9580..de800cd 100755
  		get
  		{
 -			float num = base.ActualMagic;
-+			float num = base.ActualMagic + playerBonuses.inteligenceBonus;
++			float num = base.ActualMagic + statBonuses.inteligence;
  			if (ChallengeManager.IsInChallenge)
  			{
  				num = ChallengeManager.ApplyStatCap(num);
@@ -96,7 +96,7 @@ index 7ea9580..de800cd 100755
  		get
  		{
 -			int num = BaseVitality + VitalityAdd;
-+			int num = BaseVitality + VitalityAdd + playerBonuses.vitalityBonus;
++			int num = BaseVitality + VitalityAdd + statBonuses.vitality;
  			num = Mathf.CeilToInt((float)num * (1f + VitalityMod));
  			if (ChallengeManager.IsInChallenge)
  			{
@@ -105,7 +105,7 @@ index 7ea9580..de800cd 100755
  			float maxHealthMod = base.MaxHealthMod;
  			float num = 1f;
 -			num += traitMaxHealthMod + relicMaxHealthMod + maxHealthMod;
-+			num += traitMaxHealthMod + relicMaxHealthMod + maxHealthMod + playerBonuses.healthBonus;
++			num += traitMaxHealthMod + relicMaxHealthMod + maxHealthMod + statBonuses.maxHealth;
  			float num2 = Mathf.Clamp(1f - ActualResolve, 0f, 1f);
  			num2 *= 1f;
  			int num3 = 150;
@@ -114,7 +114,7 @@ index 7ea9580..de800cd 100755
  	public int ClassModdedMaxMana => Mathf.CeilToInt((float)BaseMaxMana * CharacterClass.ClassData.PassiveData.MaxManaMod * (1f + EquipmentMaxManaMod));
  
 -	public int ActualMaxMana => Mathf.Clamp(Mathf.CeilToInt((float)ClassModdedMaxMana * (1f + TraitMaxManaMod)) + PostModMaxManaAdd, 1, int.MaxValue);
-+	public int ActualMaxMana => Mathf.Clamp(Mathf.CeilToInt((float)ClassModdedMaxMana * (1f + TraitMaxManaMod)) + PostModMaxManaAdd + playerBonuses.manaBonus, 1, int.MaxValue);
++	public int ActualMaxMana => Mathf.Clamp(Mathf.CeilToInt((float)ClassModdedMaxMana * (1f + TraitMaxManaMod)) + PostModMaxManaAdd + statBonuses.maxMana, 1, int.MaxValue);
  
  	public int PostModMaxManaAdd { get; set; }
  
@@ -123,7 +123,55 @@ index 7ea9580..de800cd 100755
  	}
  
 -	public float ActualMovementSpeed => m_characterMove.MovementSpeed;
-+	public float ActualMovementSpeed => m_characterMove.MovementSpeed + playerBonuses.movementSpeedBonus;
++	public float ActualMovementSpeed => m_characterMove.MovementSpeed + statBonuses.movementSpeed;
  
  	public float MovementSpeedMod
  	{
+@@ -881,14 +884,14 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 
+ 	public void InitializeAbilities()
+ 	{
+-		CharacterMove.WalkSpeed = 12f;
++		CharacterMove.WalkSpeed = 12f + statBonuses.movementSpeed;
+ 		float num = 1f + RuneLogicHelper.GetHastePercent();
+ 		CharacterMove.WalkSpeed *= num;
+ 		CharacterMove.MovementSpeed = CharacterMove.WalkSpeed;
+ 		base.ControllerCorgi.DefaultParameters.SpeedAccelerationOnGround = 120f;
+ 		base.ControllerCorgi.DefaultParameters.SpeedAccelerationInAir = 120f;
+-		CharacterJump.JumpHeight = 8.75f;
+-		CharacterJump.DoubleJumpHeight = 4.75f;
++		CharacterJump.JumpHeight = 8.75f + statBonuses.jumpHeight;
++		CharacterJump.DoubleJumpHeight = 4.75f + statBonuses.doubleJumpHeight;
+ 		CharacterJump.JumpReleaseForce = 4.5f;
+ 		CharacterJump.JumpTimeWindow = 0.1375f;
+ 		CharacterJump.CanJumpWhileDashing = true;
+@@ -907,16 +910,16 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 		{
+ 			CharacterJump.NumberOfJumps = 2;
+ 		}
+-		CharacterJump.NumberOfJumps += extraJumps;
++		CharacterJump.NumberOfJumps += extraJumps + statBonuses.extraJumps;
+ 		CharacterJump.ResetNumberOfJumps();
+ 		CharacterDash.EnableOmnidash = false;
+ 		if (TraitManager.IsTraitActive(TraitType.OmniDash))
+ 		{
+ 			CharacterDash.EnableOmnidash = true;
+ 		}
+-		CharacterDash.DashDistance = 8f;
+-		CharacterDash.DashForce = 26f;
+-		CharacterDash.DashCooldown = 0f;
++		CharacterDash.DashDistance = 8f + statBonuses.dashDistance;
++		CharacterDash.DashForce = 26f + statBonuses.dashForce;
++		CharacterDash.DashCooldown = 0f + statBonuses.dashCooldown;
+ 		int extraDashes = RuneLogicHelper.GetExtraDashes();
+ 		extraDashes += (int)EquipmentManager.Get_EquipmentSet_BonusTypeStatGain(EquipmentSetBonusType.ExtraDash);
+ 		extraDashes += (int)EquipmentManager.Get_EquipmentSet_BonusTypeStatGain(EquipmentSetBonusType.ExtraDashJump);
+@@ -926,7 +929,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 		{
+ 			CharacterDash.TotalDashesAllowed = 1;
+ 		}
+-		CharacterDash.TotalDashesAllowed += extraDashes;
++		CharacterDash.TotalDashesAllowed += extraDashes + statBonuses.extraDashes;
+ 		CharacterDash.ResetNumberOfDashes();
+ 		CharacterDownStrike.AttackSpeed = 32f;
+ 		CharacterDownStrike.ForwardKickAngle = -55f;
