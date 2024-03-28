@@ -9,7 +9,8 @@ public abstract class ModPlayer : MonoBehaviour
 	public virtual void ResetEffects() { }
 
 	/// <summary>
-	/// Ran before every Update
+	/// Ran at the beginning of LateUpdate(). <br></br>
+	/// StatBonuses.ResetAll() has just been called, modded stat changes are not present here yet.
 	/// </summary>
 	public virtual void PreUpdate() { }
 
