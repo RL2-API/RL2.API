@@ -1,0 +1,30 @@
+diff --git a/rl2-source/PlayerController.cs b/assembly-csharp/PlayerController.cs
+index cbcba94..c1a9976 100644
+--- a/rl2-source/PlayerController.cs
++++ b/assembly-csharp/PlayerController.cs
+@@ -774,6 +774,14 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 			TextPopupManager.DisplayTextDefaultPos(TextPopupType.HPGained, text2, this, attachToSource: true);
+ 			m_updateAccumulatedLifeSteal = 0f;
+ 		}
++		statBonuses.ResetAll();
++		ModPlayer[] modPlayers = gameObject.GetComponents<ModPlayer>();
++		foreach (var modPlayer in modPlayers)
++		{
++			modPlayer.ModifyStats();
++		}
++		InitializeAbilities();
++		InitializeAllMods(resetHP: false, resetMP: false);
+ 	}
+ 
+ 	protected override void OnJustGrounded()
+@@ -846,6 +854,10 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 		m_onRelicChanged = OnRelicChanged;
+ 		m_applyPermanentStatusEffects = ApplyPermanentStatusEffects;
+ 		m_onHouseRulesChanged = OnHouseRulesChanged;
++		foreach (Type modPlayer in ModLoader.LoadedModPlayers)
++		{
++			gameObject.AddComponent(modPlayer);
++		}
+ 	}
+ 
+ 	public override void ResetBaseValues()

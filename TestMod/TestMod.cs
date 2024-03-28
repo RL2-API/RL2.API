@@ -6,13 +6,11 @@ namespace TestMod;
 
 public class TestMod : Mod
 {
-    public override string Name { get => "TestMod"; }
-
     public override void Load()
     {
         Messenger<ModMessenger, ModLoaderEvent>.AddListener(ModLoaderEvent.Load, OnLoad);
         Messenger<ModMessenger, ModLoaderEvent>.AddListener(ModLoaderEvent.Unload, OnUnload);
-        Log($"{Name} loaded!");
+        Log($"TestMod loaded!");
     }
 
     public void OnLoad(MonoBehaviour sender, EventArgs eventArgs)
@@ -22,7 +20,7 @@ public class TestMod : Mod
 
     public void OnUnload(MonoBehaviour sender, EventArgs eventArgs)
     {
-        Log($"{Name} unloaded!");
+        Log($"TestMod unloaded!");
     }
 
     [Command("fps")]

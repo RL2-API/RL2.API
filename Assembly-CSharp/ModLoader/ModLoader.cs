@@ -3,6 +3,7 @@ using System.Reflection;
 using System;
 using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace RL2.ModLoader;
 
@@ -11,6 +12,7 @@ public class ModLoader {
     public static readonly string dataPath = Application.dataPath.Replace("/", "\\");
     public static readonly string ModPath =  dataPath + "\\Mods"; // No, it cannot be const
     public static Mod[] LoadedMods;
+    public static List<Type> LoadedModPlayers = new();
 
     public static void LoadMods()
     {
@@ -35,6 +37,12 @@ public class ModLoader {
             {
                 Log($"Failed to load the Mod class - the Mod class was not found");
                 break;
+            }
+
+            Type[] modPlayers = assembly.GetTypes().Where(x => x.BaseType.FullName == "RL2.ModLoader.ModPlayer").ToArray();
+            foreach (Type modPlayer in modPlayers)
+            {
+                LoadedModPlayers.Add(modPlayer);
             }
 
             CommandManager.RegisterCommands(assembly);
