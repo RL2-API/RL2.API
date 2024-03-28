@@ -118,6 +118,9 @@ def cmd_decompile(patch_only = False):
 			continue
 		print(f"- {file}")
 		ptch = patch.fromfile(patch_path)
+		if not ptch:
+			print("Failed to parse patch, aborting...")
+			exit(1)
 		if not ptch.apply(1, output_dir):
 			print("Failed to apply patch, aborting...")
 			exit(1)
