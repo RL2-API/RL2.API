@@ -7,8 +7,8 @@ public class Console : MonoBehaviour
 {
 	private bool visible = false;
 
-	uint qsize = 15;  // number of messages to keep
-	Queue myLogQueue = new Queue();
+	uint consoleLines = 15;  // number of messages to keep
+	Queue logQueue = new Queue();
 
 	string command = string.Empty;
 
@@ -24,15 +24,13 @@ public class Console : MonoBehaviour
 
 	void HandleLog(string logString, string stackTrace, LogType type)
 	{
-		myLogQueue.Enqueue("[" + type + "] : " + logString);
+		string message = $"[{type}] {logString}";
 		if (type == LogType.Exception)
-		{
-			myLogQueue.Enqueue(stackTrace);
-		}
-		while (myLogQueue.Count > qsize)
-		{
-			myLogQueue.Dequeue();
-		}
+			message += "\n" + stackTrace;
+		foreach (string line in message.Split('\n'))
+			logQueue.Enqueue(line);
+		while (logQueue.Count > consoleLines)
+			logQueue.Dequeue();
 	}
 
 	void Update() { }
@@ -54,9 +52,9 @@ public class Console : MonoBehaviour
 
 		if (visible)
 		{
-			GUILayout.BeginArea(new Rect(Screen.width * 0.05f, (Screen.height - 15 * (myLogQueue.ToArray().Length + 5)), Screen.width * 0.9f, Screen.height * 0.9f));
+			GUILayout.BeginArea(new Rect(Screen.width * 0.05f, (Screen.height - 15 * (logQueue.ToArray().Length + 5)), Screen.width * 0.9f, Screen.height * 0.9f));
 
-			GUILayout.Label("\n" + string.Join("\n", myLogQueue.ToArray()));
+			GUILayout.Label("\n" + string.Join("\n", logQueue.ToArray()));
 
 			GUI.SetNextControlName("command");
 			command = GUILayout.TextField(command);
