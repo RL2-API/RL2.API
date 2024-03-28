@@ -24,8 +24,15 @@ public class TestMod : Mod
 	}
 
 	[Command("fps")]
-	public static void ShowFpsCommand()
+	public static void ShowFpsCommand(string[] args)
 	{
 		Messenger<DebugMessenger, DebugEvent>.Broadcast(DebugEvent.ToggleFPSCounter, null, null);
+	}
+
+	[Command("args-example")]
+	public static void ArgsCommand(string[] args)
+	{
+		foreach (string arg in args)
+			Log(arg);
 	}
 }

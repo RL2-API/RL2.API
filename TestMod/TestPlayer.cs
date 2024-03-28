@@ -16,13 +16,13 @@ public class TestPlayer : ModPlayer
 	}
 
 	[Command("change-stats")]
-	public static void AddMana()
+	public static void AddMana(string[] args)
 	{
 		active = true;
 	}
 
 	[Command("unchange-stats")]
-	public static void SubMana()
+	public static void SubMana(string[] args)
 	{
 		active = false;
 	}

@@ -31,12 +31,11 @@ public static class CommandManager
 		}
 	}
 
-	public static void RunCommand(string name)
+	public static void RunCommand(string command)
 	{
-		if (!commands.TryGetValue(name, out MethodInfo command))
-		{
+		string[] args = command.Split(' ');
+		if (!commands.TryGetValue(args[0], out MethodInfo commandMethod))
 			return;
-		}
-		command.Invoke(command.DeclaringType, null);
+		commandMethod.Invoke(commandMethod.DeclaringType, new object[] { args.Skip(1).ToArray()});
 	}
 }
