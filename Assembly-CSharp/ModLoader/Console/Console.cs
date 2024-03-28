@@ -26,11 +26,17 @@ public class Console : MonoBehaviour
 	{
 		string message = $"[{type}] {logString}";
 		if (type == LogType.Exception)
-			message += "\n" + stackTrace;
+		{
+            message += "\n" + stackTrace;
+        }
 		foreach (string line in message.Split('\n'))
-			logQueue.Enqueue(line);
+		{
+            logQueue.Enqueue(line);
+        }
 		while (logQueue.Count > consoleLines)
-			logQueue.Dequeue();
+		{
+            logQueue.Dequeue();
+        }
 	}
 
 	void Update() { }
