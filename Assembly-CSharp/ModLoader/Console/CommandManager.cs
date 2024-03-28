@@ -35,7 +35,9 @@ public static class CommandManager
 	{
 		string[] args = command.Split(' ');
 		if (!commands.TryGetValue(args[0], out MethodInfo commandMethod))
+		{
 			return;
+		}
 		commandMethod.Invoke(commandMethod.DeclaringType, new object[] { args.Skip(1).ToArray()});
 	}
 }

@@ -33,6 +33,8 @@ public class TestMod : Mod
 	public static void ArgsCommand(string[] args)
 	{
 		foreach (string arg in args)
+		{
 			Log(arg);
+		}
 	}
 }
