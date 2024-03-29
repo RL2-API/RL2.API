@@ -29,12 +29,19 @@ public class TestMod : Mod
 		Messenger<DebugMessenger, DebugEvent>.Broadcast(DebugEvent.ToggleFPSCounter, null, null);
 	}
 
-	[Command("args-example")]
-	public static void ArgsCommand(string[] args)
+	[Command("set-money")]
+	public static void MoneyCommand(string[] args)
 	{
-		foreach (string arg in args)
+		if(args.Length == 0)
 		{
-			Log(arg);
+			Log("You need to specify the amount of money you want");
+			return;
 		}
+		if (!int.TryParse(args[0], out int money))
+		{
+			Log("The amount of money must be an integer");
+			return;
+		}
+		SaveManager.PlayerSaveData.GoldCollected = money;
 	}
 }
