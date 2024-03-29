@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/PlayerController.cs b/Assembly-CSharp/PlayerController.cs
-index cbcba94..f156207 100644
+index cbcba94..28a335b 100644
 --- a/RL2-Source/PlayerController.cs
 +++ b/Assembly-CSharp/PlayerController.cs
 @@ -754,6 +754,12 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
@@ -23,7 +23,7 @@ index cbcba94..f156207 100644
 +		{
 +			modPlayer.ModifyStats();
 +		}
-+		InitializeAbilities();
++		InitializeAbilities(afterStatModification: true);
 +		InitializeAllMods(resetHP: false, resetMP: false);
 +		foreach (ModPlayer modPlayer in modPlayers)
 +		{
@@ -43,3 +43,32 @@ index cbcba94..f156207 100644
  	}
  
  	public override void ResetBaseValues()
+@@ -882,7 +902,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 		base.ResetBaseValues();
+ 	}
+ 
+-	public void InitializeAbilities()
++	public void InitializeAbilities(bool afterStatModification = false)
+ 	{
+ 		CharacterMove.WalkSpeed = 12f + statBonuses.movementSpeed;
+ 		float num = 1f + RuneLogicHelper.GetHastePercent();
+@@ -911,7 +931,8 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 			CharacterJump.NumberOfJumps = 2;
+ 		}
+ 		CharacterJump.NumberOfJumps += extraJumps + statBonuses.extraJumps;
+-		CharacterJump.ResetNumberOfJumps();
++		if(!afterStatModification)
++			CharacterJump.ResetNumberOfJumps();
+ 		CharacterDash.EnableOmnidash = false;
+ 		if (TraitManager.IsTraitActive(TraitType.OmniDash))
+ 		{
+@@ -930,7 +951,8 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 			CharacterDash.TotalDashesAllowed = 1;
+ 		}
+ 		CharacterDash.TotalDashesAllowed += extraDashes + statBonuses.extraDashes;
+-		CharacterDash.ResetNumberOfDashes();
++		if (!afterStatModification)
++			CharacterDash.ResetNumberOfDashes();
+ 		CharacterDownStrike.AttackSpeed = 32f;
+ 		CharacterDownStrike.ForwardKickAngle = -55f;
+ 		CharacterDownStrike.ForwardKickMinMaxAngle = Player_EV.DOWN_STRIKE_FORWARDKICK_MINMAX_ANGLE;
