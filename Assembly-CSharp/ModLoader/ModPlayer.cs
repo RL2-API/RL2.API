@@ -15,14 +15,19 @@ public abstract class ModPlayer : MonoBehaviour
 	public virtual void PreUpdate() { }
 
 	/// <summary>
-	/// Ran at the end of LateUpdate()
+	/// Ran at the end of LateUpdate().
 	/// </summary>
 	public virtual void PostUpdate() { }
 
 	/// <summary>
-	/// Use this to modify player stats
+	/// Use this to modify player stats.
 	/// </summary>
 	public virtual void ModifyStats() { }
+
+	/// <summary>
+	/// Ran immediately after attachng the ModPlayer component to the player.
+	/// </summary>
+	public virtual void OnLoad() { }
 
 	// TODO: Decide how should we approach saving
 	//public virtual void SaveData() { }
