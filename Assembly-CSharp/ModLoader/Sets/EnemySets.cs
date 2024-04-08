@@ -74,6 +74,53 @@ public class EnemySets
 		EnemyType.FinalBoss
 	};
 
+	public static readonly EnemyType[] NonBoss = new EnemyType[]
+	{
+		EnemyType.Skeleton,
+		EnemyType.Wolf,
+		EnemyType.FlyingSword,
+		EnemyType.FlyingShield,
+		EnemyType.FlyingAxe,
+		EnemyType.FlyingHammer,
+		EnemyType.FlyingHunter,
+		EnemyType.Eggplant,
+		EnemyType.Zombie,
+		EnemyType.Eyeball,
+		EnemyType.SpearKnight,
+		EnemyType.SwordKnight,
+		EnemyType.BouncySpike,
+		EnemyType.Starburst,
+		EnemyType.FlyingBurst,
+		EnemyType.Slug,
+		EnemyType.RocketBox,
+		EnemyType.Ninja,
+		EnemyType.Flamer,
+		EnemyType.ArcThrower,
+		EnemyType.MimicChest,
+		EnemyType.Volcano,
+		EnemyType.Target,
+		EnemyType.Ghost,
+		EnemyType.Sniper,
+		EnemyType.RogueKnight,
+		EnemyType.BlobFish,
+		EnemyType.FlyingSkull,
+		EnemyType.JumpWallStick,
+		EnemyType.SkeletonArcher,
+		EnemyType.Plant,
+		EnemyType.AxeKnight,
+		EnemyType.StealthAssassin,
+		EnemyType.TopShotHazard,
+		EnemyType.Fireball,
+		EnemyType.ElementalFire,
+		EnemyType.ElementalIce,
+		EnemyType.ElementalBounce,
+		EnemyType.ElementalDash,
+		EnemyType.ElementalCurse,
+		EnemyType.Wisp,
+		EnemyType.Dummy,
+		EnemyType.PaintingEnemy
+	};
+
 	public static readonly EnemyType[] Flying = new EnemyType[]
 	{
 		EnemyType.DancingBoss,
