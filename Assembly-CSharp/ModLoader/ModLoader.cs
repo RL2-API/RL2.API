@@ -11,7 +11,7 @@ public class ModLoader
 {
 
 	public static readonly string dataPath = Application.dataPath.Replace("/", "\\");
-	public static readonly string ModPath = dataPath + "\\Mods"; // No, it cannot be const
+	public static readonly string ModPath = dataPath + "\\Mods";
 	public static Mod[] LoadedMods;
 	public static List<Type> LoadedModPlayers = new();
 	public static List<Type> LoadedGlobalEnemies = new();
