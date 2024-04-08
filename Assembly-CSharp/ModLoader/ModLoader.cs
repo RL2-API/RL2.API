@@ -14,6 +14,7 @@ public class ModLoader
 	public static readonly string ModPath = dataPath + "\\Mods"; // No, it cannot be const
 	public static Mod[] LoadedMods;
 	public static List<Type> LoadedModPlayers = new();
+	public static List<Type> LoadedGlobalEnemies = new();
 
 	public static void LoadMods()
 	{
@@ -44,6 +45,12 @@ public class ModLoader
 			foreach (Type modPlayer in modPlayers)
 			{
 				LoadedModPlayers.Add(modPlayer);
+			}
+
+			Type[] globalEnemies = assembly.GetTypes().Where(x => x.BaseType.FullName == "RL2.ModLoader.GlobalEnemy").ToArray();
+			foreach (Type globalEnemy in globalEnemies)
+			{
+				LoadedGlobalEnemies.Add(globalEnemy);
 			}
 
 			CommandManager.RegisterCommands(assembly);
