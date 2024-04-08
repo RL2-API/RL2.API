@@ -1,0 +1,58 @@
+diff --git a/RL2-Source/EnemySpawnController.cs b/Assembly-CSharp/EnemySpawnController.cs
+index 10af8cf..b0ea7e7 100644
+--- a/RL2-Source/EnemySpawnController.cs
++++ b/Assembly-CSharp/EnemySpawnController.cs
+@@ -1,4 +1,6 @@
++using RL2.ModLoader;
+ using System;
++using System.Linq;
+ using System.Collections.Generic;
+ using System.Runtime.CompilerServices;
+ using UnityEngine;
+@@ -512,7 +514,16 @@ public class EnemySpawnController : MonoBehaviour, ISpawnController, IHasProject
+ 		EnemyInstance = EnemyManager.GetEnemyFromPool(Type, Rank);
+ 		if (!EnemyInstance.IsNativeNull())
+ 		{
+-			EnemyInstance.SetLevel(Level);
++            foreach (Type globalEnemy in ModLoader.LoadedGlobalEnemies)
++            {
++                GlobalEnemy ge = (Activator.CreateInstance(globalEnemy) as GlobalEnemy);
++                if (ge.AppliesToEnemyType.Contains(Type) && ge.AppliesToEnemyRank.Contains(Rank))
++                {
++                    EnemyInstance.gameObject.AddComponent(globalEnemy);
++                }
++                ge = null;
++            }
++            EnemyInstance.SetLevel(Level);
+ 			EnemyInstance.SetEnemyIndex(EnemyIndex);
+ 			EnemyInstance.Summoner = null;
+ 			EnemyInstance.SetRoom(Room);
+diff --git a/RL2-Source/EnemyManager.cs b/Assembly-CSharp/EnemyManager.cs
+index 9e22e15..8e25843 100644
+--- a/RL2-Source/EnemyManager.cs
++++ b/Assembly-CSharp/EnemyManager.cs
+@@ -1,7 +1,9 @@
++using RL2.ModLoader;
+ using System;
+ using System.Collections;
+ using System.Collections.Generic;
+ using System.Linq;
++using System.Reflection;
+ using UnityEngine;
+ using UnityEngine.SceneManagement;
+ 
+@@ -648,6 +650,14 @@ public class EnemyManager : MonoBehaviour
+ 		EnemyController enemyFromPool = GetEnemyFromPool(enemyType, enemyRank);
+ 		if ((bool)enemyFromPool)
+ 		{
++			foreach (Type globalEnemy in ModLoader.LoadedGlobalEnemies)
++			{
++				GlobalEnemy ge = (Activator.CreateInstance(globalEnemy) as GlobalEnemy);
++				if (ge.AppliesToEnemyType.Contains(enemyType) && ge.AppliesToEnemyRank.Contains(enemyRank) && ge.ActiveInRedPortals) {
++					enemyFromPool.gameObject.AddComponent(globalEnemy);
++				}
++				ge = null;
++			}
+ 			enemyFromPool.Summoner = summoner;
+ 			if (summoner != null)
+ 			{
