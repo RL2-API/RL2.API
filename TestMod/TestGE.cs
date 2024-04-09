@@ -1,13 +1,9 @@
 ﻿using RL2.ModLoader;
+using System.Linq;
 
 namespace TestMod;
 
 public class TestGE : GlobalEnemy
 {
-	public override EnemyRank[] AppliesToEnemyRank => base.AppliesToEnemyRank;
-
-	public void Update()
-	{
-		TestMod.Log("Spiuerldalal");
-	}
+	public override EnemyType[] AppliesToEnemyType => new EnemyType[] { EnemyType.SpellswordBoss };
 }
