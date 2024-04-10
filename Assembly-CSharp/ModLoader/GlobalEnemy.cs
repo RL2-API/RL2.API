@@ -25,4 +25,15 @@ public abstract class GlobalEnemy : MonoBehaviour
 	public virtual EnemyType[] AppliesToEnemyType => EnemySets.AllEnemies;
 	public virtual EnemyRank[] AppliesToEnemyRank => EnemySets.AllRanks;
 	public virtual bool ActiveInRedPortals => true;
+
+	/// <summary>
+	/// Specifies wether this script should run on dead enemies. <br></br>
+	/// Defaults to <see langword="false"/>
+	/// </summary>
+	public virtual bool AppliesToDeadEnemies => false;
+	
+	/// <summary>
+	/// Ran right after spawning the enemy
+	/// </summary>
+	public virtual void OnSpawn() { }
 }
