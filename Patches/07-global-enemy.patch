@@ -1,6 +1,42 @@
 diff --git a/RL2-Source/EnemySpawnController.cs b/Assembly-CSharp/EnemySpawnController.cs
-index 10af8cf..b0ea7e7 100644
+index 10af8cf..6988ca0 100644
 --- a/RL2-Source/EnemySpawnController.cs
+diff --git a/RL2-Source/EnemyManager.cs b/Assembly-CSharp/EnemyManager.cs
+index 9e22e15..d8737b8 100644
+--- a/RL2-Source/EnemyManager.cs
++++ b/Assembly-CSharp/EnemyManager.cs
+@@ -1,3 +1,4 @@
++using RL2.ModLoader;
+ using System;
+ using System.Collections;
+ using System.Collections.Generic;
+@@ -648,6 +649,14 @@ public class EnemyManager : MonoBehaviour
+ 		EnemyController enemyFromPool = GetEnemyFromPool(enemyType, enemyRank);
+ 		if ((bool)enemyFromPool)
+ 		{
++			foreach (Type globalEnemy in ModLoader.LoadedGlobalEnemies)
++			{
++				GlobalEnemy ge = (Activator.CreateInstance(globalEnemy) as GlobalEnemy);
++				if (ge.AppliesToEnemyType.Contains(enemyType) && ge.AppliesToEnemyRank.Contains(enemyRank) && ge.ActiveInRedPortals) {
++					enemyFromPool.gameObject.AddComponent(globalEnemy);
++				}
++				ge = null;
++			}
+ 			enemyFromPool.Summoner = summoner;
+ 			if (summoner != null)
+ 			{
+@@ -674,6 +683,10 @@ public class EnemyManager : MonoBehaviour
+ 			{
+ 				Instance.StartCoroutine(Instance.Internal_RunSummonAnimCoroutine(enemyFromPool, speedMod, disableEnemyOffset: false, hpMod));
+ 			}
++			foreach (GlobalEnemy globalEnemy in enemyFromPool.gameObject.GetComponents<GlobalEnemy>())
++			{
++				globalEnemy.OnSpawn();
++			}
+ 		}
+ 		return enemyFromPool;
+ 	}
+
 +++ b/Assembly-CSharp/EnemySpawnController.cs
 @@ -1,4 +1,6 @@
 +using RL2.ModLoader;
@@ -27,32 +63,14 @@ index 10af8cf..b0ea7e7 100644
  			EnemyInstance.SetEnemyIndex(EnemyIndex);
  			EnemyInstance.Summoner = null;
  			EnemyInstance.SetRoom(Room);
-diff --git a/RL2-Source/EnemyManager.cs b/Assembly-CSharp/EnemyManager.cs
-index 9e22e15..8e25843 100644
---- a/RL2-Source/EnemyManager.cs
-+++ b/Assembly-CSharp/EnemyManager.cs
-@@ -1,7 +1,9 @@
-+using RL2.ModLoader;
- using System;
- using System.Collections;
- using System.Collections.Generic;
- using System.Linq;
-+using System.Reflection;
- using UnityEngine;
- using UnityEngine.SceneManagement;
- 
-@@ -648,6 +650,14 @@ public class EnemyManager : MonoBehaviour
- 		EnemyController enemyFromPool = GetEnemyFromPool(enemyType, enemyRank);
- 		if ((bool)enemyFromPool)
- 		{
-+			foreach (Type globalEnemy in ModLoader.LoadedGlobalEnemies)
+@@ -534,6 +545,10 @@ public class EnemySpawnController : MonoBehaviour, ISpawnController, IHasProject
+ 			ResetEnemyPosition(EnemyInstance);
+ 			EnemyInstance.OnEnemyDeathRelay.AddListener(m_onEnemyDeath);
+ 			EnemyInstance.OnReactivationTimedOutRelay.AddListener(m_onEnemyTimedOut);
++			foreach (GlobalEnemy globalEnemy in EnemyInstance.GameObject.GetComponents<GlobalEnemy>())
 +			{
-+				GlobalEnemy ge = (Activator.CreateInstance(globalEnemy) as GlobalEnemy);
-+				if (ge.AppliesToEnemyType.Contains(enemyType) && ge.AppliesToEnemyRank.Contains(enemyRank) && ge.ActiveInRedPortals) {
-+					enemyFromPool.gameObject.AddComponent(globalEnemy);
-+				}
-+				ge = null;
++				globalEnemy.OnSpawn();
 +			}
- 			enemyFromPool.Summoner = summoner;
- 			if (summoner != null)
- 			{
+ 		}
+ 		else
+ 		{
