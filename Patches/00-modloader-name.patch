@@ -1,0 +1,12 @@
+diff --git a/RL2-Source/System_EV.cs b/Assembly-CSharp/System_EV.cs
+index 0d6f50f..0d24c86 100644
+--- a/RL2-Source/System_EV.cs
++++ b/Assembly-CSharp/System_EV.cs
+@@ -72,6 +72,6 @@ public static class System_EV
+ 
+ 	public static string GetVersionString()
+ 	{
+-		return string.Format("v{0}.{1}.{2}{3}-{4}", 1, 2, 2, "", "steam");
++		return string.Format("v{0}.{1}.{2}{3}-{4}", 1, 2, 2, "", "steam-modded");
+ 	}
+ }
