@@ -6,11 +6,23 @@ namespace RL2.ModLoader;
 
 public abstract class GlobalEnemy : MonoBehaviour
 {
-	private EnemyController[] ActiveEnemyControllers => PlayerManager.GetCurrentPlayerRoom().SpawnControllerManager.EnemySpawnControllers.Select(x => x.EnemyInstance).Where(x => AppliesToEnemyType.Contains(x.EnemyType) && AppliesToEnemyRank.Contains(x.EnemyRank)).ToArray();
-	private BaseAIScript[] ActiveAIScripts => ActiveEnemyControllers.Select(x => x.LogicController.LogicScript).ToArray();
+	public BaseRoom Room => PlayerManager.GetCurrentPlayerRoom();
+	public EnemyController[] ArenaEnemyControllers => (from x in EnemyManager.SummonedEnemyList where x != null select x).ToArray();
+	
+	public EnemyController[] RoomEnemyControllers => (from enemySpawnController 
+														in Room.SpawnControllerManager.EnemySpawnControllers
+														where enemySpawnController.EnemyInstance != null
+														select enemySpawnController.EnemyInstance).ToArray();
+	
+	public EnemyController[] ActiveEnemeyControllers => (from enemy 
+														in Room.SpecialRoomType == SpecialRoomType.Arena ? ArenaEnemyControllers : RoomEnemyControllers
+														where AppliesToEnemyType.Contains(enemy.EnemyType) && AppliesToEnemyRank.Contains(enemy.EnemyRank) && !enemy.IsDead 
+														select enemy).ToArray();
+
+	public BaseAIScript[] ActiveAIScripts => (from enemy in ActiveEnemeyControllers where enemy.LogicController.LogicScript != null select enemy.LogicController.LogicScript).ToArray();
+	public EnemyController Enemy => ActiveEnemeyControllers.First(x => x.GameObject == gameObject);
+	public BaseAIScript AIScript => ActiveAIScripts.First(x => x.EnemyController.GameObject == gameObject);
 	public virtual EnemyType[] AppliesToEnemyType => EnemySets.AllEnemies;
 	public virtual EnemyRank[] AppliesToEnemyRank => EnemySets.AllRanks;
 	public virtual bool ActiveInRedPortals => true;
-	public EnemyController Enemy => ActiveEnemyControllers.First(x => x.GameObject == gameObject);
-	public BaseAIScript AIScript => ActiveAIScripts.First(x => x.EnemyController.GameObject == gameObject);
 }
