@@ -1,0 +1,29 @@
+diff --git a/RL2-Source/GameManager.cs b/Assembly-CSharp/GameManager.cs
+index 2cdc5a3..b53f19d 100644
+--- a/RL2-Source/GameManager.cs
++++ b/Assembly-CSharp/GameManager.cs
+@@ -2,6 +2,7 @@ using System.Collections;
+ using RL_Windows;
+ using Steamworks;
+ using UnityEngine;
++using RL2.ModLoader;
+ 
+ public class GameManager : MonoBehaviour
+ {
+@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
+ 		{
+ 			Instance = this;
+ 			m_pauseEventArgs = new GamePauseStateChangeEventArgs(isPaused: false);
++			gameObject.AddComponent<UnityHook>();
+ 		}
+ 		else if (Instance != this)
+ 		{
+@@ -82,6 +84,8 @@ public class GameManager : MonoBehaviour
+ 
+ 	private void OnApplicationQuit()
+ 	{
++		ModLoader.Log("-----|| Unloading mods ||-----");
++		Messenger<ModMessenger, ModLoaderEvent>.Broadcast(ModLoaderEvent.Unload, null, null);
+ 		Debug.Log("Application is closing...");
+ 		IsApplicationClosing = true;
+ 		Rewired_RL.SetGamepadColor(Color.clear);

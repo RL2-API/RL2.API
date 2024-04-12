@@ -1,0 +1,25 @@
+diff --git a/RL2-Source/OnGameLoadManager.cs b/Assembly-CSharp/OnGameLoadManager.cs
+index fa171e5..d66240b 100644
+--- a/RL2-Source/OnGameLoadManager.cs
++++ b/Assembly-CSharp/OnGameLoadManager.cs
+@@ -2,6 +2,7 @@ using System.Globalization;
+ using System.IO;
+ using SceneManagement_RL;
+ using UnityEngine;
++using RL2.ModLoader;
+ 
+ public class OnGameLoadManager
+ {
+@@ -39,6 +40,12 @@ public class OnGameLoadManager
+ 		Application.focusChanged -= OnFocusChanged;
+ 		Application.focusChanged += OnFocusChanged;
+ 		ConfineMouseToGameWindow(!SaveManager.ConfigData.DisableCursorConfine);
++		ModLoader.LoadMods();
++		foreach (var mod in ModLoader.LoadedMods)
++		{
++			mod.Load();
++		}
++		Messenger<ModMessenger, ModLoaderEvent>.Broadcast(ModLoaderEvent.Load, null, null);
+ 	}
+ 
+ 	private static LanguageType GetSystemLanguageType()

@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/PlayerController.cs b/Assembly-CSharp/PlayerController.cs
-index fe5c816..cbcba94 100644
+index fe5c816..f437c51 100644
 --- a/RL2-Source/PlayerController.cs
 +++ b/Assembly-CSharp/PlayerController.cs
 @@ -8,6 +8,7 @@ using Rewired;
@@ -127,9 +127,54 @@ index fe5c816..cbcba94 100644
  
  	public float MovementSpeedMod
  	{
-@@ -881,14 +884,14 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+@@ -751,6 +754,12 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
  
- 	public void InitializeAbilities()
+ 	private void LateUpdate()
+ 	{
++		statBonuses.ResetAll();
++		ModPlayer[] modPlayers = gameObject.GetComponents<ModPlayer>();
++		foreach(ModPlayer modPlayer in modPlayers)
++		{
++			modPlayer.PreUpdate();
++		}
+ 		if (m_updateAccumulatedXP > 0f)
+ 		{
+ 			if ((bool)m_xpPopup && m_xpPopup.gameObject.activeSelf)
+@@ -771,6 +780,16 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 			TextPopupManager.DisplayTextDefaultPos(TextPopupType.HPGained, text2, this, attachToSource: true);
+ 			m_updateAccumulatedLifeSteal = 0f;
+ 		}
++		foreach (ModPlayer modPlayer in modPlayers)
++		{
++			modPlayer.ModifyStats();
++		}
++		InitializeAbilities(afterStatModification: true);
++		InitializeAllMods(resetHP: false, resetMP: false);
++		foreach (ModPlayer modPlayer in modPlayers)
++		{
++			modPlayer.PostUpdate();
++		}
+ 	}
+ 
+ 	protected override void OnJustGrounded()
+@@ -843,6 +862,11 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 		m_onRelicChanged = OnRelicChanged;
+ 		m_applyPermanentStatusEffects = ApplyPermanentStatusEffects;
+ 		m_onHouseRulesChanged = OnHouseRulesChanged;
++		foreach(Type modPlayer in ModLoader.LoadedModPlayers)
++		{
++			gameObject.AddComponent(modPlayer);
++			(gameObject.GetComponent(modPlayer) as ModPlayer).OnLoad();
++		}
+ 	}
+ 
+ 	public override void ResetBaseValues()
+@@ -879,16 +903,16 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 		base.ResetBaseValues();
+ 	}
+ 
+-	public void InitializeAbilities()
++	public void InitializeAbilities(bool afterStatModification = false)
  	{
 -		CharacterMove.WalkSpeed = 12f;
 +		CharacterMove.WalkSpeed = 12f + statBonuses.movementSpeed;
@@ -145,13 +190,17 @@ index fe5c816..cbcba94 100644
  		CharacterJump.JumpReleaseForce = 4.5f;
  		CharacterJump.JumpTimeWindow = 0.1375f;
  		CharacterJump.CanJumpWhileDashing = true;
-@@ -907,16 +910,16 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+@@ -907,16 +931,19 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
  		{
  			CharacterJump.NumberOfJumps = 2;
  		}
 -		CharacterJump.NumberOfJumps += extraJumps;
+-		CharacterJump.ResetNumberOfJumps();
 +		CharacterJump.NumberOfJumps += extraJumps + statBonuses.extraJumps;
- 		CharacterJump.ResetNumberOfJumps();
++		if(!afterStatModification)
++		{
++            CharacterJump.ResetNumberOfJumps();
++        }
  		CharacterDash.EnableOmnidash = false;
  		if (TraitManager.IsTraitActive(TraitType.OmniDash))
  		{
@@ -166,12 +215,17 @@ index fe5c816..cbcba94 100644
  		int extraDashes = RuneLogicHelper.GetExtraDashes();
  		extraDashes += (int)EquipmentManager.Get_EquipmentSet_BonusTypeStatGain(EquipmentSetBonusType.ExtraDash);
  		extraDashes += (int)EquipmentManager.Get_EquipmentSet_BonusTypeStatGain(EquipmentSetBonusType.ExtraDashJump);
-@@ -926,7 +929,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+@@ -926,8 +953,11 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
  		{
  			CharacterDash.TotalDashesAllowed = 1;
  		}
 -		CharacterDash.TotalDashesAllowed += extraDashes;
+-		CharacterDash.ResetNumberOfDashes();
 +		CharacterDash.TotalDashesAllowed += extraDashes + statBonuses.extraDashes;
- 		CharacterDash.ResetNumberOfDashes();
++		if (!afterStatModification)
++		{
++			CharacterDash.ResetNumberOfDashes();
++		}
  		CharacterDownStrike.AttackSpeed = 32f;
  		CharacterDownStrike.ForwardKickAngle = -55f;
+ 		CharacterDownStrike.ForwardKickMinMaxAngle = Player_EV.DOWN_STRIKE_FORWARDKICK_MINMAX_ANGLE;

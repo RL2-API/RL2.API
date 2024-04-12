@@ -110,7 +110,21 @@ def cmd_decompile(patch_only = False):
 	except:
 		print("Failed to decompile the game, aborting...")
 		exit(1)
-	print("The game has been decompiled, applying patches...")
+	print("\nThe game has been decompiled, applying decompilation fixes...")
+	fix_patch_dir = os.path.join(dirname, "../Patches/DecompilationFixes")
+	for file in sorted(os.listdir(fix_patch_dir)):
+		patch_path = os.path.join(dirname, "../Patches/DecompilationFixes", file)
+		if not os.path.isfile(patch_path):
+			continue
+		print(f"- {file}")
+		ptch = patch.fromfile(patch_path)
+		if not ptch:
+			print("Failed to parse patch, aborting...")
+			exit(1)
+		if not ptch.apply(1, output_dir):
+			print("Failed to apply patch, aborting...")
+			exit(1)
+	print("\nThe game has been properly decompiled, applying patches...")
 	patch_dir = os.path.join(dirname, "../Patches")
 	for file in sorted(os.listdir(patch_dir)):
 		patch_path = os.path.join(dirname, "../Patches", file)
