@@ -4,8 +4,10 @@ namespace TestMod;
 
 public class TestGE : GlobalEnemy
 {
-	public void OnEnable()
+	public override EnemyType[] AppliesToEnemyType => new EnemyType[] { EnemyType.SpellswordBoss };
+
+	public override void OnSpawn()
 	{
-		Mod.Log(Enemy.EnemyType.ToString());
+		Enemy.LogicController.SwapAIScript<StudyBoss_Basic_AIScript>(EnemyClassLibrary.GetEnemyClassData(EnemyType.StudyBoss).GetLogicController());
 	}
 }

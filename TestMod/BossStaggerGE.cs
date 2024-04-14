@@ -1,5 +1,4 @@
-﻿using MoreMountains.Tools;
-using RL2.ModLoader;
+﻿using RL2.ModLoader;
 using RL2.ModLoader.Sets;
 using System;
 using UnityEngine;
@@ -18,24 +17,28 @@ public class BossStaggerGE : GlobalEnemy
 	public void Awake()
 	{
 		Messenger<GameMessenger, GameEvent>.AddListener(GameEvent.EnemyHit, OnHitBoss);
-	}
-	public void OnDestroy()
+    }
+	public void OnDisable()
 	{
 		Messenger<GameMessenger, GameEvent>.RemoveListener(GameEvent.EnemyHit, OnHitBoss);
 	}
 
 	public void OnHitBoss(MonoBehaviour sender, EventArgs eventArgs)
-	{ 
+	{
+		if (!((eventArgs as CharacterHitEventArgs).Victim as EnemyController).IsBoss)
+		{
+			return;
+		}
 		if ((eventArgs as CharacterHitEventArgs).Victim != Enemy)
 		{
 			return;
 		}
 		if (StaggerWindow != 0)
 		{
-			Enemy.SetHealth(-Enemy.ActualMaxHealth / 20, true, true);
-			Enemy.TargetController.SetHealth(Enemy.TargetController.ActualMaxHealth / 50, true, true);
+			Enemy.SetHealth((eventArgs as CharacterHitEventArgs).DamageTaken * -8, true, true);
+			Enemy.TargetController.SetHealth((eventArgs as CharacterHitEventArgs).DamageTaken / 10, true, true);
 			StaggerWindow = 0;
-            EffectManager.PlayEffect(gameObject, Enemy.Animator, "ScreenFlashEffect", Vector3.zero, 0f, EffectStopType.Gracefully);
+            EffectManager.PlayEffect(gameObject, Enemy.Animator, "ScreenFlashEffect", Vector3.zero, 0f, EffectStopType.Immediate);
             return;
 		}
 		CurrentHitCount++;
@@ -43,7 +46,8 @@ public class BossStaggerGE : GlobalEnemy
 	}
 
 	public void Update()
-	{ 
+	{
+		ModLoader.Log(Enemy.name);
 		if (StaggerHitCooldown > 0)
 		{
 			StaggerHitCooldown--;
