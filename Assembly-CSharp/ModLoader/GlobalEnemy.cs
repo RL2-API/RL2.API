@@ -40,13 +40,13 @@ public abstract class GlobalEnemy : MonoBehaviour
 	/// <summary>
 	/// An instance of <see cref="EnemyController"/> connected with this enemy.
 	/// </summary>
-	public EnemyController Enemy => ActiveEnemeyControllers.First(x => x.GameObject == gameObject);
+	public EnemyController Enemy => gameObject.GetComponent<EnemyController>();
 
 
 	/// <summary>
 	/// An instance of <see cref="BaseAIScript"/> connected with this enemy.
 	/// </summary>
-	public BaseAIScript AIScript => ActiveAIScripts.First(x => x.EnemyController.GameObject == gameObject);
+	public BaseAIScript AIScript => gameObject.GetComponent<BaseAIScript>();
 
 	/// <summary>
 	/// Specifies <see cref="EnemyType"/>s which will get an instance of this class attached to them. <br></br>
