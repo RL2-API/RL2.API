@@ -1,5 +1,6 @@
 ﻿using RL2.ModLoader;
 using System;
+using System.Security.Policy;
 using UnityEngine;
 
 namespace TestMod;
@@ -44,4 +45,14 @@ public class TestMod : Mod
 		}
 		SaveManager.PlayerSaveData.GoldCollected = money;
 	}
+
+	[Command("get-heirlooms")]
+	public static void GetHeirlooms(string[] args)
+	{
+		foreach (HeirloomType type in typeof(HeirloomType).GetEnumValues())
+		{
+			if (type == HeirloomType.None) continue;
+            SaveManager.PlayerSaveData.SetHeirloomLevel(type, 1, false, true);
+        }
+    }
 }
