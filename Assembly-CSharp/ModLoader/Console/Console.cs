@@ -54,6 +54,11 @@ public class Console : MonoBehaviour
 				CommandManager.RunCommand(command);
 				command = string.Empty;
 			}
+			if (Event.current.keyCode == KeyCode.Escape && visible)
+			{
+				command = string.Empty;
+				visible = false;
+			}
 		}
 
 		if (visible)
