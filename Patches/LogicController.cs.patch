@@ -1,0 +1,116 @@
+diff --git a/RL2-Source/LogicController.cs b/Assembly-CSharp/LogicController.cs
+index ef1e868..c4ecbc8 100644
+--- a/RL2-Source/LogicController.cs
++++ b/Assembly-CSharp/LogicController.cs
+@@ -1,8 +1,10 @@
+ using System;
+ using System.Collections;
+ using System.Collections.Generic;
++using System.Linq;
+ using System.Reflection;
+ using MoreMountains.CorgiEngine;
++using RL2.ModLoader;
+ using UnityEngine;
+ 
+ [Serializable]
+@@ -904,45 +906,42 @@ public class LogicController : MonoBehaviour
+ 		}
+ 		m_staticMethodInfoDict.Add(logicScriptType, new Dictionary<LogicState, StringMethodInfo_Dictionary>());
+ 		MethodInfo[] methods = logicScriptType.GetMethods(BindingFlags.Instance | BindingFlags.Public);
+-		StringInt_Dictionary methodNameDictionary = GetMethodNameDictionary(enemyLogicType, LogicState.Close);
+-		StringInt_Dictionary methodNameDictionary2 = GetMethodNameDictionary(enemyLogicType, LogicState.Medium);
+-		StringInt_Dictionary methodNameDictionary3 = GetMethodNameDictionary(enemyLogicType, LogicState.Far);
+-		StringInt_Dictionary methodNameDictionary4 = GetMethodNameDictionary(enemyLogicType, LogicState.Wander);
+-		StringInt_Dictionary methodNameDictionary5 = GetMethodNameDictionary(enemyLogicType, LogicState.Resting);
+-		Dictionary<LogicState, StringMethodInfo_Dictionary> dictionary = m_staticMethodInfoDict[logicScriptType];
+-		StringMethodInfo_Dictionary stringMethodInfo_Dictionary2 = (dictionary[LogicState.Close] = new StringMethodInfo_Dictionary());
+-		StringMethodInfo_Dictionary stringMethodInfo_Dictionary3 = stringMethodInfo_Dictionary2;
+-		stringMethodInfo_Dictionary2 = (dictionary[LogicState.Medium] = new StringMethodInfo_Dictionary());
+-		StringMethodInfo_Dictionary stringMethodInfo_Dictionary5 = stringMethodInfo_Dictionary2;
+-		stringMethodInfo_Dictionary2 = (dictionary[LogicState.Far] = new StringMethodInfo_Dictionary());
+-		StringMethodInfo_Dictionary stringMethodInfo_Dictionary7 = stringMethodInfo_Dictionary2;
+-		stringMethodInfo_Dictionary2 = (dictionary[LogicState.Wander] = new StringMethodInfo_Dictionary());
+-		StringMethodInfo_Dictionary stringMethodInfo_Dictionary9 = stringMethodInfo_Dictionary2;
+-		stringMethodInfo_Dictionary2 = (dictionary[LogicState.Resting] = new StringMethodInfo_Dictionary());
+-		StringMethodInfo_Dictionary stringMethodInfo_Dictionary11 = stringMethodInfo_Dictionary2;
+-		MethodInfo[] array = methods;
+-		foreach (MethodInfo methodInfo in array)
++		
++		StringInt_Dictionary methodNames_Close = GetMethodNameDictionary(enemyLogicType, LogicState.Close);
++		StringInt_Dictionary methodNames_Medium = GetMethodNameDictionary(enemyLogicType, LogicState.Medium);
++		StringInt_Dictionary methodNames_Far = GetMethodNameDictionary(enemyLogicType, LogicState.Far);
++		StringInt_Dictionary methodNames_Wander = GetMethodNameDictionary(enemyLogicType, LogicState.Wander);
++		StringInt_Dictionary methodNames_Resting = GetMethodNameDictionary(enemyLogicType, LogicState.Resting);
++
++		var dictionary = m_staticMethodInfoDict[logicScriptType];
++		dictionary[LogicState.Close] = new StringMethodInfo_Dictionary();
++		dictionary[LogicState.Medium] = new StringMethodInfo_Dictionary();
++		dictionary[LogicState.Far] = new StringMethodInfo_Dictionary();
++		dictionary[LogicState.Wander] = new StringMethodInfo_Dictionary();
++		dictionary[LogicState.Resting] = new StringMethodInfo_Dictionary();
++		
++		foreach (MethodInfo methodInfo in methods)
+ 		{
+ 			string key = methodInfo.Name;
+-			if (methodNameDictionary.ContainsKey(key) && !stringMethodInfo_Dictionary3.ContainsKey(key))
++			if (methodNames_Close.ContainsKey(key) && !dictionary[LogicState.Close].ContainsKey(key))
+ 			{
+-				stringMethodInfo_Dictionary3.Add(key, methodInfo);
++				dictionary[LogicState.Close].Add(key, methodInfo);
+ 			}
+-			if (methodNameDictionary2.ContainsKey(key) && !stringMethodInfo_Dictionary5.ContainsKey(key))
++			if (methodNames_Medium.ContainsKey(key) && !dictionary[LogicState.Medium].ContainsKey(key))
+ 			{
+-				stringMethodInfo_Dictionary5.Add(key, methodInfo);
++				dictionary[LogicState.Medium].Add(key, methodInfo);
+ 			}
+-			if (methodNameDictionary3.ContainsKey(key) && !stringMethodInfo_Dictionary7.ContainsKey(key))
++			if (methodNames_Far.ContainsKey(key) && !dictionary[LogicState.Far].ContainsKey(key))
+ 			{
+-				stringMethodInfo_Dictionary7.Add(key, methodInfo);
++				dictionary[LogicState.Far].Add(key, methodInfo);
+ 			}
+-			if (methodNameDictionary4.ContainsKey(key) && !stringMethodInfo_Dictionary9.ContainsKey(key))
++			if (methodNames_Wander.ContainsKey(key) && !dictionary[LogicState.Wander].ContainsKey(key))
+ 			{
+-				stringMethodInfo_Dictionary9.Add(key, methodInfo);
++				dictionary[LogicState.Wander].Add(key, methodInfo);
+ 			}
+-			if (methodNameDictionary5.ContainsKey(key) && !stringMethodInfo_Dictionary11.ContainsKey(key))
++			if (methodNames_Resting.ContainsKey(key) && !dictionary[LogicState.Resting].ContainsKey(key))
+ 			{
+-				stringMethodInfo_Dictionary11.Add(key, methodInfo);
++				dictionary[LogicState.Resting].Add(key, methodInfo);
+ 			}
+ 		}
+ 	}
+@@ -975,4 +974,29 @@ public class LogicController : MonoBehaviour
+ 			ResetAllLogicBlockOddsOverrides();
+ 		}
+ 	}
++
++	/// <summary>
++	/// Swap the AI script of the enemy.
++	/// </summary>
++	/// <typeparam name="T">Type of the new AIScript</typeparam>
++	/// <param name="logicController_SO">Logic Controller Scriptable Object - contains key-value pairs foreach enemy rank type<br></br>where the key is a name of the enemy's attack, and the value is the attacks chance.</param>
++	public void SwapAIScript<T>(LogicController_SO logicController_SO) where T : BaseAIScript
++	{
++		Transform oldParent = Instantiate(gameObject.transform.parent);
++
++		Destroy(m_logicScript);
++		m_logicScript = gameObject.AddComponent<T>();
++		m_logicControllerSO = logicController_SO;
++		m_logicScript.transform.SetParent(oldParent);
++		gameObject.transform.localScale = new Vector3(.5f, .5f, .5f);
++        m_logicScript.Initialize(m_enemyController);
++        if (m_logicScript.ProjectileNameArray.Length > 0)
++		{
++			foreach (string projectileName in m_logicScript.ProjectileNameArray)
++			{
++				ProjectileManager.Instance.AddProjectileToPool(projectileName);	
++			}
++		};
++		PopulateStaticMethodInfoDict(EnemyLogicType, typeof(T));
++	}
+ }

@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/EnemySpawnController.cs b/Assembly-CSharp/EnemySpawnController.cs
-index 10af8cf..6988ca0 100644
+index 10af8cf..f365de1 100644
 --- a/RL2-Source/EnemySpawnController.cs
 +++ b/Assembly-CSharp/EnemySpawnController.cs
 @@ -1,4 +1,6 @@
@@ -9,31 +9,19 @@ index 10af8cf..6988ca0 100644
  using System.Collections.Generic;
  using System.Runtime.CompilerServices;
  using UnityEngine;
-@@ -512,7 +514,16 @@ public class EnemySpawnController : MonoBehaviour, ISpawnController, IHasProject
- 		EnemyInstance = EnemyManager.GetEnemyFromPool(Type, Rank);
- 		if (!EnemyInstance.IsNativeNull())
- 		{
--			EnemyInstance.SetLevel(Level);
-+            foreach (Type globalEnemy in ModLoader.LoadedGlobalEnemies)
-+            {
-+                GlobalEnemy ge = (Activator.CreateInstance(globalEnemy) as GlobalEnemy);
-+                if (ge.AppliesToEnemyType.Contains(Type) && ge.AppliesToEnemyRank.Contains(Rank))
-+                {
-+                    EnemyInstance.gameObject.AddComponent(globalEnemy);
-+                }
-+                ge = null;
-+            }
-+            EnemyInstance.SetLevel(Level);
- 			EnemyInstance.SetEnemyIndex(EnemyIndex);
- 			EnemyInstance.Summoner = null;
- 			EnemyInstance.SetRoom(Room);
-@@ -534,6 +545,10 @@ public class EnemySpawnController : MonoBehaviour, ISpawnController, IHasProject
+@@ -534,6 +536,16 @@ public class EnemySpawnController : MonoBehaviour, ISpawnController, IHasProject
  			ResetEnemyPosition(EnemyInstance);
  			EnemyInstance.OnEnemyDeathRelay.AddListener(m_onEnemyDeath);
  			EnemyInstance.OnReactivationTimedOutRelay.AddListener(m_onEnemyTimedOut);
-+			foreach (GlobalEnemy globalEnemy in EnemyInstance.GameObject.GetComponents<GlobalEnemy>())
++			foreach (Type globalEnemy in ModLoader.LoadedGlobalEnemies)
 +			{
-+				globalEnemy.OnSpawn();
++				GlobalEnemy globalEnemyInstance = EnemyInstance.GameObject.AddComponent(globalEnemy) as GlobalEnemy;
++				if (!globalEnemyInstance.AppliesToEnemyType.Contains(Type) || !globalEnemyInstance.AppliesToEnemyRank.Contains(Rank))
++				{
++					globalEnemyInstance.enabled = false;
++					continue;
++				}
++				globalEnemyInstance.OnSpawn();
 +			}
  		}
  		else
