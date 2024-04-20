@@ -9,7 +9,7 @@ namespace RL2.ModLoader;
 
 public class ModLoader
 {
-	public static readonly string Version = "0.0.0.1";
+	public static readonly string Version = "-experimental";
 	public static readonly string dataPath = Application.dataPath.Replace("/", "\\");
 	public static readonly string ModPath = dataPath + "\\Mods";
 	public static Mod[] LoadedMods;
@@ -18,6 +18,11 @@ public class ModLoader
 
 	public static void LoadMods()
 	{
+		if (!Directory.Exists(ModPath))
+		{
+			Directory.CreateDirectory(ModPath);
+		}
+
 		DirectoryInfo directory = new DirectoryInfo(ModPath);
 		FileInfo[] files = directory.GetFiles("*.dll", SearchOption.TopDirectoryOnly);
 
