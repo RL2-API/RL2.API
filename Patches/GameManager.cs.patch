@@ -23,7 +23,6 @@ index 2cdc5a3..b53f19d 100644
  	private void OnApplicationQuit()
  	{
 +		ModLoader.Log("-----|| Unloading mods ||-----");
-+		Messenger<ModMessenger, ModLoaderEvent>.Broadcast(ModLoaderEvent.Unload, null, null);
  		Debug.Log("Application is closing...");
  		IsApplicationClosing = true;
  		Rewired_RL.SetGamepadColor(Color.clear);
