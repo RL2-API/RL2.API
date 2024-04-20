@@ -7,8 +7,7 @@ public class CommandAttribute : Attribute
 {
 	public string commandName;
 
-	public CommandAttribute(string name)
-	{
+	public CommandAttribute(string name) {
 		commandName = name;
 	}
 }

@@ -13,25 +13,37 @@ public class ModLoader
 	public static readonly string dataPath = Application.dataPath.Replace("/", "\\");
 	public static readonly string ModPath = dataPath + "\\Mods";
 	public static Mod[] LoadedMods;
-	public static List<Type> LoadedModPlayers = new();
-	public static List<Type> LoadedGlobalEnemies = new();
 
-	public static void LoadMods()
+	struct ModData
 	{
-		if (!Directory.Exists(ModPath))
-		{
+		public List<string> enabled;
+		public List<string> disabled;
+	}
+
+	public static void LoadMods() {
+		if (!Directory.Exists(ModPath)) {
 			Directory.CreateDirectory(ModPath);
+		}
+		if (!File.Exists(ModPath + "\\enabled.json")) {
+			File.WriteAllText(ModPath + "\\enabled-exp.json", JsonUtility.ToJson(new ModData()));
 		}
 
 		DirectoryInfo directory = new DirectoryInfo(ModPath);
-		FileInfo[] files = directory.GetFiles("*.dll", SearchOption.TopDirectoryOnly);
+		FileInfo[] files = directory.GetFiles("*.dll", SearchOption.AllDirectories);
 
-		foreach (FileInfo file in files)
-		{
+		foreach (FileInfo file in files) {
 			AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(file.FullName));
-			Log("Found " + file.FullName.Replace(dataPath, ""));
+			Log("Found " + file.FullName.Replace(ModPath, ""));
 		}
 
+		//Get all assemblies containing at least 1 Mod class
+		Assembly[] modAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetTypes().Where(x => x.BaseType.FullName == typeof(Mod).FullName).ToArray().Length > 0).ToArray();
+		LoadedMods = new Mod[modAssemblies.Length];
+		int currentMod = 0;
+		foreach (Assembly assembly in modAssemblies) {
+
+		}
+		/*
 		Assembly[] modAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.Location == $"{ModPath}\\{x.GetName().Name}.dll").ToArray();
 		LoadedMods = new Mod[modAssemblies.Length];
 		int modCount = 0;
@@ -62,10 +74,10 @@ public class ModLoader
 			LoadedMods[modCount] = mod;
 			modCount++;
 		}
+	*/
 	}
 
-	public static void Log(string message)
-	{
+	public static void Log(string message) {
 		Debug.Log($"[ModLoader]: {message}");
 	}
 }
