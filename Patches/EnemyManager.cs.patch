@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/EnemyManager.cs b/Assembly-CSharp/EnemyManager.cs
-index 9e22e15..40823ce 100644
+index 9e22e15..eafcaec 100644
 --- a/RL2-Source/EnemyManager.cs
 +++ b/Assembly-CSharp/EnemyManager.cs
 @@ -1,3 +1,5 @@
@@ -8,7 +8,7 @@ index 9e22e15..40823ce 100644
  using System;
  using System.Collections;
  using System.Collections.Generic;
-@@ -674,6 +676,15 @@ public class EnemyManager : MonoBehaviour
+@@ -674,6 +676,14 @@ public class EnemyManager : MonoBehaviour
  			{
  				Instance.StartCoroutine(Instance.Internal_RunSummonAnimCoroutine(enemyFromPool, speedMod, disableEnemyOffset: false, hpMod));
  			}
@@ -19,7 +19,6 @@ index 9e22e15..40823ce 100644
 +				{
 +					globalEnemyInstance.enabled = false;
 +				}
-+				globalEnemyInstance.OnSpawn();
 +			}
  		}
  		return enemyFromPool;

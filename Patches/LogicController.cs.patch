@@ -84,33 +84,3 @@ index ef1e868..c4ecbc8 100644
  			}
  		}
  	}
-@@ -975,4 +974,29 @@ public class LogicController : MonoBehaviour
- 			ResetAllLogicBlockOddsOverrides();
- 		}
- 	}
-+
-+	/// <summary>
-+	/// Swap the AI script of the enemy.
-+	/// </summary>
-+	/// <typeparam name="T">Type of the new AIScript</typeparam>
-+	/// <param name="logicController_SO">Logic Controller Scriptable Object - contains key-value pairs foreach enemy rank type<br></br>where the key is a name of the enemy's attack, and the value is the attacks chance.</param>
-+	public void SwapAIScript<T>(LogicController_SO logicController_SO) where T : BaseAIScript
-+	{
-+		Transform oldParent = Instantiate(gameObject.transform.parent);
-+
-+		Destroy(m_logicScript);
-+		m_logicScript = gameObject.AddComponent<T>();
-+		m_logicControllerSO = logicController_SO;
-+		m_logicScript.transform.SetParent(oldParent);
-+		gameObject.transform.localScale = new Vector3(.5f, .5f, .5f);
-+        m_logicScript.Initialize(m_enemyController);
-+        if (m_logicScript.ProjectileNameArray.Length > 0)
-+		{
-+			foreach (string projectileName in m_logicScript.ProjectileNameArray)
-+			{
-+				ProjectileManager.Instance.AddProjectileToPool(projectileName);	
-+			}
-+		};
-+		PopulateStaticMethodInfoDict(EnemyLogicType, typeof(T));
-+	}
- }
