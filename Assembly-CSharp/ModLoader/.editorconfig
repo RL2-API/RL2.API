@@ -171,4 +171,4 @@ indent_size = 4
 tab_width = 4
 dotnet_style_operator_placement_when_wrapping = beginning_of_line
 dotnet_style_parentheses_in_other_operators = never_if_unnecessary:silent
-dotnet_code_quality_unused_parameters = all:suggestion
+dotnet_code_quality_unused_parameters = all:none

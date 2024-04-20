@@ -41,40 +41,19 @@ public class ModLoader
 		LoadedMods = new Mod[modAssemblies.Length];
 		int currentMod = 0;
 		foreach (Assembly assembly in modAssemblies) {
-
-		}
-		/*
-		Assembly[] modAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.Location == $"{ModPath}\\{x.GetName().Name}.dll").ToArray();
-		LoadedMods = new Mod[modAssemblies.Length];
-		int modCount = 0;
-		foreach (Assembly assembly in modAssemblies)
-		{
-			Type[] types = assembly.GetTypes().Where(x => x.Name == assembly.GetName().Name && x.BaseType.FullName == "RL2.ModLoader.Mod").ToArray();
-			Mod mod = (Mod)Activator.CreateInstance(types[0]);
-
-			if (mod == null)
-			{
-				Log($"Failed to load the Mod class - the Mod class was not found");
-				break;
+			Type[] modTypes = assembly.GetTypes().Where(x => x.BaseType.FullName == typeof(Mod).FullName).ToArray();
+			if (modTypes.Length != 1) {
+				Log($"<color=red>Make sure that the mod contains <b>exactly one Mod class</b>, {assembly.GetName().Name} will not be loaded as this condition was not met</color>");
+				continue;
 			}
-
-			Type[] modPlayers = assembly.GetTypes().Where(x => x.BaseType.FullName == "RL2.ModLoader.ModPlayer").ToArray();
-			foreach (Type modPlayer in modPlayers)
-			{
-				LoadedModPlayers.Add(modPlayer);
-			}
-
-			Type[] globalEnemies = assembly.GetTypes().Where(x => x.BaseType.FullName == "RL2.ModLoader.GlobalEnemy").ToArray();
-			foreach (Type globalEnemy in globalEnemies)
-			{
-				LoadedGlobalEnemies.Add(globalEnemy);
-			}
+			Mod mod = (Mod)Activator.CreateInstance(modTypes[0]);
+			mod.ModSystems = assembly.GetTypes().Where(x => x.BaseType.FullName == typeof(ModSystem).FullName).ToArray();
+			mod.ModPlayers = assembly.GetTypes().Where(x => x.BaseType.FullName == typeof(ModPlayer).FullName).ToArray();
 
 			CommandManager.RegisterCommands(assembly);
-			LoadedMods[modCount] = mod;
-			modCount++;
+			LoadedMods[currentMod] = mod;
+			currentMod++;
 		}
-	*/
 	}
 
 	public static void Log(string message) {

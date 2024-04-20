@@ -6,9 +6,9 @@ public abstract class Mod
 {
 	public abstract int[] Version { get; }
 
-	internal static Type[] ModSystems;
+	internal Type[] ModSystems;
 
-	internal static Type[] ModPlayers;
+	internal Type[] ModPlayers;
 
 	public void OnLoad() { }
 
