@@ -1,0 +1,49 @@
+diff --git a/RL2-Source/PlayerController.cs b/Assembly-CSharp/PlayerController.cs
+index fe5c816..b35d6f5 100644
+--- a/RL2-Source/PlayerController.cs
++++ b/Assembly-CSharp/PlayerController.cs
+@@ -8,6 +8,7 @@ using Rewired;
+ using SceneManagement_RL;
+ using Sigtrap.Relays;
+ using UnityEngine;
++using RL2.ModLoader;
+ 
+ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEnterHitResponse, IHitResponse, IHasProjectileNameArray, IAudioEventEmitter
+ {
+@@ -790,6 +791,9 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 
+ 	private void OnRelicChanged(object sender, EventArgs args)
+ 	{
++		foreach (ModPlayer modPlayer in gameObject.GetComponents<ModPlayer>()) {
++			modPlayer.OnRelicChanged((args as RelicChangedEventArgs).RelicType);
++		}
+ 		InitializeAbilities();
+ 		InitializeAllMods(resetHP: false, resetMP: false);
+ 	}
+@@ -843,6 +847,16 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 		m_onRelicChanged = OnRelicChanged;
+ 		m_applyPermanentStatusEffects = ApplyPermanentStatusEffects;
+ 		m_onHouseRulesChanged = OnHouseRulesChanged;
++		foreach (Mod mod in ModLoader.LoadedMods) {
++			foreach (Type modPlayer in mod.ModPlayers) {
++				ModPlayer modPlayerInstance = gameObject.AddComponent(modPlayer) as ModPlayer;
++				if (!modPlayerInstance.IsLoadingEnabled()) {
++					Destroy(modPlayerInstance);
++					continue;
++				}
++				modPlayerInstance.OnLoad();
++			}
++		}
+ 	}
+ 
+ 	public override void ResetBaseValues()
+@@ -1917,6 +1931,9 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 		}
+ 		StopActiveAbilities(stopPersistentAbilities: true);
+ 		WindowManager.SetWindowIsOpen(WindowID.PlayerDeath, isOpen: true);
++		foreach (ModPlayer modPlayer in gameObject.GetComponents<ModPlayer>()) {
++			modPlayer.OnPlayerDeath(killer);
++		}
+ 	}
+ 
+ 	public void EnterRoom(BaseRoom room, Door door, Vector3 localPosition)

@@ -21,9 +21,11 @@ public class ModLoader
 	}
 
 	public static void LoadMods() {
+		// Create the Mods directory if it doesn't exist
 		if (!Directory.Exists(ModPath)) {
 			Directory.CreateDirectory(ModPath);
 		}
+		// Create the enabled.json file if it doesn't exist
 		if (!File.Exists(ModPath + "\\enabled.json")) {
 			File.WriteAllText(ModPath + "\\enabled-exp.json", JsonUtility.ToJson(new ModData()));
 		}
@@ -37,7 +39,7 @@ public class ModLoader
 		}
 
 		//Get all assemblies containing at least 1 Mod class
-		Assembly[] modAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetTypes().Where(x => x.BaseType.FullName == typeof(Mod).FullName).ToArray().Length > 0).ToArray();
+		Assembly[] modAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(assembly => assembly.Location.StartsWith(ModPath)).ToArray();
 		LoadedMods = new Mod[modAssemblies.Length];
 		int currentMod = 0;
 		foreach (Assembly assembly in modAssemblies) {
@@ -53,6 +55,9 @@ public class ModLoader
 			CommandManager.RegisterCommands(assembly);
 			LoadedMods[currentMod] = mod;
 			currentMod++;
+		}
+		foreach (Mod mod in LoadedMods) {
+			mod.OnLoad();
 		}
 	}
 
