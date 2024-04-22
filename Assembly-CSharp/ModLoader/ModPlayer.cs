@@ -27,6 +27,10 @@ public abstract class ModPlayer : MonoBehaviour
 	/// <param name="killer">The GameObject that killed the player</param>
 	public virtual void OnKill(GameObject killer) { }
 	/// <summary>
+	/// Used to modify player stats.
+	/// </summary>
+	public virtual void ModifyStats() { }
+	/// <summary>
 	/// Responsible for saving modded data. TODO
 	/// </summary>
 	public virtual void SaveData() { }
