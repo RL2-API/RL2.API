@@ -37,6 +37,5 @@ public abstract class ModPlayer : MonoBehaviour
 	/// <summary>
 	/// Determines wether the ModPlayer of this class should be attached to the player.
 	/// </summary>
-	/// <returns></returns>
 	public virtual bool IsLoadingEnabled() => true;
 };
