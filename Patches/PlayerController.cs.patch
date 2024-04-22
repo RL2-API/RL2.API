@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/PlayerController.cs b/Assembly-CSharp/PlayerController.cs
-index fe5c816..79a425d 100644
+index fe5c816..c2366f9 100644
 --- a/RL2-Source/PlayerController.cs
 +++ b/Assembly-CSharp/PlayerController.cs
 @@ -8,6 +8,7 @@ using Rewired;
@@ -10,10 +10,128 @@ index fe5c816..79a425d 100644
  
  public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEnterHitResponse, IHitResponse, IHasProjectileNameArray, IAudioEventEmitter
  {
-@@ -843,6 +844,16 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
- 		m_onRelicChanged = OnRelicChanged;
- 		m_applyPermanentStatusEffects = ApplyPermanentStatusEffects;
- 		m_onHouseRulesChanged = OnHouseRulesChanged;
+@@ -19,6 +20,10 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+	[SerializeField]
+	private GameObject m_rangeBonusRelicIndicatorGO;
+ 
++	public PlayerModStatBonuses StatBonuses = new PlayerModStatBonuses();
++
++	public PlayerModAbilityBonuses AbilityBonuses = new PlayerModAbilityBonuses();
++
+	private int m_baseArmor;
+ 
+	private float m_baseCritDamage;
+@@ -209,7 +214,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+			{
+				num2 = 2.5f;
+			}
+-			return Mathf.Clamp((num2 + ResolveAdd) * (1f + ResolveMod), num, float.MaxValue);
++			return Mathf.Clamp((num2 + ResolveAdd + StatBonuses.resolve) * (1f + ResolveMod + StatBonuses.resolveMultiplier), num, float.MaxValue);
+		}
+	}
+ 
+@@ -237,7 +242,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+	{
+		get
+		{
+-			float num = Mathf.Clamp((BaseDexterity + DexterityAdd + DexterityTemporaryAdd) * (1f + DexterityMod + DexterityTemporaryMod), 0f, float.MaxValue);
++			float num = Mathf.Clamp((BaseDexterity + DexterityAdd + DexterityTemporaryAdd + StatBonuses.dextrity) * (1f + DexterityMod + DexterityTemporaryMod + StatBonuses.dextrityMultiplier), 0f, float.MaxValue);
+			if (ChallengeManager.IsInChallenge)
+			{
+				num = ChallengeManager.ApplyStatCap(num, isDexterityOrFocus: true);
+@@ -272,7 +277,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+		}
+	}
+ 
+-	public override float ActualCritDamage => Mathf.Clamp(BaseCritDamage + CritDamageAdd + CritDamageTemporaryAdd, 0f, float.MaxValue);
++	public override float ActualCritDamage => Mathf.Clamp((BaseCritDamage + CritDamageAdd + CritDamageTemporaryAdd + StatBonuses.critDamage) * StatBonuses.critDamageMultiplier, 0f, float.MaxValue);
+ 
+	public virtual float CritDamageAdd { get; set; }
+ 
+@@ -294,7 +299,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+	{
+		get
+		{
+-			float num = Mathf.Clamp((BaseFocus + FocusAdd + FocusTemporaryAdd) * (1f + FocusMod + FocusTemporaryMod), 0f, float.MaxValue);
++			float num = Mathf.Clamp((BaseFocus + FocusAdd + FocusTemporaryAdd + StatBonuses.focus) * (1f + FocusMod + FocusTemporaryMod + StatBonuses.focusMultiplier), 0f, float.MaxValue);
+			if (ChallengeManager.IsInChallenge)
+			{
+				num = ChallengeManager.ApplyStatCap(num, isDexterityOrFocus: true);
+@@ -329,7 +334,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+		}
+	}
+ 
+-	public float ActualMagicCritDamage => Mathf.Clamp(BaseMagicCritDamage + MagicCritDamageAdd + MagicCritDamageTemporaryAdd, 0f, float.MaxValue);
++	public float ActualMagicCritDamage => Mathf.Clamp((BaseMagicCritDamage + MagicCritDamageAdd + MagicCritDamageTemporaryAdd + StatBonuses.magicCritDamage) * StatBonuses.magicCritDamageMultiplier, 0f, float.MaxValue);
+ 
+	public float MagicCritDamageAdd { get; set; }
+ 
+@@ -359,7 +364,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+		}
+	}
+ 
+-	public int ActualArmor => Mathf.Clamp(BaseArmor + ArmorAdds, 0, int.MaxValue);
++	public int ActualArmor => Mathf.Clamp((int)((BaseArmor + ArmorAdds + StatBonuses.armor) * StatBonuses.armorMultiplier), 0, int.MaxValue);
+ 
+	public int ArmorAdds { get; set; }
+ 
+@@ -379,7 +384,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+	{
+		get
+		{
+-			float num = base.ActualStrength;
++			float num = (base.ActualStrength + StatBonuses.strength) * StatBonuses.strengthMultiplier;
+			if (ChallengeManager.IsInChallenge)
+			{
+				num = ChallengeManager.ApplyStatCap(num);
+@@ -393,7 +398,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+	{
+		get
+		{
+-			float num = base.ActualMagic;
++			float num = (base.ActualMagic + StatBonuses.intelligence) * StatBonuses.intelligenceMultiplier;
+			if (ChallengeManager.IsInChallenge)
+			{
+				num = ChallengeManager.ApplyStatCap(num);
+@@ -425,8 +430,8 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+	{
+		get
+		{
+-			int num = BaseVitality + VitalityAdd;
+-			num = Mathf.CeilToInt((float)num * (1f + VitalityMod));
++			int num = BaseVitality + VitalityAdd + StatBonuses.vitality;
++			num = Mathf.CeilToInt((float)num * (1f + VitalityMod + StatBonuses.vitalityMultiplier));
+			if (ChallengeManager.IsInChallenge)
+			{
+				num = (int)ChallengeManager.ApplyStatCap(num);
+@@ -459,13 +464,8 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+			float num = 1f;
+			num += traitMaxHealthMod + relicMaxHealthMod + maxHealthMod;
+			float num2 = Mathf.Clamp(1f - ActualResolve, 0f, 1f);
+-			num2 *= 1f;
+			int num3 = 150;
+-			if (SaveManager.PlayerSaveData.SpecialModeType == SpecialModeType.TrueRogue)
+-			{
+-				num3 = num3;
+-			}
+-			return Mathf.Clamp(Mathf.CeilToInt(((float)classModdedMaxHealth * num + (float)num3 * num) * (1f - num2)), 1, int.MaxValue);
++			return Mathf.Clamp(Mathf.CeilToInt(((classModdedMaxHealth + num3 + StatBonuses.health) * (num + StatBonuses.healthMultiplier)) * (1f - num2)), 1, int.MaxValue);
+		}
+	}
+ 
+@@ -477,7 +477,7 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 
+	public int ClassModdedMaxMana => Mathf.CeilToInt((float)BaseMaxMana * CharacterClass.ClassData.PassiveData.MaxManaMod * (1f + EquipmentMaxManaMod));
+ 
+-	public int ActualMaxMana => Mathf.Clamp(Mathf.CeilToInt((float)ClassModdedMaxMana * (1f + TraitMaxManaMod)) + PostModMaxManaAdd, 1, int.MaxValue);
++	public int ActualMaxMana => Mathf.Clamp(Mathf.CeilToInt((int)((ClassModdedMaxMana * (1f + TraitMaxManaMod)) + PostModMaxManaAdd + StatBonuses.mana) * StatBonuses.manaMultiplier), 1, int.MaxValue);
+ 
+	public int PostModMaxManaAdd { get; set; }
+ 
+@@ -843,6 +843,16 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+		m_onRelicChanged = OnRelicChanged;
+		m_applyPermanentStatusEffects = ApplyPermanentStatusEffects;
+		m_onHouseRulesChanged = OnHouseRulesChanged;
 +		foreach (Mod mod in ModLoader.LoadedMods) {
 +			foreach (Type modPlayer in mod.ModPlayers) {
 +				ModPlayer modPlayerInstance = gameObject.AddComponent(modPlayer) as ModPlayer;
@@ -24,13 +142,34 @@ index fe5c816..79a425d 100644
 +				modPlayerInstance.OnLoad();
 +			}
 +		}
- 	}
+	}
  
- 	public override void ResetBaseValues()
-@@ -1875,7 +1886,14 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+	public override void ResetBaseValues()
+@@ -940,6 +950,10 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
  
- 	public override void KillCharacter(GameObject killer, bool broadcastEvent)
- 	{
+	public void InitializeAllMods(bool resetHP, bool resetMP)
+	{
++		StatBonuses.Reset();
++		foreach (ModPlayer modPlayer in gameObject.GetComponents<ModPlayer>()) {
++			modPlayer.ModifyStats();
++		}
+		ResetMods();
+		InitializeWeightMods();
+		InitializeHealthMods();
+@@ -1220,7 +1234,8 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+		float num = 0f;
+		num += SkillTreeLogicHelper.GetInvulnTimeExtension();
+		num += (float)SaveManager.PlayerSaveData.GetRelic(RelicType.ExtendInvuln).Level * 1.25f;
+-		base.InvincibilityDurationAdd = num;
++		base.InvincibilityDurationAdd = (num + StatBonuses.invincibilityDuration);
++		InvincibilityMultiplier = 1 + StatBonuses.invincibilityDurationMultiplier;
+	}
+ 
+	public void InitializeWeightMods()
+@@ -1875,7 +1890,14 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 
+	public override void KillCharacter(GameObject killer, bool broadcastEvent)
+	{
 -		if (base.IsDead)
 +		bool shouldDie = true;
 +		foreach (ModPlayer modPlayer in gameObject.GetComponents<ModPlayer>()) {
@@ -40,16 +179,16 @@ index fe5c816..79a425d 100644
 +			}
 +		}
 +		if (base.IsDead || shouldDie)
- 		{
- 			return;
- 		}
-@@ -1917,6 +1935,9 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
- 		}
- 		StopActiveAbilities(stopPersistentAbilities: true);
- 		WindowManager.SetWindowIsOpen(WindowID.PlayerDeath, isOpen: true);
+		{
+			return;
+		}
+@@ -1917,6 +1939,9 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+		}
+		StopActiveAbilities(stopPersistentAbilities: true);
+		WindowManager.SetWindowIsOpen(WindowID.PlayerDeath, isOpen: true);
 +		foreach (ModPlayer modPlayer in gameObject.GetComponents<ModPlayer>()) {
 +			modPlayer.OnKill(killer);
 +		}
- 	}
+	}
  
- 	public void EnterRoom(BaseRoom room, Door door, Vector3 localPosition)
+	public void EnterRoom(BaseRoom room, Door door, Vector3 localPosition)

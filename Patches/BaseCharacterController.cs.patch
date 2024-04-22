@@ -1,0 +1,20 @@
+diff --git a/RL2-Source/BaseCharacterController.cs b/Assembly-CSharp/BaseCharacterController.cs
+index 33485c5..1754214 100644
+--- a/RL2-Source/BaseCharacterController.cs
++++ b/Assembly-CSharp/BaseCharacterController.cs
+@@ -143,11 +143,13 @@ public abstract class BaseCharacterController : MonoBehaviour, IHealth, IDefense
+ 
+	public float BaseInvincibilityDuration { get; set; }
+ 
+-	public float ActualInvincibilityDuration => BaseInvincibilityDuration + InvincibilityDurationAdd;
++	public float ActualInvincibilityDuration => (BaseInvincibilityDuration + InvincibilityDurationAdd) * InvincibilityMultiplier;
+ 
+	public float InvincibilityDurationAdd { get; set; }
+ 
+-	public float StunDuration { get; set; }
++   public float InvincibilityMultiplier { get; set; }
++
++   public float StunDuration { get; set; }
+ 
+	public Vector2 EffectVelocity => Velocity;
+ 
