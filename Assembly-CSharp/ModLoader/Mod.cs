@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace RL2.ModLoader;
 
+/// <summary>
+/// Required for every mod to be loaded.
+/// </summary>
 public abstract class Mod
 {
 	/// <summary>
