@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/PlayerController.cs b/Assembly-CSharp/PlayerController.cs
-index fe5c816..b35d6f5 100644
+index fe5c816..79a425d 100644
 --- a/RL2-Source/PlayerController.cs
 +++ b/Assembly-CSharp/PlayerController.cs
 @@ -8,6 +8,7 @@ using Rewired;
@@ -10,17 +10,7 @@ index fe5c816..b35d6f5 100644
  
  public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEnterHitResponse, IHitResponse, IHasProjectileNameArray, IAudioEventEmitter
  {
-@@ -790,6 +791,9 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
- 
- 	private void OnRelicChanged(object sender, EventArgs args)
- 	{
-+		foreach (ModPlayer modPlayer in gameObject.GetComponents<ModPlayer>()) {
-+			modPlayer.OnRelicChanged((args as RelicChangedEventArgs).RelicType);
-+		}
- 		InitializeAbilities();
- 		InitializeAllMods(resetHP: false, resetMP: false);
- 	}
-@@ -843,6 +847,16 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+@@ -843,6 +844,16 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
  		m_onRelicChanged = OnRelicChanged;
  		m_applyPermanentStatusEffects = ApplyPermanentStatusEffects;
  		m_onHouseRulesChanged = OnHouseRulesChanged;
@@ -37,12 +27,28 @@ index fe5c816..b35d6f5 100644
  	}
  
  	public override void ResetBaseValues()
-@@ -1917,6 +1931,9 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+@@ -1875,7 +1886,14 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
+ 
+ 	public override void KillCharacter(GameObject killer, bool broadcastEvent)
+ 	{
+-		if (base.IsDead)
++		bool shouldDie = true;
++		foreach (ModPlayer modPlayer in gameObject.GetComponents<ModPlayer>()) {
++			if (!modPlayer.PreKill(killer)) {
++				shouldDie = false;
++				break;
++			}
++		}
++		if (base.IsDead || shouldDie)
+ 		{
+ 			return;
+ 		}
+@@ -1917,6 +1935,9 @@ public class PlayerController : BaseCharacterController, IDamageObj, IWeaponOnEn
  		}
  		StopActiveAbilities(stopPersistentAbilities: true);
  		WindowManager.SetWindowIsOpen(WindowID.PlayerDeath, isOpen: true);
 +		foreach (ModPlayer modPlayer in gameObject.GetComponents<ModPlayer>()) {
-+			modPlayer.OnPlayerDeath(killer);
++			modPlayer.OnKill(killer);
 +		}
  	}
  
