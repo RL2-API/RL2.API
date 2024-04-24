@@ -1,0 +1,3597 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"doc",
+				"documentation"
+			],
+			[
+				"jus",
+				"justify-items"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"paddin",
+				"padding-bottom"
+			],
+			[
+				"grid-template-",
+				"grid-template-columns"
+			],
+			[
+				"grid",
+				"grid-template"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"margin-",
+				"margin-top"
+			],
+			[
+				"Cooki",
+				"CookingDelight"
+			],
+			[
+				"ali",
+				"text-align"
+			],
+			[
+				"margn",
+				"margin-left"
+			],
+			[
+				"pro",
+				"projects"
+			],
+			[
+				"hea",
+				"header\t<header>"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"padi",
+				"padding-bottom"
+			],
+			[
+				"re",
+				"relative"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"flex",
+				"flex-direction"
+			],
+			[
+				"wind",
+				"window_height"
+			],
+			[
+				"entit",
+				"entity_amount"
+			],
+			[
+				"wi",
+				"window_width"
+			],
+			[
+				"w",
+				"window_height"
+			],
+			[
+				"I",
+				"IComponent"
+			],
+			[
+				"add",
+				"add_system"
+			],
+			[
+				"p",
+				"push_component"
+			],
+			[
+				"compo",
+				"components"
+			],
+			[
+				"V",
+				"Velocity"
+			],
+			[
+				"Ico",
+				"Incorrect"
+			],
+			[
+				"ad",
+				"add_entity_batch_to_component"
+			],
+			[
+				"get",
+				"get_component"
+			],
+			[
+				"Ve",
+				"Vec2"
+			],
+			[
+				"en",
+				"entities"
+			],
+			[
+				"Com",
+				"Component"
+			],
+			[
+				"IC",
+				"IComponent"
+			],
+			[
+				"Co",
+				"Component"
+			],
+			[
+				"com",
+				"component"
+			],
+			[
+				"Is",
+				"IStorageTypeComponent"
+			],
+			[
+				"componne",
+				"component"
+			],
+			[
+				"compon",
+				"component"
+			],
+			[
+				"ve",
+				"Velocity"
+			],
+			[
+				"po",
+				"pos_comp"
+			],
+			[
+				"s",
+				"systems"
+			],
+			[
+				"ol",
+				"old_vel2"
+			],
+			[
+				"old",
+				"old_vel2"
+			],
+			[
+				"old_vel",
+				"old_vel2"
+			],
+			[
+				"vel",
+				"velocity_c"
+			],
+			[
+				"owner",
+				"owner2_id"
+			],
+			[
+				"owne",
+				"owner_id"
+			],
+			[
+				"pos",
+				"pos_data"
+			],
+			[
+				"enti",
+				"entity_velocity"
+			],
+			[
+				"dat",
+				"data"
+			],
+			[
+				"own",
+				"owner_index"
+			],
+			[
+				"positio",
+				"position_data_y"
+			],
+			[
+				"posiio",
+				"position_data_x"
+			],
+			[
+				"han",
+				"handle_collision"
+			],
+			[
+				"posi",
+				"position_data_y"
+			],
+			[
+				"position",
+				"position_data_y"
+			],
+			[
+				"PL",
+				"Player"
+			],
+			[
+				"Cur",
+				"CurrentCrockpotPosition"
+			],
+			[
+				"str",
+				"struct\tstruct declaration"
+			],
+			[
+				"is",
+				"IsGenericFoodItem"
+			],
+			[
+				"Food",
+				"FoodCategory"
+			],
+			[
+				"Upda",
+				"UpdateAccessory"
+			],
+			[
+				"conf",
+				"configInstance"
+			],
+			[
+				"Spri",
+				"SprintKeybind"
+			],
+			[
+				"TEr",
+				"TerrariaZoomies"
+			],
+			[
+				"Vani",
+				"VanillaFoodBuffTime"
+			],
+			[
+				"ca",
+				"category"
+			],
+			[
+				"Local",
+				"LocalPlayer"
+			],
+			[
+				"ing",
+				"ingredient_types"
+			],
+			[
+				"ingre",
+				"ingredient_types"
+			],
+			[
+				"sou",
+				"sourceCategories"
+			],
+			[
+				"S",
+				"Spice"
+			],
+			[
+				"in",
+				"inventoryScale"
+			],
+			[
+				"Ite",
+				"ItemSlotWrapper"
+			],
+			[
+				"Wl",
+				"WellFed2"
+			],
+			[
+				"Re",
+				"Rectangle"
+			],
+			[
+				"Ui",
+				"UIImage"
+			],
+			[
+				"win",
+				"window_height"
+			],
+			[
+				"tem",
+				"temp_v"
+			],
+			[
+				"te",
+				"temp_v"
+			],
+			[
+				"ent",
+				"entity_count"
+			],
+			[
+				"ro",
+				"rotated_towards"
+			],
+			[
+				"Ca",
+				"LocalPlayer"
+			],
+			[
+				"Foo",
+				"FoodCategory"
+			],
+			[
+				"On",
+				"OnSpawn"
+			],
+			[
+				"food",
+				"food_item"
+			],
+			[
+				"page",
+				"page_file"
+			],
+			[
+				"ht",
+				"htmlize"
+			],
+			[
+				"heade",
+				"header-placeholder"
+			],
+			[
+				"di",
+				"div"
+			],
+			[
+				"Sea",
+				"Seafood"
+			],
+			[
+				"pin",
+				"PinaColada"
+			],
+			[
+				"Pea",
+				"PeachSangria"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Assembly-CSharp/ModLoader/GlobalEnemy.cs",
+			"settings":
+			{
+				"buffer_size": 424,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					1,
+					1,
+					"insert",
+					{
+						"characters": "Gloca"
+					},
+					"BQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAMAAAAAAAAAAAAAAAMAAAAAAAAABAAAAAAAAAAAAAAABAAAAAAAAAAFAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					2,
+					6,
+					"left_delete",
+					null,
+					"BQAAAAQAAAAAAAAABAAAAAAAAAABAAAAYQMAAAAAAAAAAwAAAAAAAAABAAAAYwIAAAAAAAAAAgAAAAAAAAABAAAAbwEAAAAAAAAAAQAAAAAAAAABAAAAbAAAAAAAAAAAAAAAAAAAAAABAAAARw",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAFAAAAAAAAAAUAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					5,
+					1,
+					"insert",
+					{
+						"characters": "name"
+					},
+					"BAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAMAAAAAAAAAAAAAAAMAAAAAAAAABAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					6,
+					1,
+					"insert_completion",
+					{
+						"completion": "namespace",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "namespace"
+					},
+					"AgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAbmFtZQAAAAAAAAAACQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					7,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAAkAAAAAAAAACgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAJAAAAAAAAAAkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					8,
+					1,
+					"insert_completion",
+					{
+						"completion": "RL2",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": true,
+						"trigger": "RL2"
+					},
+					"AQAAAAoAAAAAAAAADQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAKAAAAAAAAAAoAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					9,
+					1,
+					"insert",
+					{
+						"characters": "."
+					},
+					"AQAAAA0AAAAAAAAADgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAANAAAAAAAAAA0AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					10,
+					1,
+					"insert_completion",
+					{
+						"completion": "ModLoader",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": true,
+						"trigger": "ModLoader"
+					},
+					"AQAAAA4AAAAAAAAAFwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAOAAAAAAAAAA4AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					11,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAABcAAAAAAAAAGAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAXAAAAAAAAABcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					12,
+					1,
+					"insert",
+					{
+						"characters": "\n\n"
+					},
+					"AgAAABgAAAAAAAAAGQAAAAAAAAAAAAAAGQAAAAAAAAAaAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					13,
+					1,
+					"insert",
+					{
+						"characters": "public"
+					},
+					"BgAAABoAAAAAAAAAGwAAAAAAAAAAAAAAGwAAAAAAAAAcAAAAAAAAAAAAAAAcAAAAAAAAAB0AAAAAAAAAAAAAAB0AAAAAAAAAHgAAAAAAAAAAAAAAHgAAAAAAAAAfAAAAAAAAAAAAAAAfAAAAAAAAACAAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAaAAAAAAAAABoAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					14,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAACAAAAAAAAAAIQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					15,
+					1,
+					"insert_completion",
+					{
+						"completion": "class",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": true,
+						"trigger": "class"
+					},
+					"AQAAACEAAAAAAAAAJgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAhAAAAAAAAACEAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					16,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAACYAAAAAAAAAJwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAmAAAAAAAAACYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					17,
+					1,
+					"delete_word",
+					{
+						"forward": false
+					},
+					"AQAAACEAAAAAAAAAIQAAAAAAAAAGAAAAY2xhc3Mg",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAnAAAAAAAAACcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					18,
+					1,
+					"insert",
+					{
+						"characters": "s"
+					},
+					"AQAAACEAAAAAAAAAIgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAhAAAAAAAAACEAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					19,
+					1,
+					"left_delete",
+					null,
+					"AQAAACEAAAAAAAAAIQAAAAAAAAABAAAAcw",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAiAAAAAAAAACIAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					20,
+					1,
+					"insert",
+					{
+						"characters": "abs"
+					},
+					"AwAAACEAAAAAAAAAIgAAAAAAAAAAAAAAIgAAAAAAAAAjAAAAAAAAAAAAAAAjAAAAAAAAACQAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAhAAAAAAAAACEAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					21,
+					1,
+					"insert_completion",
+					{
+						"completion": "abstract",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "abstract"
+					},
+					"AgAAACEAAAAAAAAAIQAAAAAAAAADAAAAYWJzIQAAAAAAAAApAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAkAAAAAAAAACQAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					22,
+					1,
+					"insert",
+					{
+						"characters": " clas"
+					},
+					"BQAAACkAAAAAAAAAKgAAAAAAAAAAAAAAKgAAAAAAAAArAAAAAAAAAAAAAAArAAAAAAAAACwAAAAAAAAAAAAAACwAAAAAAAAALQAAAAAAAAAAAAAALQAAAAAAAAAuAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAApAAAAAAAAACkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					23,
+					1,
+					"insert_completion",
+					{
+						"completion": "class",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "class"
+					},
+					"AgAAACoAAAAAAAAAKgAAAAAAAAAEAAAAY2xhcyoAAAAAAAAALwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAuAAAAAAAAAC4AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					24,
+					1,
+					"insert",
+					{
+						"characters": " Glo"
+					},
+					"BAAAAC8AAAAAAAAAMAAAAAAAAAAAAAAAMAAAAAAAAAAxAAAAAAAAAAAAAAAxAAAAAAAAADIAAAAAAAAAAAAAADIAAAAAAAAAMwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAvAAAAAAAAAC8AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					25,
+					1,
+					"insert",
+					{
+						"characters": "bal"
+					},
+					"AwAAADMAAAAAAAAANAAAAAAAAAAAAAAANAAAAAAAAAA1AAAAAAAAAAAAAAA1AAAAAAAAADYAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAzAAAAAAAAADMAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					26,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAADYAAAAAAAAANwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA2AAAAAAAAADYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					27,
+					1,
+					"left_delete",
+					null,
+					"AQAAADYAAAAAAAAANgAAAAAAAAABAAAAIA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA3AAAAAAAAADcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					28,
+					1,
+					"insert",
+					{
+						"characters": "Enemy"
+					},
+					"BQAAADYAAAAAAAAANwAAAAAAAAAAAAAANwAAAAAAAAA4AAAAAAAAAAAAAAA4AAAAAAAAADkAAAAAAAAAAAAAADkAAAAAAAAAOgAAAAAAAAAAAAAAOgAAAAAAAAA7AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA2AAAAAAAAADYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					29,
+					1,
+					"insert",
+					{
+						"characters": " :"
+					},
+					"AgAAADsAAAAAAAAAPAAAAAAAAAAAAAAAPAAAAAAAAAA9AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA7AAAAAAAAADsAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					30,
+					1,
+					"insert",
+					{
+						"characters": " Mod"
+					},
+					"BAAAAD0AAAAAAAAAPgAAAAAAAAAAAAAAPgAAAAAAAAA/AAAAAAAAAAAAAAA/AAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAQQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA9AAAAAAAAAD0AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					31,
+					1,
+					"insert_completion",
+					{
+						"completion": "ModLoader",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "ModLoader"
+					},
+					"AgAAAD4AAAAAAAAAPgAAAAAAAAADAAAATW9kPgAAAAAAAABHAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABBAAAAAAAAAEEAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					32,
+					1,
+					"left_delete",
+					null,
+					"AQAAAEYAAAAAAAAARgAAAAAAAAABAAAAcg",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABHAAAAAAAAAEcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					33,
+					1,
+					"delete_word",
+					{
+						"forward": false
+					},
+					"AQAAAD4AAAAAAAAAPgAAAAAAAAAIAAAATW9kTG9hZGU",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABGAAAAAAAAAEYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					34,
+					1,
+					"insert",
+					{
+						"characters": "Mod"
+					},
+					"AwAAAD4AAAAAAAAAPwAAAAAAAAAAAAAAPwAAAAAAAABAAAAAAAAAAAAAAABAAAAAAAAAAEEAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA+AAAAAAAAAD4AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					35,
+					1,
+					"left_delete",
+					null,
+					"AQAAAEAAAAAAAAAAQAAAAAAAAAABAAAAZA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABBAAAAAAAAAEEAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					36,
+					1,
+					"insert",
+					{
+						"characters": "no"
+					},
+					"AgAAAEAAAAAAAAAAQQAAAAAAAAAAAAAAQQAAAAAAAABCAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					37,
+					1,
+					"insert_completion",
+					{
+						"completion": "MonoBehaviour",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "MonoBehaviour"
+					},
+					"AgAAAD4AAAAAAAAAPgAAAAAAAAAEAAAATW9ubz4AAAAAAAAASwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABCAAAAAAAAAEIAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					38,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAEsAAAAAAAAATAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABLAAAAAAAAAEsAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					39,
+					1,
+					"insert_snippet",
+					{
+						"contents": "{$0}"
+					},
+					"AQAAAEwAAAAAAAAATgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABMAAAAAAAAAEwAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					40,
+					1,
+					"run_macro_file",
+					{
+						"file": "res://Packages/Default/Add Line in Braces.sublime-macro"
+					},
+					"AwAAAE0AAAAAAAAATgAAAAAAAAAAAAAATgAAAAAAAABPAAAAAAAAAAAAAABOAAAAAAAAAE8AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABNAAAAAAAAAE0AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					43,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAAAAAAAAAAAAAQAAAAAAAAAAAAAATwAAAAAAAABPAAAAAAAAAAEAAAAJ",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					45,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+				],
+				[
+					48,
+					1,
+					"insert",
+					{
+						"characters": "using"
+					},
+					"BQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAMAAAAAAAAAAAAAAAMAAAAAAAAABAAAAAAAAAAAAAAABAAAAAAAAAAFAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+				],
+				[
+					49,
+					1,
+					"insert",
+					{
+						"characters": " Ui"
+					},
+					"AwAAAAUAAAAAAAAABgAAAAAAAAAAAAAABgAAAAAAAAAHAAAAAAAAAAAAAAAHAAAAAAAAAAgAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAFAAAAAAAAAAUAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					50,
+					1,
+					"insert_completion",
+					{
+						"completion": "UnityEngine",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "UnityEngine"
+					},
+					"AgAAAAYAAAAAAAAABgAAAAAAAAACAAAAVWkGAAAAAAAAABEAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAIAAAAAAAAAAgAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					51,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAABEAAAAAAAAAEgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAARAAAAAAAAABEAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					53,
+					1,
+					"reindent",
+					null,
+					"AQAAAGIAAAAAAAAAYwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABiAAAAAAAAAGIAAAAAAAAAAAAAAADAXUA"
+				],
+				[
+					56,
+					1,
+					"insert",
+					{
+						"characters": "pulb"
+					},
+					"BAAAAGMAAAAAAAAAZAAAAAAAAAAAAAAAZAAAAAAAAABlAAAAAAAAAAAAAABlAAAAAAAAAGYAAAAAAAAAAAAAAGYAAAAAAAAAZwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABjAAAAAAAAAGMAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					57,
+					2,
+					"left_delete",
+					null,
+					"AgAAAGYAAAAAAAAAZgAAAAAAAAABAAAAYmUAAAAAAAAAZQAAAAAAAAABAAAAbA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABnAAAAAAAAAGcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					58,
+					1,
+					"insert",
+					{
+						"characters": "b"
+					},
+					"AQAAAGUAAAAAAAAAZgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABlAAAAAAAAAGUAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					59,
+					1,
+					"insert_completion",
+					{
+						"completion": "public",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "public"
+					},
+					"AgAAAGMAAAAAAAAAYwAAAAAAAAADAAAAcHViYwAAAAAAAABpAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABmAAAAAAAAAGYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					60,
+					1,
+					"insert",
+					{
+						"characters": " virt"
+					},
+					"BQAAAGkAAAAAAAAAagAAAAAAAAAAAAAAagAAAAAAAABrAAAAAAAAAAAAAABrAAAAAAAAAGwAAAAAAAAAAAAAAGwAAAAAAAAAbQAAAAAAAAAAAAAAbQAAAAAAAABuAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABpAAAAAAAAAGkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					61,
+					1,
+					"insert_completion",
+					{
+						"completion": "virtual",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "virtual"
+					},
+					"AgAAAGoAAAAAAAAAagAAAAAAAAAEAAAAdmlydGoAAAAAAAAAcQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABuAAAAAAAAAG4AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					62,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAHEAAAAAAAAAcgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABxAAAAAAAAAHEAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					63,
+					1,
+					"insert",
+					{
+						"characters": "List"
+					},
+					"BAAAAHIAAAAAAAAAcwAAAAAAAAAAAAAAcwAAAAAAAAB0AAAAAAAAAAAAAAB0AAAAAAAAAHUAAAAAAAAAAAAAAHUAAAAAAAAAdgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAByAAAAAAAAAHIAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					64,
+					1,
+					"delete_word",
+					{
+						"forward": false
+					},
+					"AQAAAHIAAAAAAAAAcgAAAAAAAAAEAAAATGlzdA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB2AAAAAAAAAHYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					65,
+					1,
+					"insert",
+					{
+						"characters": "EnemyType"
+					},
+					"CQAAAHIAAAAAAAAAcwAAAAAAAAAAAAAAcwAAAAAAAAB0AAAAAAAAAAAAAAB0AAAAAAAAAHUAAAAAAAAAAAAAAHUAAAAAAAAAdgAAAAAAAAAAAAAAdgAAAAAAAAB3AAAAAAAAAAAAAAB3AAAAAAAAAHgAAAAAAAAAAAAAAHgAAAAAAAAAeQAAAAAAAAAAAAAAeQAAAAAAAAB6AAAAAAAAAAAAAAB6AAAAAAAAAHsAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAByAAAAAAAAAHIAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					66,
+					1,
+					"insert_snippet",
+					{
+						"contents": "[$0]"
+					},
+					"AQAAAHsAAAAAAAAAfQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB7AAAAAAAAAHsAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					68,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAH0AAAAAAAAAfgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB9AAAAAAAAAH0AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					69,
+					1,
+					"insert",
+					{
+						"characters": "AppliesTo"
+					},
+					"CQAAAH4AAAAAAAAAfwAAAAAAAAAAAAAAfwAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAIEAAAAAAAAAAAAAAIEAAAAAAAAAggAAAAAAAAAAAAAAggAAAAAAAACDAAAAAAAAAAAAAACDAAAAAAAAAIQAAAAAAAAAAAAAAIQAAAAAAAAAhQAAAAAAAAAAAAAAhQAAAAAAAACGAAAAAAAAAAAAAACGAAAAAAAAAIcAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB+AAAAAAAAAH4AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					70,
+					1,
+					"insert",
+					{
+						"characters": "EnemyType"
+					},
+					"CQAAAIcAAAAAAAAAiAAAAAAAAAAAAAAAiAAAAAAAAACJAAAAAAAAAAAAAACJAAAAAAAAAIoAAAAAAAAAAAAAAIoAAAAAAAAAiwAAAAAAAAAAAAAAiwAAAAAAAACMAAAAAAAAAAAAAACMAAAAAAAAAI0AAAAAAAAAAAAAAI0AAAAAAAAAjgAAAAAAAAAAAAAAjgAAAAAAAACPAAAAAAAAAAAAAACPAAAAAAAAAJAAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACHAAAAAAAAAIcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					71,
+					1,
+					"insert",
+					{
+						"characters": " ="
+					},
+					"AgAAAJAAAAAAAAAAkQAAAAAAAAAAAAAAkQAAAAAAAACSAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACQAAAAAAAAAJAAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					72,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAJIAAAAAAAAAkwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACSAAAAAAAAAJIAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					73,
+					1,
+					"insert",
+					{
+						"characters": "new"
+					},
+					"AwAAAJMAAAAAAAAAlAAAAAAAAAAAAAAAlAAAAAAAAACVAAAAAAAAAAAAAACVAAAAAAAAAJYAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACTAAAAAAAAAJMAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					74,
+					1,
+					"insert",
+					{
+						"characters": " En"
+					},
+					"AwAAAJYAAAAAAAAAlwAAAAAAAAAAAAAAlwAAAAAAAACYAAAAAAAAAAAAAACYAAAAAAAAAJkAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACWAAAAAAAAAJYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					75,
+					1,
+					"delete_word",
+					{
+						"forward": false
+					},
+					"AQAAAJcAAAAAAAAAlwAAAAAAAAACAAAARW4",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACZAAAAAAAAAJkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					76,
+					2,
+					"left_delete",
+					null,
+					"AgAAAJYAAAAAAAAAlgAAAAAAAAABAAAAIJUAAAAAAAAAlQAAAAAAAAABAAAAdw",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACXAAAAAAAAAJcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					77,
+					1,
+					"delete_word",
+					{
+						"forward": false
+					},
+					"AQAAAJMAAAAAAAAAkwAAAAAAAAACAAAAbmU",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACVAAAAAAAAAJUAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					79,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAABIAAAAAAAAAEwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAASAAAAAAAAABIAAAAAAAAAAAAAAABwdUA"
+				],
+				[
+					80,
+					1,
+					"left_delete",
+					null,
+					"AQAAABIAAAAAAAAAEgAAAAAAAAABAAAACg",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAATAAAAAAAAABMAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					82,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					84,
+					1,
+					"insert",
+					{
+						"characters": "using"
+					},
+					"BQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAMAAAAAAAAAAAAAAAMAAAAAAAAABAAAAAAAAAAAAAAABAAAAAAAAAAFAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+				],
+				[
+					85,
+					1,
+					"insert",
+					{
+						"characters": " i"
+					},
+					"AgAAAAUAAAAAAAAABgAAAAAAAAAAAAAABgAAAAAAAAAHAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAFAAAAAAAAAAUAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					86,
+					1,
+					"left_delete",
+					null,
+					"AQAAAAYAAAAAAAAABgAAAAAAAAABAAAAaQ",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAHAAAAAAAAAAcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					87,
+					1,
+					"insert",
+					{
+						"characters": "in"
+					},
+					"AgAAAAYAAAAAAAAABwAAAAAAAAAAAAAABwAAAAAAAAAIAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAGAAAAAAAAAAYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					88,
+					2,
+					"left_delete",
+					null,
+					"AgAAAAcAAAAAAAAABwAAAAAAAAABAAAAbgYAAAAAAAAABgAAAAAAAAABAAAAaQ",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAIAAAAAAAAAAgAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					89,
+					1,
+					"insert",
+					{
+						"characters": "uni"
+					},
+					"AwAAAAYAAAAAAAAABwAAAAAAAAAAAAAABwAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAAAAAAkAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAGAAAAAAAAAAYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					90,
+					3,
+					"left_delete",
+					null,
+					"AwAAAAgAAAAAAAAACAAAAAAAAAABAAAAaQcAAAAAAAAABwAAAAAAAAABAAAAbgYAAAAAAAAABgAAAAAAAAABAAAAdQ",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAJAAAAAAAAAAkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					91,
+					1,
+					"insert",
+					{
+						"characters": "RL"
+					},
+					"AgAAAAYAAAAAAAAABwAAAAAAAAAAAAAABwAAAAAAAAAIAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAGAAAAAAAAAAYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					92,
+					1,
+					"insert_completion",
+					{
+						"completion": "RL2",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "RL2"
+					},
+					"AgAAAAYAAAAAAAAABgAAAAAAAAACAAAAUkwGAAAAAAAAAAkAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAIAAAAAAAAAAgAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					93,
+					1,
+					"insert",
+					{
+						"characters": ","
+					},
+					"AQAAAAkAAAAAAAAACgAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAJAAAAAAAAAAkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					94,
+					1,
+					"left_delete",
+					null,
+					"AQAAAAkAAAAAAAAACQAAAAAAAAABAAAALA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAKAAAAAAAAAAoAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					95,
+					1,
+					"insert",
+					{
+						"characters": ".M"
+					},
+					"AgAAAAkAAAAAAAAACgAAAAAAAAAAAAAACgAAAAAAAAALAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAJAAAAAAAAAAkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					96,
+					1,
+					"insert_completion",
+					{
+						"completion": "ModLoader",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "ModLoader"
+					},
+					"AgAAAAoAAAAAAAAACgAAAAAAAAABAAAATQoAAAAAAAAAEwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAALAAAAAAAAAAsAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					97,
+					1,
+					"insert",
+					{
+						"characters": ".Se"
+					},
+					"AwAAABMAAAAAAAAAFAAAAAAAAAAAAAAAFAAAAAAAAAAVAAAAAAAAAAAAAAAVAAAAAAAAABYAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAATAAAAAAAAABMAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					98,
+					1,
+					"insert_completion",
+					{
+						"completion": "Sets",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "Sets"
+					},
+					"AgAAABQAAAAAAAAAFAAAAAAAAAACAAAAU2UUAAAAAAAAABgAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAWAAAAAAAAABYAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					99,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAABgAAAAAAAAAGQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					104,
+					1,
+					"insert",
+					{
+						"characters": "EnemySte"
+					},
+					"CAAAAK0AAAAAAAAArgAAAAAAAAAAAAAArgAAAAAAAACvAAAAAAAAAAAAAACvAAAAAAAAALAAAAAAAAAAAAAAALAAAAAAAAAAsQAAAAAAAAAAAAAAsQAAAAAAAACyAAAAAAAAAAAAAACyAAAAAAAAALMAAAAAAAAAAAAAALMAAAAAAAAAtAAAAAAAAAAAAAAAtAAAAAAAAAC1AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACtAAAAAAAAAK0AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					105,
+					2,
+					"left_delete",
+					null,
+					"AgAAALQAAAAAAAAAtAAAAAAAAAABAAAAZbMAAAAAAAAAswAAAAAAAAABAAAAdA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAC1AAAAAAAAALUAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					106,
+					1,
+					"insert",
+					{
+						"characters": "ets."
+					},
+					"BAAAALMAAAAAAAAAtAAAAAAAAAAAAAAAtAAAAAAAAAC1AAAAAAAAAAAAAAC1AAAAAAAAALYAAAAAAAAAAAAAALYAAAAAAAAAtwAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACzAAAAAAAAALMAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					109,
+					1,
+					"insert",
+					{
+						"characters": ">"
+					},
+					"AQAAAKwAAAAAAAAArQAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACsAAAAAAAAAKwAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					111,
+					1,
+					"insert",
+					{
+						"characters": "AllEne"
+					},
+					"BgAAALgAAAAAAAAAuQAAAAAAAAAAAAAAuQAAAAAAAAC6AAAAAAAAAAAAAAC6AAAAAAAAALsAAAAAAAAAAAAAALsAAAAAAAAAvAAAAAAAAAAAAAAAvAAAAAAAAAC9AAAAAAAAAAAAAAC9AAAAAAAAAL4AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAC4AAAAAAAAALgAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					112,
+					1,
+					"insert",
+					{
+						"characters": "mies;"
+					},
+					"BQAAAL4AAAAAAAAAvwAAAAAAAAAAAAAAvwAAAAAAAADAAAAAAAAAAAAAAADAAAAAAAAAAMEAAAAAAAAAAAAAAMEAAAAAAAAAwgAAAAAAAAAAAAAAwgAAAAAAAADDAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAC+AAAAAAAAAL4AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					113,
+					1,
+					"insert",
+					{
+						"characters": "\npublic"
+					},
+					"CAAAAMMAAAAAAAAAxAAAAAAAAAAAAAAAxAAAAAAAAADFAAAAAAAAAAAAAADFAAAAAAAAAMYAAAAAAAAAAAAAAMYAAAAAAAAAxwAAAAAAAAAAAAAAxwAAAAAAAADIAAAAAAAAAAAAAADIAAAAAAAAAMkAAAAAAAAAAAAAAMkAAAAAAAAAygAAAAAAAAAAAAAAygAAAAAAAADLAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADDAAAAAAAAAMMAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					114,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAMsAAAAAAAAAzAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADLAAAAAAAAAMsAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					115,
+					1,
+					"insert_completion",
+					{
+						"completion": "virtual",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": true,
+						"trigger": "virtual"
+					},
+					"AQAAAMwAAAAAAAAA0wAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADMAAAAAAAAAMwAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					116,
+					1,
+					"insert",
+					{
+						"characters": " Enemy"
+					},
+					"BgAAANMAAAAAAAAA1AAAAAAAAAAAAAAA1AAAAAAAAADVAAAAAAAAAAAAAADVAAAAAAAAANYAAAAAAAAAAAAAANYAAAAAAAAA1wAAAAAAAAAAAAAA1wAAAAAAAADYAAAAAAAAAAAAAADYAAAAAAAAANkAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADTAAAAAAAAANMAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					117,
+					1,
+					"insert",
+					{
+						"characters": "Rank"
+					},
+					"BAAAANkAAAAAAAAA2gAAAAAAAAAAAAAA2gAAAAAAAADbAAAAAAAAAAAAAADbAAAAAAAAANwAAAAAAAAAAAAAANwAAAAAAAAA3QAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADZAAAAAAAAANkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					118,
+					1,
+					"insert_snippet",
+					{
+						"contents": "[$0]"
+					},
+					"AQAAAN0AAAAAAAAA3wAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADdAAAAAAAAAN0AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					120,
+					1,
+					"insert",
+					{
+						"characters": " Applies"
+					},
+					"CAAAAN8AAAAAAAAA4AAAAAAAAAAAAAAA4AAAAAAAAADhAAAAAAAAAAAAAADhAAAAAAAAAOIAAAAAAAAAAAAAAOIAAAAAAAAA4wAAAAAAAAAAAAAA4wAAAAAAAADkAAAAAAAAAAAAAADkAAAAAAAAAOUAAAAAAAAAAAAAAOUAAAAAAAAA5gAAAAAAAAAAAAAA5gAAAAAAAADnAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADfAAAAAAAAAN8AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					121,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAOcAAAAAAAAA6AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADnAAAAAAAAAOcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					122,
+					1,
+					"left_delete",
+					null,
+					"AQAAAOcAAAAAAAAA5wAAAAAAAAABAAAAIA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADoAAAAAAAAAOgAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					123,
+					1,
+					"insert",
+					{
+						"characters": "ToEnemy"
+					},
+					"BwAAAOcAAAAAAAAA6AAAAAAAAAAAAAAA6AAAAAAAAADpAAAAAAAAAAAAAADpAAAAAAAAAOoAAAAAAAAAAAAAAOoAAAAAAAAA6wAAAAAAAAAAAAAA6wAAAAAAAADsAAAAAAAAAAAAAADsAAAAAAAAAO0AAAAAAAAAAAAAAO0AAAAAAAAA7gAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADnAAAAAAAAAOcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					124,
+					1,
+					"insert",
+					{
+						"characters": "Ranl"
+					},
+					"BAAAAO4AAAAAAAAA7wAAAAAAAAAAAAAA7wAAAAAAAADwAAAAAAAAAAAAAADwAAAAAAAAAPEAAAAAAAAAAAAAAPEAAAAAAAAA8gAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADuAAAAAAAAAO4AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					125,
+					1,
+					"left_delete",
+					null,
+					"AQAAAPEAAAAAAAAA8QAAAAAAAAABAAAAbA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADyAAAAAAAAAPIAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					126,
+					1,
+					"insert",
+					{
+						"characters": "k"
+					},
+					"AQAAAPEAAAAAAAAA8gAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADxAAAAAAAAAPEAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					127,
+					1,
+					"insert",
+					{
+						"characters": " =>"
+					},
+					"AwAAAPIAAAAAAAAA8wAAAAAAAAAAAAAA8wAAAAAAAAD0AAAAAAAAAAAAAAD0AAAAAAAAAPUAAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADyAAAAAAAAAPIAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					128,
+					1,
+					"insert",
+					{
+						"characters": " E"
+					},
+					"AgAAAPUAAAAAAAAA9gAAAAAAAAAAAAAA9gAAAAAAAAD3AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAD1AAAAAAAAAPUAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					129,
+					1,
+					"insert",
+					{
+						"characters": "ne"
+					},
+					"AgAAAPcAAAAAAAAA+AAAAAAAAAAAAAAA+AAAAAAAAAD5AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAD3AAAAAAAAAPcAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					130,
+					1,
+					"insert_completion",
+					{
+						"completion": "EnemySets",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "EnemySets"
+					},
+					"AgAAAPYAAAAAAAAA9gAAAAAAAAADAAAARW5l9gAAAAAAAAD/AAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAD5AAAAAAAAAPkAAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					131,
+					1,
+					"insert",
+					{
+						"characters": ".AllRanks"
+					},
+					"CQAAAP8AAAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAABAQAAAAAAAAAAAAABAQAAAAAAAAIBAAAAAAAAAAAAAAIBAAAAAAAAAwEAAAAAAAAAAAAAAwEAAAAAAAAEAQAAAAAAAAAAAAAEAQAAAAAAAAUBAAAAAAAAAAAAAAUBAAAAAAAABgEAAAAAAAAAAAAABgEAAAAAAAAHAQAAAAAAAAAAAAAHAQAAAAAAAAgBAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAD/AAAAAAAAAP8AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					132,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAAAgBAAAAAAAACQEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAIAQAAAAAAAAgBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					136,
+					1,
+					"insert",
+					{
+						"characters": "\n\npublic"
+					},
+					"CwAAAAkBAAAAAAAACgEAAAAAAAAAAAAACgEAAAAAAAALAQAAAAAAAAAAAAALAQAAAAAAAAwBAAAAAAAAAAAAAAwBAAAAAAAADQEAAAAAAAAAAAAACgEAAAAAAAAKAQAAAAAAAAEAAAAJDAEAAAAAAAANAQAAAAAAAAAAAAANAQAAAAAAAA4BAAAAAAAAAAAAAA4BAAAAAAAADwEAAAAAAAAAAAAADwEAAAAAAAAQAQAAAAAAAAAAAAAQAQAAAAAAABEBAAAAAAAAAAAAABEBAAAAAAAAEgEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAJAQAAAAAAAAkBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					137,
+					1,
+					"insert",
+					{
+						"characters": " virt"
+					},
+					"BQAAABIBAAAAAAAAEwEAAAAAAAAAAAAAEwEAAAAAAAAUAQAAAAAAAAAAAAAUAQAAAAAAABUBAAAAAAAAAAAAABUBAAAAAAAAFgEAAAAAAAAAAAAAFgEAAAAAAAAXAQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAASAQAAAAAAABIBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					138,
+					1,
+					"insert_completion",
+					{
+						"completion": "virtual",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "virtual"
+					},
+					"AgAAABMBAAAAAAAAEwEAAAAAAAAEAAAAdmlydBMBAAAAAAAAGgEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAXAQAAAAAAABcBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					139,
+					1,
+					"insert",
+					{
+						"characters": " voi"
+					},
+					"BAAAABoBAAAAAAAAGwEAAAAAAAAAAAAAGwEAAAAAAAAcAQAAAAAAAAAAAAAcAQAAAAAAAB0BAAAAAAAAAAAAAB0BAAAAAAAAHgEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAaAQAAAAAAABoBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					140,
+					1,
+					"insert",
+					{
+						"characters": " d"
+					},
+					"AgAAAB4BAAAAAAAAHwEAAAAAAAAAAAAAHwEAAAAAAAAgAQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAeAQAAAAAAAB4BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					141,
+					2,
+					"left_delete",
+					null,
+					"AgAAAB8BAAAAAAAAHwEAAAAAAAABAAAAZB4BAAAAAAAAHgEAAAAAAAABAAAAIA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAgAQAAAAAAACABAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					142,
+					1,
+					"insert",
+					{
+						"characters": "d"
+					},
+					"AQAAAB4BAAAAAAAAHwEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAeAQAAAAAAAB4BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					143,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAB8BAAAAAAAAIAEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAfAQAAAAAAAB8BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					144,
+					1,
+					"insert_completion",
+					{
+						"completion": "OnLoad",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": true,
+						"trigger": "OnLoad"
+					},
+					"AQAAACABAAAAAAAAJgEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAgAQAAAAAAACABAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					145,
+					1,
+					"insert",
+					{
+						"characters": ")"
+					},
+					"AQAAACYBAAAAAAAAJwEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAmAQAAAAAAACYBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					146,
+					1,
+					"left_delete",
+					null,
+					"AQAAACYBAAAAAAAAJgEAAAAAAAABAAAAKQ",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAnAQAAAAAAACcBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					147,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAACYBAAAAAAAAKAEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAmAQAAAAAAACYBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					149,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAACgBAAAAAAAAKQEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAoAQAAAAAAACgBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					150,
+					1,
+					"insert_snippet",
+					{
+						"contents": "{$0}"
+					},
+					"AQAAACkBAAAAAAAAKwEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAApAQAAAAAAACkBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					151,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAACoBAAAAAAAAKwEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAqAQAAAAAAACoBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					153,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAACwBAAAAAAAALQEAAAAAAAAAAAAALQEAAAAAAAAuAQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAsAQAAAAAAACwBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					154,
+					1,
+					"insert",
+					{
+						"characters": "publ"
+					},
+					"BAAAAC4BAAAAAAAALwEAAAAAAAAAAAAALwEAAAAAAAAwAQAAAAAAAAAAAAAwAQAAAAAAADEBAAAAAAAAAAAAADEBAAAAAAAAMgEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAuAQAAAAAAAC4BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					155,
+					1,
+					"insert",
+					{
+						"characters": "ic"
+					},
+					"AgAAADIBAAAAAAAAMwEAAAAAAAAAAAAAMwEAAAAAAAA0AQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAyAQAAAAAAADIBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					156,
+					1,
+					"insert",
+					{
+						"characters": " virtu"
+					},
+					"BgAAADQBAAAAAAAANQEAAAAAAAAAAAAANQEAAAAAAAA2AQAAAAAAAAAAAAA2AQAAAAAAADcBAAAAAAAAAAAAADcBAAAAAAAAOAEAAAAAAAAAAAAAOAEAAAAAAAA5AQAAAAAAAAAAAAA5AQAAAAAAADoBAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA0AQAAAAAAADQBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					157,
+					1,
+					"insert",
+					{
+						"characters": "al"
+					},
+					"AgAAADoBAAAAAAAAOwEAAAAAAAAAAAAAOwEAAAAAAAA8AQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA6AQAAAAAAADoBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					158,
+					1,
+					"insert",
+					{
+						"characters": " void"
+					},
+					"BQAAADwBAAAAAAAAPQEAAAAAAAAAAAAAPQEAAAAAAAA+AQAAAAAAAAAAAAA+AQAAAAAAAD8BAAAAAAAAAAAAAD8BAAAAAAAAQAEAAAAAAAAAAAAAQAEAAAAAAABBAQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA8AQAAAAAAADwBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					159,
+					1,
+					"insert",
+					{
+						"characters": " Update"
+					},
+					"BwAAAEEBAAAAAAAAQgEAAAAAAAAAAAAAQgEAAAAAAABDAQAAAAAAAAAAAABDAQAAAAAAAEQBAAAAAAAAAAAAAEQBAAAAAAAARQEAAAAAAAAAAAAARQEAAAAAAABGAQAAAAAAAAAAAABGAQAAAAAAAEcBAAAAAAAAAAAAAEcBAAAAAAAASAEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABBAQAAAAAAAEEBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					160,
+					4,
+					"delete_word",
+					{
+						"forward": false
+					},
+					"BAAAAEIBAAAAAAAAQgEAAAAAAAAGAAAAVXBkYXRlPQEAAAAAAAA9AQAAAAAAAAUAAAB2b2lkIDUBAAAAAAAANQEAAAAAAAAIAAAAdmlydHVhbCAuAQAAAAAAAC4BAAAAAAAABwAAAHB1YmxpYyA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABIAQAAAAAAAEgBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					161,
+					2,
+					"left_delete",
+					null,
+					"AgAAAC0BAAAAAAAALQEAAAAAAAABAAAACSwBAAAAAAAALAEAAAAAAAABAAAACg",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAuAQAAAAAAAC4BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					168,
+					1,
+					"insert",
+					{
+						"characters": "\npublic"
+					},
+					"CAAAACwBAAAAAAAALQEAAAAAAAAAAAAALQEAAAAAAAAuAQAAAAAAAAAAAAAuAQAAAAAAAC8BAAAAAAAAAAAAAC8BAAAAAAAAMAEAAAAAAAAAAAAAMAEAAAAAAAAxAQAAAAAAAAAAAAAxAQAAAAAAADIBAAAAAAAAAAAAADIBAAAAAAAAMwEAAAAAAAAAAAAAMwEAAAAAAAA0AQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAsAQAAAAAAACwBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					169,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAADQBAAAAAAAANQEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA0AQAAAAAAADQBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					170,
+					1,
+					"delete_word",
+					{
+						"forward": false
+					},
+					"AQAAAC4BAAAAAAAALgEAAAAAAAAHAAAAcHVibGljIA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA1AQAAAAAAADUBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					171,
+					2,
+					"left_delete",
+					null,
+					"AgAAAC0BAAAAAAAALQEAAAAAAAABAAAACSwBAAAAAAAALAEAAAAAAAABAAAACg",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAuAQAAAAAAAC4BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					177,
+					4,
+					"left_delete",
+					null,
+					"BAAAACUBAAAAAAAAJQEAAAAAAAABAAAAZCQBAAAAAAAAJAEAAAAAAAABAAAAYSMBAAAAAAAAIwEAAAAAAAABAAAAbyIBAAAAAAAAIgEAAAAAAAABAAAATA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAmAQAAAAAAACYBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					178,
+					1,
+					"insert",
+					{
+						"characters": "Spawn"
+					},
+					"BQAAACIBAAAAAAAAIwEAAAAAAAAAAAAAIwEAAAAAAAAkAQAAAAAAAAAAAAAkAQAAAAAAACUBAAAAAAAAAAAAACUBAAAAAAAAJgEAAAAAAAAAAAAAJgEAAAAAAAAnAQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAiAQAAAAAAACIBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					180,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAC0BAAAAAAAALgEAAAAAAAAAAAAALgEAAAAAAAAvAQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAtAQAAAAAAAC0BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					181,
+					1,
+					"insert",
+					{
+						"characters": "public"
+					},
+					"BgAAAC8BAAAAAAAAMAEAAAAAAAAAAAAAMAEAAAAAAAAxAQAAAAAAAAAAAAAxAQAAAAAAADIBAAAAAAAAAAAAADIBAAAAAAAAMwEAAAAAAAAAAAAAMwEAAAAAAAA0AQAAAAAAAAAAAAA0AQAAAAAAADUBAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAvAQAAAAAAAC8BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					182,
+					1,
+					"insert",
+					{
+						"characters": " v"
+					},
+					"AgAAADUBAAAAAAAANgEAAAAAAAAAAAAANgEAAAAAAAA3AQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA1AQAAAAAAADUBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					183,
+					1,
+					"insert_completion",
+					{
+						"completion": "virtual",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "virtual"
+					},
+					"AgAAADYBAAAAAAAANgEAAAAAAAABAAAAdjYBAAAAAAAAPQEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA3AQAAAAAAADcBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					184,
+					1,
+					"insert",
+					{
+						"characters": " v"
+					},
+					"AgAAAD0BAAAAAAAAPgEAAAAAAAAAAAAAPgEAAAAAAAA/AQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA9AQAAAAAAAD0BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					185,
+					1,
+					"insert_completion",
+					{
+						"completion": "void",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "void"
+					},
+					"AgAAAD4BAAAAAAAAPgEAAAAAAAABAAAAdj4BAAAAAAAAQgEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA/AQAAAAAAAD8BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					186,
+					1,
+					"insert",
+					{
+						"characters": " Pre"
+					},
+					"BAAAAEIBAAAAAAAAQwEAAAAAAAAAAAAAQwEAAAAAAABEAQAAAAAAAAAAAABEAQAAAAAAAEUBAAAAAAAAAAAAAEUBAAAAAAAARgEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABCAQAAAAAAAEIBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					187,
+					2,
+					"delete_word",
+					{
+						"forward": false
+					},
+					"AgAAAEMBAAAAAAAAQwEAAAAAAAADAAAAUHJlPgEAAAAAAAA+AQAAAAAAAAUAAAB2b2lkIA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABGAQAAAAAAAEYBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					188,
+					1,
+					"insert",
+					{
+						"characters": "voo"
+					},
+					"AwAAAD4BAAAAAAAAPwEAAAAAAAAAAAAAPwEAAAAAAABAAQAAAAAAAAAAAABAAQAAAAAAAEEBAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA+AQAAAAAAAD4BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					189,
+					3,
+					"left_delete",
+					null,
+					"AwAAAEABAAAAAAAAQAEAAAAAAAABAAAAbz8BAAAAAAAAPwEAAAAAAAABAAAAbz4BAAAAAAAAPgEAAAAAAAABAAAAdg",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABBAQAAAAAAAEEBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					190,
+					1,
+					"insert",
+					{
+						"characters": "bool"
+					},
+					"BAAAAD4BAAAAAAAAPwEAAAAAAAAAAAAAPwEAAAAAAABAAQAAAAAAAAAAAABAAQAAAAAAAEEBAAAAAAAAAAAAAEEBAAAAAAAAQgEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA+AQAAAAAAAD4BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					191,
+					1,
+					"insert",
+					{
+						"characters": " Pre"
+					},
+					"BAAAAEIBAAAAAAAAQwEAAAAAAAAAAAAAQwEAAAAAAABEAQAAAAAAAAAAAABEAQAAAAAAAEUBAAAAAAAAAAAAAEUBAAAAAAAARgEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABCAQAAAAAAAEIBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					192,
+					1,
+					"insert_completion",
+					{
+						"completion": "PreKill",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "PreKill"
+					},
+					"AgAAAEMBAAAAAAAAQwEAAAAAAAADAAAAUHJlQwEAAAAAAABKAQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABGAQAAAAAAAEYBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					193,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAEoBAAAAAAAATAEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABKAQAAAAAAAEoBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					194,
+					1,
+					"insert",
+					{
+						"characters": "Game"
+					},
+					"BAAAAEsBAAAAAAAATAEAAAAAAAAAAAAATAEAAAAAAABNAQAAAAAAAAAAAABNAQAAAAAAAE4BAAAAAAAAAAAAAE4BAAAAAAAATwEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABLAQAAAAAAAEsBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					195,
+					1,
+					"insert_completion",
+					{
+						"completion": "GameObject",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "GameObject"
+					},
+					"AgAAAEsBAAAAAAAASwEAAAAAAAAEAAAAR2FtZUsBAAAAAAAAVQEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABPAQAAAAAAAE8BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					196,
+					1,
+					"insert",
+					{
+						"characters": " ki"
+					},
+					"AwAAAFUBAAAAAAAAVgEAAAAAAAAAAAAAVgEAAAAAAABXAQAAAAAAAAAAAABXAQAAAAAAAFgBAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABVAQAAAAAAAFUBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					197,
+					1,
+					"insert_completion",
+					{
+						"completion": "killer",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "killer"
+					},
+					"AgAAAFYBAAAAAAAAVgEAAAAAAAACAAAAa2lWAQAAAAAAAFwBAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABYAQAAAAAAAFgBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					199,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAF0BAAAAAAAAXgEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABdAQAAAAAAAF0BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					200,
+					1,
+					"insert_snippet",
+					{
+						"contents": "{$0}"
+					},
+					"AQAAAF4BAAAAAAAAYAEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABeAQAAAAAAAF4BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					201,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAF8BAAAAAAAAYAEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABfAQAAAAAAAF8BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					205,
+					1,
+					"insert",
+					{
+						"characters": "\npub"
+					},
+					"BQAAAGEBAAAAAAAAYgEAAAAAAAAAAAAAYgEAAAAAAABjAQAAAAAAAAAAAABjAQAAAAAAAGQBAAAAAAAAAAAAAGQBAAAAAAAAZQEAAAAAAAAAAAAAZQEAAAAAAABmAQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABhAQAAAAAAAGEBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					206,
+					1,
+					"insert_completion",
+					{
+						"completion": "public",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "public"
+					},
+					"AgAAAGMBAAAAAAAAYwEAAAAAAAADAAAAcHViYwEAAAAAAABpAQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABmAQAAAAAAAGYBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					207,
+					1,
+					"insert",
+					{
+						"characters": " v"
+					},
+					"AgAAAGkBAAAAAAAAagEAAAAAAAAAAAAAagEAAAAAAABrAQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABpAQAAAAAAAGkBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					208,
+					1,
+					"insert_completion",
+					{
+						"completion": "virtual",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "virtual"
+					},
+					"AgAAAGoBAAAAAAAAagEAAAAAAAABAAAAdmoBAAAAAAAAcQEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABrAQAAAAAAAGsBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					209,
+					1,
+					"insert",
+					{
+						"characters": " bo"
+					},
+					"AwAAAHEBAAAAAAAAcgEAAAAAAAAAAAAAcgEAAAAAAABzAQAAAAAAAAAAAABzAQAAAAAAAHQBAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABxAQAAAAAAAHEBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					210,
+					2,
+					"left_delete",
+					null,
+					"AgAAAHMBAAAAAAAAcwEAAAAAAAABAAAAb3IBAAAAAAAAcgEAAAAAAAABAAAAYg",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB0AQAAAAAAAHQBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					211,
+					1,
+					"insert",
+					{
+						"characters": "void"
+					},
+					"BAAAAHIBAAAAAAAAcwEAAAAAAAAAAAAAcwEAAAAAAAB0AQAAAAAAAAAAAAB0AQAAAAAAAHUBAAAAAAAAAAAAAHUBAAAAAAAAdgEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAByAQAAAAAAAHIBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					212,
+					1,
+					"insert",
+					{
+						"characters": " On"
+					},
+					"AwAAAHYBAAAAAAAAdwEAAAAAAAAAAAAAdwEAAAAAAAB4AQAAAAAAAAAAAAB4AQAAAAAAAHkBAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB2AQAAAAAAAHYBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					217,
+					1,
+					"insert",
+					{
+						"characters": "Kill"
+					},
+					"BAAAAHkBAAAAAAAAegEAAAAAAAAAAAAAegEAAAAAAAB7AQAAAAAAAAAAAAB7AQAAAAAAAHwBAAAAAAAAAAAAAHwBAAAAAAAAfQEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB5AQAAAAAAAHkBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					218,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAH0BAAAAAAAAfwEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB9AQAAAAAAAH0BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					220,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAH8BAAAAAAAAgAEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB/AQAAAAAAAH8BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					221,
+					1,
+					"insert_snippet",
+					{
+						"contents": "{$0}"
+					},
+					"AQAAAIABAAAAAAAAggEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACAAQAAAAAAAIABAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					222,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAIEBAAAAAAAAggEAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACBAQAAAAAAAIEBAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					235,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAC0BAAAAAAAALgEAAAAAAAAAAAAALgEAAAAAAAAvAQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAtAQAAAAAAAC0BAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					237,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AwAAAGUBAAAAAAAAZgEAAAAAAAAAAAAAZgEAAAAAAABnAQAAAAAAAAAAAAAuAQAAAAAAAC4BAAAAAAAAAQAAAAk",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABlAQAAAAAAAGUBAAAAAAAAAAAAAAAAOkA"
+				],
+				[
+					240,
+					2,
+					"left_delete",
+					null,
+					"AgAAAGUBAAAAAAAAZQEAAAAAAAABAAAACWQBAAAAAAAAZAEAAAAAAAABAAAACg",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABmAQAAAAAAAGYBAAAAAAAAAAAAAAAAOkA"
+				],
+				[
+					6,
+					1,
+					"left_delete",
+					null,
+					"AQAAAH0AAAAAAAAAfQAAAAAAAACNAAAAcHVibGljIHZpcnR1YWwgRW5lbXlUeXBlW10gQXBwbGllc1RvRW5lbXlUeXBlID0+IEVuZW15U2V0cy5BbGxFbmVtaWVzOwoJcHVibGljIHZpcnR1YWwgRW5lbXlSYW5rW10gQXBwbGllc1RvRW5lbXlSYW5rID0+IEVuZW15U2V0cy5BbGxSYW5rczsK",
+					"AQAAAAAAAAABAAAACgEAAAAAAAB9AAAAAAAAAAAAAAAAADpA"
+				],
+				[
+					7,
+					1,
+					"insert",
+					{
+						"characters": "public"
+					},
+					"BgAAAH0AAAAAAAAAfgAAAAAAAAAAAAAAfgAAAAAAAAB/AAAAAAAAAAAAAAB/AAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAAAAAAgQAAAAAAAAAAAAAAgQAAAAAAAACCAAAAAAAAAAAAAACCAAAAAAAAAIMAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfQAAAAAAAAB9AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					8,
+					1,
+					"insert",
+					{
+						"characters": " virtual"
+					},
+					"CAAAAIMAAAAAAAAAhAAAAAAAAAAAAAAAhAAAAAAAAACFAAAAAAAAAAAAAACFAAAAAAAAAIYAAAAAAAAAAAAAAIYAAAAAAAAAhwAAAAAAAAAAAAAAhwAAAAAAAACIAAAAAAAAAAAAAACIAAAAAAAAAIkAAAAAAAAAAAAAAIkAAAAAAAAAigAAAAAAAAAAAAAAigAAAAAAAACLAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgwAAAAAAAACDAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					9,
+					1,
+					"insert",
+					{
+						"characters": " ENE"
+					},
+					"BAAAAIsAAAAAAAAAjAAAAAAAAAAAAAAAjAAAAAAAAACNAAAAAAAAAAAAAACNAAAAAAAAAI4AAAAAAAAAAAAAAI4AAAAAAAAAjwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAiwAAAAAAAACLAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					10,
+					2,
+					"left_delete",
+					null,
+					"AgAAAI4AAAAAAAAAjgAAAAAAAAABAAAARY0AAAAAAAAAjQAAAAAAAAABAAAATg",
+					"AQAAAAAAAAABAAAAjwAAAAAAAACPAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					11,
+					1,
+					"insert",
+					{
+						"characters": "en"
+					},
+					"AgAAAI0AAAAAAAAAjgAAAAAAAAAAAAAAjgAAAAAAAACPAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAjQAAAAAAAACNAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					12,
+					2,
+					"left_delete",
+					null,
+					"AgAAAI4AAAAAAAAAjgAAAAAAAAABAAAAbo0AAAAAAAAAjQAAAAAAAAABAAAAZQ",
+					"AQAAAAAAAAABAAAAjwAAAAAAAACPAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					13,
+					1,
+					"insert",
+					{
+						"characters": "nemyTypa"
+					},
+					"CAAAAI0AAAAAAAAAjgAAAAAAAAAAAAAAjgAAAAAAAACPAAAAAAAAAAAAAACPAAAAAAAAAJAAAAAAAAAAAAAAAJAAAAAAAAAAkQAAAAAAAAAAAAAAkQAAAAAAAACSAAAAAAAAAAAAAACSAAAAAAAAAJMAAAAAAAAAAAAAAJMAAAAAAAAAlAAAAAAAAAAAAAAAlAAAAAAAAACVAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAjQAAAAAAAACNAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					14,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJQAAAAAAAAAlAAAAAAAAAABAAAAYQ",
+					"AQAAAAAAAAABAAAAlQAAAAAAAACVAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					15,
+					1,
+					"insert",
+					{
+						"characters": "eAndRank"
+					},
+					"CAAAAJQAAAAAAAAAlQAAAAAAAAAAAAAAlQAAAAAAAACWAAAAAAAAAAAAAACWAAAAAAAAAJcAAAAAAAAAAAAAAJcAAAAAAAAAmAAAAAAAAAAAAAAAmAAAAAAAAACZAAAAAAAAAAAAAACZAAAAAAAAAJoAAAAAAAAAAAAAAJoAAAAAAAAAmwAAAAAAAAAAAAAAmwAAAAAAAACcAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlAAAAAAAAACUAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					16,
+					1,
+					"insert",
+					{
+						"characters": "]"
+					},
+					"AQAAAJwAAAAAAAAAnQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnAAAAAAAAACcAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					17,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJwAAAAAAAAAnAAAAAAAAAABAAAAXQ",
+					"AQAAAAAAAAABAAAAnQAAAAAAAACdAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					18,
+					1,
+					"insert_snippet",
+					{
+						"contents": "[$0]"
+					},
+					"AQAAAJwAAAAAAAAAngAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnAAAAAAAAACcAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					20,
+					1,
+					"insert",
+					{
+						"characters": " App"
+					},
+					"BAAAAJ4AAAAAAAAAnwAAAAAAAAAAAAAAnwAAAAAAAACgAAAAAAAAAAAAAACgAAAAAAAAAKEAAAAAAAAAAAAAAKEAAAAAAAAAogAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAngAAAAAAAACeAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					21,
+					1,
+					"insert",
+					{
+						"characters": "liesToE"
+					},
+					"BwAAAKIAAAAAAAAAowAAAAAAAAAAAAAAowAAAAAAAACkAAAAAAAAAAAAAACkAAAAAAAAAKUAAAAAAAAAAAAAAKUAAAAAAAAApgAAAAAAAAAAAAAApgAAAAAAAACnAAAAAAAAAAAAAACnAAAAAAAAAKgAAAAAAAAAAAAAAKgAAAAAAAAAqQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAogAAAAAAAACiAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					22,
+					1,
+					"insert",
+					{
+						"characters": "nemy"
+					},
+					"BAAAAKkAAAAAAAAAqgAAAAAAAAAAAAAAqgAAAAAAAACrAAAAAAAAAAAAAACrAAAAAAAAAKwAAAAAAAAAAAAAAKwAAAAAAAAArQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAqQAAAAAAAACpAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					23,
+					1,
+					"insert",
+					{
+						"characters": " =>"
+					},
+					"AwAAAK0AAAAAAAAArgAAAAAAAAAAAAAArgAAAAAAAACvAAAAAAAAAAAAAACvAAAAAAAAALAAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAArQAAAAAAAACtAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					24,
+					2,
+					"left_delete",
+					null,
+					"AgAAAK8AAAAAAAAArwAAAAAAAAABAAAAPq4AAAAAAAAArgAAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAsAAAAAAAAACwAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					43,
+					1,
+					"left_delete",
+					null,
+					"AQAAAK0AAAAAAAAArQAAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAArgAAAAAAAACuAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					44,
+					1,
+					"insert",
+					{
+						"characters": " +"
+					},
+					"AgAAAK0AAAAAAAAArgAAAAAAAAAAAAAArgAAAAAAAACvAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAArQAAAAAAAACtAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					45,
+					1,
+					"left_delete",
+					null,
+					"AQAAAK4AAAAAAAAArgAAAAAAAAABAAAAKw",
+					"AQAAAAAAAAABAAAArwAAAAAAAACvAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					46,
+					1,
+					"insert",
+					{
+						"characters": "=>"
+					},
+					"AgAAAK4AAAAAAAAArwAAAAAAAAAAAAAArwAAAAAAAACwAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAArgAAAAAAAACuAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					47,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAALAAAAAAAAAAsQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAsAAAAAAAAACwAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					48,
+					1,
+					"left_delete",
+					null,
+					"AQAAALAAAAAAAAAAsAAAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAAsQAAAAAAAACxAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					49,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAALAAAAAAAAAAsQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAsAAAAAAAAACwAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					50,
+					1,
+					"insert",
+					{
+						"characters": "new"
+					},
+					"AwAAALEAAAAAAAAAsgAAAAAAAAAAAAAAsgAAAAAAAACzAAAAAAAAAAAAAACzAAAAAAAAALQAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAsQAAAAAAAACxAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					51,
+					1,
+					"insert",
+					{
+						"characters": " EnemyTyp"
+					},
+					"CQAAALQAAAAAAAAAtQAAAAAAAAAAAAAAtQAAAAAAAAC2AAAAAAAAAAAAAAC2AAAAAAAAALcAAAAAAAAAAAAAALcAAAAAAAAAuAAAAAAAAAAAAAAAuAAAAAAAAAC5AAAAAAAAAAAAAAC5AAAAAAAAALoAAAAAAAAAAAAAALoAAAAAAAAAuwAAAAAAAAAAAAAAuwAAAAAAAAC8AAAAAAAAAAAAAAC8AAAAAAAAAL0AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAtAAAAAAAAAC0AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					52,
+					1,
+					"insert",
+					{
+						"characters": "e"
+					},
+					"AQAAAL0AAAAAAAAAvgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAvQAAAAAAAAC9AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					53,
+					1,
+					"insert_completion",
+					{
+						"completion": "EnemyTypeAndRank",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "EnemyTypeAndRank"
+					},
+					"AgAAALUAAAAAAAAAtQAAAAAAAAAJAAAARW5lbXlUeXBltQAAAAAAAADFAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAvgAAAAAAAAC+AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					54,
+					1,
+					"insert_snippet",
+					{
+						"contents": "[$0]"
+					},
+					"AQAAAMUAAAAAAAAAxwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAxQAAAAAAAADFAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					56,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAMcAAAAAAAAAyAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAxwAAAAAAAADHAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					57,
+					1,
+					"insert_snippet",
+					{
+						"contents": "{$0}"
+					},
+					"AQAAAMgAAAAAAAAAygAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAyAAAAAAAAADIAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					58,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAMkAAAAAAAAAygAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAyQAAAAAAAADJAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					60,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAAMsAAAAAAAAAzAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAywAAAAAAAADLAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					62,
+					1,
+					"insert",
+					{
+						"characters": "\nprivate"
+					},
+					"CQAAAHsAAAAAAAAAfAAAAAAAAAAAAAAAfAAAAAAAAAB9AAAAAAAAAAAAAAB9AAAAAAAAAH4AAAAAAAAAAAAAAH4AAAAAAAAAfwAAAAAAAAAAAAAAfwAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAIEAAAAAAAAAAAAAAIEAAAAAAAAAggAAAAAAAAAAAAAAggAAAAAAAACDAAAAAAAAAAAAAACDAAAAAAAAAIQAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAewAAAAAAAAB7AAAAAAAAAAAAAAAAIIFA"
+				],
+				[
+					63,
+					1,
+					"insert",
+					{
+						"characters": " ene"
+					},
+					"BAAAAIQAAAAAAAAAhQAAAAAAAAAAAAAAhQAAAAAAAACGAAAAAAAAAAAAAACGAAAAAAAAAIcAAAAAAAAAAAAAAIcAAAAAAAAAiAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAhAAAAAAAAACEAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					64,
+					3,
+					"left_delete",
+					null,
+					"AwAAAIcAAAAAAAAAhwAAAAAAAAABAAAAZYYAAAAAAAAAhgAAAAAAAAABAAAAboUAAAAAAAAAhQAAAAAAAAABAAAAZQ",
+					"AQAAAAAAAAABAAAAiAAAAAAAAACIAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					68,
+					1,
+					"insert",
+					{
+						"characters": "EnemyTy"
+					},
+					"BwAAAIUAAAAAAAAAhgAAAAAAAAAAAAAAhgAAAAAAAACHAAAAAAAAAAAAAACHAAAAAAAAAIgAAAAAAAAAAAAAAIgAAAAAAAAAiQAAAAAAAAAAAAAAiQAAAAAAAACKAAAAAAAAAAAAAACKAAAAAAAAAIsAAAAAAAAAAAAAAIsAAAAAAAAAjAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAhQAAAAAAAACFAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					69,
+					1,
+					"insert_completion",
+					{
+						"completion": "EnemyTypeAndRank",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "EnemyTypeAndRank"
+					},
+					"AgAAAIUAAAAAAAAAhQAAAAAAAAAHAAAARW5lbXlUeYUAAAAAAAAAlQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAjAAAAAAAAACMAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					70,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAJUAAAAAAAAAlgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlQAAAAAAAACVAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					71,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJUAAAAAAAAAlQAAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAAlgAAAAAAAACWAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					72,
+					1,
+					"insert_snippet",
+					{
+						"contents": "[$0]"
+					},
+					"AQAAAJUAAAAAAAAAlwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlQAAAAAAAACVAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					74,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAJcAAAAAAAAAmAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlwAAAAAAAACXAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					75,
+					1,
+					"insert",
+					{
+						"characters": "Applies"
+					},
+					"BwAAAJgAAAAAAAAAmQAAAAAAAAAAAAAAmQAAAAAAAACaAAAAAAAAAAAAAACaAAAAAAAAAJsAAAAAAAAAAAAAAJsAAAAAAAAAnAAAAAAAAAAAAAAAnAAAAAAAAACdAAAAAAAAAAAAAACdAAAAAAAAAJ4AAAAAAAAAAAAAAJ4AAAAAAAAAnwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmAAAAAAAAACYAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					76,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAJ8AAAAAAAAAoAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnwAAAAAAAACfAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					77,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJ8AAAAAAAAAnwAAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAAoAAAAAAAAACgAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					78,
+					1,
+					"insert",
+					{
+						"characters": "ToEnemy"
+					},
+					"BwAAAJ8AAAAAAAAAoAAAAAAAAAAAAAAAoAAAAAAAAAChAAAAAAAAAAAAAAChAAAAAAAAAKIAAAAAAAAAAAAAAKIAAAAAAAAAowAAAAAAAAAAAAAAowAAAAAAAACkAAAAAAAAAAAAAACkAAAAAAAAAKUAAAAAAAAAAAAAAKUAAAAAAAAApgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnwAAAAAAAACfAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					82,
+					1,
+					"insert",
+					{
+						"characters": "p_"
+					},
+					"AgAAAJgAAAAAAAAAmQAAAAAAAAAAAAAAmQAAAAAAAACaAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmAAAAAAAAACYAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					88,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJgAAAAAAAAAmAAAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAmQAAAAAAAACZAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					93,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAAKcAAAAAAAAAqAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAApwAAAAAAAACnAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					97,
+					1,
+					"delete_word",
+					{
+						"forward": false
+					},
+					"AQAAAH0AAAAAAAAAfQAAAAAAAAAIAAAAcHJpdmF0ZSA",
+					"AQAAAAAAAAABAAAAhQAAAAAAAACFAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					98,
+					1,
+					"insert",
+					{
+						"characters": "internal"
+					},
+					"CAAAAH0AAAAAAAAAfgAAAAAAAAAAAAAAfgAAAAAAAAB/AAAAAAAAAAAAAAB/AAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAAAAAAgQAAAAAAAAAAAAAAgQAAAAAAAACCAAAAAAAAAAAAAACCAAAAAAAAAIMAAAAAAAAAAAAAAIMAAAAAAAAAhAAAAAAAAAAAAAAAhAAAAAAAAACFAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfQAAAAAAAAB9AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					99,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAIUAAAAAAAAAhgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAhQAAAAAAAACFAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					105,
+					1,
+					"insert",
+					{
+						"characters": "i"
+					},
+					"AQAAAJkAAAAAAAAAmgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmQAAAAAAAACZAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					111,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJoAAAAAAAAAmgAAAAAAAAABAAAAXw",
+					"AQAAAAAAAAABAAAAmwAAAAAAAACbAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					117,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJkAAAAAAAAAmQAAAAAAAAABAAAAaQ",
+					"AQAAAAAAAAABAAAAmgAAAAAAAACaAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					118,
+					1,
+					"insert",
+					{
+						"characters": "Internal"
+					},
+					"CAAAAJkAAAAAAAAAmgAAAAAAAAAAAAAAmgAAAAAAAACbAAAAAAAAAAAAAACbAAAAAAAAAJwAAAAAAAAAAAAAAJwAAAAAAAAAnQAAAAAAAAAAAAAAnQAAAAAAAACeAAAAAAAAAAAAAACeAAAAAAAAAJ8AAAAAAAAAAAAAAJ8AAAAAAAAAoAAAAAAAAAAAAAAAoAAAAAAAAAChAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmQAAAAAAAACZAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					123,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAK8AAAAAAAAAsAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAArwAAAAAAAACvAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					124,
+					1,
+					"left_delete",
+					null,
+					"AQAAAK8AAAAAAAAArwAAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAAsAAAAAAAAACwAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					125,
+					1,
+					"insert",
+					{
+						"characters": " =>"
+					},
+					"AwAAAK8AAAAAAAAAsAAAAAAAAAAAAAAAsAAAAAAAAACxAAAAAAAAAAAAAACxAAAAAAAAALIAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAArwAAAAAAAACvAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					126,
+					1,
+					"insert",
+					{
+						"characters": " nwe"
+					},
+					"BAAAALIAAAAAAAAAswAAAAAAAAAAAAAAswAAAAAAAAC0AAAAAAAAAAAAAAC0AAAAAAAAALUAAAAAAAAAAAAAALUAAAAAAAAAtgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAsgAAAAAAAACyAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					127,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAALYAAAAAAAAAtwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAtgAAAAAAAAC2AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					128,
+					4,
+					"left_delete",
+					null,
+					"BAAAALYAAAAAAAAAtgAAAAAAAAABAAAAILUAAAAAAAAAtQAAAAAAAAABAAAAZbQAAAAAAAAAtAAAAAAAAAABAAAAd7MAAAAAAAAAswAAAAAAAAABAAAAbg",
+					"AQAAAAAAAAABAAAAtwAAAAAAAAC3AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					129,
+					1,
+					"insert",
+					{
+						"characters": "throw"
+					},
+					"BQAAALMAAAAAAAAAtAAAAAAAAAAAAAAAtAAAAAAAAAC1AAAAAAAAAAAAAAC1AAAAAAAAALYAAAAAAAAAAAAAALYAAAAAAAAAtwAAAAAAAAAAAAAAtwAAAAAAAAC4AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAswAAAAAAAACzAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					130,
+					1,
+					"insert",
+					{
+						"characters": " new"
+					},
+					"BAAAALgAAAAAAAAAuQAAAAAAAAAAAAAAuQAAAAAAAAC6AAAAAAAAAAAAAAC6AAAAAAAAALsAAAAAAAAAAAAAALsAAAAAAAAAvAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAuAAAAAAAAAC4AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					131,
+					1,
+					"insert",
+					{
+						"characters": " NotImp"
+					},
+					"BwAAALwAAAAAAAAAvQAAAAAAAAAAAAAAvQAAAAAAAAC+AAAAAAAAAAAAAAC+AAAAAAAAAL8AAAAAAAAAAAAAAL8AAAAAAAAAwAAAAAAAAAAAAAAAwAAAAAAAAADBAAAAAAAAAAAAAADBAAAAAAAAAMIAAAAAAAAAAAAAAMIAAAAAAAAAwwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAvAAAAAAAAAC8AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					132,
+					1,
+					"insert",
+					{
+						"characters": "lementede"
+					},
+					"CQAAAMMAAAAAAAAAxAAAAAAAAAAAAAAAxAAAAAAAAADFAAAAAAAAAAAAAADFAAAAAAAAAMYAAAAAAAAAAAAAAMYAAAAAAAAAxwAAAAAAAAAAAAAAxwAAAAAAAADIAAAAAAAAAAAAAADIAAAAAAAAAMkAAAAAAAAAAAAAAMkAAAAAAAAAygAAAAAAAAAAAAAAygAAAAAAAADLAAAAAAAAAAAAAADLAAAAAAAAAMwAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAwwAAAAAAAADDAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					133,
+					1,
+					"left_delete",
+					null,
+					"AQAAAMsAAAAAAAAAywAAAAAAAAABAAAAZQ",
+					"AQAAAAAAAAABAAAAzAAAAAAAAADMAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					134,
+					1,
+					"insert",
+					{
+						"characters": "Excep"
+					},
+					"BQAAAMsAAAAAAAAAzAAAAAAAAAAAAAAAzAAAAAAAAADNAAAAAAAAAAAAAADNAAAAAAAAAM4AAAAAAAAAAAAAAM4AAAAAAAAAzwAAAAAAAAAAAAAAzwAAAAAAAADQAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAywAAAAAAAADLAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					135,
+					1,
+					"insert",
+					{
+						"characters": "tion)"
+					},
+					"BQAAANAAAAAAAAAA0QAAAAAAAAAAAAAA0QAAAAAAAADSAAAAAAAAAAAAAADSAAAAAAAAANMAAAAAAAAAAAAAANMAAAAAAAAA1AAAAAAAAAAAAAAA1AAAAAAAAADVAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA0AAAAAAAAADQAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					136,
+					1,
+					"left_delete",
+					null,
+					"AQAAANQAAAAAAAAA1AAAAAAAAAABAAAAKQ",
+					"AQAAAAAAAAABAAAA1QAAAAAAAADVAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					137,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAANQAAAAAAAAA1gAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1AAAAAAAAADUAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					143,
+					1,
+					"insert",
+					{
+						"characters": "//"
+					},
+					"AgAAAH0AAAAAAAAAfgAAAAAAAAAAAAAAfgAAAAAAAAB/AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfQAAAAAAAAB9AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					146,
+					1,
+					"insert",
+					{
+						"characters": "//"
+					},
+					"AgAAANsAAAAAAAAA3AAAAAAAAAAAAAAA3AAAAAAAAADdAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA2wAAAAAAAADbAAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "Assembly-CSharp/ModLoader/Sets/EnemySets.cs",
+			"settings":
+			{
+				"buffer_size": 3434,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					4,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"BAAAAA4NAAAAAAAADw0AAAAAAAAAAAAADw0AAAAAAAAQDQAAAAAAAAAAAAAPDQAAAAAAAA8NAAAAAAAAAQAAAAkPDQAAAAAAABENAAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAODQAAAAAAAA4NAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					7,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAACINAAAAAAAAIw0AAAAAAAAAAAAAIw0AAAAAAAAlDQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAiDQAAAAAAACINAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					11,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAADkNAAAAAAAAOg0AAAAAAAAAAAAAOg0AAAAAAAA8DQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA5DQAAAAAAADkNAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					14,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAE4NAAAAAAAATw0AAAAAAAAAAAAATw0AAAAAAABRDQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABODQAAAAAAAE4NAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					17,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAGMNAAAAAAAAZA0AAAAAAAAAAAAAZA0AAAAAAABmDQAAAAAAAAAAAAA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABjDQAAAAAAAGMNAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					18,
+					1,
+					"left_delete",
+					null,
+					"AQAAAGUNAAAAAAAAZQ0AAAAAAAABAAAACQ",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABmDQAAAAAAAGYNAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					19,
+					1,
+					"right_delete",
+					null,
+					"AQAAAGUNAAAAAAAAZQ0AAAAAAAABAAAAIA",
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABlDQAAAAAAAGUNAAAAAAAAAAAAAAAA8L8"
+				]
+			]
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"set syntax jso",
+				"Set Syntax: JSON"
+			],
+			[
+				"syntax js",
+				"Set Syntax: JSON"
+			],
+			[
+				"inden",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"set syntax v",
+				"Set Syntax: V"
+			],
+			[
+				"aut",
+				"AutoSetSyntax: Auto Set Syntax"
+			],
+			[
+				"set syn v",
+				"Set Syntax: V"
+			],
+			[
+				"auto",
+				"AutoSetSyntax: Auto Set Syntax"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"set synt v",
+				"Set Syntax: V"
+			],
+			[
+				"set sun v",
+				"Selection: Add Previous Line"
+			],
+			[
+				"ari",
+				"Arithmetic"
+			],
+			[
+				"set sy v",
+				"Set Syntax: V"
+			],
+			[
+				"un",
+				"Code Folding: Unfold All"
+			],
+			[
+				"",
+				"Bookmarks: Toggle"
+			],
+			[
+				"arih",
+				"Arithmetic"
+			],
+			[
+				"tabs",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"syntax z",
+				"Set Syntax: Zig"
+			],
+			[
+				"lsp",
+				"LSP: Disable Language Server Globally"
+			],
+			[
+				"set syn",
+				"Set Syntax: Zig"
+			],
+			[
+				"syn v",
+				"Set Syntax: V"
+			],
+			[
+				"set sytntax bat",
+				"Set Syntax: Batch File"
+			],
+			[
+				"zig run",
+				"Build With: Zig - Run File"
+			],
+			[
+				"set syntax zi",
+				"Set Syntax: Zig"
+			],
+			[
+				"Packa",
+				"Package Control: Install Package"
+			],
+			[
+				"zig",
+				"Build With: Zig - Build Project"
+			],
+			[
+				"prefe",
+				"Preferences: Browse Packages"
+			],
+			[
+				"s sy v",
+				"Set Syntax: V"
+			],
+			[
+				"set syn V",
+				"Set Syntax: V"
+			],
+			[
+				"ste s v",
+				"Set Syntax: V"
+			],
+			[
+				"syntax v",
+				"Set Syntax: V"
+			],
+			[
+				"v ",
+				"V: Run"
+			],
+			[
+				"syntax V",
+				"Set Syntax: V"
+			],
+			[
+				"v ru",
+				"V: Run"
+			],
+			[
+				"the",
+				"UI: Select Theme"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"V",
+				"V: Run"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/GitRepos/RL2",
+		"/D/GitRepos/RL2/Assembly-CSharp",
+		"/D/GitRepos/RL2/Assembly-CSharp/ModLoader",
+		"/D/GitRepos/RL2/Assembly-CSharp/ModLoader/Sets"
+	],
+	"file_history":
+	[
+		"/D/GitRepos/RL2/.gitignore",
+		"/D/GitRepos/RL2/Assembly-CSharp.sln",
+		"/D/GitRepos/RL2/README.md",
+		"/D/GitRepos/RL2/rl2-modloader.sublime-workspace",
+		"/D/GitRepos/RL2/CONTRIBUTING.md",
+		"/D/GitRepos/RL2/Patches/PlayerController.cs.patch",
+		"/D/GitRepos/RL2/Patches/BaseCharacterController.cs.patch",
+		"/D/GitRepos/RL2/tools/config.json",
+		"/D/GitRepos/RL2/Assembly-CSharp/ModLoader/.editorconfig",
+		"/D/Moje dokumenty/ERYK/Installed/Rogue.Legacy.2.v1.2.2/Rogue Legacy 2_Data/Mods/enabled-exp.json",
+		"/D/Moje dokumenty/ERYK/Installed/Rogue.Legacy.2.v1.2.2/Rogue Legacy 2_Data/Mods/enabled.json",
+		"/D/GitRepos/RL2-pub/docs/documentation/home.html",
+		"/D/GitRepos/RL2-pub/docs/main.css",
+		"/D/GitRepos/RL2-pub/docs/main.js",
+		"/D/GitRepos/RL2-pub/docs/index.html",
+		"/D/GitRepos/RL2-pub/tools/dev.py",
+		"/D/GitRepos/RL2-pub/tools/config.json",
+		"/D/GitRepos/RL2-pub/CONTRIBUTING.md",
+		"/D/GitRepos/RL2-pub/README.md",
+		"/D/GitRepos/RL2-pub/docs/documentation/common.css",
+		"/D/GitRepos/RL2-pub/docs/documentation/getting-started.html",
+		"/W/Eld3n-Ring-D-SteamRIP.com/ELDEN RING/EasyAntiCheat/settings.json",
+		"/D/SteamLibrary/steamapps/workshop/content/105600/2447428824/pack.json",
+		"/D/GitRepos/webdev/docs/index.html",
+		"/D/GitRepos/RL2-pub/docs/.nojekyll",
+		"/D/GitRepos/webdev/docs/.nojekyll",
+		"/D/GitRepos/webdev/docs/main.js",
+		"/D/GitRepos/webdev/docs/main.css",
+		"/D/GitRepos/RL2-pub/docs/RL2-ModLoader.html",
+		"/D/GitRepos/pendulum-sim/README.md",
+		"/D/GitRepos/ecs/v/main.v",
+		"/D/GitRepos/TacoConKvass.github.io/README.md",
+		"/D/GitRepos/ecs/v/modules/vectors/vectors.v",
+		"/D/GitRepos/ecs/old/v-1.0/main.v",
+		"/D/GitRepos/ecs/v/rebuild.bat",
+		"/D/GitRepos/ecs/v/example_ecs_data.v",
+		"/D/GitRepos/ecs/v/modules/ecs/ecs.v",
+		"/D/Moje dokumenty/ERYK/Mods/Rogue Legacy 2/RL2_LanguageFiles_v120/English_tsv.tsv",
+		"/D/GitRepos/ecs/v/ecs/ecs.v",
+		"/D/GitRepos/ecs/v/modules/ecs/ecs-docs.md",
+		"/D/GitRepos/ecs/old/v-1.0/modules/ecs/ecs.v",
+		"/D/GitRepos/ecs/v/lib/ecs/ecs.v",
+		"/D/GitRepos/ecs/v/lib/vectors/vectors.v",
+		"/D/Moje dokumenty/ERYK/!Code/ecs.sublime-project",
+		"/D/GitRepos/ecs/v/lib/main.v",
+		"/D/GitRepos/ecs/V/modules/vectors/vectors.v",
+		"/D/GitRepos/ecs/V/main.v",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/TacosBetterMovement/Common/Players/PowerDashPlayer.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/TacosBetterMovement/Common/Config/MechanicServerConfig.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/TacosBetterMovement/Utils.cs",
+		"/D/GitRepos/ecs/V/modules/ecs/ecs.v",
+		"/D/GitRepos/ecs/V/rebuild.bat",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Food/Pilk.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Food/Terranade.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Food/TallBorger.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/description_workshop.txt",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Food/Breakfast.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/UI/CookingUI.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/changelog.txt",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Tiles/CrockPot.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/Food/FoodItem.cs",
+		"/D/Gry/motherload.swf",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/Players/CDCookingPlayer.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/Systems/UISystem.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/Players/CDFoodPlayer.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Tiles/CrockPotItem.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/Systems/RecipeRegister.cs",
+		"/D/Moje dokumenty/ERYK/Installed/sublime_text_build_4169_x64/Data/Packages/User/Preferences.sublime-settings",
+		"/D/GitRepos/ecs/Zig/src/main.zig",
+		"/D/Moje dokumenty/ERYK/Installed/sublime_text_build_4169_x64/Data/Packages/User/LSP.sublime-settings",
+		"/D/GitRepos/ecs/Zig/src/lib/vectors.zig",
+		"/D/GitRepos/ecs/Zig/src/lib/ecs.zig",
+		"/D/Moje dokumenty/ERYK/Installed/sublime_text_build_4169_x64/Data/Installed Packages/Zig Language.sublime-package",
+		"/D/GitRepos/ecs/Zig/build.zig",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Food/MixFoodItem.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Utils.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Localization/en-US_Mods.CookingDelight.hjson",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Food/MixFoodItem.png",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Food/Stormytuna.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/Food/VanillaFoodCategorizer.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Usings.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/EntitySources/ItemSource_Cooking.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/TerrariaZoomies/Common/Globals/SprintGlobalItem.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/TerrariaZoomies/Common/Players/SprintPlayer.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/Workshop/76561199248339876/TerrariaZoomies/workshop.json",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/TerrariaZoomies/Common/Systems/KeybindSystem.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/TerrariaZoomies/Common/Config/ZoomiesConfig.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/TerrariaZoomies/Localization/en-US_Mods.TerrariaZoomies.hjson",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/README.md",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/Food/GlobalFoodTooltip.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Tiles/CrockpotItem.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/build.txt",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Tiles/CrockpotItem.png",
+		"/C/Users/Eryk/Downloads/tModLoader.targets",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/description.txt",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/Systems/FoodEffectVisualsSystem.cs",
+		"/C/Users/Eryk/goto-app.bat",
+		"/C/Users/Eryk/goto-tmod.bat",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/Players/CDFoodPlayer-Meat.cs",
+		"/D/GitRepos/ecs/zig/main.zig",
+		"/D/Moje dokumenty/ERYK/Installed/sublime_text_build_4169_x64/Data/Packages/User/Package Control.sublime-settings",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/Food/FoodCookBook.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/UI/Elements/UIItemSlotWrapper.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/Food/FoodCategory.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/UI/ItemSlotWrapper.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/tModLoader.targets",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/UI/CDItemSlot.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/.vs/ProjectEvaluation/cookingdelight.projects.v7.bin",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/.vs/ProjectEvaluation/cookingdelight.metadata.v7.bin",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/.vs/slnx.sqlite",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Content/Tiles/CrockPotTE.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/UI/FoodBuffDisplay.cs",
+		"/C/Users/Eryk/Documents/My Games/Terraria/tModLoader/ModSources/CookingDelight/Common/UI/FoodBuffDisplayUI.cs",
+		"/D/Moje dokumenty/ERYK/!Code/V/vweb-experiments/main.v",
+		"/D/Moje dokumenty/ERYK/!Code/V/Test/main.v",
+		"/D/Moje dokumenty/ERYK/!Code/V/vweb-experiments/header.html",
+		"/D/Moje dokumenty/ERYK/!Code/V/vweb-experiments/test.html",
+		"/D/Moje dokumenty/ERYK/!Code/V/vweb-experiments/homepage.html",
+		"/D/Moje dokumenty/ERYK/!Code/V/AOC/AOC-1-1.v",
+		"/D/Moje dokumenty/ERYK/!Code/V/vweb-experiments/utils.v",
+		"/D/Moje dokumenty/ERYK/!Code/V/main.v",
+		"/C/Users/Eryk/AppData/Local/Ghostrunner/Saved/Config/WindowsNoEditor/GameUserSettings.ini",
+		"/C/Users/Eryk/AppData/Local/Ghostrunner/Saved/Config/WindowsNoEditor/Ghostrunner.ini",
+		"/C/Users/Eryk/AppData/Local/Ghostrunner/Saved/Config/WindowsNoEditor/Engine.ini",
+		"/C/Users/Eryk/AppData/Local/Ghostrunner/Saved/Config/WindowsNoEditor/GameplayTags.ini",
+		"/C/Users/Eryk/AppData/Local/Ghostrunner/Saved/Config/WindowsNoEditor/Game.ini",
+		"/C/Users/Eryk/AppData/Local/Ghostrunner/Saved/Config/WindowsNoEditor/Compat.ini",
+		"/C/Users/Eryk/AppData/Local/Ghostrunner/Saved/Config/WindowsNoEditor/DeviceProfiles.ini"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"loc_id_enemy_title_dANCI",
+			"LOC_ID_ENEMY_TITLE_DancingBoss_Miniboss_1",
+			"<T>",
+			"CDCook",
+			"SetDefa",
+			"StarAnis",
+			"SpicyPepper",
+			"StarAnise",
+			"DataStructures",
+			"bottle",
+			"Bottle",
+			"Honey",
+			"CanS",
+			"var",
+			"var'",
+			"var",
+			"226",
+			"114",
+			">>>>",
+			"1000",
+			"720",
+			"1280",
+			"get_component",
+			"get_com",
+			"True",
+			"AMD",
+			"ExampleUpgradeable",
+			"ExampleUpgradeAble",
+			"ExampleUpgradeableMinionItem: {\n\t\t\t\tDisplayName: Example Upgradeable Minion Staff\n\t\t\t\tTooltip: \n\t\t\t\t\t'''\n\t\t\t\t\tSummons a minion to fight for you.\n\t\t\t\t\tSummon it again to raise its damage instead of summoning a second copy.\n\t\t\t\t\t'''\n\t\t\t}",
+			"cup",
+			"Coffe",
+			"Milk",
+			"Milks",
+			"Carton",
+			"Pho",
+			"Bacon",
+			"turtle",
+			"turt;e",
+			"FoodCategory.Alcohol",
+			"FoodCategory.Vegetable",
+			"FoodCategory.Sweet",
+			"FoodCategory.Sweet, FoodCategory.Drink"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"0",
+			"entity_count",
+			"window_height",
+			"window_width"
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Assembly-CSharp/ModLoader/GlobalEnemy.cs",
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 424,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								221,
+								221
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/C#/C#.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 14.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assembly-CSharp/ModLoader/Sets/EnemySets.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3434,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3231,
+								3231
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 714.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 50.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.AutoSetSyntax":
+	{
+		"height": 102.0
+	},
+	"output.LSP Log Panel":
+	{
+		"height": 0.0
+	},
+	"output.diagnostics":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 195.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "rl2-modloader.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"D:\\Moje dokumenty\\ERYK\\!Code\\ecs.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": false,
+	"side_bar_visible": true,
+	"side_bar_width": 235.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
