@@ -22,6 +22,10 @@ public abstract class Mod
 	/// </summary>
 	internal Type[] ModPlayers;
 	/// <summary>
+	/// All GlobalEnemies added by this mod. Filled during mod loading.
+	/// </summary>
+	internal Type[] GlobalEnemies;
+	/// <summary>
 	/// Ran right after loading all mods.
 	/// </summary>
 	public virtual void OnLoad() { }

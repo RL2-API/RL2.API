@@ -51,6 +51,7 @@ public class ModLoader
 			Mod mod = (Mod)Activator.CreateInstance(modTypes[0]);
 			mod.ModSystems = assembly.GetTypes().Where(x => x.BaseType.FullName == typeof(ModSystem).FullName).ToArray();
 			mod.ModPlayers = assembly.GetTypes().Where(x => x.BaseType.FullName == typeof(ModPlayer).FullName).ToArray();
+			mod.GlobalEnemies = assembly.GetTypes().Where(x => x.BaseType.FullName == typeof(GlobalEnemy).FullName).ToArray();
 
 			CommandManager.RegisterCommands(assembly);
 			LoadedMods[currentMod] = mod;
