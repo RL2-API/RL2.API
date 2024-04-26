@@ -1,0 +1,43 @@
+diff --git a/RL2-Source/EnemyController.cs b/Assembly-CSharp/EnemyController.cs
+index 0158cab..b9e58ba 100644
+--- a/RL2-Source/EnemyController.cs
++++ b/Assembly-CSharp/EnemyController.cs
+@@ -1,9 +1,11 @@
+ using System;
+ using System.Collections;
+ using System.Collections.Generic;
++using System.Linq;
+ using System.Runtime.CompilerServices;
+ using MoreMountains.CorgiEngine;
+ using RL_Windows;
++using RL2.ModLoader;
+ using SceneManagement_RL;
+ using Sigtrap.Relays;
+ using UnityEngine;
+@@ -878,6 +880,26 @@ public class EnemyController : BaseCharacterController, IRoomConsumer, ILevelCon
+ 		m_targetController = PlayerManager.GetPlayerController();
+ 		yield return base.Start();
+ 		m_enemyInitializing = false;
++		foreach (Mod mod in ModLoader.LoadedMods) {
++			foreach (Type globalEnemy in mod.GlobalEnemies) {
++				GlobalEnemy globalEnemyInstance = gameObject.AddComponent(globalEnemy) as GlobalEnemy;
++				
++				// If the AppliesToEnemy dictionary is empty, assume that this GlobalEnemy should be applied to every enemy.
++				if (globalEnemyInstance.AppliesToEnemy.Count == 0) {
++                    globalEnemyInstance.OnSpawn();
++                    continue;
++                }
++
++				if (globalEnemyInstance.AppliesToEnemy.TryGetValue((int)EnemyType, out EnemyRank[] enemyRanks)) {
++					if (enemyRanks.Contains(EnemyRank)) {
++                        globalEnemyInstance.OnSpawn();
++						continue;
++                    }
++				}
++
++				Destroy(globalEnemyInstance);
++			}
++		}
+ 	}
+ 
+ 	public void ForceFaceTarget()
