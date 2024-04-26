@@ -62,7 +62,10 @@ public class ModLoader
 		}
 	}
 
-	public static void Log(string message) {
+	public static void Log(object message) {
+		if (!(message is string)) {
+			message = message.ToString();
+		}
 		Debug.Log($"[ModLoader]: {message}");
 	}
 }
