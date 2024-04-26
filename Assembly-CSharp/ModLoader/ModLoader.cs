@@ -49,9 +49,7 @@ public class ModLoader
 				continue;
 			}
 			Mod mod = (Mod)Activator.CreateInstance(modTypes[0]);
-			mod.ModSystems = assembly.GetTypes().Where(x => x.BaseType.FullName == typeof(ModSystem).FullName).ToArray();
-			mod.ModPlayers = assembly.GetTypes().Where(x => x.BaseType.FullName == typeof(ModPlayer).FullName).ToArray();
-			mod.GlobalEnemies = assembly.GetTypes().Where(x => x.BaseType.FullName == typeof(GlobalEnemy).FullName).ToArray();
+			mod.Content = assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ModType))).ToArray();
 
 			CommandManager.RegisterCommands(assembly);
 			LoadedMods[currentMod] = mod;
@@ -63,9 +61,6 @@ public class ModLoader
 	}
 
 	public static void Log(object message) {
-		if (!(message is string)) {
-			message = message.ToString();
-		}
 		Debug.Log($"[ModLoader]: {message}");
 	}
 }

@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/EnemyController.cs b/Assembly-CSharp/EnemyController.cs
-index 0158cab..4fdedf1 100644
+index 0158cab..7e25be3 100644
 --- a/RL2-Source/EnemyController.cs
 +++ b/Assembly-CSharp/EnemyController.cs
 @@ -1,9 +1,11 @@
@@ -19,7 +19,7 @@ index 0158cab..4fdedf1 100644
  		yield return base.Start();
  		m_enemyInitializing = false;
 +		foreach (Mod mod in ModLoader.LoadedMods) {
-+			foreach (Type globalEnemy in mod.GlobalEnemies) {
++			foreach (Type globalEnemy in mod.GetModTypes<GlobalEnemy>()) {
 +				GlobalEnemy globalEnemyInstance = gameObject.AddComponent(globalEnemy) as GlobalEnemy;
 +				
 +				// If the AppliesToEnemy dictionary is empty, assume that this GlobalEnemy should be applied to every enemy.

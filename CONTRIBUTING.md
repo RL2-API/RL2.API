@@ -12,7 +12,7 @@
 4. Run `python tools/dev.py decompile` and follow the instructions.
 5. Once the decompilation is completed open the Assembly-CSharp.sln file and make your changes.
 6. Once you are done with a change run `python tools/dev.py prepare-to-patch`
-	- If you made any changes to files that are already patched by the modloader, move them outside of the Patches directory.
-7. Run `scripts\create-patch EditedFile.cs` to generate patches for vanilla files.
+	- If you made any changes to files that are already patched by the modloader, move it's patches outside of the Patches directory.
+7. Run `scripts\create-patch EditedFile.cs` to create a patch for a vanilla file.
 8. After you are done with all your changes, commit your changes and push to your fork of the repository.
 9. Make a pull request with your changes.

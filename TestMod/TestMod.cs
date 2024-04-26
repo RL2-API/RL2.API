@@ -4,7 +4,7 @@ namespace TestMod;
 
 public class TestMod : Mod
 {
-	public override int[] Version => new int[] { 0, 0, 1, 0 };
+	public override string Version => "0.0.0.1-alpha";
 	public override void OnLoad() { 
 		Log("CawaBunga");
 	}
