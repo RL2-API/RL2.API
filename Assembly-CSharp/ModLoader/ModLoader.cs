@@ -49,7 +49,7 @@ public class ModLoader
 				continue;
 			}
 			Mod mod = (Mod)Activator.CreateInstance(modTypes[0]);
-			mod.Content = Assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ModType)));
+			mod.Content = assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ModType))).ToArray();
 
 			CommandManager.RegisterCommands(assembly);
 			LoadedMods[currentMod] = mod;
