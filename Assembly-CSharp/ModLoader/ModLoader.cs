@@ -27,7 +27,7 @@ public class ModLoader
 		}
 		// Create the enabled.json file if it doesn't exist
 		if (!File.Exists(ModPath + "\\enabled.json")) {
-			File.WriteAllText(ModPath + "\\enabled-exp.json", JsonUtility.ToJson(new ModData()));
+			File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(new ModData()));
 		}
 
 		DirectoryInfo directory = new DirectoryInfo(ModPath);
