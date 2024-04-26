@@ -10,13 +10,13 @@ public class UnityHook : MonoBehaviour
 		gameObject.AddComponent<Console>();
 		
 		foreach (Mod mod in ModLoader.LoadedMods) {
-			foreach (Type modSystem in mod.ModSystems) {
+			foreach (Type modSystem in mod.GetModTypes<ModSystem>()) {
 				ModSystem modSystemInstance = gameObject.AddComponent(modSystem) as ModSystem;
-				if (!modSystemInstance.IsLoadingEnabled()) {
-					Destroy(modSystemInstance);
+				if (modSystemInstance.IsLoadingEnabled()) {
+					modSystemInstance.OnLoad();
 					continue;
 				}
-				modSystemInstance.OnLoad();
+				Destroy(modSystemInstance);
 			}
 		}
 	}
