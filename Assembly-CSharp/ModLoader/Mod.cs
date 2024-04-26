@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -12,29 +13,30 @@ public abstract class Mod
 	/// <summary>
 	/// Declares what version the mod is in.
 	/// </summary>
-	public abstract int[] Version { get; }
+	public abstract string Version { get; }
+	
 	/// <summary>
-	/// All ModSystems added by this mod. Filled during mod loading.
+	/// All types from this mod.
 	/// </summary>
-	internal Type[] ModSystems;
+	internal Type[] Content;
+	
 	/// <summary>
-	/// All ModPlayers added by this mod. Filled during mod loading.
+	/// Gets all types inheriting from T.
 	/// </summary>
-	internal Type[] ModPlayers;
-	/// <summary>
-	/// All GlobalEnemies added by this mod. Filled during mod loading.
-	/// </summary>
-	internal Type[] GlobalEnemies;
+	/// <typeparam name="T">The type you want to get derived classes of.</typeparam>
+	public readonly Type[] GetTypes<T>() where T : ModType => Content.Where(type => type.IsSubclassOf(typeof(T))).ToArray();
+	
 	/// <summary>
 	/// Ran right after loading all mods.
 	/// </summary>
 	public virtual void OnLoad() { }
+	
 	/// <summary>
 	/// Prints the specified message to logs and console.
 	/// </summary>
 	/// <param name="message">Text to be printed</param>
-	public static void Log(string message) {
-		string callingAssemblyName = Assembly.GetCallingAssembly().GetName().Name;
-		Debug.Log($"[{callingAssemblyName}]: {message}");
+	public static void Log(object message) {
+		string callingModName = Assembly.GetCallingAssembly().GetTypes().Where(type => type.BaseType == typeof(Mod)).First().Name;
+		Debug.Log($"[{callingModName}]: {message}");
 	}
 }
