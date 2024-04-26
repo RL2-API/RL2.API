@@ -1,79 +1,42 @@
-﻿using RL2.ModLoader.Sets;
-using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RL2.ModLoader;
 
+/// <summary>
+/// Used to alter enemies. For creating new AIScript's use <see cref="BaseAIScript"/>, and change the enemy's script in here.
+/// </summary>
 public abstract class GlobalEnemy : MonoBehaviour
 {
 	/// <summary>
-	/// Instance of the room the player and the enemy are currently in.
-	/// </summary>
-	public BaseRoom Room => PlayerManager.GetCurrentPlayerRoom();
-
-	/// <summary>
-	/// All instances of <see cref="EnemyController"/> in the Arena room the player is in.
-	/// </summary>
-	public EnemyController[] ArenaEnemyControllers => (from x in EnemyManager.SummonedEnemyList where x != null select x).ToArray();
-
-	/// <summary>
-	/// All instances of <see cref="EnemyController"/> in the standard room the player is in.
-	/// </summary>
-	public EnemyController[] RoomEnemyControllers => (from enemySpawnController 
-														in Room.SpawnControllerManager.EnemySpawnControllers
-														where enemySpawnController.EnemyInstance != null
-														select enemySpawnController.EnemyInstance).ToArray();
-
-	/// <summary>
-	/// All instances of <see cref="EnemyController"/> connected with enemies in the current room that fullfil the criteria of <see cref="AppliesToEnemyType"/>, <see cref="AppliesToEnemyRank"/> and <see cref="AppliesToDeadEnemies"/>
-	/// </summary>
-	public EnemyController[] ActiveEnemeyControllers => (from enemy 
-														in Room.SpecialRoomType == SpecialRoomType.Arena ? ArenaEnemyControllers : RoomEnemyControllers
-														where AppliesToEnemyType.Contains(enemy.EnemyType) && AppliesToEnemyRank.Contains(enemy.EnemyRank) && (enemy.IsDead == AppliesToDeadEnemies | !enemy.IsDead)
-														select enemy).ToArray();
-
-	/// <summary>
-	/// All instances of <see cref="BaseAIScript"/> connected with enemies in the current room that fullfil the criteria of <see cref="AppliesToEnemyType"/>, <see cref="AppliesToEnemyRank"/> and <see cref="AppliesToDeadEnemies"/>
-	/// </summary>
-	public BaseAIScript[] ActiveAIScripts => (from enemy in ActiveEnemeyControllers where enemy.LogicController.LogicScript != null select enemy.LogicController.LogicScript).ToArray();
-	
-	/// <summary>
-	/// An instance of <see cref="EnemyController"/> connected with this enemy.
+	/// An EnemyController instance attached to this enemy.
 	/// </summary>
 	public EnemyController Enemy => gameObject.GetComponent<EnemyController>();
-
-
 	/// <summary>
-	/// An instance of <see cref="BaseAIScript"/> connected with this enemy.
+	/// The enemy type represented as an <see langword="int"/>.
 	/// </summary>
-	public BaseAIScript AIScript => gameObject.GetComponent<BaseAIScript>();
-
+	public int Type => (int)Enemy.EnemyType;
 	/// <summary>
-	/// Specifies <see cref="EnemyType"/>s which will get an instance of this class attached to them. <br></br>
-	/// Applies to all enemies by default.
+	/// The <see cref="EnemyRank"/> of the enemy.
 	/// </summary>
-	public virtual EnemyType[] AppliesToEnemyType => EnemySets.AllEnemies;
-
+	public EnemyRank Rank => Enemy.EnemyRank;
 	/// <summary>
-	/// Specifies <see cref="EnemyRank"/>s which will get an instance of this class attached to them. <br></br>
-	/// Applies to all ranks by default.
+	/// Determines which enemies the instance of this GlobalEnemy will be attached to.<br></br>
+	/// Leave empty to attach to every enemy.
 	/// </summary>
-	public virtual EnemyRank[] AppliesToEnemyRank => EnemySets.AllRanks;
-	
+	public virtual Dictionary<int, EnemyRank[]> AppliesToEnemy => new Dictionary<int, EnemyRank[]>();
 	/// <summary>
-	/// Specifies wether this script should run on enemies in Challenges. <br></br>
-	/// Defaults to <see langword="true"/>
-	/// </summary>
-	public virtual bool ActiveInRedPortals => true;
-
-	/// <summary>
-	/// Specifies wether this script should run on dead enemies. <br></br>
-	/// Defaults to <see langword="false"/>
-	/// </summary>
-	public virtual bool AppliesToDeadEnemies => false;
-	
-	/// <summary>
-	/// Ran right after spawning the enemy
+	/// Ran on enemy spawn.
 	/// </summary>
 	public virtual void OnSpawn() { }
+	/// <summary>
+	/// Determines wether the affected enemy should die.
+	/// </summary>
+	/// <param name="killer">GameObject responsible for the enemy's death</param>
+	/// <returns>Wether the enemy should die.</returns>
+	public virtual bool PreKill(GameObject killer) => true;
+	/// <summary>
+	/// Ran immedieately after the enmy dies.
+	/// </summary>
+	public virtual void OnKill(GameObject killer) { }
 }

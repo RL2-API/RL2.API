@@ -1,14 +1,39 @@
-﻿using System.Reflection;
+using System;
+using System.Reflection;
 using UnityEngine;
 
 namespace RL2.ModLoader;
 
+/// <summary>
+/// Required for every mod to be loaded.
+/// </summary>
 public abstract class Mod
 {
-	public virtual void Load() { }
-
-	public static void Log(string message)
-	{
+	/// <summary>
+	/// Declares what version the mod is in.
+	/// </summary>
+	public abstract int[] Version { get; }
+	/// <summary>
+	/// All ModSystems added by this mod. Filled during mod loading.
+	/// </summary>
+	internal Type[] ModSystems;
+	/// <summary>
+	/// All ModPlayers added by this mod. Filled during mod loading.
+	/// </summary>
+	internal Type[] ModPlayers;
+	/// <summary>
+	/// All GlobalEnemies added by this mod. Filled during mod loading.
+	/// </summary>
+	internal Type[] GlobalEnemies;
+	/// <summary>
+	/// Ran right after loading all mods.
+	/// </summary>
+	public virtual void OnLoad() { }
+	/// <summary>
+	/// Prints the specified message to logs and console.
+	/// </summary>
+	/// <param name="message">Text to be printed</param>
+	public static void Log(string message) {
 		string callingAssemblyName = Assembly.GetCallingAssembly().GetName().Name;
 		Debug.Log($"[{callingAssemblyName}]: {message}");
 	}
