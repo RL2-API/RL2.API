@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RL2.ModLoader;
 
 /// <summary>
-/// Used to alter enemies. For creating ne AIScript's use <see cref="BaseAIScript"/>, and change the enemy's script in here.
+/// Used to alter enemies. For creating new AIScript's use <see cref="BaseAIScript"/>, and change the enemy's script in here.
 /// </summary>
 public abstract class GlobalEnemy : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public abstract class GlobalEnemy : MonoBehaviour
 	/// The <see cref="EnemyRank"/> of the enemy.
 	/// </summary>
 	public EnemyRank Rank => Enemy.EnemyRank;
+	/// <summary>
+	/// Determines which enemies the instance of this GlobalEnemy will be attached to.<br></br>
+	/// Leave empty to attach to every enemy.
+	/// </summary>
+	public virtual Dictionary<int, EnemyRank[]> AppliesToEnemy => new Dictionary<int, EnemyRank[]>();
 	/// <summary>
 	/// Ran on enemy spawn.
 	/// </summary>
