@@ -24,7 +24,7 @@ public abstract class Mod
 	/// Gets all types inheriting from T.
 	/// </summary>
 	/// <typeparam name="T">The type you want to get derived classes of.</typeparam>
-	internal Type[] GetTypes<T>() where T : ModType => Content.Where(type => type.IsSubclassOf(typeof(T))).ToArray();
+	internal Type[] GetModTypes<T>() where T : ModType => Content.Where(type => type.IsSubclassOf(typeof(T))).ToArray();
 	
 	/// <summary>
 	/// Ran right after loading all mods.
