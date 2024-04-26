@@ -1,0 +1,1 @@
+dotnet build /property:WarningLevel=0
