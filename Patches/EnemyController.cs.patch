@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/EnemyController.cs b/Assembly-CSharp/EnemyController.cs
-index 0158cab..b9e58ba 100644
+index 0158cab..4fdedf1 100644
 --- a/RL2-Source/EnemyController.cs
 +++ b/Assembly-CSharp/EnemyController.cs
 @@ -1,9 +1,11 @@
@@ -24,15 +24,15 @@ index 0158cab..b9e58ba 100644
 +				
 +				// If the AppliesToEnemy dictionary is empty, assume that this GlobalEnemy should be applied to every enemy.
 +				if (globalEnemyInstance.AppliesToEnemy.Count == 0) {
-+                    globalEnemyInstance.OnSpawn();
-+                    continue;
-+                }
++					globalEnemyInstance.OnSpawn();
++					continue;
++				}
 +
 +				if (globalEnemyInstance.AppliesToEnemy.TryGetValue((int)EnemyType, out EnemyRank[] enemyRanks)) {
 +					if (enemyRanks.Contains(EnemyRank)) {
-+                        globalEnemyInstance.OnSpawn();
++						globalEnemyInstance.OnSpawn();
 +						continue;
-+                    }
++					}
 +				}
 +
 +				Destroy(globalEnemyInstance);
@@ -41,3 +41,29 @@ index 0158cab..b9e58ba 100644
  	}
  
  	public void ForceFaceTarget()
+@@ -1957,7 +1979,14 @@ public class EnemyController : BaseCharacterController, IRoomConsumer, ILevelCon
+ 
+ 	public override void KillCharacter(GameObject killer, bool broadcastEvent)
+ 	{
+-		if (base.IsDead)
++		bool shouldDie = true;
++		foreach (GlobalEnemy globalEnemy in gameObject.GetComponents<GlobalEnemy>()) {
++			if (!globalEnemy.PreKill(killer)) {
++				shouldDie = false;
++				break;
++			}
++		}
++		if (base.IsDead || !shouldDie)
+ 		{
+ 			return;
+ 		}
+@@ -2082,6 +2111,9 @@ public class EnemyController : BaseCharacterController, IRoomConsumer, ILevelCon
+ 		{
+ 			StartCoroutine(DeathCoroutine(killer, broadcastEvent));
+ 		}
++		foreach (GlobalEnemy globalEnemy in gameObject.GetComponents<GlobalEnemy>()) {
++			globalEnemy.OnKill(killer);
++		}
+ 	}
+ 
+ 	private IEnumerator DeathCoroutine(GameObject killer, bool broadcastEvent)

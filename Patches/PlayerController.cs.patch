@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/PlayerController.cs b/Assembly-CSharp/PlayerController.cs
-index fe5c816..c2366f9 100644
+index fe5c816..7cc32a7 100644
 --- a/RL2-Source/PlayerController.cs
 +++ b/Assembly-CSharp/PlayerController.cs
 @@ -8,6 +8,7 @@ using Rewired;
@@ -178,7 +178,7 @@ index fe5c816..c2366f9 100644
 +				break;
 +			}
 +		}
-+		if (base.IsDead || shouldDie)
++		if (base.IsDead || !shouldDie)
  		{
  			return;
  		}
