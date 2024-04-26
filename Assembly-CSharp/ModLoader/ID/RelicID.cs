@@ -20,7 +20,7 @@ public static class RelicID
 	public const int WarDrum = (int)RelicType.RelicAmountDamageUp;
 	public const int AmaterasusSun = (int)RelicType.WeaponsBurnAdd;
 	public const int BodyBuffet = (int)RelicType.EnemiesDropMeat;
-	public const int Hermesboots = (int)RelicType.NoSpikeDamage;
+	public const int HermesBoots = (int)RelicType.NoSpikeDamage;
 	public const int LotusPetal = (int)RelicType.BonusMana;
 	public const int SteelToedBoots = (int)RelicType.SpinKickArmorBreak;
 	public const int DiogenesBargain = (int)RelicType.NoGoldXPBonus;
