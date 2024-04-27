@@ -14,6 +14,12 @@ public abstract class Mod
 	/// Declares what version the mod is in.
 	/// </summary>
 	public abstract string Version { get; }
+
+	/// <summary>
+	///	Declares in after which mods this one should be loaded. <br></br>
+	/// Mods that should appear here are mods on which there is dependent logic in one or more OnLoad method in this mod. 
+	/// </summary>
+	public virtual Mod[] SortAfter => new Mod[] { };
 	
 	/// <summary>
 	/// All types from this mod.
@@ -24,8 +30,8 @@ public abstract class Mod
 	/// Gets all types inheriting from T.
 	/// </summary>
 	/// <typeparam name="T">The type you want to get derived classes of.</typeparam>
-	internal Type[] GetModTypes<T>() where T : ModType => Content.Where(type => type.IsSubclassOf(typeof(T))).ToArray();
-	
+	public Type[] GetModTypes<T>() where T : ModType => Content.Where(type => type.IsSubclassOf(typeof(T))).ToArray();
+
 	/// <summary>
 	/// Ran right after loading all mods.
 	/// </summary>
