@@ -407,5 +407,6 @@ Assembly-CSharp/lib
 # Toolchain Configuration
 tools/config.json
 
-# Sublime text workspace file
+# Sublime text project
 *.sublime-workspace
+*.sublime-project
