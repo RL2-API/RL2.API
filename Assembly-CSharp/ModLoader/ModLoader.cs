@@ -14,7 +14,7 @@ public class ModLoader
 	public static readonly string ModPath = dataPath + "\\Mods";
 	public static Mod[] LoadedMods;
 
-	struct ModData
+	class ModLoadData
 	{
 		public List<string> enabled;
 		public List<string> disabled;
@@ -27,19 +27,57 @@ public class ModLoader
 		}
 		// Create the enabled.json file if it doesn't exist
 		if (!File.Exists(ModPath + "\\enabled.json")) {
-			File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(new ModData()));
+			File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(new ModLoadData()));
 		}
 
+		ModLoadData modLoadData = JsonUtility.FromJson<ModLoadData>(File.ReadAllText(ModPath + "\\enabled.json"));
+
+		// Get all manifest files from ModPath
 		DirectoryInfo directory = new DirectoryInfo(ModPath);
-		FileInfo[] files = directory.GetFiles("*.dll", SearchOption.AllDirectories);
+		FileInfo[] fileInfos = directory.GetFiles("*.mod.json", SearchOption.AllDirectories);
+		
+		// Create ModManifest insatnces from data in the found manifests
+		ModManifest[] modManifests = new ModManifest[fileInfos.Length];
+		for (int i = 0; i < fileInfos.Length; i++) {
+			modManifests[i] = JsonUtility.FromJson<ModManifest>(File.ReadAllText(fileInfos[i].FullName));
+		}
+		// Sort ModManifest instances, see ModManifest.ComapreTo for more info
+		Array.Sort(modManifests);
 
-		foreach (FileInfo file in files) {
-			AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(file.FullName));
-			Log("Found " + file.FullName.Replace(ModPath, ""));
+		// Load needed assemblies
+		List<string> loadedManifests = new List<string>();
+		foreach (ModManifest modManifest in modManifests) {
+			if (modLoadData.disabled.Contains(modManifest.Name)) {
+				Log($"<color=red>{modManifest.Name} is on the disabled list. You can change it in enabled.json</color=red>");
+				continue;
+			}
+
+			if (!modLoadData.enabled.Contains(modManifest.Name)) {
+				Log($"<color=green>New mod added: {modManifest.Name}</color=green>");
+				modLoadData.enabled.Add(modManifest.Name);
+			}
+
+			if (loadedManifests.Contains(modManifest.Name)) {
+				Log($"A newer version of {modManifest.Name} was alredy loaded");
+				continue;
+			}
+
+			AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{ModPath}\\{modManifest.Name}\\{modManifest.ModAssembly}"));
+			foreach (string dependency in modManifest.AdditionalDependencies) {
+				AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{ModPath}\\{modManifest.Name}\\{dependency}"));
+			}
+			Log($"{modManifest.Name} was loaded");
 		}
 
-		//Get all assemblies containing at least 1 Mod class
-		Assembly[] modAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(assembly => assembly.Location.StartsWith(ModPath)).ToArray();
+		File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(modLoadData));
+
+		//Get all assemblies for ModPath containing at least 1 Mod class
+		Assembly[] modAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(
+			assembly => 
+				assembly.Location.StartsWith(ModPath) && 
+				assembly.DefinedTypes.Where(type => type.IsSubclassOf(typeof(Mod))).Count() >= 1
+		).ToArray();
+
 		LoadedMods = new Mod[modAssemblies.Length];
 		int currentMod = 0;
 		foreach (Assembly assembly in modAssemblies) {

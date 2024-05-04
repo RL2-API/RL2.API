@@ -9,18 +9,7 @@ namespace RL2.ModLoader;
 /// Required for every mod to be loaded.
 /// </summary>
 public abstract class Mod
-{
-	/// <summary>
-	/// Declares what version the mod is in.
-	/// </summary>
-	public abstract string Version { get; }
-
-	/// <summary>
-	///	Declares in after which mods this one should be loaded. <br></br>
-	/// Mods that should appear here are mods on which there is dependent logic in one or more OnLoad method in this mod. 
-	/// </summary>
-	public virtual Mod[] SortAfter => new Mod[] { };
-	
+{	
 	/// <summary>
 	/// All types from this mod.
 	/// </summary>
