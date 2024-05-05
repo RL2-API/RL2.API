@@ -1,4 +1,5 @@
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,9 @@ public class ModLoader
 		if (!Directory.Exists(ModPath)) {
 			Directory.CreateDirectory(ModPath);
 		}
+
+		CommandManager.commands.Add("generate-mod-skeleton", typeof(BuiltinCommands).GetMethod("GenerateModSkeleton"));
+
 		// Create the enabled.json file if it doesn't exist
 		if (!File.Exists(ModPath + "\\enabled.json")) {
 			File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(new ModLoadData()));

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System.Collections;
+using System.IO;
 using UnityEngine;
 
 namespace RL2.ModLoader;
@@ -7,7 +8,7 @@ public class Console : MonoBehaviour
 {
 	private bool visible = false;
 
-	uint consoleLines = 15;  // number of messages to keep
+	uint consoleLines = 25;  // number of messages to keep
 	Queue logQueue = new Queue();
 
 	string command = string.Empty;
@@ -21,7 +22,7 @@ public class Console : MonoBehaviour
 	}
 
 	void HandleLog(string logString, string stackTrace, LogType type) {
-		string message = $"[{type}] {logString}";
+		string message = $"[{type}]: {logString}";
 		if (type == LogType.Exception) {
 			message += "\n" + stackTrace;
 		}
@@ -51,15 +52,23 @@ public class Console : MonoBehaviour
 		}
 
 		if (visible) {
-			GUILayout.BeginArea(new Rect(Screen.width * 0.05f, (Screen.height - 15 * (logQueue.ToArray().Length + 5)), Screen.width * 0.9f, Screen.height * 0.9f));
+			// Set GUIStyle used
+			GUIStyle style = new GUIStyle();
+			style.wordWrap = false;
+			style.normal.background = Texture2D.grayTexture;
 
+			GUILayout.BeginArea(new Rect(Screen.width * 0.05f, Screen.height - consoleLines * 15f - 20f, Screen.width * 0.9f, consoleLines * 15f), style);
 			GUILayout.Label("\n" + string.Join("\n", logQueue.ToArray()));
+			GUILayout.EndArea();
 
+			GUILayout.BeginArea(new Rect(Screen.width * 0.05f, Screen.height - 20f, Screen.width * 0.9f, 20f));
+			
 			GUI.SetNextControlName("command");
 			command = GUILayout.TextField(command);
 			if (command.EndsWith("`")) {
 				command = string.Empty;
 			}
+			
 			GUILayout.EndArea();
 
 			GUI.FocusControl("command");
