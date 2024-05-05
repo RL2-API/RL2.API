@@ -1,3 +1,4 @@
+![Mod Loader Icon](https://raw.githubusercontent.com/TacoConKvass/RL2-ModLoader/main/Assets/ModLoaderIcon-0%2C3.png)
 # RL2-ModLoader
 A work-in-progress Rogue Legacy 2 mod loader and API
 
