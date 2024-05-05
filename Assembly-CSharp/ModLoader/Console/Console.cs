@@ -8,10 +8,10 @@ public class Console : MonoBehaviour
 {
 	private bool visible = false;
 
-	uint consoleLines = 25;  // number of messages to keep
+	uint consoleLines = 15;  // number of messages to keep
 	Queue logQueue = new Queue();
-
 	string command = string.Empty;
+	GUIStyle style = new GUIStyle();
 
 	void OnEnable() {
 		Application.logMessageReceived += HandleLog;
@@ -22,7 +22,7 @@ public class Console : MonoBehaviour
 	}
 
 	void HandleLog(string logString, string stackTrace, LogType type) {
-		string message = $"[{type}]: {logString}";
+		string message = logString;
 		if (type == LogType.Exception) {
 			message += "\n" + stackTrace;
 		}
@@ -53,15 +53,12 @@ public class Console : MonoBehaviour
 
 		if (visible) {
 			// Set GUIStyle used
-			GUIStyle style = new GUIStyle();
-			style.wordWrap = false;
 			style.normal.background = Texture2D.grayTexture;
-
-			GUILayout.BeginArea(new Rect(Screen.width * 0.05f, Screen.height - consoleLines * 15f - 20f, Screen.width * 0.9f, consoleLines * 15f), style);
-			GUILayout.Label("\n" + string.Join("\n", logQueue.ToArray()));
+			GUILayout.BeginArea(new Rect(Screen.width * 0.02f, Screen.height - 395, Screen.width * 0.96f, 330), style);
+			GUILayout.Label(string.Join("\n", logQueue.ToArray()));
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(Screen.width * 0.05f, Screen.height - 20f, Screen.width * 0.9f, 20f));
+			GUILayout.BeginArea(new Rect(Screen.width * 0.02f, Screen.height - 25f, Screen.width * 0.96f, 20f));
 			
 			GUI.SetNextControlName("command");
 			command = GUILayout.TextField(command);

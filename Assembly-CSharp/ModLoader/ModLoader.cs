@@ -1,5 +1,5 @@
 using System;
-using System.CodeDom;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,7 +31,7 @@ public class ModLoader
 
 		// Create the enabled.json file if it doesn't exist
 		if (!File.Exists(ModPath + "\\enabled.json")) {
-			File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(new ModLoadData()));
+			File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(new ModLoadData(), true), System.Text.Encoding.UTF8);
 		}
 
 		ModLoadData modLoadData = JsonUtility.FromJson<ModLoadData>(File.ReadAllText(ModPath + "\\enabled.json"));
@@ -39,11 +39,13 @@ public class ModLoader
 		// Get all manifest files from ModPath
 		DirectoryInfo directory = new DirectoryInfo(ModPath);
 		FileInfo[] fileInfos = directory.GetFiles("*.mod.json", SearchOption.AllDirectories);
-		
-		// Create ModManifest insatnces from data in the found manifests
+		Dictionary<ModManifest, string> modManifestPaths = new Dictionary<ModManifest, string>();
+
+		// Create ModManifest insatnces from data in the found manifests, and save the manifests path
 		ModManifest[] modManifests = new ModManifest[fileInfos.Length];
 		for (int i = 0; i < fileInfos.Length; i++) {
 			modManifests[i] = JsonUtility.FromJson<ModManifest>(File.ReadAllText(fileInfos[i].FullName));
+			modManifestPaths.TryAdd(modManifests[i], fileInfos[i].Directory.FullName);
 		}
 		// Sort ModManifest instances, see ModManifest.ComapreTo for more info
 		Array.Sort(modManifests);
@@ -66,14 +68,14 @@ public class ModLoader
 				continue;
 			}
 
-			AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{ModPath}\\{modManifest.Name}\\{modManifest.ModAssembly}"));
+			AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{modManifestPaths[modManifest]}\\{modManifest.ModAssembly}"));
 			foreach (string dependency in modManifest.AdditionalDependencies) {
-				AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{ModPath}\\{modManifest.Name}\\{dependency}"));
+				AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{modManifestPaths[modManifest]}\\{dependency}"));
 			}
 			Log($"{modManifest.Name} was loaded");
 		}
 
-		File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(modLoadData));
+		File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(modLoadData, true), System.Text.Encoding.UTF8);
 
 		//Get all assemblies for ModPath containing at least 1 Mod class
 		Assembly[] modAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(

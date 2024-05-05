@@ -1,11 +1,18 @@
-﻿using System.IO;
-using RL2.ModLoader;
+﻿using RL2.ModLoader;
+using RL2.ID;
+using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TestMod;
 
 public class TestGE : GlobalEnemy
 {
+	public override Dictionary<int, EnemyRank[]> AppliesToEnemy => new Dictionary<int, EnemyRank[]>() 
+	{
+		{ EnemyID.SpellswordBoss, new EnemyRank[] { EnemyRank.Basic, EnemyRank.Advanced, EnemyRank.Expert, EnemyRank.Miniboss } }
+	};
+
 	Texture texture;
 
 	public override void OnSpawn()
