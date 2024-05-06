@@ -24,7 +24,7 @@ public class BuiltinCommands
 			"	</PropertyGroup>",
 			"",
 			"	<ItemGroup>",
-			$"		<Reference Include=\"..\\..\\Managed\\*.dll\">",
+			$"		<Reference Include=\"..\\..\\Managed\\*.dll\" Exclude=\"..\\..\\Managed\\Assembly-CSharp-original.dll>",
 			"			<Private>false</Private>",
 			"		</Reference>",
 			"	</ItemGroup>",
@@ -54,7 +54,9 @@ public class BuiltinCommands
 			$"namespace {modName};",
 			$"public class {modName} : Mod",
 			"{",
-			"	public override void OnLoad() { }",
+			"	public override void OnLoad() {",
+			$"		Mod.Log(\"{modName} was loaded!\");",
+			"	}",
 			"}"
 		};
 		File.WriteAllLines(newModPath + $"\\{modName}.cs", modFileContent, System.Text.Encoding.UTF8);
