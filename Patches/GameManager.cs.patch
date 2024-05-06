@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/GameManager.cs b/Assembly-CSharp/GameManager.cs
-index 2cdc5a3..91ab0c1 100644
+index 2cdc5a3..6d978a2 100644
 --- a/RL2-Source/GameManager.cs
 +++ b/Assembly-CSharp/GameManager.cs
 @@ -1,5 +1,6 @@
@@ -9,11 +9,12 @@ index 2cdc5a3..91ab0c1 100644
  using Steamworks;
  using UnityEngine;
  
-@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
+@@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour
  		{
  			Instance = this;
  			m_pauseEventArgs = new GamePauseStateChangeEventArgs(isPaused: false);
 +			gameObject.AddComponent<UnityHook>();
++			ModLoader.Log(ModLoader.LoadedModsNames);
  		}
  		else if (Instance != this)
  		{

@@ -14,6 +14,7 @@ public class ModLoader
 	public static readonly string dataPath = Application.dataPath.Replace("/", "\\");
 	public static readonly string ModPath = dataPath + "\\Mods";
 	public static Mod[] LoadedMods;
+	public static string LoadedModsNames = "Loaded mods: ";
 
 	class ModLoadData
 	{
@@ -52,39 +53,32 @@ public class ModLoader
 
 		// Load needed assemblies
 		List<string> loadedManifests = new List<string>();
+		List<Assembly> modAssemblies = new List<Assembly>();
 		foreach (ModManifest modManifest in modManifests) {
 			if (modLoadData.disabled.Contains(modManifest.Name)) {
-				Log($"<color=red>{modManifest.Name} is on the disabled list. You can change it in enabled.json</color=red>");
+				Log($"{modManifest.Name} is on the disabled list. You can change it in enabled.json");
 				continue;
 			}
 
 			if (!modLoadData.enabled.Contains(modManifest.Name)) {
-				Log($"<color=green>New mod added: {modManifest.Name}</color=green>");
+				Log($"New mod added: {modManifest.Name}");
 				modLoadData.enabled.Add(modManifest.Name);
 			}
 
 			if (loadedManifests.Contains(modManifest.Name)) {
-				Log($"A newer version of {modManifest.Name} was alredy loaded");
+				Log($"A newer version of {modManifest.Name} was already found");
 				continue;
 			}
 
-			AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{modManifestPaths[modManifest]}\\{modManifest.ModAssembly}"));
+			modAssemblies.Add(AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{modManifestPaths[modManifest]}\\{modManifest.ModAssembly}")));
 			foreach (string dependency in modManifest.AdditionalDependencies) {
 				AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{modManifestPaths[modManifest]}\\{dependency}"));
 			}
-			Log($"{modManifest.Name} was loaded");
 		}
 
 		File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(modLoadData, true), System.Text.Encoding.UTF8);
 
-		//Get all assemblies for ModPath containing at least 1 Mod class
-		Assembly[] modAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(
-			assembly => 
-				assembly.Location.StartsWith(ModPath) && 
-				assembly.DefinedTypes.Where(type => type.IsSubclassOf(typeof(Mod))).Count() >= 1
-		).ToArray();
-
-		LoadedMods = new Mod[modAssemblies.Length];
+		LoadedMods = new Mod[modAssemblies.Count];
 		int currentMod = 0;
 		foreach (Assembly assembly in modAssemblies) {
 			Type[] modTypes = assembly.GetTypes().Where(x => x.BaseType.FullName == typeof(Mod).FullName).ToArray();
@@ -99,7 +93,9 @@ public class ModLoader
 			LoadedMods[currentMod] = mod;
 			currentMod++;
 		}
+
 		foreach (Mod mod in LoadedMods) {
+			LoadedModsNames += $" {mod.GetType().Name} |";
 			mod.OnLoad();
 		}
 	}
