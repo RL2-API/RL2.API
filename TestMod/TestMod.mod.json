@@ -1,0 +1,7 @@
+{
+	"Name" : "TestMod",
+	"Version" : "1.0.0.0",
+	"ModAssembly" : "TestMod.dll",
+	"AdditionalDependencies" : [],
+	"LoadAfter" : []
+}
