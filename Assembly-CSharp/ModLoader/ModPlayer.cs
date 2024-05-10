@@ -19,7 +19,7 @@ public abstract class ModPlayer : ModType
 	public virtual void OnLoad() { }
 	
 	/// <summary>
-	/// Ran before the player dies, and before the death. Return <see langword="false"/> to prevent the player from dying.
+	/// Ran before the player dies. Return <see langword="false"/> to prevent the player from dying.
 	/// </summary>
 	/// <param name="killer">The GameObject that killed the player</param>
 	public virtual bool PreKill(GameObject killer) => true;
@@ -46,7 +46,7 @@ public abstract class ModPlayer : ModType
 	public virtual void LoadData() { }
 	
 	/// <summary>
-	/// Determines wether the ModPlayer of this class should be attached to the player.
+	/// Determines whether the ModPlayer of this class should be attached to the player.
 	/// </summary>
 	public virtual bool IsLoadingEnabled() => true;
 };

@@ -13,8 +13,7 @@ public abstract class ModSystem : ModType
 	public virtual void OnLoad() { }
 	
 	/// <summary>
-	/// Determines wether the ModPlayer of this class should be initialized.
+	/// Determines whether the instance of this class should be initialized.
 	/// </summary>
-	/// <returns></returns>
 	public virtual bool IsLoadingEnabled() => true;
 }
