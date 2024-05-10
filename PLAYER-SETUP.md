@@ -1,10 +1,12 @@
-# Two ways
-There are two ways of obtaining the modified Assembly-CSharp.dll file.
+# Three ways
+There are three ways of obtaining the modified Assembly-CSharp.dll file.
 
 ## 1. Come to the CDG Discord server
 ... and ping me in the `#rl2-modding` channel.
 
-## 2. Selfsufficient
+## 2. Download the latest release
+
+## 3. Selfsufficient
 For this you will need
 - Python 3.10 or newer, and on your system PATH
 - .NET Framework 4.0
