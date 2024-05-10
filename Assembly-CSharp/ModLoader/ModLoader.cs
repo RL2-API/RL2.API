@@ -10,7 +10,7 @@ namespace RL2.ModLoader;
 
 public class ModLoader
 {
-	public static readonly string Version = "-experimental";
+	public static readonly string Version = "-0.0.1-alpha";
 	public static readonly string dataPath = Application.dataPath.Replace("/", "\\");
 	public static readonly string ModPath = dataPath + "\\Mods";
 	public static Mod[] LoadedMods;
@@ -28,14 +28,14 @@ public class ModLoader
 			Directory.CreateDirectory(ModPath);
 		}
 
-		CommandManager.commands.Add("generate-mod-skeleton", typeof(BuiltinCommands).GetMethod("GenerateModSkeleton"));
-
 		// Create the enabled.json file if it doesn't exist
 		if (!File.Exists(ModPath + "\\enabled.json")) {
 			File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(new ModLoadData(), true), System.Text.Encoding.UTF8);
 		}
 
 		ModLoadData modLoadData = JsonUtility.FromJson<ModLoadData>(File.ReadAllText(ModPath + "\\enabled.json"));
+
+		CommandManager.commands.Add("generate-mod-skeleton", typeof(BuiltinCommands).GetMethod("GenerateModSkeleton"));
 
 		// Get all manifest files from ModPath
 		DirectoryInfo directory = new DirectoryInfo(ModPath);
@@ -53,8 +53,8 @@ public class ModLoader
 
 		// Load needed assemblies
 		List<string> loadedManifestNames = new List<string>();
-		List<ModManifest> loadedManifests = new List<ModManifest>();
 		List<Assembly> modAssemblies = new List<Assembly>();
+		List<ModManifest> loadedManifests = new List<ModManifest>();
 		foreach (ModManifest modManifest in modManifests) {
 			if (modLoadData.disabled.Contains(modManifest.Name)) {
 				Log($"{modManifest.Name} is on the disabled list. You can change it in enabled.json");
@@ -84,7 +84,7 @@ public class ModLoader
 		LoadedMods = new Mod[modAssemblies.Count];
 		int currentMod = 0;
 		foreach (Assembly assembly in modAssemblies) {
-			Type[] modTypes = assembly.GetTypes().Where(x => x.BaseType.FullName == typeof(Mod).FullName).ToArray();
+			Type[] modTypes = assembly.GetTypes().Where(x => x.IsSubclassOf(typeof(Mod))).ToArray();
 			if (modTypes.Length != 1) {
 				Log($"<color=red>Make sure that the mod contains <b>exactly one Mod class</b>, {assembly.GetName().Name} will not be loaded as this condition was not met</color>");
 				continue;
