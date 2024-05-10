@@ -9,7 +9,12 @@ namespace RL2.ModLoader;
 /// Required for every mod to be loaded.
 /// </summary>
 public abstract class Mod
-{	
+{
+	/// <summary>
+	/// Path to the mod, set at load
+	/// </summary>
+	public string Path { get; internal set; }
+
 	/// <summary>
 	/// All types from this mod.
 	/// </summary>

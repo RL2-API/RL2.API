@@ -52,7 +52,8 @@ public class ModLoader
 		Array.Sort(modManifests);
 
 		// Load needed assemblies
-		List<string> loadedManifests = new List<string>();
+		List<string> loadedManifestNames = new List<string>();
+		List<ModManifest> loadedManifests = new List<ModManifest>();
 		List<Assembly> modAssemblies = new List<Assembly>();
 		foreach (ModManifest modManifest in modManifests) {
 			if (modLoadData.disabled.Contains(modManifest.Name)) {
@@ -65,11 +66,13 @@ public class ModLoader
 				modLoadData.enabled.Add(modManifest.Name);
 			}
 
-			if (loadedManifests.Contains(modManifest.Name)) {
+			if (loadedManifestNames.Contains(modManifest.Name)) {
 				Log($"A newer version of {modManifest.Name} was already found");
 				continue;
 			}
 
+			loadedManifestNames.Add(modManifest.Name);
+			loadedManifests.Add(modManifest);
 			modAssemblies.Add(AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{modManifestPaths[modManifest]}\\{modManifest.ModAssembly}")));
 			foreach (string dependency in modManifest.AdditionalDependencies) {
 				AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{modManifestPaths[modManifest]}\\{dependency}"));
@@ -88,6 +91,7 @@ public class ModLoader
 			}
 			Mod mod = (Mod)Activator.CreateInstance(modTypes[0]);
 			mod.Content = assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ModType))).ToArray();
+			mod.Path = modManifestPaths[loadedManifests[currentMod]];
 
 			CommandManager.RegisterCommands(assembly);
 			LoadedMods[currentMod] = mod;
