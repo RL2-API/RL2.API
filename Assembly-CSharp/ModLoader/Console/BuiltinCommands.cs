@@ -44,9 +44,9 @@ public class BuiltinCommands
 		File.WriteAllLines(newModPath + $"\\{modName}.csproj", csprojContents, System.Text.Encoding.UTF8);
 		ModManifest modManifest = new ModManifest();
 		modManifest.Name = modName;
-		modManifest.Version = "0.0.0.0";
+		modManifest.Version = "0.0.0";
 		modManifest.ModAssembly = $"{modName}.dll";
-		File.WriteAllText(newModPath + $"\\{modName}.mod.json", JsonUtility.ToJson(modManifest));
+		File.WriteAllText(newModPath + $"\\{modName}.mod.json", JsonUtility.ToJson(modManifest, true));
 
 		string[] modFileContent = new string[] {
 			"using RL2.ModLoader;",
