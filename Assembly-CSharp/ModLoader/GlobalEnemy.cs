@@ -45,4 +45,40 @@ public abstract class GlobalEnemy : ModType
 	/// Ran immedieately after the enemy dies.
 	/// </summary>
 	public virtual void OnKill(GameObject killer) { }
+
+	public void SwapTexture(Texture2D originalTexture, Texture2D newTexture) {
+		ModLoader.Log("attempt texture swap");
+		foreach (Renderer renderer in Enemy.RendererArray) {
+			foreach (string id in renderer.material.GetTexturePropertyNames()) {
+				Texture2D oldTexture = renderer.material.GetTexture(id) as Texture2D;
+				
+				if (oldTexture == null) {
+					continue;
+				}
+				if (oldTexture.width != originalTexture.width || oldTexture.height != originalTexture.height) {
+					ModLoader.Log("Texture size doesn't match");
+					continue;
+				}
+
+				Color32[] origPixels = oldTexture.ConvertToReadable().GetPixels32();
+				Color32[] checkedPixels = originalTexture.GetPixels32();
+				bool matchFailed = false;
+
+				for (int i = 0; i < origPixels.Length; i += origPixels.Length / 20) {	
+					if (checkedPixels[i].r != origPixels[i].r || checkedPixels[i].g != origPixels[i].g || checkedPixels[i].b != origPixels[i].b) {
+						ModLoader.Log($"{checkedPixels[i]} != {origPixels[i]}");
+						matchFailed = true;
+						break;
+					}
+				}
+
+				if (matchFailed) {
+					continue;
+				}
+
+				ModLoader.Log("Swappin'");
+				renderer.material.SetTexture(id, newTexture);
+			}
+		}
+	}
 }
