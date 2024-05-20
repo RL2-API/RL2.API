@@ -21,10 +21,11 @@ public class BuiltinCommands
 			"	<PropertyGroup>",
 			"		<TargetFramework>net40</TargetFramework>",
 			"		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>",
+			"		<LangVersion>10</LangVersion>"
 			"	</PropertyGroup>",
 			"",
 			"	<ItemGroup>",
-			$"		<Reference Include=\"..\\..\\Managed\\*.dll\" Exclude=\"..\\..\\Managed\\Assembly-CSharp-original.dll>",
+			$"		<Reference Include=\"..\\..\\Managed\\*.dll\" Exclude=\"..\\..\\Managed\\Assembly-CSharp-original.dll\">",
 			"			<Private>false</Private>",
 			"		</Reference>",
 			"	</ItemGroup>",
@@ -60,5 +61,6 @@ public class BuiltinCommands
 			"}"
 		};
 		File.WriteAllLines(newModPath + $"\\{modName}.cs", modFileContent, System.Text.Encoding.UTF8);
+		ModLoader.Log($"Mod {modName} was created");
 	}
 }
