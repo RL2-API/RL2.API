@@ -21,7 +21,7 @@ public class BuiltinCommands
 			"	<PropertyGroup>",
 			"		<TargetFramework>net40</TargetFramework>",
 			"		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>",
-			"		<LangVersion>10</LangVersion>"
+			"		<LangVersion>10</LangVersion>",
 			"	</PropertyGroup>",
 			"",
 			"	<ItemGroup>",
@@ -46,7 +46,7 @@ public class BuiltinCommands
 		ModManifest modManifest = new ModManifest();
 		modManifest.Name = modName;
 		modManifest.Version = "0.0.0";
-		modManifest.ModAssembly = $"{modName}.dll";
+		modManifest.ModAssembly = $"bin\\Debug\\net40\\{modName}.dll";
 		File.WriteAllText(newModPath + $"\\{modName}.mod.json", JsonUtility.ToJson(modManifest, true));
 
 		string[] modFileContent = new string[] {

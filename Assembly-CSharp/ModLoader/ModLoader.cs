@@ -73,6 +73,11 @@ public class ModLoader
 
 			loadedManifestNames.Add(modManifest.Name);
 			loadedManifests.Add(modManifest);
+
+			if (!File.Exists($"{modManifestPaths[modManifest]}\\{modManifest.ModAssembly}")) {
+				ModLoader.Log($"Assembly with path {modManifestPaths[modManifest]}\\{modManifest.ModAssembly} was not found!");
+				continue;
+			}
 			modAssemblies.Add(AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{modManifestPaths[modManifest]}\\{modManifest.ModAssembly}")));
 			foreach (string dependency in modManifest.AdditionalDependencies) {
 				AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{modManifestPaths[modManifest]}\\{dependency}"));
