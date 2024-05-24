@@ -4,8 +4,10 @@ namespace TestMod;
 
 public class TestMod : Mod
 {
+	public static string Location { get; private set; }
 	public override void OnLoad() { 
 		Log("CawaBunga");
+		Location = Path;
 	}
 
 	[Command("set-gold")]

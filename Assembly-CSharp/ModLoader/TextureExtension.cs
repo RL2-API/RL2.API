@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 public static class TextureExtension
@@ -13,5 +14,14 @@ public static class TextureExtension
 		RenderTexture.active = previous;
 		RenderTexture.ReleaseTemporary(tmp);
 		return myTexture2D;
+	}
+
+	public static Texture2D LoadTexture(string path) {
+		Texture2D texture = new Texture2D(1, 1);
+		if (!File.Exists(path)) {
+			return texture;
+		}
+		texture.LoadImage(File.ReadAllBytes(path));
+		return texture;
 	}
 }
