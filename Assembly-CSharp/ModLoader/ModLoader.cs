@@ -78,6 +78,19 @@ public class ModLoader
 				ModLoader.Log($"Assembly with path {modManifestPaths[modManifest]}\\{modManifest.ModAssembly} was not found!");
 				continue;
 			}
+
+			List<string> missingDependencies = new List<string>();
+			foreach (string dependency in modManifest.AdditionalDependencies) {
+				if (!File.Exists($"{modManifestPaths[modManifest]}\\{dependency}")) {
+					missingDependencies.Add(dependency);
+				}
+			}
+
+			if (missingDependencies.Count() != 0) {
+				ModLoader.Log($"Assemblies {string.Join(" | ", missingDependencies)} marked as dependencies of {modManifest.Name} not found");
+				continue;
+			}
+
 			modAssemblies.Add(AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{modManifestPaths[modManifest]}\\{modManifest.ModAssembly}")));
 			foreach (string dependency in modManifest.AdditionalDependencies) {
 				AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName($"{modManifestPaths[modManifest]}\\{dependency}"));
@@ -86,9 +99,10 @@ public class ModLoader
 
 		File.WriteAllText(ModPath + "\\enabled.json", JsonUtility.ToJson(modLoadData, true), System.Text.Encoding.UTF8);
 
-		LoadedMods = new Mod[modAssemblies.Count];
-		int currentMod = 0;
+		List<Mod> loadedMods = new List<Mod>();
+		int currentMod = -1;
 		foreach (Assembly assembly in modAssemblies) {
+			currentMod++;
 			Type[] modTypes = assembly.GetTypes().Where(x => x.IsSubclassOf(typeof(Mod))).ToArray();
 			if (modTypes.Length != 1) {
 				Log($"<color=red>Make sure that the mod contains <b>exactly one Mod class</b>, {assembly.GetName().Name} will not be loaded as this condition was not met</color>");
@@ -99,9 +113,10 @@ public class ModLoader
 			mod.Path = modManifestPaths[loadedManifests[currentMod]];
 
 			CommandManager.RegisterCommands(assembly);
-			LoadedMods[currentMod] = mod;
-			currentMod++;
+			loadedMods.Add(mod);
 		}
+
+		LoadedMods = loadedMods.ToArray();
 
 		foreach (Mod mod in LoadedMods) {
 			LoadedModsNames += $" {mod.GetType().Name} |";
