@@ -6,7 +6,7 @@ There are three ways of obtaining the modified Assembly-CSharp.dll file.
 
 ## 2. Download the latest release
 
-## 3. Selfsufficient
+## 3. Be self-sufficient
 For this you will need
 - Python 3.10 or newer, and on your system PATH
 - .NET Framework 4.0
