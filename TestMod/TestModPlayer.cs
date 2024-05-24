@@ -1,4 +1,5 @@
 ﻿using RL2.ModLoader;
+using UnityEngine;
 
 namespace TestMod;
 
@@ -14,4 +15,6 @@ public class TestModPlayer : ModPlayer
 	public override void OnLoad(){
 		Mod.Log("Loaded TestModPlayer");
 	}
+
+	public override bool PreKill(GameObject killer) => false;
 }
