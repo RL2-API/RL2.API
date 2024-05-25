@@ -1,5 +1,10 @@
 # Changelog
 
+# v0.0.1-alpha-3
+- Added ModSystem.ModifyRoomIcon.
+	- Allows to set a map icon for a room that is passed in as the argument.
+- XML documentation is now generated on build and provided alongside the release.
+
 # v0.0.1-alpha-2
 - Fixes to `generate-mod-skeleton`.
 	- The generated `*.csproj` file is now valid.
