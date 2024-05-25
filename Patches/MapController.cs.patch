@@ -1,0 +1,41 @@
+diff --git a/RL2-Source/MapController.cs b/Assembly-CSharp/MapController.cs
+index ce546a8..a541f16 100644
+--- a/RL2-Source/MapController.cs
++++ b/Assembly-CSharp/MapController.cs
+@@ -3,6 +3,7 @@ using System.Collections;
+ using System.Collections.Generic;
+ using RLWorldCreation;
+ using RL_Windows;
++using RL2.ModLoader;
+ using SceneManagement_RL;
+ using UnityEngine;
+ using UnityEngine.SceneManagement;
+@@ -237,8 +238,28 @@ public class MapController : MonoBehaviour
+ 
+ 	public static float MapIconAnimationCurveValue { get; private set; }
+ 
++	public static Dictionary<int, GameObject> TextureHashes = new Dictionary<int, GameObject>();
++
+ 	public static GameObject GetSpecialIconPrefab(GridPointManager roomToCheck, bool getUsed, bool isMergeRoom)
+ 	{
++		Texture2D modMapIconTexture = null;
++		foreach (ModSystem modSystem in GameManager.Instance.GetComponents<ModSystem>()) {
++			if (modMapIconTexture != null) {
++				break;
++			}
++			modMapIconTexture = modSystem.ModifyRoomIcon(roomToCheck, getUsed, isMergeRoom);
++		}
++		if (modMapIconTexture != null) {
++			if (TextureHashes.ContainsKey(modMapIconTexture.GetHashCode())) {
++				return TextureHashes[modMapIconTexture.GetHashCode()];
++			}
++			GameObject modMapIconObject = Instantiate(m_instance.m_specialRoomIconPrefab);
++			Sprite sprite = Sprite.Create(modMapIconTexture, new Rect(0f, 0f, modMapIconTexture.width, modMapIconTexture.height), default);
++			modMapIconObject.GetComponent<SpriteRenderer>().sprite = sprite;
++			TextureHashes.Add(modMapIconTexture.GetHashCode(), modMapIconObject);
++			modMapIconObject.transform.position = new Vector3(-modMapIconTexture.width, -modMapIconTexture.height);
++			return modMapIconObject;
++		}
+ 		if (!roomToCheck.RoomMetaData.ShowIconOnMap)
+ 		{
+ 			return null;

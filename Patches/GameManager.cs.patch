@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/GameManager.cs b/Assembly-CSharp/GameManager.cs
-index 2cdc5a3..6d978a2 100644
+index 2cdc5a3..2f20e5f 100644
 --- a/RL2-Source/GameManager.cs
 +++ b/Assembly-CSharp/GameManager.cs
 @@ -1,5 +1,6 @@
@@ -9,6 +9,22 @@ index 2cdc5a3..6d978a2 100644
  using Steamworks;
  using UnityEngine;
  
+@@ -15,13 +16,13 @@ public class GameManager : MonoBehaviour
+ 
+ 	public static bool IsApplicationClosing { get; private set; }
+ 
+-	private static GameManager Instance
++	public static GameManager Instance
+ 	{
+ 		get
+ 		{
+ 			return m_instance;
+ 		}
+-		set
++		private set
+ 		{
+ 			m_instance = value;
+ 		}
 @@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour
  		{
  			Instance = this;
