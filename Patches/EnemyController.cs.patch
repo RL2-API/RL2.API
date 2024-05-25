@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/EnemyController.cs b/Assembly-CSharp/EnemyController.cs
-index 0158cab..4bb92a0 100644
+index 0158cab..0798b25 100644
 --- a/RL2-Source/EnemyController.cs
 +++ b/Assembly-CSharp/EnemyController.cs
 @@ -1,9 +1,11 @@
@@ -15,9 +15,9 @@ index 0158cab..4bb92a0 100644
  using Sigtrap.Relays;
  using UnityEngine;
 @@ -878,6 +880,26 @@ public class EnemyController : BaseCharacterController, IRoomConsumer, ILevelCon
-		m_targetController = PlayerManager.GetPlayerController();
-		yield return base.Start();
-		m_enemyInitializing = false;
+ 		m_targetController = PlayerManager.GetPlayerController();
+ 		yield return base.Start();
+ 		m_enemyInitializing = false;
 +		foreach (Mod mod in ModLoader.LoadedMods) {
 +			foreach (Type globalEnemy in mod.GetModTypes<GlobalEnemy>()) {
 +				GlobalEnemy globalEnemyInstance = gameObject.AddComponent(globalEnemy) as GlobalEnemy;
@@ -38,13 +38,13 @@ index 0158cab..4bb92a0 100644
 +				Destroy(globalEnemyInstance);
 +			}
 +		}
-	}
+ 	}
  
-	public void ForceFaceTarget()
+ 	public void ForceFaceTarget()
 @@ -1957,11 +1979,18 @@ public class EnemyController : BaseCharacterController, IRoomConsumer, ILevelCon
  
-	public override void KillCharacter(GameObject killer, bool broadcastEvent)
-	{
+ 	public override void KillCharacter(GameObject killer, bool broadcastEvent)
+ 	{
 +		bool preventDeath = false;
 +		foreach (GlobalEnemy globalEnemy in gameObject.GetComponents<GlobalEnemy>()) {
 +			if (!globalEnemy.PreKill(killer)) {
@@ -52,22 +52,22 @@ index 0158cab..4bb92a0 100644
 +				break;
 +			}
 +		}
-		if (base.IsDead)
-		{
-			return;
-		}
+ 		if (base.IsDead)
+ 		{
+ 			return;
+ 		}
 -		if (DisableDeath)
 +		if (DisableDeath || preventDeath)
-		{
-			SetHealth(1f, additive: false, runEvents: true);
-			return;
+ 		{
+ 			SetHealth(1f, additive: false, runEvents: true);
+ 			return;
 @@ -2082,6 +2111,9 @@ public class EnemyController : BaseCharacterController, IRoomConsumer, ILevelCon
-		{
-			StartCoroutine(DeathCoroutine(killer, broadcastEvent));
-		}
+ 		{
+ 			StartCoroutine(DeathCoroutine(killer, broadcastEvent));
+ 		}
 +		foreach (GlobalEnemy globalEnemy in gameObject.GetComponents<GlobalEnemy>()) {
 +			globalEnemy.OnKill(killer);
 +		}
-	}
+ 	}
  
-	private IEnumerator DeathCoroutine(GameObject killer, bool broadcastEvent)
+ 	private IEnumerator DeathCoroutine(GameObject killer, bool broadcastEvent)
