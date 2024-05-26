@@ -10,7 +10,7 @@ namespace RL2.ModLoader;
 
 public class ModLoader
 {
-	public static readonly string Version = "0.0.1-alpha-3";
+	public static readonly string Version = "0.0.1-alpha-4";
 	public static readonly string dataPath = Application.dataPath.Replace("/", "\\");
 	public static readonly string ModPath = dataPath + "\\Mods";
 	public static Mod[] LoadedMods;

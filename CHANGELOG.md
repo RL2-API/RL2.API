@@ -1,5 +1,10 @@
 # Changelog
 
+# v0.0.1-alpha-4
+- Fixed ModifyRoomIcon changes not applying after world reload.
+- Fixed mod map icons not being offset properly.
+- Fixed older versions of Assembly-CSharp beig copied as references during decompilation.
+
 # v0.0.1-alpha-3
 - Added ModSystem.ModifyRoomIcon.
 	- Allows to set a map icon for a room that is passed in as the argument.
