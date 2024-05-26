@@ -14,7 +14,7 @@ index ce546a8..a541f16 100644
  
  	public static float MapIconAnimationCurveValue { get; private set; }
  
-+	public static Dictionary<int, GameObject> TextureHashes = new Dictionary<int, GameObject>();
++	public Dictionary<int, GameObject> TextureHashes = new Dictionary<int, GameObject>();
 +
  	public static GameObject GetSpecialIconPrefab(GridPointManager roomToCheck, bool getUsed, bool isMergeRoom)
  	{
@@ -27,12 +27,12 @@ index ce546a8..a541f16 100644
 +		}
 +		if (modMapIconTexture != null) {
 +			if (TextureHashes.ContainsKey(modMapIconTexture.GetHashCode())) {
-+				return TextureHashes[modMapIconTexture.GetHashCode()];
++				return m_instance.TextureHashes[modMapIconTexture.GetHashCode()];
 +			}
 +			GameObject modMapIconObject = Instantiate(m_instance.m_specialRoomIconPrefab);
 +			Sprite sprite = Sprite.Create(modMapIconTexture, new Rect(0f, 0f, modMapIconTexture.width, modMapIconTexture.height), default);
 +			modMapIconObject.GetComponent<SpriteRenderer>().sprite = sprite;
-+			TextureHashes.Add(modMapIconTexture.GetHashCode(), modMapIconObject);
++			m_instance.TextureHashes.Add(modMapIconTexture.GetHashCode(), modMapIconObject);
 +			modMapIconObject.transform.position = new Vector3(-modMapIconTexture.width, -modMapIconTexture.height);
 +			return modMapIconObject;
 +		}
