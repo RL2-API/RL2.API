@@ -1,2 +1,2 @@
 :: Builds both the Assembly-CSharp and TestMod ::
-dotnet build /property:WarningLevel=0
+dotnet build -v minimal -c Release /property:WarningLevel=0

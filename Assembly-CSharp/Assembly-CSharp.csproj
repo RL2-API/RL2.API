@@ -6,7 +6,7 @@
 		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
 	</PropertyGroup>
 	<PropertyGroup>
-		<LangVersion>11.0</LangVersion>
+		<LangVersion>Latest</LangVersion>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<NoWarn>CS1591</NoWarn>
 	</PropertyGroup>
@@ -18,8 +18,11 @@
 		<DocumentationFile></DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="lib\*.dll">
-			<Private>true</Private>
+		<Reference Include="lib\*.dll" Exclude="lib\Assembly-CSharp*.dll">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="lib\Assembly-CSharp-firstpass.dll">
+			<Private>false</Private>
 		</Reference>
 	</ItemGroup>
 </Project>
