@@ -21,7 +21,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Assembly-CSharp\Assembly-CSharp.csproj" />
 		<Reference Include="..\Assembly-CSharp\lib\*.dll">
-			<Private>true</Private>
+			<Private>false</Private>
 		</Reference>
 	</ItemGroup>
 </Project>
