@@ -30,7 +30,7 @@ index ce546a8..a541f16 100644
 +				return m_instance.TextureHashes[modMapIconTexture.GetHashCode()];
 +			}
 +			GameObject modMapIconObject = Instantiate(m_instance.m_specialRoomIconPrefab);
-+			Sprite sprite = Sprite.Create(modMapIconTexture, new Rect(0f, 0f, modMapIconTexture.width, modMapIconTexture.height), default);
++			Sprite sprite = Sprite.Create(modMapIconTexture, new Rect(0f, 0f, modMapIconTexture.width, modMapIconTexture.height), new Vector2(.5f, .5f));
 +			modMapIconObject.GetComponent<SpriteRenderer>().sprite = sprite;
 +			m_instance.TextureHashes.Add(modMapIconTexture.GetHashCode(), modMapIconObject);
 +			modMapIconObject.transform.position = new Vector3(-modMapIconTexture.width, -modMapIconTexture.height);
