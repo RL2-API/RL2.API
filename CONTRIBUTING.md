@@ -3,7 +3,8 @@
 - Python version at least 3.10
 - Visual Studio 2022
 - git
-- dotnet development tools
+- dotnet framework 4+
+- .net 6
 
 ## How to setup the developer environment?
 1. Fork this repository, clone it and go to the directory you cloned it into.
