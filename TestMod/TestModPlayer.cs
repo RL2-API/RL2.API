@@ -16,5 +16,5 @@ public class TestModPlayer : ModPlayer
 		Mod.Log("Loaded TestModPlayer");
 	}
 
-	public override bool PreKill(GameObject killer) => false;
+	public override bool PreKill(GameObject killer) => !(bool)killer;
 }
