@@ -24,6 +24,19 @@ public abstract class ModSystem : ModType
 	}
 
 	/// <summary>
+	/// Allows modifying character data of generated heirs. Ran at the end of <see cref="CharacterCreator.GenerateRandomCharacter"/>.
+	/// </summary>
+	/// <param name="characterData">The generated heirs CharacterData</param>
+	public virtual void ModifyGeneratedCharacter(CharacterData characterData) { }
+
+	/// <summary>
+	/// Allows modifying character data during character randomization by either the Contrarian trait or by the use of the Transmogrifier.<br></br> 
+	/// Ran at the end of <see cref="CharacterCreator.ApplyRandomizeKitTrait"/>.
+	/// </summary>
+	/// <param name="characterData">The randomized heirs CharacterData</param>
+	public virtual void ModifyCharacterRandomization(CharacterData characterData) { }
+
+	/// <summary>
 	/// Determines whether the instance of this class should be initialized.
 	/// </summary>
 	public virtual bool IsLoadingEnabled() => true;

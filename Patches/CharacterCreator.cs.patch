@@ -1,0 +1,29 @@
+diff --git a/RL2-Source/CharacterCreator.cs b/Assembly-CSharp/CharacterCreator.cs
+index 50b3bfc..01bcb15 100644
+--- a/RL2-Source/CharacterCreator.cs
++++ b/Assembly-CSharp/CharacterCreator.cs
+@@ -1,3 +1,4 @@
++using RL2.ModLoader;
+ using System;
+ using System.Collections;
+ using System.Collections.Generic;
+@@ -93,6 +94,9 @@ public static class CharacterCreator
+ 		}
+ 		GenerateRandomLook(characterData);
+ 		charsAlreadyChosen.Add(characterData);
++		foreach (ModSystem modSystem in GameManager.Instance.GetComponents<ModSystem>()) {
++			modSystem.ModifyGeneratedCharacter(characterData);
++		}
+ 		return characterData;
+ 	}
+ 
+@@ -135,6 +139,9 @@ public static class CharacterCreator
+ 			Debug.LogWarning("<color=yellow>Could not find non-duplicate talent in CharacterCreator.ApplyRandomizeKitTrait.</color>");
+ 		}
+ 		charData.Talent = abilityType3;
++		foreach (ModSystem modSystem in GameManager.Instance.GetComponents<ModSystem>()) {
++			modSystem.ModifyCharacterRandomization(charData);
++		}
+ 	}
+ 
+ 	public static void GenerateClass(ClassType classType, CharacterData charDataToMod)
