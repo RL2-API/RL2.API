@@ -17,4 +17,13 @@ public class TestModSystem : ModSystem
 		}
 		return mapIcon;
 	}
+
+	public override void ModifyGeneratedCharacter(CharacterData characterData) {
+		characterData.Spell = AbilityType.SwordWeapon;
+	}
+
+	public override void ModifyCharacterRandomization(CharacterData characterData) {
+		characterData.Talent = AbilityType.MagicWandWeapon;
+		characterData.TraitTwo = TraitType.SmallHitbox;
+	}
 }
