@@ -27,7 +27,7 @@ public abstract class ModPlayer : ModType
 	/// <summary>
 	/// Ran after the player dies.
 	/// </summary>
-	/// <param name="killer">The GameObject that killed the player</param>
+	/// <param name="killer">The GameObject that killed the player. Is set to <see langword="null"/> if the player retired.</param>
 	public virtual void OnKill(GameObject killer) { }
 	
 	/// <summary>
