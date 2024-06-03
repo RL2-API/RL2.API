@@ -3,10 +3,10 @@
 ## Prerequisites
 - The modloader assembly in your game - follow one of the ways described [here](https://github.com/TacoConKvass/RL2-ModLoader/blob/main/PLAYER-SETUP.md)
 - Visual Studio 2022
-- .NET Framework 4
+- .NET Framework 4.8
 
 ## Creating your first mod
-- Open the game after repalcing the original Asembly-CSharp with the modloader one.
+- Open the game after repalcing the original Asembly-CSharp with the modloader one and copying MonoMod .dll files into the Managed directory.
 - Press ` to open the command console.
 - Run `generate-mod-skeleton  YourModsName`
 	- If you did this for the first time, it will create a `\ModSources` subdirectory in the `Rogue Legacy 2_Data` folder.

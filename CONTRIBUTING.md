@@ -3,7 +3,7 @@
 - Python version at least 3.10
 - Visual Studio 2022
 - git
-- dotnet framework 4+
+- dotnet framework 4.8
 - .net 6
 
 ## How to setup the developer environment?
