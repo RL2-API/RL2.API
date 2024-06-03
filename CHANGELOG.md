@@ -7,6 +7,7 @@
 - Added ModifyCharacterRandomization.
 	- Ran each time a heir is generated with the Contrarian trait (before GenerateRandomCharcter ends).
 	- Ran each time a Transmogrifier is picked up.
+- Fixed ModifyRoomIcon changes not applying after death.
 
 # v0.0.1-alpha-4
 - Fixed ModifyRoomIcon changes not applying after world reload.

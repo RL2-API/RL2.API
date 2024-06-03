@@ -1,5 +1,5 @@
 diff --git a/RL2-Source/MapController.cs b/Assembly-CSharp/MapController.cs
-index ce546a8..a541f16 100644
+index ce546a8..8a94226 100644
 --- a/RL2-Source/MapController.cs
 +++ b/Assembly-CSharp/MapController.cs
 @@ -3,6 +3,7 @@ using System.Collections;
@@ -10,11 +10,11 @@ index ce546a8..a541f16 100644
  using SceneManagement_RL;
  using UnityEngine;
  using UnityEngine.SceneManagement;
-@@ -237,8 +238,28 @@ public class MapController : MonoBehaviour
+@@ -237,8 +238,30 @@ public class MapController : MonoBehaviour
  
  	public static float MapIconAnimationCurveValue { get; private set; }
  
-+	public Dictionary<int, GameObject> TextureHashes = new Dictionary<int, GameObject>();
++	public Dictionary<string, GameObject> TextureHashes = new Dictionary<string, GameObject>();
 +
  	public static GameObject GetSpecialIconPrefab(GridPointManager roomToCheck, bool getUsed, bool isMergeRoom)
  	{
@@ -26,14 +26,16 @@ index ce546a8..a541f16 100644
 +			modMapIconTexture = modSystem.ModifyRoomIcon(roomToCheck, getUsed, isMergeRoom);
 +		}
 +		if (modMapIconTexture != null) {
-+			if (m_instance.TextureHashes.ContainsKey(modMapIconTexture.GetHashCode())) {
-+				return m_instance.TextureHashes[modMapIconTexture.GetHashCode()];
++			string textureHash = string.Concat(modMapIconTexture.GetPixels32());
++            if (m_instance.TextureHashes.ContainsKey(textureHash)) {
++				return m_instance.TextureHashes[textureHash];
 +			}
 +			GameObject modMapIconObject = Instantiate(m_instance.m_specialRoomIconPrefab);
 +			Sprite sprite = Sprite.Create(modMapIconTexture, new Rect(0f, 0f, modMapIconTexture.width, modMapIconTexture.height), new Vector2(.5f, .5f));
 +			modMapIconObject.GetComponent<SpriteRenderer>().sprite = sprite;
-+			m_instance.TextureHashes.Add(modMapIconTexture.GetHashCode(), modMapIconObject);
-+			modMapIconObject.transform.position = new Vector3(-modMapIconTexture.width, -modMapIconTexture.height);
++			GameObject.DontDestroyOnLoad(modMapIconObject);
++            modMapIconObject.SetActive(false);
++            m_instance.TextureHashes.Add(textureHash, modMapIconObject);
 +			return modMapIconObject;
 +		}
  		if (!roomToCheck.RoomMetaData.ShowIconOnMap)
