@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<AssemblyName>Assembly-CSharp</AssemblyName>
 		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-		<TargetFramework>net40</TargetFramework>
+		<TargetFramework>net48</TargetFramework>
 		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
 	</PropertyGroup>
 	<PropertyGroup>
