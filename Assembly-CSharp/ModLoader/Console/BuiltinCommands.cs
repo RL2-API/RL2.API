@@ -19,7 +19,7 @@ public class BuiltinCommands
 			"<Project Sdk=\"Microsoft.NET.Sdk\">",
 			"",
 			"	<PropertyGroup>",
-			"		<TargetFramework>net40</TargetFramework>",
+			"		<TargetFramework>net48</TargetFramework>",
 			"		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>",
 			"		<LangVersion>10</LangVersion>",
 			"	</PropertyGroup>",
