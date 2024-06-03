@@ -24,7 +24,7 @@ public abstract class ModSystem : ModType
 	}
 
 	/// <summary>
-	/// Allows modifying character data of generated heirs. Ran at the end of <see cref="CharacterCreator.GenerateRandomCharacter"/>.
+	/// Allows modifying character data of generated heirs.
 	/// </summary>
 	/// <param name="characterData">The generated heirs CharacterData</param>
 	public virtual void ModifyGeneratedCharacter(CharacterData characterData) { }
