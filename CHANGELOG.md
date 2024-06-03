@@ -1,6 +1,7 @@
 # Changelog
 
-# v0.0.2 - UNRELEASED
+# v0.0.2
+- Moved to .NET Framework 4.8
 - MonoMod is now included alongside the API releases.
 - Added ModifyGeneratedCharacterData method to ModSystem.
 	- Ran after a heir is generated, allows for modyfying data of that heir.
