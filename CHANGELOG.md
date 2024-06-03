@@ -1,5 +1,13 @@
 # Changelog
 
+# v0.0.2 - UNRELEASED
+- MonoMod is now included alongside the API releases.
+- Added ModifyGeneratedCharacterData method to ModSystem.
+	- Ran after a heir is generated, allows for modyfying data of that heir.
+- Added ModifyCharacterRandomization.
+	- Ran each time a heir is generated with the Contrarian trait (before GenerateRandomCharcter ends).
+	- Ran each time a Transmogrifier is picked up.
+
 # v0.0.1-alpha-4
 - Fixed ModifyRoomIcon changes not applying after world reload.
 - Fixed mod map icons not being offset properly.
