@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
@@ -20,7 +20,4 @@
 		</Reference>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Remove="ModLoader.cs~RF2d8fd08.TMP" />
-	</ItemGroup>
 </Project>
