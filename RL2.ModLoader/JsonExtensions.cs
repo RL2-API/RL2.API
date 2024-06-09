@@ -2,6 +2,9 @@ using System.Linq;
 
 namespace Rewired.Utils.Libraries.TinyJson;
 
+/// <summary>
+/// JSON related extension methods
+/// </summary>
 public static class JsonExtensions
 {
 	/// <summary>
