@@ -106,8 +106,8 @@ public partial class ModLoader
 	public static object? LoadAPI() {
 		if (File.Exists(APIPath)) {
 			Assembly RL2API = AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(APIPath));
-			Log("Loaded RL2.API");
-			return Activator.CreateInstance(RL2API.GetTypes().Where(T => T.Name == "Initializer").ElementAt(0));
+			Log("Start loading RL2.API...");
+			return Activator.CreateInstance(RL2API.GetTypes().Where(T => T.Name == "APIStore").ElementAt(0));
 		}
 		Log("RL2.API.dll not found");
 		return null;
