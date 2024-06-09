@@ -35,17 +35,18 @@ public partial class ModLoader
 	public static ModList? ModList;
 
 	/// <summary>
-	/// 
+	/// All found ModManifests
 	/// </summary>
 	public static ModManifest[]? ModManifests;
 
 	/// <summary>
-	/// 
+	/// Key: one of the found ModManifests;<br/>
+	/// Value: path to the directory in which the ModManifest is located
 	/// </summary>
 	public static Dictionary<ModManifest, string>? ModManifestPaths;
 
 	/// <summary>
-	/// Stores a refernece to the RL2.API's APIStore. Is <see langword="null"/> if the RL2.API hasn't been loaded
+	/// Stores a refernece to the RL2.API's APIStore.Is <see langword="null"/> if the RL2.API hasn't been loaded
 	/// </summary>
 	public static object? APIStore;
 
@@ -55,7 +56,7 @@ public partial class ModLoader
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
 	public static void Initialize() {
 		EnsureBasicDirectoriesExist();
-		FillModLists();
+		GetModManifests();
 		APIStore = LoadAPI();
 		LoadNonAPICompliantMods();
 	}
@@ -76,9 +77,9 @@ public partial class ModLoader
 	}
 
 	/// <summary>
-	/// 
+	/// Fills the ModManifests list as well as the ModManifestPaths dictionary with found entries
 	/// </summary>
-	public static void FillModLists() {
+	public static void GetModManifests() {
 		// Get all manifest files from ModPath
 		DirectoryInfo directory = new DirectoryInfo(ModPath);
 		FileInfo[] fileInfos = directory.GetFiles("*.mod.json", SearchOption.AllDirectories);
@@ -90,12 +91,17 @@ public partial class ModLoader
 			ModManifests[i] = JsonUtility.FromJson<ModManifest>(File.ReadAllText(fileInfos[i].FullName));
 			ModManifestPaths.TryAdd(ModManifests[i], fileInfos[i].Directory.FullName);
 		}
+
+		Array.Sort(ModManifests);
 	}
 
 	/// <summary>
 	/// Loads the RL2.API
 	/// </summary>
-	/// <returns>Wheteher the API was found</returns>
+	/// <returns>
+	/// An object representing the main entrypoint of the RL2.AP;<br/>
+	/// <see langword="null"/> if the RL2.API was not loaded;
+	/// </returns>
 	public static object? LoadAPI() {
 		if (File.Exists(APIPath)) {
 			Assembly RL2API = AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(APIPath));
@@ -107,7 +113,7 @@ public partial class ModLoader
 	}
 
 	/// <summary>
-	/// Loads all mods that are using either a different API or prefer to have all hooks made by them
+	/// Loads all mods that are not compliant with the RL2.API;
 	/// </summary>
 	public static void LoadNonAPICompliantMods() { }
 
