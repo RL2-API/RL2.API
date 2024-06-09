@@ -37,13 +37,13 @@ public partial class ModLoader
 	/// <summary>
 	/// All found ModManifests
 	/// </summary>
-	public static ModManifest[]? ModManifests;
+	public static ModManifest[] ModManifests = [];
 
 	/// <summary>
 	/// Key: one of the found ModManifests;<br/>
 	/// Value: path to the directory in which the ModManifest is located
 	/// </summary>
-	public static Dictionary<ModManifest, string>? ModManifestPaths;
+	public static Dictionary<ModManifest, string> ModManifestPaths = [];
 
 	/// <summary>
 	/// Stores a refernece to the RL2.API's APIStore.Is <see langword="null"/> if the RL2.API hasn't been loaded
@@ -56,6 +56,7 @@ public partial class ModLoader
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
 	public static void Initialize() {
 		EnsureBasicDirectoriesExist();
+		ModList = JsonParser.FromJson<ModList>(File.ReadAllText(ModListPath));
 		GetModManifests();
 		APIStore = LoadAPI();
 		LoadNonAPICompliantMods();
