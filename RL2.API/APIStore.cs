@@ -112,7 +112,7 @@ public class APIStore
 		Type modType = assembly.GetTypes().First(type => type.IsSubclassOf(typeof(Mod)));
 		Mod? mod = null;
 		try {
-			mod = Activator.CreateInstance(modType) as Mod;
+			mod = (Mod)Activator.CreateInstance(modType);
 		}
 		catch (Exception ex) {
 			Mod.Log($"Failed to load {manifest.Name}: {ex}");
