@@ -21,12 +21,11 @@ public class ModManifest
 	/// <summary>
 	/// Mod version. Must follow the <see href="https://semver.org/">symantic versioning scheme</see>
 	/// </summary>
-	[Serialize]
-	internal string ModVersion;
+	public string Version;
 	/// <summary>
 	/// Relative path from the mod manifest to the mods assembly
 	/// </summary>
-	public string AssemblyPath;
+	public string ModAssembly;
 	/// <summary>
 	/// List of all mod names which take priority in loading
 	/// </summary>
@@ -35,15 +34,23 @@ public class ModManifest
 	/// Version of the mod as a semantic version object
 	/// </summary>
 	[DoNotSerialize]
-	public SemVersion Version => new SemVersion(ModVersion);
+	public SemVersion SemVersion => new SemVersion(this.Version);
 
+	/// <summary>
+	/// Compares to ModManifest objects
+	/// </summary>
+	/// <param name="comparedObject"></param>
+	/// <returns></returns>
 	public int CompareTo(ModManifest comparedObject) {
+		if (this == null) {
+			return comparedObject == null ? 0 : 1;
+		}
 		if (comparedObject == null) {
 			return -1;
 		}
 
 		if (Name == comparedObject.Name) {
-			return Version.CompareTo(comparedObject.Version);
+			return SemVersion.CompareTo(comparedObject.SemVersion);
 		}
 
 		return LoadAfter.Contains(comparedObject.Name) ? 1 : 0;
