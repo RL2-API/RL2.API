@@ -39,7 +39,7 @@ public class APIStore
 			Mod? mod = TryLoadMod(modAssemblies[i], notDisabledModManifests[i]);
 			if (mod != null) {
 				loadedMods.Add(mod);
-				LoadedModNames.Add($"{notDisabledModManifests[i].Name} v{notDisabledModManifests[i].VersionString}");
+				LoadedModNames.Add($"{notDisabledModManifests[i].Name} v{notDisabledModManifests[i].Version}");
 				continue;
 			}
 			Mod.Log("Load failed");
