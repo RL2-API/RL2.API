@@ -13,17 +13,17 @@ public abstract class Mod
 	/// <summary>
 	/// Path to the mod, set at load
 	/// </summary>
-	public string Path { get; set; }
+	public string Path { get; internal set; }
 
 	/// <summary>
-	/// All types from this mod.
+	/// All types from this mod
 	/// </summary>
 	internal Type[] Content;
 
 	/// <summary>
 	/// Gets all types inheriting from T.
 	/// </summary>
-	/// <typeparam name="T">The type you want to get derived classes of.</typeparam>
+	/// <typeparam name="T">The type you want to get derived classes of</typeparam>
 	public Type[] GetModTypes<T>() where T : ModType => Content.Where(type => type.IsSubclassOf(typeof(T))).ToArray();
 
 	/// <summary>
