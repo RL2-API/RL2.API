@@ -8,7 +8,7 @@ namespace RL2.ModLoader;
 /// Decalres the base info about the mod. A JSON file containing this information has a "*.mod.json" extension
 /// </summary>
 [Serializable]
-public class ModManifest
+public class ModManifest : IComparable<ModManifest>
 {
 	/// <summary>
 	/// Mod name
