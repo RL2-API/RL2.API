@@ -1,3 +1,4 @@
+using RL2.ModLoader.APIEndpoints;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,10 +22,18 @@ public class APIStore
 	/// </summary>
 	public static List<string> LoadedModNames = [];
 
+	/// <summary>
+	/// 
+	/// </summary>
+	public static APIEndpointManager APIEndpoints = new APIEndpointManager();
+
+	/// <summary>
+	/// 
+	/// </summary>
 	public APIStore() {
+		Mod.Log("RL2.API loaded");
 		LoadedModNames = [];
 		LoadedMods = LoadAPICompliantMods();
-		Mod.Log("RL2.API loaded");
 		Mod.Log($"Disabled mods: {string.Join(" | ", ModLoader.ModList?.Disabled)}");
 		Mod.Log($"Enabled mods: {string.Join(" | ", LoadedModNames)}");
 	}
@@ -42,7 +51,6 @@ public class APIStore
 				LoadedModNames.Add($"{notDisabledModManifests[i].Name} v{notDisabledModManifests[i].Version}");
 				continue;
 			}
-			Mod.Log("Load failed");
 		}
 		return loadedMods.ToArray();
 	}
