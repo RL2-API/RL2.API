@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
+		<BaseOutputPath>../bin/ExampleMod</BaseOutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="..\lib\*.dll">
+			<Private>false</Private>
+		</Reference>
+        <ProjectReference Include="..\RL2.API\RL2.API.csproj" />
+        <Content CopyToOutputDirectory="Always" Include="ExampleMod.mod.json"/>
+	</ItemGroup>
+
+</Project>
