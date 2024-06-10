@@ -2,7 +2,7 @@
 .vs
 [Bb]in
 [Oo]bj
-*/__pycache__
+*.sln
 
 # Sublime text project
 *.sublime-workspace
