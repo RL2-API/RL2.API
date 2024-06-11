@@ -23,13 +23,18 @@
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<ItemGroup>
-			<Source Include="$(ProjectDir)\**\*.*" Exclude="$(ProjectDir)\obj\**\*.*;$(ProjectDir)\bin\**\*.*" />
+			<Assets Include="$(ProjectDir)\Assets\*.*" />
+		</ItemGroup>
+		
+		<ItemGroup>
+			<Source Include="$(ProjectDir)\**\*.*" Exclude="$(ProjectDir)\obj\**\*.*;$(ProjectDir)\bin\**\*.*;$(ProjectDir)ExampleMod.mod.json" />
 		</ItemGroup>
 		
 		<Copy SourceFiles="$(ProjectDir)\ExampleMod.mod.json" DestinationFolder="$(TargetDir)\ExampleMod" />
 		<Copy SourceFiles="$(TargetDir)\ExampleMod.pdb" DestinationFolder="$(TargetDir)\ExampleMod" />
 		<Copy SourceFiles="$(TargetDir)\ExampleMod.dll" DestinationFolder="$(TargetDir)\ExampleMod" />
 		<Copy SourceFiles="@(Source)" DestinationFolder="$(TargetDir)\ExampleMod\src\%(RecursiveDir)" />
+		<Copy SourceFiles="@(Assets)" DestinationFolder="$(TargetDir)\ExampleMod\Assets" />
 		<Delete Files="$(TargetDir)\ExampleMod.pdb;$(TargetDir)\ExampleMod.dll" />
 	</Target>
 
