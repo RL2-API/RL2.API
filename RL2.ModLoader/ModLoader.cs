@@ -32,7 +32,7 @@ public partial class ModLoader
 	/// <summary>
 	/// A <see cref="ModList"/> object representing all enabled and disabled mods
 	/// </summary>
-	public static ModList? ModList;
+	public static ModList ModList;
 
 	/// <summary>
 	/// All found ModManifests
@@ -60,6 +60,7 @@ public partial class ModLoader
 		GetModManifests();
 		APIStore = LoadAPI();
 		LoadNonAPICompliantMods();
+		File.WriteAllText(ModListPath, JsonWriter.ToJson(ModList).Prettify());
 	}
 
 	/// <summary>
