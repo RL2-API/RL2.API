@@ -8,7 +8,7 @@
 *.sublime-project
 
 # Libraries
-lib
-!lib/Mono*.dll
-lib/Mono.Posix.dll
-lib/Mono.Security.dll
+source/lib
+!source/lib/Mono*.dll
+source/lib/Mono.Posix.dll
+source/lib/Mono.Security.dll
