@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace RL2.ModLoader;
 
 /// <summary>
@@ -8,9 +10,9 @@ public class ModList
 	/// <summary>
 	/// List of names of enabled mods
 	/// </summary>
-	public string[] Enabled;
+	public List<string> Enabled;
 	/// <summary>
 	/// List of names of disabled mods
 	/// </summary>
-	public string[] Disabled;
+	public List<string> Disabled;
 }
