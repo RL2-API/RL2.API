@@ -37,10 +37,11 @@ public abstract class Mod
 	public virtual void OnUnload() { }
 	
 	/// <summary>
-	/// 
+	/// Logs the message with your "[YourModClassName]"
 	/// </summary>
 	/// <param name="message"></param>
 	public static void Log(object message) {
-		Debug.Log($"[{Assembly.GetCallingAssembly().GetName().Name}]: {message}");
+		string name = Assembly.GetCallingAssembly().GetName().Name == "RL2.API" ? "RL2.API" : Assembly.GetCallingAssembly().GetTypes().First(type => type.IsSubclassOf(typeof(Mod))).Name;
+		Debug.Log($"[{name}]: {message}");
 	}
 }
