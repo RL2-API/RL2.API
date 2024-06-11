@@ -68,7 +68,7 @@ public abstract class GlobalEnemy : GlobalType
 				}
 				if (currentTexture.width != targetedTexture.width || currentTexture.height != targetedTexture.height) {
 					if (debug) {
-						ModLoader.Log("Texture size doesn't match");
+						ModLoader.Log($"Texture size doesn't match: Current - {currentTexture.width}x{currentTexture.height} | Checked - {targetedTexture.width}x{targetedTexture.height}");
 					}
 					continue;
 				}

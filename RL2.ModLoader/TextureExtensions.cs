@@ -34,6 +34,7 @@ public static class TextureExtension
 	public static Texture2D LoadTexture(string path) {
 		Texture2D texture = new Texture2D(1, 1);
 		if (!File.Exists(path)) {
+			ModLoader.Log($"Texture with path {path} not found");
 			return texture;
 		}
 		texture.LoadImage(File.ReadAllBytes(path));
