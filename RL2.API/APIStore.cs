@@ -133,4 +133,20 @@ public class APIStore
 		mod.Content = assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ModType))).ToArray();
 		return mod;
 	}
+
+	/// <summary>
+	/// Retrieves the instance of the provided mod
+	/// </summary>
+	/// <typeparam name="T">Wanted mod</typeparam>
+	/// <returns>
+	/// Stored instance of found mod;
+	/// </returns>
+	public static T GetModInstance<T>() where T : Mod {
+		foreach (Mod mod in LoadedMods) {
+			if (mod is T) {
+				return (T)mod;
+			}
+		}
+		return null;
+	}
 }
