@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RL2.ModLoader;
@@ -26,9 +25,12 @@ public abstract class GlobalEnemy : GlobalType
 
 	/// <summary>
 	/// Determines which enemies the instance of this GlobalEnemy will be attached to.<br/>
-	/// Leave empty to attach to every enemy.
+	/// Return <see langword="true"/> to attach this object to the enemy;<br/>
+	/// Return <see langword="false"/> to prevent attaching this object to the enemy;
 	/// </summary>
-	public virtual Dictionary<int, EnemyRank[]> AppliesToEnemy => new Dictionary<int, EnemyRank[]>();
+	/// <param name="enemyType">The checked enemies type, casted to <see langword="int"/></param>
+	/// <param name="rank">The checked enemies rank</param>
+	public virtual bool AppliesToEnemy(int enemyType, EnemyRank rank) => true;
 
 	/// <summary>
 	/// Ran on enemy spawn.

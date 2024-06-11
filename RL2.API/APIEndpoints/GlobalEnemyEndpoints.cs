@@ -27,18 +27,9 @@ public class GlobalEnemyEndpoints
 		foreach (Mod mod in APIStore.LoadedMods) {
 			foreach (Type globalEnemy in mod.GetModTypes<GlobalEnemy>()) {
 				GlobalEnemy globalEnemyInstance = (GlobalEnemy)self.gameObject.AddComponent(globalEnemy);
-
-				// If the AppliesToEnemy dictionary is empty, assume that this GlobalEnemy should be applied to every enemy.
-				if (globalEnemyInstance.AppliesToEnemy.Keys.Count == 0) {
-					globalEnemyInstance.OnSpawn();
-					continue;
-				}
-
-				if (globalEnemyInstance.AppliesToEnemy.TryGetValue((int)self.EnemyType, out EnemyRank[] enemyRanks)) {
-					if (enemyRanks.IndexOf(self.EnemyRank) != -1) {
+				if (globalEnemyInstance.AppliesToEnemy((int)self.EnemyType, self.EnemyRank)) {
 						globalEnemyInstance.OnSpawn();
 						continue;
-					}
 				}
 
 				UnityEngine.Object.Destroy(globalEnemyInstance);
