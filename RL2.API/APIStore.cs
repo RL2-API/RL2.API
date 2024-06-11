@@ -79,7 +79,7 @@ public class APIStore
 
 			if (ModLoader.ModList?.Enabled.IndexOf(modName) == -1) {
 				Mod.Log($"New mod \"{modName}\" was found, and it was automatically enabled");
-				ModLoader.ModList?.Enabled.Add(modName);
+				ModLoader.ModList.Enabled.Add(modName);
 			}
 
 			string modAssemblyPath = ModLoader.ModManifestPaths?[modManifest] + "\\" + modManifest.ModAssembly;
@@ -129,7 +129,7 @@ public class APIStore
 			return null;
 		}
 
-		mod.Path = ModLoader.ModManifestPaths?[manifest] ?? ModLoader.ModPath;
+		mod.Path = ModLoader.ModManifestPaths?[manifest] + "\\" ?? ModLoader.ModPath;
 		mod.Content = assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ModType))).ToArray();
 		return mod;
 	}
