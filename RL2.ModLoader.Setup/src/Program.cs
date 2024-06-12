@@ -30,6 +30,9 @@ public class Program
 		string LibrariesLocation = File.ReadAllText(ConfigPath) + "Rogue Legacy 2_Data\\Managed\\";
 		DirectoryInfo librariesDirectory = new DirectoryInfo(LibrariesLocation);
 		foreach (FileInfo fileInfo in librariesDirectory.GetFiles("**.dll")) {
+			if (fileInfo.Name == "RL2.ModLoader.dll" || fileInfo.Name == "RL2.API.dll") {
+				continue;
+			}
 			Console.WriteLine("Copying " + fileInfo.Name + " to " + OutputLibPath + fileInfo.Name);
 			File.Copy(fileInfo.FullName, OutputLibPath + fileInfo.Name, true);
 		}
