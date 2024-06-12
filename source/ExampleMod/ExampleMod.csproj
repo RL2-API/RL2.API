@@ -5,6 +5,7 @@
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>latest</LangVersion>
+		<Configurations>Release</Configurations>
 	</PropertyGroup>
 
 	<PropertyGroup>

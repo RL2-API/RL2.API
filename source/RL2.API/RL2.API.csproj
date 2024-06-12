@@ -6,6 +6,7 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>latest</LangVersion>
         <RootNamespace>RL2.ModLoader</RootNamespace>
+        <Configurations>Release</Configurations>
 	</PropertyGroup>
 
 	<PropertyGroup>
