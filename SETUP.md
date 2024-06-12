@@ -2,7 +2,7 @@
 Here are three ways of how to install the mod loader and API.
 
 ## 1. Download the latest release
-... then unpack it into the games `Managed` directory inside of `Rogue Legacy 2_Data`, then launch the game.
+... unpack it, then put all `.dll` and `.xml` files in the `Rogue Legacy 2_Data\Managed` directory and the `.json` files into `Rogue Legacy 2_Data`
 
 ## 2. Be self-sufficient
 See: [contributing guide](https://github.com/TacoConKvass/RL2-ModLoader/blob/main/CONTRIBUTING.md)
