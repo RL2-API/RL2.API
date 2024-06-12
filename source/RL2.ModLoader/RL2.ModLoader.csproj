@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
 		<Nullable>enable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>latest</LangVersion>
 		<Configurations>Release</Configurations>
 	</PropertyGroup>
@@ -21,5 +21,18 @@
 			<Private>false</Private>
 		</Reference>
 	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<ItemGroup>
+			<ScriptingJson Include="$(ProjectDir)\RuntimeInitializeOnLoads.json;$(ProjectDir)\ScriptingAssemblies.json" />
+		</ItemGroup>
+
+		<ItemGroup>
+			<MonoMod Include="$(ProjectDir)\..\lib\Mono*.dll;$(ProjectDir)\..\lib\MonoMod*.xml;" Exclude="$(ProjectDir)\..\lib\MonoPosix.dll;$(ProjectDir)\..\lib\Mono.Posix.dll;$(ProjectDir)\..\lib\Mono.Security.dll;"/>
+		</ItemGroup>
+
+		<Copy SourceFiles="@(MonoMod)" DestinationFolder="$(TargetDir)" />
+		<Copy SourceFiles="@(ScriptingJson)" DestinationFolder="$(TargetDir)" />
+	</Target>
 
 </Project>
