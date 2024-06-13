@@ -9,8 +9,8 @@ public class ExampleGlobalEnemy : GlobalEnemy {
 	}
 
 	public override void OnSpawn() {
-		Texture2D oldTexture = TextureExtension.LoadTexture(APIStore.GetModInstance<ExampleMod>().Path + "Assets\\SpellSwordBoss_Texture.png");
-		Texture2D newTexture = TextureExtension.LoadTexture(APIStore.GetModInstance<ExampleMod>().Path + "Assets\\Naameow.png");
+		Texture2D oldTexture = TextureExtension.LoadTexture(RL2API.GetModInstance<ExampleMod>().Path + "Assets\\SpellSwordBoss_Texture.png");
+		Texture2D newTexture = TextureExtension.LoadTexture(RL2API.GetModInstance<ExampleMod>().Path + "Assets\\Naameow.png");
 		SwapTexture(oldTexture, newTexture, true);
 	}
 }
