@@ -10,7 +10,7 @@ namespace RL2.ModLoader;
 /// <summary>
 /// Main entrypoint for the RL2.API
 /// </summary>
-public class APIStore
+public class RL2API
 {
 	/// <summary>
 	/// All loaded mods using RL2.API
@@ -30,7 +30,7 @@ public class APIStore
 	/// <summary>
 	/// 
 	/// </summary>
-	public APIStore() {
+	public RL2API() {
 		Mod.Log("RL2.API loaded");
 		LoadedModNames = [];
 		LoadedMods = LoadAPICompliantMods();

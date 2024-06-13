@@ -24,7 +24,7 @@ public class GlobalEnemyEndpoints
 	/// </summary>
 	public static IEnumerator AttachGlobalEnemyInstance(Func<EnemyController, IEnumerator> orig, EnemyController self) {
 		yield return orig(self);
-		foreach (Mod mod in APIStore.LoadedMods) {
+		foreach (Mod mod in RL2API.LoadedMods) {
 			foreach (Type globalEnemy in mod.GetModTypes<GlobalEnemy>()) {
 				GlobalEnemy globalEnemyInstance = (GlobalEnemy)self.gameObject.AddComponent(globalEnemy);
 				if (globalEnemyInstance.AppliesToEnemy((int)self.EnemyType, self.EnemyRank)) {
@@ -43,6 +43,10 @@ public class GlobalEnemyEndpoints
 	public static Hook PreKill = new Hook(
 		typeof(EnemyController).GetMethod("KillCharacter", BindingFlags.Public | BindingFlags.Instance),
 		(Action<EnemyController, GameObject, bool> orig, EnemyController self, GameObject killer, bool broadcastEvents) => {
+			if (self.IsDead) {
+				return;
+			}
+
 			bool PreventDeath = false;
 			foreach (GlobalEnemy globalEnemy in self.gameObject.GetComponents<GlobalEnemy>()) {
 				if (!globalEnemy.PreKill(killer)) {

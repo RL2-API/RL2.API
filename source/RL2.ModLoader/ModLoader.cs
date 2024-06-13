@@ -108,7 +108,7 @@ public partial class ModLoader
 		if (File.Exists(APIPath)) {
 			Assembly RL2API = AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(APIPath));
 			Log("Start loading RL2.API...");
-			return Activator.CreateInstance(RL2API.GetTypes().Where(T => T.Name == "APIStore").ElementAt(0));
+			return Activator.CreateInstance(RL2API.GetTypes().First(type => type.Name == "RL2API"));
 		}
 		Log("RL2.API.dll not found");
 		return null;
