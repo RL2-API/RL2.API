@@ -23,7 +23,12 @@ public class GlobalEnemyEndpoints
 	/// <inheritdoc cref="AttachGlobalEnemyInstnces"/>
 	/// </summary>
 	public static IEnumerator AttachGlobalEnemyInstance(Func<EnemyController, IEnumerator> orig, EnemyController self) {
-		yield return orig(self);
+		IEnumerator originalStart = orig(self);
+
+		while (originalStart.MoveNext()) {
+			yield return originalStart.Current;
+		}
+
 		foreach (Mod mod in RL2API.LoadedMods) {
 			foreach (Type globalEnemy in mod.GetModTypes<GlobalEnemy>()) {
 				GlobalEnemy globalEnemyInstance = (GlobalEnemy)self.gameObject.AddComponent(globalEnemy);
