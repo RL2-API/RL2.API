@@ -20,6 +20,7 @@
 		<Reference Include="..\lib\*.dll">
 			<Private>false</Private>
 		</Reference>
+        <None Remove="RuntimeInitializeOnLoads.json;ScriptingAssemblies.json" />
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
