@@ -14,7 +14,7 @@ public class GlobalEnemyEndpoints
 	/// <summary>
 	/// Handles attaching GlobalEnemy objects to the enemies and running OnSpawn
 	/// </summary>
-	public static Hook AttachGlobalEnemyInstnces = new Hook(
+	internal static Hook AttachGlobalEnemyInstnces = new Hook(
 		typeof(EnemyController).GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance),
 		AttachGlobalEnemyInstance
 	);
@@ -22,7 +22,7 @@ public class GlobalEnemyEndpoints
 	/// <summary>
 	/// <inheritdoc cref="AttachGlobalEnemyInstnces"/>
 	/// </summary>
-	public static IEnumerator AttachGlobalEnemyInstance(Func<EnemyController, IEnumerator> orig, EnemyController self) {
+	internal static IEnumerator AttachGlobalEnemyInstance(Func<EnemyController, IEnumerator> orig, EnemyController self) {
 		IEnumerator originalStart = orig(self);
 
 		while (originalStart.MoveNext()) {
@@ -45,7 +45,7 @@ public class GlobalEnemyEndpoints
 	/// <summary>
 	/// Handles death prevention for enemies
 	/// </summary>
-	public static Hook PreKill = new Hook(
+	internal static Hook PreKill = new Hook(
 		typeof(EnemyController).GetMethod("KillCharacter", BindingFlags.Public | BindingFlags.Instance),
 		(Action<EnemyController, GameObject, bool> orig, EnemyController self, GameObject killer, bool broadcastEvents) => {
 			if (self.IsDead) {
@@ -70,7 +70,7 @@ public class GlobalEnemyEndpoints
 	/// <summary>
 	/// Handles calling <seealso cref="GlobalEnemy.OnKill"/>
 	/// </summary>
-	public static Hook OnKill = new Hook(
+	internal static Hook OnKill = new Hook(
 		typeof(EnemyController).GetMethod("KillCharacter", BindingFlags.Public | BindingFlags.Instance),
 		(Action<EnemyController, GameObject, bool> orig, EnemyController self, GameObject killer, bool broadcastEvents) => {
 			orig(self, killer, broadcastEvents);
