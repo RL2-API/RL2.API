@@ -45,7 +45,7 @@ public partial class RL2API
 	/// <summary>
 	/// Handles death prevention for enemies
 	/// </summary>
-	internal static Hook PreKill = new Hook(
+	internal static Hook PreKill_Enemy = new Hook(
 		typeof(EnemyController).GetMethod("KillCharacter", BindingFlags.Public | BindingFlags.Instance),
 		(Action<EnemyController, GameObject, bool> orig, EnemyController self, GameObject killer, bool broadcastEvents) => {
 			if (self.IsDead) {
@@ -70,7 +70,7 @@ public partial class RL2API
 	/// <summary>
 	/// Handles calling <seealso cref="GlobalEnemy.OnKill"/>
 	/// </summary>
-	internal static Hook OnKill = new Hook(
+	internal static Hook OnKill_Enemy = new Hook(
 		typeof(EnemyController).GetMethod("KillCharacter", BindingFlags.Public | BindingFlags.Instance),
 		(Action<EnemyController, GameObject, bool> orig, EnemyController self, GameObject killer, bool broadcastEvents) => {
 			orig(self, killer, broadcastEvents);
