@@ -1,4 +1,3 @@
-using RL2.ModLoader.APIEndpoints;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +9,7 @@ namespace RL2.ModLoader;
 /// <summary>
 /// Main entrypoint for the RL2.API
 /// </summary>
-public class RL2API
+public partial class RL2API
 {
 	/// <summary>
 	/// All loaded mods using RL2.API
@@ -21,11 +20,6 @@ public class RL2API
 	/// A list of all names of loaded mods
 	/// </summary>
 	public static List<string> LoadedModNames = [];
-
-	/// <summary>
-	/// 
-	/// </summary>
-	public static APIEndpointManager APIEndpoints = new APIEndpointManager();
 
 	/// <summary>
 	/// 

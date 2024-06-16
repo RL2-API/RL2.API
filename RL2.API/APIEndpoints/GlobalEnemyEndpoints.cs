@@ -4,12 +4,12 @@ using System.Collections;
 using System.Reflection;
 using UnityEngine;
 
-namespace RL2.ModLoader.APIEndpoints;
+namespace RL2.ModLoader;
 
 /// <summary>
 /// Stores all RL2.API endpoints for the GlobalEnemy class
 /// </summary>
-public class GlobalEnemyEndpoints
+public partial class RL2API
 {
 	/// <summary>
 	/// Handles attaching GlobalEnemy objects to the enemies and running OnSpawn
@@ -29,7 +29,7 @@ public class GlobalEnemyEndpoints
 			yield return originalStart.Current;
 		}
 
-		foreach (Mod mod in RL2API.LoadedMods) {
+		foreach (Mod mod in LoadedMods) {
 			foreach (Type globalEnemy in mod.GetModTypes<GlobalEnemy>()) {
 				GlobalEnemy globalEnemyInstance = (GlobalEnemy)self.gameObject.AddComponent(globalEnemy);
 				if (globalEnemyInstance.AppliesToEnemy((int)self.EnemyType, self.EnemyRank)) {

@@ -6,12 +6,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-namespace RL2.ModLoader.APIEndpoints;
+namespace RL2.ModLoader;
 
-/// <summary>
-/// 
-/// </summary>
-public class ModSystemEndpoints
+public partial class RL2API
 {
 	/// <summary>
 	/// 
@@ -29,7 +26,7 @@ public class ModSystemEndpoints
 				return;
 			}
 			GameManagerInstance = self;
-			foreach (Mod mod in RL2API.LoadedMods) {
+			foreach (Mod mod in LoadedMods) {
 				foreach (Type modSystemType in mod.GetModTypes<ModSystem>()) {
 					ModSystem modSystem = (ModSystem)self.gameObject.AddComponent(modSystemType);
 					if (!modSystem.IsLoadingEnabled()) {
