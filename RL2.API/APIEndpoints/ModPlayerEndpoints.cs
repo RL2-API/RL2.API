@@ -223,7 +223,7 @@ public partial class RL2API
 	internal static Hook ActualMaxMana = new Hook(
 		typeof(PlayerController).GetProperty("ActualMaxMana", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
 		(Func<PlayerController, int> orig, PlayerController self) => {
-			return Mathf.Clamp(Mathf.CeilToInt((self.ClassModdedMaxMana * (1f + self.TraitMaxManaMod)) + self.PostModMaxManaAdd + StatBonuses.Mana) * StatBonuses.ManaMultiplier, 1, int.MaxValue);
+			return (int)Mathf.Clamp(Mathf.CeilToInt((self.ClassModdedMaxMana * (1f + self.TraitMaxManaMod)) + self.PostModMaxManaAdd + StatBonuses.Mana) * StatBonuses.ManaMultiplier, 1, int.MaxValue);
 		}
 	);
 
