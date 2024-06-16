@@ -4,7 +4,7 @@ using System.IO;
 public class Program
 {
 	static readonly string ConfigPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "config\\game-install-path.txt";
-	static string OutputLibPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.Replace("RL2.ModLoader.Setup\\", "") + "source\\lib\\";
+	static string OutputLibPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase.Replace("RL2.ModLoader.Setup\\", "") + "lib\\";
 
 	public static void Main(string[] args) {
 		if (!File.Exists(ConfigPath)) {
