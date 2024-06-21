@@ -55,14 +55,12 @@ public partial class RL2API
 	/// <summary>
 	/// Handles calling <see cref="ModSystem.ModifyGeneratedCharacter(CharacterData)"/><br/>
 	/// </summary>
-	/// <remarks>Currently broken; DO NOT USE</remarks>
-	internal static ILHook ModifyGeneratedCharacter = new ILHook(
+	public static ILHook ModifyGeneratedCharacter = new ILHook(
 		typeof(LineageWindowController).GetMethod("CreateRandomCharacters", BindingFlags.NonPublic | BindingFlags.Instance),
 		(ILContext il) => {
-			ILCursor ilCursor = new ILCursor(il).Goto(0);
+			ILCursor ilCursor = new ILCursor(il);
 
 			ilCursor.GotoNext(
-				MoveType.Before,
 				i => i.MatchLdloc(4),
 				i => i.MatchLdarg(0),
 				i => i.MatchLdfld<LineageWindowController>("m_characterDataArray"),
@@ -72,17 +70,77 @@ public partial class RL2API
 				i => i.MatchSub()
 			);
 			
+			ILLabel endpoint = ilCursor.DefineLabel();
+			ilCursor.MarkLabel(endpoint);
 			ilCursor.Emit(OpCodes.Ldarg, 0);
 			ilCursor.Emit(OpCodes.Ldfld, typeof(LineageWindowController).GetField("m_characterDataArray", BindingFlags.NonPublic | BindingFlags.Instance));
 			ilCursor.Emit(OpCodes.Ldloc, 4);
 			ilCursor.Emit(OpCodes.Ldelem_Ref);
 			ilCursor.EmitDelegate((CharacterData characterData) => {
-				Mod.Log("Worked... maybe");
 				foreach (ModSystem modSystem in GameManagerInstance!.GetComponents<ModSystem>()) {
-					modSystem.ModifyCharacterRandomization(characterData);
+					modSystem.ModifyGeneratedCharacter(characterData);
 				}
 			});
-			ilCursor.EmitDelegate(() => { Debug.Log("Huh"); });
+			Debug.Log(il.ToString());
+
+			ilCursor.Goto(0);
+			ilCursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdsfld<SaveManager>(nameof(SaveManager.PlayerSaveData)),
+				i => i.MatchLdfld<PlayerSaveData>(nameof(PlayerSaveData.PlayerDiedToZombie))
+			);
+
+			ilCursor.Remove();
+			ilCursor.Emit(OpCodes.Brfalse, endpoint);
+
+			ilCursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdsfld<SaveManager>(nameof(SaveManager.PlayerSaveData)),
+				i => i.MatchLdfld<PlayerSaveData>(nameof(PlayerSaveData.TimesRolledLineage))
+			);
+
+			ilCursor.Remove();
+			ilCursor.Emit(OpCodes.Brtrue, endpoint);
+
+			ilCursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchLdfld<LineageWindowController>("m_characterDataArray"),
+				i => i.MatchLdloc(4),
+				i => i.MatchLdelemRef(),
+				i => i.MatchLdcI4(0),
+				i => i.MatchStfld<CharacterData>(nameof(CharacterData.AntiqueTwoOwned))
+			);
+
+			ilCursor.Remove();
+			ilCursor.Emit(OpCodes.Br, endpoint);
+
+			ilCursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchLdfld<LineageWindowController>("m_characterDataArray"),
+				i => i.MatchLdloc(4),
+				i => i.MatchLdelemRef(),
+				i => i.MatchLdcI4(0),
+				i => i.MatchStfld<CharacterData>(nameof(CharacterData.AntiqueOneOwned))
+			);
+
+			ilCursor.Remove();
+			ilCursor.Emit(OpCodes.Br_S, endpoint);
+
+			ilCursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchLdfld<LineageWindowController>("m_characterDataArray"),
+				i => i.MatchLdloc(4),
+				i => i.MatchLdelemRef(),
+				i => i.MatchLdcI4(0),
+				i => i.MatchStfld<CharacterData>(nameof(CharacterData.AntiqueTwoOwned))
+			);
+
+			ilCursor.Remove();
+			ilCursor.Emit(OpCodes.Br_S, endpoint);
+
 		}
 	);
 

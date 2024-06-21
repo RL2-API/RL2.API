@@ -30,7 +30,6 @@ public abstract class ModSystem : ModType
 	/// Allows modifying character data of generated heirs
 	/// </summary>
 	/// <param name="characterData">The generated heirs CharacterData</param>
-	/// <remarks>Currently broken; DO NOT USE</remarks>
 	public virtual void ModifyGeneratedCharacter(CharacterData characterData) { }
 
 	/// <summary>

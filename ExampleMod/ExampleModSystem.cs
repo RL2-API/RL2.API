@@ -5,7 +5,7 @@ namespace ExampleMod;
 
 internal class ExampleModSystem : ModSystem
 {
-	public override void ModifyCharacterRandomization(CharacterData characterData) {
+	public override void ModifyGeneratedCharacter(CharacterData characterData) {
 		characterData.Name = "Test";
 	}
 
