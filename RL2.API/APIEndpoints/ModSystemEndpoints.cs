@@ -55,7 +55,7 @@ public partial class RL2API
 	/// <summary>
 	/// Handles calling <see cref="ModSystem.ModifyGeneratedCharacter(CharacterData)"/><br/>
 	/// </summary>
-	public static ILHook ModifyGeneratedCharacter = new ILHook(
+	internal static ILHook ModifyGeneratedCharacter = new ILHook(
 		typeof(LineageWindowController).GetMethod("CreateRandomCharacters", BindingFlags.NonPublic | BindingFlags.Instance),
 		(ILContext il) => {
 			ILCursor ilCursor = new ILCursor(il);
