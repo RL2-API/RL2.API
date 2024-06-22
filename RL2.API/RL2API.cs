@@ -28,6 +28,7 @@ public partial class RL2API
 		Mod.Log("RL2.API loaded");
 		LoadedModNames = [];
 		LoadedMods = LoadAPICompliantMods();
+		LoadBuiltinCommands();
 		Mod.Log($"Disabled mods: {string.Join(" | ", ModLoader.ModList?.Disabled)}");
 		Mod.Log($"Enabled mods: {string.Join(" | ", LoadedModNames)}");
 	}
@@ -127,6 +128,13 @@ public partial class RL2API
 		mod.Content = assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ModType))).ToArray();
 		CommandManager.RegisterCommands(assembly);
 		return mod;
+	}
+
+	/// <summary>
+	/// Loads all builtin commands
+	/// </summary>
+	public static void LoadBuiltinCommands() {
+		CommandManager.Commands.Add("new-mod", typeof(BuiltinCommands).GetMethod("NewMod", BindingFlags.Public | BindingFlags.Static));
 	}
 
 	/// <summary>
