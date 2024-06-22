@@ -1,6 +1,5 @@
 namespace RL2.ModLoader;
 
-
 #pragma warning disable 1591
 public sealed class PlayerStatBonuses
 {
@@ -37,8 +36,8 @@ public sealed class PlayerStatBonuses
 	public float MagicCritDamageMultiplier = 1f;
 	public float FocusMultiplier = 0;
 	public float ResolveMultiplier = 0;
-	public float StrengthMultiplier = 1f;
-	public float IntelligenceMultiplier = 1f;
+	public float StrengthMultiplier = 0f;
+	public float IntelligenceMultiplier = 0f;
 	public float InvincibilityDurationMultiplier = 1f;
 
 	public void Reset() {
@@ -68,8 +67,8 @@ public sealed class PlayerStatBonuses
 		MagicCritDamageMultiplier = 1f;
 		FocusMultiplier = 0;
 		ResolveMultiplier = 0;
-		StrengthMultiplier = 1f;
-		IntelligenceMultiplier = 1f;
+		StrengthMultiplier = 0f;
+		IntelligenceMultiplier = 0f;
 		InvincibilityDurationMultiplier = 0;
 	}
 }
