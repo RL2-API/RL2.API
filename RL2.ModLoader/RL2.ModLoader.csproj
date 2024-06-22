@@ -29,7 +29,7 @@
 		</ItemGroup>
 
 		<ItemGroup>
-			<MonoMod Include="$(ProjectDir)\..\lib\Mono*.dll;$(ProjectDir)\..\lib\MonoMod*.xml;" Exclude="$(ProjectDir)\..\lib\MonoPosix.dll;$(ProjectDir)\..\lib\Mono.Posix.dll;$(ProjectDir)\..\lib\Mono.Security.dll;"/>
+			<MonoMod Include="$(ProjectDir)\..\lib\Mono*.dll;$(ProjectDir)\..\lib\MonoMod*.xml;" Exclude="$(ProjectDir)\..\lib\MonoPosix.dll;$(ProjectDir)\..\lib\Mono.Posix.dll;$(ProjectDir)\..\lib\Mono.Security.dll;" />
 		</ItemGroup>
 
 		<Copy SourceFiles="@(MonoMod)" DestinationFolder="$(TargetDir)" />
