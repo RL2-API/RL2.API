@@ -8,8 +8,8 @@
 		- If a modder chooses not to use the API they get more freedom in how to structure their project, for a cost of potentially more work.
 		- Mods not using RL2.API are related to as `not API compliant`.
 	- Provided RL2.ModLoader.Setup for easier setup.
-- Ported features to new version:
-	- GlobalEnemy
+- All features ported to the new version
+- **RL2.ModLaoder now works on both the Epic Games Store and the Steam version of the game**
 
 # v0.0.2
 - Moved to .NET Framework 4.8
