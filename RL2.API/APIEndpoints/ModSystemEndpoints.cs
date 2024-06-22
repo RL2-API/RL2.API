@@ -11,12 +11,12 @@ namespace RL2.ModLoader;
 public partial class RL2API
 {
 	/// <summary>
-	/// 
+	/// Stores the <see cref="GameManager"/> instance
 	/// </summary>
 	public static GameManager GameManagerInstance;
 
 	/// <summary>
-	/// 
+	/// Handles attaching <see cref="ModSystem"/> instances
 	/// </summary>
 	internal static Hook AttachModSystemInstances = new Hook(
 		typeof(GameManager).GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance),
@@ -40,7 +40,7 @@ public partial class RL2API
 	);
 
 	/// <summary>
-	/// 
+	/// Handles calling <see cref="ModSystem.ModifyCharacterRandomization(CharacterData)"/>
 	/// </summary>
 	internal static Hook ModifyCharacterRandomization = new Hook(
 		typeof(CharacterCreator).GetMethod("ApplyRandomizeKitTrait", BindingFlags.Public | BindingFlags.Static),
@@ -144,12 +144,12 @@ public partial class RL2API
 	);
 
 	/// <summary>
-	/// 
+	/// Stores the <see cref="MapController"/> instance
 	/// </summary>
 	public static MapController MapControllerInstance;
 
 	/// <summary>
-	/// 
+	/// Handles setting <see cref="MapControllerInstance"/>
 	/// </summary>
 	internal static Hook SetMapControllerInstance = new Hook(
 		typeof(MapController).GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance),
@@ -163,12 +163,12 @@ public partial class RL2API
 	);
 
 	/// <summary>
-	/// 
+	/// Stores map icons as prefabs, accessed by a 
 	/// </summary>
 	public static Dictionary<string, GameObject> TextureHashToPrefab = new Dictionary<string, GameObject>();
 
 	/// <summary>
-	/// 
+	/// Handles modifying the rooms icon on the map
 	/// </summary>
 	internal static Hook ModifyRoomIcon = new Hook(
 		typeof(MapController).GetMethod("GetSpecialIconPrefab", BindingFlags.Public | BindingFlags.Static),
