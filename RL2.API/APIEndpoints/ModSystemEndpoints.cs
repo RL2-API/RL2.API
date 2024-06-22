@@ -59,31 +59,9 @@ public partial class RL2API
 		typeof(LineageWindowController).GetMethod("CreateRandomCharacters", BindingFlags.NonPublic | BindingFlags.Instance),
 		(ILContext il) => {
 			ILCursor ilCursor = new ILCursor(il);
-
-			ilCursor.GotoNext(
-				i => i.MatchLdloc(4),
-				i => i.MatchLdarg(0),
-				i => i.MatchLdfld<LineageWindowController>("m_characterDataArray"),
-				i => i.MatchLdlen(),
-				i => i.MatchConvI4(),
-				i => i.MatchLdcI4(1),
-				i => i.MatchSub()
-			);
-			
 			ILLabel endpoint = ilCursor.DefineLabel();
-			ilCursor.MarkLabel(endpoint);
-			ilCursor.Emit(OpCodes.Ldarg, 0);
-			ilCursor.Emit(OpCodes.Ldfld, typeof(LineageWindowController).GetField("m_characterDataArray", BindingFlags.NonPublic | BindingFlags.Instance));
-			ilCursor.Emit(OpCodes.Ldloc, 4);
-			ilCursor.Emit(OpCodes.Ldelem_Ref);
-			ilCursor.EmitDelegate((CharacterData characterData) => {
-				foreach (ModSystem modSystem in GameManagerInstance!.GetComponents<ModSystem>()) {
-					modSystem.ModifyGeneratedCharacter(characterData);
-				}
-			});
-			Debug.Log(il.ToString());
 
-			ilCursor.Goto(0);
+			// Repoint the breaks to point to the coorrect place
 			ilCursor.GotoNext(
 				MoveType.After,
 				i => i.MatchLdsfld<SaveManager>(nameof(SaveManager.PlayerSaveData)),
@@ -141,6 +119,27 @@ public partial class RL2API
 			ilCursor.Remove();
 			ilCursor.Emit(OpCodes.Br_S, endpoint);
 
+			// Insert out own code to modify character data after it was created
+			ilCursor.GotoNext(
+				i => i.MatchLdloc(4),
+				i => i.MatchLdarg(0),
+				i => i.MatchLdfld<LineageWindowController>("m_characterDataArray"),
+				i => i.MatchLdlen(),
+				i => i.MatchConvI4(),
+				i => i.MatchLdcI4(1),
+				i => i.MatchSub()
+			);
+			
+			ilCursor.MarkLabel(endpoint);
+			ilCursor.Emit(OpCodes.Ldarg, 0);
+			ilCursor.Emit(OpCodes.Ldfld, typeof(LineageWindowController).GetField("m_characterDataArray", BindingFlags.NonPublic | BindingFlags.Instance));
+			ilCursor.Emit(OpCodes.Ldloc, 4);
+			ilCursor.Emit(OpCodes.Ldelem_Ref);
+			ilCursor.EmitDelegate((CharacterData characterData) => {
+				foreach (ModSystem modSystem in GameManagerInstance!.GetComponents<ModSystem>()) {
+					modSystem.ModifyGeneratedCharacter(characterData);
+				}
+			});
 		}
 	);
 
