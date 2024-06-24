@@ -3,9 +3,15 @@ using UnityEngine;
 
 namespace RL2.ModLoader;
 
+/// <summary>
+/// Store for all builtin RL2.API commands
+/// </summary>
 public class BuiltinCommands
 {
-
+	/// <summary>
+	/// Creates a new mod directory
+	/// </summary>
+	/// <param name="args"></param>
 	public static void NewMod(string[] args) {
 		string modName = "";
 		if (args.Length != 1) {
