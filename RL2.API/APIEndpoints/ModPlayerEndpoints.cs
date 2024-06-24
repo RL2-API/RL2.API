@@ -1,7 +1,10 @@
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using System;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace RL2.ModLoader;
 
@@ -82,162 +85,290 @@ public partial class RL2API
 		}
 	);
 
-	internal static Hook ActualResolve = new Hook(
+	internal static ILHook ActualResolve = new ILHook(
 		typeof(PlayerController).GetProperty("ActualResolve", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, float> orig, PlayerController self) => {
-			float MinimumResolve = 0f;
-			SoulShopObj soulShopObj = SaveManager.ModeSaveData.GetSoulShopObj(SoulShopType.MinimumResolveBlock);
-			if (!soulShopObj.IsNativeNull()) {
-				MinimumResolve += soulShopObj.CurrentStatGain;
-			}
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
+			
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdloc(2),
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_ResolveAdd"),
+				i => i.MatchAdd()
+			);
 
-			MinimumResolve += EquipmentManager.Get_EquipmentSet_BonusTypeStatGain(EquipmentSetBonusType.MinimumResolve);
-			float BaseResolve = self.BaseResolve;
-			if (ChallengeManager.IsInChallenge) {
-				BaseResolve = 2.5f;
-			}
+			cursor.EmitDelegate((float vanillaResolve) => vanillaResolve + StatBonuses.Resolve);
 
-			return Mathf.Clamp((BaseResolve + self.ResolveAdd + StatBonuses.Resolve) * (1f + self.ResolveMod + StatBonuses.ResolveMultiplier), MinimumResolve, float.MaxValue);
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdcR4(1),
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_ResolveMod"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaResolveMultiplier) => vanillaResolveMultiplier + StatBonuses.ResolveMultiplier);
 		}
 	);
 	
-	
-	internal static Hook ActualDexterity = new Hook(
+	internal static ILHook ActualDexterity = new ILHook(
 		typeof(PlayerController).GetProperty("ActualDexterity", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, float> orig, PlayerController self) => {
-			float FullDexterity = Mathf.Clamp((self.BaseDexterity + self.DexterityAdd + self.DexterityTemporaryAdd + StatBonuses.Dextrity) * (1f + self.DexterityMod + self.DexterityTemporaryMod + StatBonuses.DextrityMultiplier), 0f, float.MaxValue);
-			if (ChallengeManager.IsInChallenge) {
-				return ChallengeManager.ApplyStatCap(FullDexterity, isDexterityOrFocus: true);
-			}
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
 
-			return FullDexterity;
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_DexterityTemporaryAdd"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaDexterity) => vanillaDexterity + StatBonuses.Dextrity);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_DexterityTemporaryMod"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaDexterityMultiplier) => vanillaDexterityMultiplier + StatBonuses.DextrityMultiplier);
 		}
 	);
 
-	internal static Hook ActualCritChance = new Hook(
+	internal static ILHook ActualCritChance = new ILHook(
 		typeof(PlayerController).GetProperty("ActualCritChance", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, float> orig, PlayerController self) => {
-			return Mathf.Clamp(self.CritChanceAdd + self.CritChanceTemporaryAdd + 0f + StatBonuses.CritChance, 0f, 100f);
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_CritChanceTemporaryAdd"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaCritChance) => vanillaCritChance + StatBonuses.CritChance);
 		}
 	);
 
-	internal static Hook ActualCritDamage = new Hook(
+	internal static ILHook ActualCritDamage = new ILHook(
 		typeof(PlayerController).GetProperty("ActualCritDamage", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, float> orig, PlayerController self) => {
-			return Mathf.Clamp((self.BaseCritDamage + self.CritDamageAdd + self.CritDamageTemporaryAdd + StatBonuses.CritDamage) * StatBonuses.CritDamageMultiplier, 0f, float.MaxValue);
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCallvirt<PlayerController>("get_CritDamageTemporaryAdd"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaCritChance) => vanillaCritChance + StatBonuses.CritDamage);
 		}
 	);
 
-	internal static Hook ActualFocus = new Hook(
+	internal static ILHook ActualFocus = new ILHook(
 		typeof(PlayerController).GetProperty("ActualFocus", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, float> orig, PlayerController self) => {
-			float FullFocus = Mathf.Clamp((self.BaseFocus + self.FocusAdd + self.FocusTemporaryAdd + StatBonuses.Focus) * (1f + self.FocusMod + self.FocusTemporaryMod + StatBonuses.FocusMultiplier), 0f, float.MaxValue);
-			if (ChallengeManager.IsInChallenge) {
-				return ChallengeManager.ApplyStatCap(FullFocus, isDexterityOrFocus: true);
-			}
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
 
-			return FullFocus;
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCallvirt<PlayerController>("get_FocusTemporaryAdd"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaFocus) => vanillaFocus + StatBonuses.Focus);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_FocusTemporaryMod"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaFocusMultiplier) => vanillaFocusMultiplier + StatBonuses.FocusMultiplier);
 		}
 	);
 
-	internal static Hook ActualMagicCritChance = new Hook(
+	internal static ILHook ActualMagicCritChance = new ILHook(
 		typeof(PlayerController).GetProperty("ActualMagicCritChance", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, float> orig, PlayerController self) => {
-			return Mathf.Clamp(self.MagicCritChanceAdd + self.MagicCritChanceTemporaryAdd + 0f + StatBonuses.MagicCritChance, 0f, 1f);
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_MagicCritChanceTemporaryAdd"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaMagicCritChance) => vanillaMagicCritChance + StatBonuses.MagicCritChance);
 		}
 	);
 
-	internal static Hook ActualMagicCritDamage = new Hook(
+	internal static ILHook ActualMagicCritDamage = new ILHook(
 		typeof(PlayerController).GetProperty("ActualMagicCritDamage", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, float> orig, PlayerController self) => {
-			return Mathf.Clamp((self.BaseMagicCritDamage + self.MagicCritDamageAdd + self.MagicCritDamageTemporaryAdd + StatBonuses.MagicCritDamage) * StatBonuses.MagicCritDamageMultiplier, 0f, float.MaxValue);
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_MagicCritDamageTemporaryAdd"),
+				i => i.MatchAdd()
+			);
+
+
+			cursor.EmitDelegate((float vanillaMagicCritDamage) => vanillaMagicCritDamage + StatBonuses.MagicCritDamage);
 		}
 	);
 
-	internal static Hook ActualArmor = new Hook(
+	internal static ILHook ActualArmor = new ILHook(
 		typeof(PlayerController).GetProperty("ActualArmor", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, int> orig, PlayerController self) => {
-			return Mathf.Clamp((int)((self.BaseArmor + self.ArmorAdds + StatBonuses.Armor) * StatBonuses.ArmorMultiplier), 0, int.MaxValue);
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_ArmorAdds"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((int vanillaArmor) => (int)((vanillaArmor + StatBonuses.Armor) * StatBonuses.ArmorMultiplier));
+		}
+	);
+	
+	internal static ILHook ActualStrength = new ILHook(
+		typeof(BaseCharacterController).GetProperty("ActualStrength", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<BaseCharacterController>("get_StrengthTemporaryAdd"),
+				i => i.MatchConvR4(),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaStrength) => vanillaStrength + StatBonuses.Strength);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<BaseCharacterController>("get_StrengthTemporaryMod"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaStrengthMultiplier) => vanillaStrengthMultiplier + StatBonuses.StrengthMultiplier);
 		}
 	);
 
-	internal static Hook ActualStrength = new Hook(
-		typeof(PlayerController).GetProperty("ActualStrength", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, float> orig, PlayerController self) => {
-			float FullStrength = Mathf.Clamp((self.BaseStrength + self.StrengthAdd + self.StrengthTemporaryAdd + StatBonuses.Strength) * (1f + self.StrengthMod + self.StrengthTemporaryMod + StatBonuses.StrengthMultiplier), 0f, float.MaxValue);
-			if (ChallengeManager.IsInChallenge) {
-				FullStrength = ChallengeManager.ApplyStatCap(FullStrength);
-				FullStrength *= 1f + ChallengeManager.GetActiveHandicapMod();
-			}
+	internal static ILHook ActualMagic = new ILHook(
+		typeof(BaseCharacterController).GetProperty("ActualMagic", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
 
-			return FullStrength;
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<BaseCharacterController>("get_MagicTemporaryAdd"),
+				i => i.MatchConvR4(),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaIntelligence) => vanillaIntelligence + StatBonuses.Intelligence);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<BaseCharacterController>("get_MagicTemporaryMod"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaIntelligenceMultiplier) => vanillaIntelligenceMultiplier + StatBonuses.IntelligenceMultiplier);
 		}
 	);
 
-	internal static Hook ActualMagic = new Hook(
-		typeof(PlayerController).GetProperty("ActualMagic", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, float> orig, PlayerController self) => {
-			float FullMagic = Mathf.Clamp((self.BaseMagic + self.MagicAdd + self.MagicTemporaryAdd + StatBonuses.Intelligence) * (1f + self.MagicMod + self.MagicTemporaryMod + StatBonuses.IntelligenceMultiplier), 0f, float.MaxValue);
-			if (ChallengeManager.IsInChallenge) {
-				FullMagic = ChallengeManager.ApplyStatCap(FullMagic);
-				FullMagic *= 1f + ChallengeManager.GetActiveHandicapMod();
-			}
-
-			return FullMagic;
-		}
-	);
-
-	internal static Hook ActualVitality = new Hook(
+	internal static ILHook ActualVitality = new ILHook(
 		typeof(PlayerController).GetProperty("ActualVitality", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, int> orig, PlayerController self) => {
-			int FullVitality = self.BaseVitality + self.VitalityAdd;
-			FullVitality = Mathf.CeilToInt(FullVitality * (1f + self.VitalityMod));
-			if (ChallengeManager.IsInChallenge) {
-				FullVitality = (int)ChallengeManager.ApplyStatCap(FullVitality);
-				FullVitality = Mathf.CeilToInt(FullVitality * (1f + ChallengeManager.GetActiveHandicapMod()));
-			}
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
 
-			return FullVitality;
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_VitalityAdd"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((int vanillaVitality) => vanillaVitality + StatBonuses.Vitality);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_VitalityMod"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((float vanillaVitalityMultiplier) => vanillaVitalityMultiplier + StatBonuses.VitalityMultiplier);
 		}
 	);
 
-	internal static Hook ActualMaxHealth = new Hook(
+	internal static ILHook ActualMaxHealth = new ILHook(
 		typeof(PlayerController).GetProperty("ActualMaxHealth", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, int> orig, PlayerController self) => {
-			if (TraitManager.IsTraitActive(TraitType.OneHitDeath)) {
-				return 1;
-			}
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
 
-			int classModdedMaxHealth = self.ClassModdedMaxHealth;
-			float traitMaxHealthMod = self.TraitMaxHealthMod;
-			float relicMaxHealthMod = self.RelicMaxHealthMod;
-			float maxHealthMod = self.MaxHealthMod;
-			float HealthMultiplier = 1f + traitMaxHealthMod + relicMaxHealthMod + maxHealthMod + StatBonuses.HealthMultiplier;
-			float ResolvePenalty = Mathf.Clamp(1f - self.ActualResolve, 0f, 1f);
-			int BonusHealth = 150;
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchAdd(),
+				i => i.MatchAdd()
+			);
 
-			return Mathf.Clamp(Mathf.CeilToInt((classModdedMaxHealth + BonusHealth + StatBonuses.Health) * (1f - ResolvePenalty) * HealthMultiplier), 1, int.MaxValue);
+			cursor.EmitDelegate((float vanillaMaxHealthMultiplier) => vanillaMaxHealthMultiplier + StatBonuses.HealthMultiplier);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdcI4(150)
+			);
+
+			cursor.EmitDelegate((int vanillaMaxHealth) => vanillaMaxHealth + StatBonuses.Health);
 		}
 	);
 
-	internal static Hook ActualMaxMana = new Hook(
+	internal static ILHook ActualMaxMana = new ILHook(
 		typeof(PlayerController).GetProperty("ActualMaxMana", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
-		(Func<PlayerController, int> orig, PlayerController self) => {
-			return (int)Mathf.Clamp(Mathf.CeilToInt((self.ClassModdedMaxMana * (1f + self.TraitMaxManaMod)) + self.PostModMaxManaAdd + StatBonuses.Mana) * StatBonuses.ManaMultiplier, 1, int.MaxValue);
+		(ILContext il) => {
+			ILCursor cursor = new ILCursor(il);
+
+			cursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchCall<PlayerController>("get_PostModMaxManaAdd"),
+				i => i.MatchAdd()
+			);
+
+			cursor.EmitDelegate((int vanillaMaxMana) => (int)((vanillaMaxMana + StatBonuses.Mana) * StatBonuses.ManaMultiplier));
 		}
 	);
 
 	internal static Hook ActualRuneWeight = new Hook(
 		typeof(PlayerController).GetProperty("ActualRuneWeight", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
 		(Func<PlayerController, int> orig, PlayerController self) => {
-			return self.BaseRuneWeight + self.RuneWeightAdds + StatBonuses.RuneWeight;
+			return orig(self) + StatBonuses.RuneWeight;
 		}
 	);
 
 	internal static Hook ActualAllowedEquipmentWeight = new Hook(
 		typeof(PlayerController).GetProperty("ActualAllowedEquipmentWeight", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
 		(Func<PlayerController, int> orig, PlayerController self) => {
-			return self.BaseAllowedEquipmentWeight + self.AllowedEquipmentWeightAdds + StatBonuses.EquipmentWeight;
+			return orig(self) + StatBonuses.EquipmentWeight;
 		}
 	);
 }
