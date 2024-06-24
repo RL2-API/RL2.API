@@ -10,7 +10,12 @@ public abstract class ModPlayer : ModType
 	/// <summary>
 	/// An instance of the PlayerController attached to the current player
 	/// </summary>
-	public PlayerController PlayerController => PlayerManager.GetPlayerController();
+	public PlayerController Player => PlayerManager.GetPlayerController();
+
+	/// <summary>
+	/// An instance of <see cref="PlayerStatBonuses"/> that is applied to the current Player
+	/// </summary>
+	public PlayerStatBonuses StatBonuses => RL2API.StatBonuses;
 
 	/// <summary>
 	/// Ran immedieately after attaching the ModPlayer to the PlayerController
