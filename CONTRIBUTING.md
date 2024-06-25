@@ -6,7 +6,7 @@
 
 ## How to setup the developer environment?
 1. Fork this repository, clone it and go to the directory you cloned it into.
-2. Go to RL2.ModLoader.Setup and run the provided executable.
+2. Go to RL2.ModLoader.DevSetup and run the provided executable.
 	- It will ask for the path to your games copy, which the will be stored in the `config` subdirectory.
 	- Alternatively, you can copy all `*.dll` files in the `Managed` directory of your game yourself.
 3. Your development environment is ready.
