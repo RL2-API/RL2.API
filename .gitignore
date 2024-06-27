@@ -2,19 +2,16 @@
 .vs
 [Bb]in
 [Oo]bj
-*/__pycache__
 
-
-# Rogue Legacy 2 Source Code
-RL2-Source
-Assembly-CSharp/**/*.cs
-!Assembly-CSharp/ModLoader/**/*.cs
-!Assembly-CSharp/Assembly-CSharp.csproj
-Assembly-CSharp/lib
-
-# Toolchain Configuration
-tools/config.json
+# Setup tool config
+RL2.ModLoader.Setup/config
 
 # Sublime text project
 *.sublime-workspace
 *.sublime-project
+
+# Libraries
+lib/*.dll
+!lib/Mono*.dll
+lib/Mono.Posix.dll
+lib/Mono.Security.dll

@@ -2,6 +2,8 @@
 # RL2-ModLoader
 A work-in-progress Rogue Legacy 2 mod loader and API
 
-### [I am a player](https://github.com/TacoConKvass/RL2-ModLoader/blob/main/PLAYER-SETUP.md)
+### [I want to play/make mods](https://github.com/TacoConKvass/RL2-ModLoader/blob/main/SETUP.md)
 ### [I want to contribute](https://github.com/TacoConKvass/RL2-ModLoader/blob/main/CONTRIBUTING.md)
-### [I want to create mods](https://github.com/TacoConKvass/RL2-ModLoader/blob/main/MODDER-SETUP.md)
+
+## Where can I download mods?
+- Right now mods made for the RL2-ModLoader are only distributed on the CDG Discord server in the `#mod-forums` channel.

@@ -1,19 +1,17 @@
-# How to contribute to the mod loader?
+# Contributing
 ## Prerequisites
-- Python version at least 3.10
-- Visual Studio 2022
+- .NET Framework 4.8
+- Visual Studio 2022 (not necessary, but advised)
 - git
-- dotnet framework 4.8
-- .net 6
 
 ## How to setup the developer environment?
 1. Fork this repository, clone it and go to the directory you cloned it into.
-2. Open your terminal in the directory.
-3. Run `python tools/dev.py configure` and specify the aboslute path to your game's folder.
-4. Run `python tools/dev.py decompile` and follow the instructions.
-5. Once the decompilation is completed open the Assembly-CSharp.sln file and make your changes.
-6. Once you are done with a change run `python tools/dev.py prepare-to-patch`
-	- If you made any changes to files that are already patched by the modloader, move it's patches outside of the Patches directory.
-7. Run `scripts\create-patch EditedFile.cs` to create a patch for a vanilla file.
-8. After you are done with all your changes, commit your changes and push to your fork of the repository.
-9. Make a pull request with your changes.
+2. Go to RL2.ModLoader.DevSetup and run the provided executable.
+	- It will ask for the path to your games copy, which the will be stored in the `config` subdirectory.
+	- Alternatively, you can copy all `*.dll` files in the `Managed` directory of your game yourself.
+3. Your development environment is ready.
+
+## What after building the solution?
+1. Copy all `.dll` and `.xml` files into your `Managed` directory.
+2. Copy the `.json` files into `Rogue Legacy 2_Data`.
+3. Now the game should run under the mod loader.
