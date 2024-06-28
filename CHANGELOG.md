@@ -1,6 +1,6 @@
 # Changelog
 
-# v0.1.0 (UNRELEASED)
+# v0.1.0
 - Separated the mod loader and API from th main games asembly.
 	- This should allow for an easier compilation process for contributors/self-sufficeint modders.
 - Split the mod loader into two projects: RL2.ModLoader and RL2.API.
