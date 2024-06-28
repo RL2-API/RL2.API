@@ -17,4 +17,4 @@ A work-in-progress Rogue Legacy 2 mod loader and API
 		- Mods not using RL2.API are related to as `not API compliant`.
 	- Provided RL2.ModLoader.Setup for easier setup.
 - All features ported to the new version
-- **RL2.ModLaoder now works on both the Epic Games Store and the Steam version of the game**
+- **RL2.ModLoader now works on both the Epic Games Store and the Steam version of the game**
