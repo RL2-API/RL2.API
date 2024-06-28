@@ -8,8 +8,7 @@ A work-in-progress Rogue Legacy 2 mod loader and API
 ## Where can I download mods?
 - Right now mods made for the RL2-ModLoader are only distributed on the CDG Discord server in the `#mod-forums` channel.
 
-## Latest changes:
-# v0.1.0
+# Latest changes - version 0.1.0:
 - Separated the mod loader and API from th main games asembly.
 	- This should allow for an easier compilation process for contributors/self-sufficeint modders.
 - Split the mod loader into two projects: RL2.ModLoader and RL2.API.
