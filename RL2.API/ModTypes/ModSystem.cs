@@ -29,8 +29,18 @@ public abstract class ModSystem : ModType
 	/// <summary>
 	/// Allows modifying character data of generated heirs
 	/// </summary>
-	/// <param name="characterData">The generated heirs CharacterData</param>
-	public virtual void ModifyGeneratedCharacter(CharacterData characterData) { }
+	/// <param name="characterData">The generated heirs <see cref="CharacterData" /></param>
+	/// <param name="classLocked">Whether the heirs class was locked by a Soul Shop ugrade</param>
+	/// <param name="spellLocked">Whether the heirs spell was locked by a Soul Shop ugrade</param>
+	public virtual void ModifyGeneratedCharacterData(CharacterData characterData, bool classLocked, bool spellLocked) { }
+
+
+	/// <summary>
+	/// Allows modifying look data of generated heirs
+	/// </summary>
+	/// <param name="lookData">The generated heirs <see cref="PlayerLookController" /></param>
+	/// <param name="characterData">The generated heirs <see cref="CharacterData" /></param>
+	public virtual void ModifyGeneratedCharacterLook(PlayerLookController lookData, CharacterData characterData) { }
 
 	/// <summary>
 	/// Allows modifying character data during character randomization by either the Contrarian trait or by the use of the Transmogrifier<br></br> 

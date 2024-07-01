@@ -55,7 +55,7 @@ public partial class RL2API
 	/// <summary>
 	/// Handles calling <see cref="ModSystem.ModifyGeneratedCharacter(CharacterData)"/><br/>
 	/// </summary>
-	internal static ILHook ModifyGeneratedCharacter = new ILHook(
+	internal static ILHook ModifyCharacterData = new ILHook(
 		typeof(LineageWindowController).GetMethod("CreateRandomCharacters", BindingFlags.NonPublic | BindingFlags.Instance),
 		(ILContext il) => {
 			ILCursor ilCursor = new ILCursor(il);
@@ -137,7 +137,39 @@ public partial class RL2API
 			ilCursor.Emit(OpCodes.Ldelem_Ref);
 			ilCursor.EmitDelegate((CharacterData characterData) => {
 				foreach (ModSystem modSystem in GameManagerInstance!.GetComponents<ModSystem>()) {
-					modSystem.ModifyGeneratedCharacter(characterData);
+					modSystem.ModifyGeneratedCharacterData(characterData, false, false);
+				}
+			});
+		}
+	);
+
+	internal ILHook ModifyCharacterLook = new ILHook(
+		typeof(LineageWindowController).GetMethod("CreateRandomCharacters", BindingFlags.NonPublic | BindingFlags.Instance),
+		(ILContext il) => {
+			ILCursor ilCursor = new ILCursor(il);
+
+			ilCursor.GotoNext(
+				MoveType.After,
+				i => i.MatchLdarg(0),
+				i => i.MatchLdfld<LineageWindowController>("m_playerModels"),
+				i => i.MatchLdloc(4),
+				i => i.MatchLdelemRef(),
+				i => i.MatchCallvirt<UnityEngine.Component>("get_transform"),
+				i => i.MatchLdloc(10),
+				i => i.MatchCallvirt<UnityEngine.Transform>("set_localScale")
+			);
+
+			ilCursor.Emit(OpCodes.Ldarg, 0);
+			ilCursor.Emit(OpCodes.Ldfld, typeof(LineageWindowController).GetField("m_playerModels", BindingFlags.NonPublic | BindingFlags.Instance));
+			ilCursor.Emit(OpCodes.Ldloc, 4);
+			ilCursor.Emit(OpCodes.Ldelem_Ref);
+			ilCursor.Emit(OpCodes.Ldarg, 0);
+			ilCursor.Emit(OpCodes.Ldfld, typeof(LineageWindowController).GetField("m_characterDataArray", BindingFlags.NonPublic | BindingFlags.Instance));
+			ilCursor.Emit(OpCodes.Ldloc, 4);
+			ilCursor.Emit(OpCodes.Ldelem_Ref);
+			ilCursor.EmitDelegate((PlayerLookController lookData, CharacterData characterData) => {
+				foreach (ModSystem modSystem in GameManagerInstance!.GetComponents<ModSystem>()) {
+					modSystem.ModifyGeneratedCharacterLook(lookData, characterData.Clone());
 				}
 			});
 		}

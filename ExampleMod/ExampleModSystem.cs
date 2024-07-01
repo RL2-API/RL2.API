@@ -5,7 +5,7 @@ namespace ExampleMod;
 
 internal class ExampleModSystem : ModSystem
 {
-	public override void ModifyGeneratedCharacter(CharacterData characterData) {
+	public override void ModifyGeneratedCharacterData(CharacterData characterData, bool classLocked, bool spellLocked) {
 		characterData.Name = "Test";
 	}
 
