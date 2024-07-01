@@ -9,6 +9,10 @@ internal class ExampleModSystem : ModSystem
 		characterData.Name = "Test";
 	}
 
+	public override void ModifyGeneratedCharacterLook(PlayerLookController lookData, CharacterData characterData) {
+		lookData.MouthGeo.material = LookLibrary.VampireFangsMaterial;
+	}
+
 	public override Texture2D? ModifyRoomIcon(GridPointManager roomToCheck, bool getUsed, bool isMergeRoom) {
 		if (roomToCheck.RoomMetaData.IsSpecialRoom) {
 			if (roomToCheck.RoomMetaData.SpecialRoomType == SpecialRoomType.BossEntrance) {
