@@ -22,6 +22,11 @@
 			<Private>false</Private>
 		</Reference>
 		<ProjectReference Include="..\RL2.ModLoader\RL2.ModLoader.csproj" />
+        <None Remove="RL2.API.mod.json;"/>
 	</ItemGroup>
-	
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Copy SourceFiles="$(ProjectDir)\RL2.API.mod.json;$(TargetDir)\RL2.API.dll;$(TargetDir)\RL2.API.xml;$(TargetDir)\RL2.API.pdb" DestinationFolder="$(TargetDir)\RL2.API" />
+    </Target>
+    
 </Project>

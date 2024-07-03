@@ -9,6 +9,7 @@ namespace RL2.ModLoader;
 /// <summary>
 /// Main entrypoint for the RL2.API
 /// </summary>
+[ModEntrypoint]
 public partial class RL2API
 {
 	/// <summary>
@@ -17,33 +18,25 @@ public partial class RL2API
 	public static Mod[] LoadedMods = [];
 
 	/// <summary>
-	/// A list of all names of loaded mods
-	/// </summary>
-	public static List<string> LoadedModNames = [];
-
-	/// <summary>
 	/// 
 	/// </summary>
 	public RL2API() {
 		Mod.Log("RL2.API loaded");
-		LoadedModNames = [];
 		LoadedMods = LoadAPICompliantMods();
 		LoadBuiltinCommands();
-		Mod.Log($"Disabled mods: {string.Join(" | ", ModLoader.ModList?.Disabled)}");
-		Mod.Log($"Enabled mods: {string.Join(" | ", LoadedModNames)}");
 	}
 
 	/// <summary></summary>
 	/// <returns>An array of all mods that succeded to load</returns>
 	public Mod[] LoadAPICompliantMods() {
 		List<Mod> loadedMods = [];
-		ModManifest[] notDisabledModManifests = ModLoader.ModManifests.Where(manifest => ModLoader.ModList?.Disabled.IndexOf(manifest.Name) == -1).ToArray();
+		ModManifest[] notDisabledModManifests = ModLoader.ModManifestToPath.Keys.Where(manifest => ModLoader.ModList?.Disabled.IndexOf(manifest.Name) == -1).ToArray();
 		Assembly?[] modAssemblies = GetEnabledModAssemblies(notDisabledModManifests);
 		for (int i = 0; i < modAssemblies.Length; i++) {
 			Mod? mod = TryLoadMod(modAssemblies[i], notDisabledModManifests[i]);
 			if (mod != null) {
 				loadedMods.Add(mod);
-				LoadedModNames.Add($"{notDisabledModManifests[i].Name} v{notDisabledModManifests[i].Version}");
+				ModLoader.LoadedModNamesToVersions.Add(notDisabledModManifests[i].Name, notDisabledModManifests[i].SemVersion);
 				continue;
 			}
 		}
@@ -77,7 +70,7 @@ public partial class RL2API
 				ModLoader.ModList.Enabled.Add(modName);
 			}
 
-			string modAssemblyPath = ModLoader.ModManifestPaths?[modManifest] + "\\" + modManifest.ModAssembly;
+			string modAssemblyPath = ModLoader.ModManifestToPath?[modManifest] + "\\" + modManifest.ModAssembly;
 			if (!File.Exists(modAssemblyPath)) {
 				Mod.Log($"Assembly with path {modAssemblyPath} was not found");
 				modAssemblies[currentModID] = null;
@@ -85,6 +78,10 @@ public partial class RL2API
 			}
 
 			var modAssembly = Assembly.LoadFrom(modAssemblyPath);
+			if (modAssembly.GetTypes().Where(type => type.GetCustomAttribute<ModEntrypointAttribute>() != null).ToArray().Length != 0) {
+				modAssemblies[currentModID] = null;
+				continue;
+			}
 			if (modAssembly.GetTypes().Where(type => type.IsSubclassOf(typeof(Mod))).Count() != 1) {
 				Mod.Log($"{modName} is not a valid mod assembly, as it should only contain a single Mod class");
 				modAssemblies[currentModID] = null;
@@ -124,7 +121,7 @@ public partial class RL2API
 			return null;
 		}
 
-		mod.Path = ModLoader.ModManifestPaths?[manifest] + "\\" ?? ModLoader.ModPath;
+		mod.Path = ModLoader.ModManifestToPath?[manifest] + "\\" ?? ModLoader.ModPath;
 		mod.Content = assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ModType))).ToArray();
 		CommandManager.RegisterCommands(assembly);
 		return mod;

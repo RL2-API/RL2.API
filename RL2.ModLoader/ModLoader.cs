@@ -1,5 +1,4 @@
 using Rewired.Utils.Libraries.TinyJson;
-using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,15 +9,10 @@ using UnityEngine;
 namespace RL2.ModLoader;
 
 /// <summary>
-/// Class responsible for loading the RL2.API and all mods
+/// Main entrypoint of the mod loader
 /// </summary>
 public partial class ModLoader
 {
-	/// <summary>
-	/// Expected path to the RL2.API
-	/// </summary>
-	public static readonly string APIPath = Application.dataPath.Replace("/", "\\") + "\\Managed\\RL2.API.dll";
-
 	/// <summary>
 	/// Path to directory containing all mods
 	/// </summary>
@@ -30,94 +24,119 @@ public partial class ModLoader
 	public static readonly string ModListPath = ModPath + "\\enabled.json";
 
 	/// <summary>
-	/// A <see cref="ModList"/> object representing all enabled and disabled mods
+	/// Stores lists of enabled/disabled mods
 	/// </summary>
-	public static ModList ModList;
+	public static ModList ModList = new ModList();
 
 	/// <summary>
-	/// All found ModManifests
+	/// Stores all mod manifests and their paths
 	/// </summary>
-	public static ModManifest[] ModManifests = [];
+	public static SortedDictionary<ModManifest, string> ModManifestToPath = [];
 
 	/// <summary>
-	/// Key: one of the found ModManifests;<br/>
-	/// Value: path to the directory in which the ModManifest is located
+	/// Stores names of all loaded mods
 	/// </summary>
-	public static Dictionary<ModManifest, string> ModManifestPaths = [];
+	public static Dictionary<string, SemVersion> LoadedModNamesToVersions = [];
 
 	/// <summary>
-	/// Stores a refernece to the RL2.API's APIStore.Is <see langword="null"/> if the RL2.API hasn't been loaded
+	/// Stores all independent mods
 	/// </summary>
-	public static object? APIStore;
+	public static List<object> IndependentModObjects = [];
 
 	/// <summary>
 	/// Initializes the modloader
 	/// </summary>
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
 	public static void Initialize() {
-		EnsureBasicDirectoriesExist();
-		ModList = JsonParser.FromJson<ModList>(File.ReadAllText(ModListPath));
-		GetModManifests();
-		APIStore = LoadAPI();
-		LoadNonAPICompliantMods();
-		File.WriteAllText(ModListPath, JsonWriter.ToJson(ModList).Prettify());
+		EnsureModsDirectorysExists();
+		CreateModList();
+		LoadModManifests();
+		FilterModManifests();
+		LoadMods();
+		LogLoaded();
 	}
 
 	/// <summary>
-	/// Ensures that all directories and files necessary for the modlaoders functionality are present
+	/// Ensures that the "Mods" directory exists
 	/// </summary>
-	public static void EnsureBasicDirectoriesExist() {
+	public static void EnsureModsDirectorysExists() {
 		if (!Directory.Exists(ModPath)) {
 			Directory.CreateDirectory(ModPath);
 		}
+	}
+
+	/// <summary>
+	/// Loads the <see cref="ModList"/> object
+	/// </summary>
+	public static void CreateModList() {
 		if (!File.Exists(ModListPath)) {
-			File.WriteAllText(ModListPath, JsonWriter.ToJson(new ModList() {
-				Enabled = [],
-				Disabled = []
-			}).Prettify());
+			File.WriteAllText(ModListPath, "");
 		}
+		if (JsonParser.FromJson<ModList>(File.ReadAllText(ModListPath)) == null) {
+			File.WriteAllText(ModListPath, JsonWriter.ToJson(new ModList()).Prettify());
+		}
+		ModList = JsonParser.FromJson<ModList>(File.ReadAllText(ModListPath));
 	}
 
 	/// <summary>
 	/// Fills the ModManifests list as well as the ModManifestPaths dictionary with found entries
 	/// </summary>
-	public static void GetModManifests() {
+	public static void LoadModManifests() {
 		// Get all manifest files from ModPath
 		DirectoryInfo directory = new DirectoryInfo(ModPath);
 		FileInfo[] fileInfos = directory.GetFiles("*.mod.json", SearchOption.AllDirectories);
-		ModManifestPaths = new Dictionary<ModManifest, string>();
 
-		// Create ModManifest insatnces from data in the found manifests, and save the manifests path
-		ModManifests = new ModManifest[fileInfos.Length];
 		for (int i = 0; i < fileInfos.Length; i++) {
-			ModManifests[i] = JsonUtility.FromJson<ModManifest>(File.ReadAllText(fileInfos[i].FullName));
-			ModManifestPaths.TryAdd(ModManifests[i], fileInfos[i].Directory.FullName);
+			ModManifest currentManifest = JsonParser.FromJson<ModManifest>(File.ReadAllText(fileInfos[i].FullName));
+			ModManifestToPath.Add(currentManifest, fileInfos[i].Directory.FullName);
 		}
-
-		Array.Sort(ModManifests);
 	}
 
 	/// <summary>
-	/// Loads the RL2.API
+	/// Filters out the disabled mods
 	/// </summary>
-	/// <returns>
-	/// An object representing the main entrypoint of the RL2.AP;<br/>
-	/// <see langword="null"/> if the RL2.API was not loaded;
-	/// </returns>
-	public static object? LoadAPI() {
-		if (File.Exists(APIPath)) {
-			Assembly RL2API = AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(APIPath));
-			Log("Start loading RL2.API...");
-			return Activator.CreateInstance(RL2API.GetTypes().First(type => type.Name == "RL2API"));
+	public static void FilterModManifests() {
+		ModManifest[] notDiasbledManifests = ModManifestToPath.Keys.Where(entry => !ModList.Disabled.Contains(entry.Name)).ToArray();
+		SortedDictionary<ModManifest, string> temporaryDictionary = [];
+		foreach (ModManifest manifest in notDiasbledManifests) {
+			temporaryDictionary.Add(manifest, ModManifestToPath[manifest]);
 		}
-		Log("RL2.API.dll not found");
-		return null;
+		ModManifestToPath = temporaryDictionary;
 	}
 
 	/// <summary>
-	/// Loads all mods that are not compliant with the RL2.API;
+	/// Loads mods
 	/// </summary>
-	public static void LoadNonAPICompliantMods() { }
+	public static void LoadMods() {
+		foreach (ModManifest manifest in ModManifestToPath.Keys) {
+			if (LoadedModNamesToVersions.Keys.Contains(manifest.Name)) {
+				continue;
+			}
+
+			if (!ModList.Enabled.Contains(manifest.Name)) {
+				ModList.Enabled.Add(manifest.Name);
+			}
+
+			Assembly modAssembly = Assembly.LoadFrom(ModManifestToPath[manifest] + "\\" + manifest.ModAssembly);
+			Type[] mods = modAssembly.GetTypes().Where(t => t.GetCustomAttribute<ModEntrypointAttribute>() != null).ToArray();
+			foreach (Type mod in mods) {
+				LoadedModNamesToVersions.Add(manifest.Name, manifest.SemVersion);
+				IndependentModObjects.Add(Activator.CreateInstance(mod));
+			}
+		}
+	}
+
+	/// <summary>
+	/// Logs all loaded mods
+	/// </summary>
+	public static void LogLoaded() {
+		List<string> loaded = [];
+		foreach (KeyValuePair<string, SemVersion> entry in LoadedModNamesToVersions) {
+			loaded.Add($"{entry.Key} v{entry.Value}");
+		}
+		ModLoader.Log("Loaded mods: " + string.Join(" | ", loaded));
+		ModLoader.Log("Disabled mods: " + string.Join(" | ", ModList.Disabled));
+	}
 
 	/// <summary>
 	/// Logs the message with "[RL2-Modloader]: " prepended
