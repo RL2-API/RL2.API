@@ -19,7 +19,7 @@
 		<Reference Include="..\lib\*.dll">
 			<Private>false</Private>
 		</Reference>
-		<ProjectReference Include="..\RL2.API\RL2.API.csproj" />
+        <ProjectReference Include="..\RL2.API\RL2.API.csproj" />
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
@@ -37,6 +37,7 @@
 		<Copy SourceFiles="@(Source)" DestinationFolder="$(TargetDir)\ExampleMod\src\%(RecursiveDir)" />
 		<Copy SourceFiles="@(Assets)" DestinationFolder="$(TargetDir)\ExampleMod\Assets" />
 		<Delete Files="$(TargetDir)\ExampleMod.pdb;$(TargetDir)\ExampleMod.dll" />
+        <Delete Files="$(TargetDir)\RL2.API.dll;$(TargetDir)\RL2.API.xml;$(TargetDir)\RL2.API.pdb" />
 	</Target>
 
 </Project>
