@@ -1,5 +1,11 @@
 # Changelog
 
+# v1.0.0
+- Bug fixes:
+	- Load order
+- Finish the separation started in 0.1.0
+- RL2.ModLoader version display in title screen is back
+
 # v0.1.0
 - Separated the mod loader and API from th main games asembly.
 	- This should allow for an easier compilation process for contributors/self-sufficeint modders.
