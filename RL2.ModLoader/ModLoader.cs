@@ -1,4 +1,3 @@
-using MonoMod.RuntimeDetour;
 using Rewired.Utils.Libraries.TinyJson;
 using System;
 using System.Collections.Generic;
