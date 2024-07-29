@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using NativeFileDialogSharp;
@@ -26,9 +25,13 @@ public class Program
 			return;
 		}
 
-		Console.WriteLine("Install RL2.API? Press y(es) or n(o)");
-		bool installRL2API = Console.ReadKey().KeyChar == 'y';
-		Console.WriteLine("");
+		bool installRL2API = false;
+
+		if (Directory.Exists(CurrentPath + "\\" + "RL2.API")) {
+			Console.WriteLine("Install RL2.API? Press y(es) or n(o)");
+			installRL2API = Console.ReadKey().KeyChar == 'y';
+			Console.WriteLine("");
+		}
 
 		// Copy RL2.ModLoader necessities
 		Copy("RL2.ModLoader.xml", ManagedPath);
