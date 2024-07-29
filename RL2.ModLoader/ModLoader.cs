@@ -14,6 +14,11 @@ namespace RL2.ModLoader;
 public partial class ModLoader
 {
 	/// <summary>
+	/// <see href="SemVersion"/> object representing the modloaders version
+	/// </summary>
+	public static readonly SemVersion ModLoaderVersion = new SemVersion(1, 0, 0);
+
+	/// <summary>
 	/// Path to directory containing all mods
 	/// </summary>
 	public static readonly string ModPath = Application.dataPath.Replace("/", "\\") + "\\Mods";
@@ -31,7 +36,7 @@ public partial class ModLoader
 	/// <summary>
 	/// Stores all mod manifests and their paths
 	/// </summary>
-	public static SortedDictionary<ModManifest, string> ModManifestToPath = [];
+	public static Dictionary<ModManifest, string> ModManifestToPath = [];
 
 	/// <summary>
 	/// Stores names of all loaded mods
@@ -51,7 +56,6 @@ public partial class ModLoader
 		EnsureModsDirectorysExists();
 		CreateModList();
 		LoadModManifests();
-		FilterModManifests();
 		LoadMods();
 		LogLoaded();
 	}
@@ -88,27 +92,17 @@ public partial class ModLoader
 
 		for (int i = 0; i < fileInfos.Length; i++) {
 			ModManifest currentManifest = JsonParser.FromJson<ModManifest>(File.ReadAllText(fileInfos[i].FullName));
-			ModManifestToPath.Add(currentManifest, fileInfos[i].Directory.FullName);
+			ModManifestToPath[currentManifest] = fileInfos[i].Directory.FullName;
 		}
-	}
 
-	/// <summary>
-	/// Filters out the disabled mods
-	/// </summary>
-	public static void FilterModManifests() {
-		ModManifest[] notDiasbledManifests = ModManifestToPath.Keys.Where(entry => !ModList.Disabled.Contains(entry.Name)).ToArray();
-		SortedDictionary<ModManifest, string> temporaryDictionary = [];
-		foreach (ModManifest manifest in notDiasbledManifests) {
-			temporaryDictionary.Add(manifest, ModManifestToPath[manifest]);
-		}
-		ModManifestToPath = temporaryDictionary;
+		ModManifestToPath = ModManifestToPath.OrderBy(obj => obj.Key).ToDictionary(obj => obj.Key, obj => obj.Value);
 	}
 
 	/// <summary>
 	/// Loads mods
 	/// </summary>
 	public static void LoadMods() {
-		foreach (ModManifest manifest in ModManifestToPath.Keys) {
+		foreach (ModManifest manifest in ModManifestToPath.Keys.Where(entry => !ModList.Disabled.Contains(entry.Name)).ToArray()) {
 			if (LoadedModNamesToVersions.Keys.Contains(manifest.Name)) {
 				continue;
 			}
@@ -117,6 +111,7 @@ public partial class ModLoader
 				ModList.Enabled.Add(manifest.Name);
 			}
 
+			Log(ModManifestToPath[manifest] + "\\" + manifest.ModAssembly);
 			Assembly modAssembly = Assembly.LoadFrom(ModManifestToPath[manifest] + "\\" + manifest.ModAssembly);
 			Type[] mods = modAssembly.GetTypes().Where(t => t.GetCustomAttribute<ModEntrypointAttribute>() != null).ToArray();
 			foreach (Type mod in mods) {
@@ -136,6 +131,7 @@ public partial class ModLoader
 		}
 		ModLoader.Log("Loaded mods: " + string.Join(" | ", loaded));
 		ModLoader.Log("Disabled mods: " + string.Join(" | ", ModList.Disabled));
+		File.WriteAllText(ModListPath, JsonWriter.ToJson(ModList).Prettify());
 	}
 
 	/// <summary>
