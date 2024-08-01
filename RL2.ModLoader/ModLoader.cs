@@ -74,7 +74,7 @@ public partial class ModLoader
 	/// </summary>
 	public static void CreateModList() {
 		if (!File.Exists(ModListPath)) {
-			File.WriteAllText(ModListPath, "");
+			File.WriteAllText(ModListPath, "{ \"Enabled\" : [ ], \"Disabled\" : [ ] }".Prettify());
 		}
 		if (JsonParser.FromJson<ModList>(File.ReadAllText(ModListPath)) == null) {
 			File.WriteAllText(ModListPath, JsonWriter.ToJson(new ModList()).Prettify());
