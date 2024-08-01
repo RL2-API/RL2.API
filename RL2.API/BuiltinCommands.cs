@@ -9,7 +9,7 @@ namespace RL2.ModLoader;
 public class BuiltinCommands
 {
 	/// <summary>
-	/// Creates a new mod directory
+	/// Creates a new mod
 	/// </summary>
 	/// <param name="args"></param>
 	public static void NewMod(string[] args) {
@@ -33,6 +33,10 @@ public class BuiltinCommands
 			"		<Reference Include=\"..\\..\\Managed\\*.dll\">",
 			"			<Private>false</Private>",
 			"		</Reference>",
+			"	<ItemGroup>",
+			"		<Reference Include=\"..\\RL2.API\\RL2.API.dll\">",
+			"			<Private>false</Private>",
+			"		</Reference>",
 			"	</ItemGroup>",
 			"",
 			"</Project>"
@@ -49,8 +53,9 @@ public class BuiltinCommands
 		ModManifest modManifest = new ModManifest() {
 			Name = modName,
 			Author = "",
-			Version = "0.0.0",
-			ModAssembly = $"bin\\Debug\\net48\\{modName}.dll"
+			Version = "1.0.0",
+			ModAssembly = $"bin/Debug/net48/{modName}.dll",
+			LoadAfter = ["RL2.API"]
 		};
 		File.WriteAllText(newModPath + $"\\{modName}.mod.json", JsonUtility.ToJson(modManifest, true));
 
@@ -58,6 +63,7 @@ public class BuiltinCommands
 			"using RL2.ModLoader;",
 			"",
 			$"namespace {modName};",
+			"",
 			$"public class {modName} : Mod",
 			"{",
 			"	public override void OnLoad() {",
