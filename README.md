@@ -11,5 +11,6 @@ A work-in-progress Rogue Legacy 2 mod loader and API
 # Latest changes - version 1.0.0
 - Bug fixes:
 	- Load order
+	- `enabled.json` creation fail
 - Finish the separation started in 0.1.0
 - RL2.ModLoader version display in title screen is back
