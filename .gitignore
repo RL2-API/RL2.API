@@ -6,6 +6,9 @@
 # Setup tool config
 RL2.ModLoader.DevSetup/config
 
+# Packaged files
+package
+
 # Sublime text project
 *.sublime-workspace
 *.sublime-project
