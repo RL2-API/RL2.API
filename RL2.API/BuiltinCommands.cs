@@ -33,7 +33,7 @@ public class BuiltinCommands
 			"		<Reference Include=\"..\\..\\Managed\\*.dll\">",
 			"			<Private>false</Private>",
 			"		</Reference>",
-			"	<ItemGroup>",
+			"",
 			"		<Reference Include=\"..\\RL2.API\\RL2.API.dll\">",
 			"			<Private>false</Private>",
 			"		</Reference>",
