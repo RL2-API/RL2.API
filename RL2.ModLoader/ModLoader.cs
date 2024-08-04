@@ -16,7 +16,7 @@ public partial class ModLoader
 	/// <summary>
 	/// <see href="SemVersion"/> object representing the modloaders version
 	/// </summary>
-	public static readonly SemVersion ModLoaderVersion = new SemVersion(1, 0, 0);
+	public static readonly SemVersion ModLoaderVersion = new SemVersion(1, 0, 1);
 
 	/// <summary>
 	/// Path to directory containing all mods

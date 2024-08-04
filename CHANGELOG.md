@@ -1,4 +1,8 @@
-# Changelog
+# RL2.ModLoader Changelog
+
+# v1.0.1
+- Bug fixes:
+	- Load order issues, again
 
 # v1.0.0
 - Bug fixes:
