@@ -94,15 +94,15 @@ public partial class ModLoader
 			ModManifest currentManifest = JsonParser.FromJson<ModManifest>(File.ReadAllText(fileInfos[i].FullName));
 			ModManifestToPath[currentManifest] = fileInfos[i].Directory.FullName;
 		}
-
-		ModManifestToPath = ModManifestToPath.OrderBy(obj => obj.Key).ToDictionary(obj => obj.Key, obj => obj.Value);
 	}
 
 	/// <summary>
 	/// Loads mods
 	/// </summary>
 	public static void LoadMods() {
-		foreach (ModManifest manifest in ModManifestToPath.Keys.Where(entry => !ModList.Disabled.Contains(entry.Name)).ToArray()) {
+		ModManifest[] manifests = ModManifestToPath.Keys.Where(entry => !ModList.Disabled.Contains(entry.Name)).ToArray();
+		Array.Sort<ModManifest>(manifests, new Comparison<ModManifest>((e1, e2) => e1.CompareTo(e2)));
+		foreach (ModManifest manifest in manifests) {
 			if (LoadedModNamesToVersions.Keys.Contains(manifest.Name)) {
 				continue;
 			}
