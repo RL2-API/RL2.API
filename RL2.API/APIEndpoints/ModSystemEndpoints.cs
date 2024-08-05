@@ -244,4 +244,22 @@ public partial class RL2API
 			return ability;
 		}
 	);
+
+	internal delegate bool EnemyClassDataDictionary_TryGetValue(EnemyTypeEnemyClassDataDictionary self, EnemyType key, out EnemyClassData data);
+
+	internal static Hook ModifyEnemyClassDataHook = new Hook(
+		typeof(EnemyTypeEnemyClassDataDictionary).GetMethod("TryGetValue", BindingFlags.Public | BindingFlags.Instance),
+		ModifyEnemyClassDataMethod
+	);
+
+	internal static bool ModifyEnemyClassDataMethod(EnemyClassDataDictionary_TryGetValue orig, EnemyTypeEnemyClassDataDictionary self, EnemyType key, out EnemyClassData data) {
+		bool found =  orig(self, key, out data);
+		if (found) {
+			foreach (ModSystem modSystem in GameManagerInstance.GetComponents<ModSystem>()) {
+				modSystem.ModifyEnemyClassData(key, data);
+			}
+		}
+
+		return found;
+	}
 }

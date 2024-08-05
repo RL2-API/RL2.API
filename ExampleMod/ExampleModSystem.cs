@@ -30,4 +30,8 @@ internal class ExampleModSystem : ModSystem
 		data.CooldownDecreasePerHit = true;
 		data.CooldownTime = 20;
 	}
+
+	public override void ModifyEnemyClassData(EnemyType type, EnemyClassData data) {
+		data.GetEnemyData(EnemyRank.Basic).SpawnInCastle = true;
+	}
 }
