@@ -228,4 +228,20 @@ public partial class RL2API
 			return orig(roomToCheck, getUsed, isMergeRoom);
 		}
 	);
+
+	internal static Hook ModifyAbilityDataHook = new Hook(
+		typeof(AbilityLibrary).GetMethod("GetAbility", BindingFlags.Public | BindingFlags.Static),
+		(Func<AbilityType, BaseAbility_RL> orig, AbilityType type) => {
+			BaseAbility_RL? ability = orig(type);
+			if (ability == null) {
+				return ability;
+			}
+
+			foreach (ModSystem modSystem in GameManagerInstance.GetComponents<ModSystem>()) {
+				modSystem.ModifyAbilityData(type, ability.AbilityData);
+			}
+
+			return ability;
+		}
+	);
 }

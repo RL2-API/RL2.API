@@ -50,6 +50,13 @@ public abstract class ModSystem : ModType
 	public virtual void ModifyCharacterRandomization(CharacterData characterData) { }
 
 	/// <summary>
+	/// Allows modifying ability data
+	/// </summary>
+	/// <param name="type">The queried ability</param>
+	/// <param name="data">Returned data of the ability</param>
+	public virtual void ModifyAbilityData(AbilityType type, AbilityData data) {	}
+
+	/// <summary>
 	/// Determines whether the instance of this class should be initialized
 	/// </summary>
 	public virtual bool IsLoadingEnabled() => true;

@@ -21,4 +21,13 @@ internal class ExampleModSystem : ModSystem
 		}
 		return null;
 	}
+
+	public override void ModifyAbilityData(AbilityType type, AbilityData data) {
+		if (type != AbilityType.ShoutTalent) {
+			return;
+		}
+
+		data.CooldownDecreasePerHit = true;
+		data.CooldownTime = 20;
+	}
 }
