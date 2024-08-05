@@ -9,7 +9,7 @@ public partial class ModLoader
 	public static Hook VersionDisplay = new Hook(
 		typeof(System_EV).GetMethod("GetVersionString", BindingFlags.Public | BindingFlags.Static),
 		(Func<string> orig) => {
-			return orig() + " | RL2.ModLoader v." + ModLoaderVersion.ToString();
+			return orig() + "\nRL2.ModLoader v." + ModLoaderVersion.ToString();
 		}
 	);
 }
