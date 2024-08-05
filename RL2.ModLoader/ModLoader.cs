@@ -118,6 +118,7 @@ public partial class ModLoader
 				LoadedModNamesToVersions.Add(manifest.Name, manifest.SemVersion);
 				IndependentModObjects.Add(Activator.CreateInstance(mod));
 			}
+			CommandManager.RegisterCommands(modAssembly);	
 		}
 	}
 
