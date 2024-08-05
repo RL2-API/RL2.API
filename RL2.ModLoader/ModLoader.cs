@@ -101,7 +101,8 @@ public partial class ModLoader
 	/// </summary>
 	public static void LoadMods() {
 		ModManifest[] manifests = ModManifestToPath.Keys.Where(entry => !ModList.Disabled.Contains(entry.Name)).ToArray();
-		Array.Sort<ModManifest>(manifests, new Comparison<ModManifest>((e1, e2) => e1.CompareTo(e2)));
+		Array.Sort(manifests);
+        Log(string.Join(" > ", manifests.Select(i => i.Name)));
 		foreach (ModManifest manifest in manifests) {
 			if (LoadedModNamesToVersions.Keys.Contains(manifest.Name)) {
 				continue;
