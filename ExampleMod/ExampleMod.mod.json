@@ -3,5 +3,5 @@
 	"Author" : "TacoConKvass",
 	"Version" : "0.0.0-a",
 	"ModAssembly" : "ExampleMod.dll",
-  "LoadAfter" : []
+	"LoadAfter" : ["RL2.API"]
 }
