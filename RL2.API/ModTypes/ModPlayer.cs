@@ -35,7 +35,7 @@ public abstract class ModPlayer : ModType
 	public virtual void OnKill(GameObject killer) { }
 	
 	/// <summary>
-	/// Used to modify player stats
+	/// Used to modify player stats. Modify <see cref="ModPlayer.StatBonuses"/>
 	/// </summary>
 	public virtual void ModifyStats() {
 	}
