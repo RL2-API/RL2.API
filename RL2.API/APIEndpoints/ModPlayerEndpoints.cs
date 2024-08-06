@@ -244,54 +244,32 @@ public partial class RL2API
 	);
 	
 	internal static ILHook ActualStrength = new ILHook(
-		typeof(BaseCharacterController).GetProperty("ActualStrength", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualStrength", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
 			cursor.GotoNext(
 				MoveType.After,
-				i => i.MatchLdarg(0),
-				i => i.MatchCall<BaseCharacterController>("get_StrengthTemporaryAdd"),
-				i => i.MatchConvR4(),
-				i => i.MatchAdd()
+				i => i.MatchLdarg(0)
 			);
 
-			cursor.EmitDelegate((float vanillaStrength) => vanillaStrength + StatBonuses.Strength);
-
-			cursor.GotoNext(
-				MoveType.After,
-				i => i.MatchLdarg(0),
-				i => i.MatchCall<BaseCharacterController>("get_StrengthTemporaryMod"),
-				i => i.MatchAdd()
-			);
-
-			cursor.EmitDelegate((float vanillaStrengthMultiplier) => vanillaStrengthMultiplier + StatBonuses.StrengthMultiplier);
+			cursor.Remove();
+			cursor.EmitDelegate((PlayerController player) => Mathf.Clamp((player.BaseStrength + player.StrengthAdd + player.StrengthTemporaryAdd + StatBonuses.Strength) * (1f + player.StrengthMod + player.StrengthTemporaryMod + StatBonuses.StrengthMultiplier), 0f, float.MaxValue));
 		}
 	);
 
 	internal static ILHook ActualMagic = new ILHook(
-		typeof(BaseCharacterController).GetProperty("ActualMagic", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualMagic", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
 			cursor.GotoNext(
 				MoveType.After,
-				i => i.MatchLdarg(0),
-				i => i.MatchCall<BaseCharacterController>("get_MagicTemporaryAdd"),
-				i => i.MatchConvR4(),
-				i => i.MatchAdd()
+				i => i.MatchLdarg(0)
 			);
 
-			cursor.EmitDelegate((float vanillaIntelligence) => vanillaIntelligence + StatBonuses.Intelligence);
-
-			cursor.GotoNext(
-				MoveType.After,
-				i => i.MatchLdarg(0),
-				i => i.MatchCall<BaseCharacterController>("get_MagicTemporaryMod"),
-				i => i.MatchAdd()
-			);
-
-			cursor.EmitDelegate((float vanillaIntelligenceMultiplier) => vanillaIntelligenceMultiplier + StatBonuses.IntelligenceMultiplier);
+			cursor.Remove();
+			cursor.EmitDelegate((PlayerController player) => Mathf.Clamp((player.BaseMagic + player.MagicAdd + player.MagicTemporaryAdd + StatBonuses.Intelligence) * (1f + player.MagicMod + player.MagicTemporaryMod + StatBonuses.IntelligenceMultiplier), 0f, float.MaxValue));
 		}
 	);
 
