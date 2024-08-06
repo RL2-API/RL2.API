@@ -1,5 +1,12 @@
 # RL2.ModLoader Changelog
 
+# v1.0.2 (UNRELEASED)
+### Bug fixes:
+- Commands are now loaded from standalone mods correctly
+### Changes:
+- The mod loaders version is now displayed in a new line after the game version
+- Entries specified in LoadAfter property of a mod manifest are now logged before mod loading
+
 # v1.0.1
 - Bug fixes:
 	- Load order issues, again
