@@ -29,7 +29,7 @@ public partial class RL2API
 	/// <returns>An array of all mods that succeded to load</returns>
 	public Mod[] LoadAPICompliantMods() {
 		List<Mod> loadedMods = [];
-		ModManifest[] notDisabledModManifests = ModLoader.ModManifestToPath.Keys.Where(manifest => ModLoader.ModList?.Disabled.IndexOf(manifest.Name) == -1).ToArray();
+		ModManifest[] notDisabledModManifests = ModLoader.ModManifestToPath.Keys.Where(manifest => ModLoader.ModList?.Disabled.IndexOf(manifest.Name) == -1 && manifest.LoadAfter.Contains("RL2.API")).ToArray();
 		Assembly?[] modAssemblies = GetEnabledModAssemblies(notDisabledModManifests);
 		for (int i = 0; i < modAssemblies.Length; i++) {
 			Mod? mod = TryLoadMod(modAssemblies[i], notDisabledModManifests[i]);
