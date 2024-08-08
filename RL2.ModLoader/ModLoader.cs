@@ -77,7 +77,7 @@ public partial class ModLoader
 			File.WriteAllText(ModListPath, "{ \"Enabled\" : [ ], \"Disabled\" : [ ] }".Prettify());
 		}
 		if (JsonParser.FromJson<ModList>(File.ReadAllText(ModListPath)) == null) {
-			File.WriteAllText(ModListPath, JsonWriter.ToJson(new ModList()).Prettify());
+			File.WriteAllText(ModListPath, "{ \"Enabled\" : [ ], \"Disabled\" : [ ] }".Prettify());
 		}
 		ModList = JsonParser.FromJson<ModList>(File.ReadAllText(ModListPath));
 	}
