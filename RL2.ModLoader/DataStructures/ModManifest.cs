@@ -53,6 +53,6 @@ public class ModManifest : IComparable<ModManifest>
 			return SemVersion.CompareTo(comparedObject.SemVersion);
 		}
 
-		return LoadAfter.Contains(comparedObject.Name) ? 1 : -1;
+		return LoadAfter.Contains(comparedObject.Name) ? 1 : LoadAfter.Length.CompareTo(comparedObject.LoadAfter.Length);
 	}
 }
