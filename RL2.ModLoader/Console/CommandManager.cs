@@ -48,6 +48,6 @@ public static class CommandManager
 			ModLoader.Log($"Command with name {args[0]} not found");
 			return;
 		}
-		commandMethod.Invoke(commandMethod.DeclaringType, new object[] { args.Skip(1).ToArray() });
+		commandMethod.Invoke(commandMethod.DeclaringType, args.Skip(1).ToArray());
 	}
 }
