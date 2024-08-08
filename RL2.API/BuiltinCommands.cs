@@ -12,10 +12,11 @@ public class BuiltinCommands
 	/// Creates a new mod
 	/// </summary>
 	/// <param name="args"></param>
+	[Command("rl2.api:new-mod")]
 	public static void NewMod(string[] args) {
 		string modName = "";
 		if (args.Length != 1) {
-			ModLoader.Log("\"new-mod\" command takes exactly one argument: mod name");
+			Mod.Log("\"rl2.api:new-mod\" command takes exactly one argument: mod name");
 			return;
 		}
 		modName = args[0];
@@ -44,7 +45,7 @@ public class BuiltinCommands
 
 		string newModPath = ModLoader.ModPath + $"\\{modName}";
 		if (Directory.Exists(newModPath)) {
-			ModLoader.Log($"A mod with this name: {modName} already exists in your Mods directory");
+			Mod.Log($"A mod with this name: {modName} already exists in your Mods directory");
 			return;
 		}
 
@@ -72,6 +73,6 @@ public class BuiltinCommands
 			"}"
 		};
 		File.WriteAllLines(newModPath + $"\\{modName}.cs", modFileContent, System.Text.Encoding.UTF8);
-		ModLoader.Log($"Mod {modName} was created");
+		Mod.Log($"Mod {modName} was created");
 	}
 }
