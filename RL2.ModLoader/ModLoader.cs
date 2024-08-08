@@ -54,6 +54,7 @@ public partial class ModLoader
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
 	public static void Initialize() {
 		EnsureModsDirectorysExists();
+		CommandManager.RegisterCommands(Assembly.GetExecutingAssembly());
 		CreateModList();
 		LoadModManifests();
 		LoadMods();
