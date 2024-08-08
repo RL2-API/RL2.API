@@ -3,9 +3,14 @@
 # v1.0.2 (UNRELEASED)
 ### Bug fixes:
 - Commands are now loaded from standalone mods correctly
+- ModManifest sorting
+- Command invoking now works properly
 ### Changes:
 - The mod loaders version is now displayed in a new line after the game version
 - Entries specified in LoadAfter property of a mod manifest are now logged before mod loading
+### Additions:
+- Builtin `create-mod` command
+	- Usage `/create-mod [ModName - required] [Author - optional]`
 
 # v1.0.1
 - Bug fixes:
