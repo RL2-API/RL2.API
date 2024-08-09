@@ -1,6 +1,6 @@
 # RL2.ModLoader Changelog
 
-# v1.0.2 (UNRELEASED)
+# v1.0.2
 ### Bug fixes:
 - Commands are now loaded from standalone mods correctly
 - ModManifest sorting
@@ -11,6 +11,10 @@
 ### Additions:
 - Builtin `create-mod` command
 	- Usage `/create-mod [ModName - required] [Author - optional]`
+	- Creates base project files for an independent mod
+- Builtin `show-mods` command
+	- Usage `/show-mods`
+	- Displays a list of all enabled mods and their versions
 
 # v1.0.1
 - Bug fixes:

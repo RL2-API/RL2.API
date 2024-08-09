@@ -1,6 +1,6 @@
 # RL2.API Changelog
 
-## v0.2.0 (UNRELEASED)
+## v0.2.0
 ### Bug fixes:
 - StatBonuses.(Strength|StrengthMultiplier|Intelligence|IntelligenceMultilplier) no longer apply to enemies
 - RL2.API no longer tries to load mods that don't specify being loaded after it
@@ -9,6 +9,7 @@
 ### Additions:
 - ModSystem.ModifyAbilityData:
 	- Allows modifying AbilityData depending on the provided AbilityType
-- ModSystem.ModifyEnemyClassData:
-	- Allows modifying EnemyClassData depending on the provided EnemyType
-	- By extent, allows for modifying changing EnemyData and AI scripts depending on EnemyRank
+- ModSystem.ModifyEnemyData:
+	- Allows modifying EnemyData depending on the provided EnemyType and EnemyRank
+- ModSystem.ModifyEnemyBehaviour:
+	- Allows modifying the enemy AI script and logic controller depending on the provided EnemyType and EnemyRank (needs detailed documentation)
