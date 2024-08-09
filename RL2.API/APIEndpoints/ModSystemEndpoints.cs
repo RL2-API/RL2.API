@@ -252,11 +252,14 @@ public partial class RL2API
 		ModifyEnemyClassDataMethod
 	);
 
-	internal static bool ModifyEnemyClassDataMethod(EnemyClassDataDictionary_TryGetValue orig, EnemyTypeEnemyClassDataDictionary self, EnemyType key, out EnemyClassData data) {
-		bool found =  orig(self, key, out data);
+	internal static bool ModifyEnemyClassDataMethod(EnemyClassDataDictionary_TryGetValue orig, EnemyTypeEnemyClassDataDictionary self, EnemyType type, out EnemyClassData data) {
+		bool found =  orig(self, type, out data);
 		if (found) {
 			foreach (ModSystem modSystem in GameManagerInstance.GetComponents<ModSystem>()) {
-				modSystem.ModifyEnemyClassData(key, data);
+				foreach (EnemyRank rank in Enum.GetValues(typeof(EnemyRank))) {
+					modSystem.ModifyEnemyData(type, rank, data.GetEnemyData(rank));
+					modSystem.ModifyEnemyBehaviour(type, rank, data.GetAIScript(rank), data.GetLogicController());
+				}
 			}
 		}
 

@@ -56,7 +56,22 @@ public abstract class ModSystem : ModType
 	/// <param name="data">Returned data of the ability</param>
 	public virtual void ModifyAbilityData(AbilityType type, AbilityData data) {	}
 
-	public virtual void ModifyEnemyClassData(EnemyType type, EnemyClassData data) { }
+	/// <summary>
+	///
+	/// </summary>
+	/// <param name="type"></param>
+	/// <param name="type"></param>
+	/// <param name="type"></param>
+	public virtual void ModifyEnemyData(EnemyType type, EnemyRank rank, EnemyData data) { }
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="type"></param>
+	/// <param name="type"></param>
+	/// <param name="type"></param>
+	/// <param name="type"></param>
+	public virtual void ModifyEnemyBehaviour(EnemyType type, EnemyRank rank, BaseAIScript aiScript, LogicController_SO logicController_SO) { }
 
 	/// <summary>
 	/// Determines whether the instance of this class should be initialized
