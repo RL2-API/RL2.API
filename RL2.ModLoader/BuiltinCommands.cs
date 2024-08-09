@@ -1,10 +1,24 @@
 using Rewired.Utils.Libraries.TinyJson;
+using System.Collections.Generic;
 using System.IO;
 
 namespace RL2.ModLoader;
 
 public partial class ModLoader
 {
+	/// <summary>
+	/// Writes the loaded mods to the logs and console
+	/// </summary>
+	/// <param name="args"></param>	
+	[Command("show-mods")]
+	public static void ShowInstalledMods(string[] args) {
+		List<string> loaded = [];
+		foreach (KeyValuePair<string, SemVersion> entry in LoadedModNamesToVersions) {
+			loaded.Add($"{entry.Key} v{entry.Value}");
+		}
+		ModLoader.Log($"Installed mods: {string.Join(" | ", loaded)}");
+	}
+
 	/// <summary>
 	/// Creates base source files for a new independent mod
 	/// </summary>
