@@ -123,6 +123,7 @@ public partial class RL2API
 		mod.Path = ModLoader.ModManifestToPath?[manifest] + "\\" ?? ModLoader.ModPath;
 		mod.Content = assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ModType))).ToArray();
 		CommandManager.RegisterCommands(assembly);
+		mod.SetupContent();
 		return mod;
 	}
 

@@ -53,7 +53,7 @@ public partial class RL2API
 	);
 
 	/// <summary>
-	/// Handles calling <see cref="ModSystem.ModifyGeneratedCharacter(CharacterData)"/><br/>
+	/// Handles calling <see cref="ModSystem.ModifyGeneratedCharacterData(CharacterData, bool, bool)"/><br/>
 	/// </summary>
 	internal static ILHook ModifyCharacterData = new ILHook(
 		typeof(LineageWindowController).GetMethod("CreateRandomCharacters", BindingFlags.NonPublic | BindingFlags.Instance),

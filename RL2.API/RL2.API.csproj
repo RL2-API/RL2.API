@@ -18,7 +18,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Reference Include="..\lib\*.dll">
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2" PrivateAssets="all" />
+
+		<Reference Include="..\lib\*.dll" Publicize="true">
 			<Private>false</Private>
 		</Reference>
 		<ProjectReference Include="..\RL2.ModLoader\RL2.ModLoader.csproj" />

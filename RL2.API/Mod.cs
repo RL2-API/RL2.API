@@ -35,6 +35,10 @@ public abstract class Mod
 	/// 
 	/// </summary>
 	public virtual void OnUnload() { }
+
+	internal void SetupContent() {
+
+	}
 	
 	/// <summary>
 	/// Logs the message with your "[YourModClassName]"
