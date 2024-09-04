@@ -37,7 +37,13 @@ public abstract class Mod
 	public virtual void OnUnload() { }
 
 	internal void SetupContent() {
-
+		foreach (Type type in Content) {
+			if (type.IsSubclassOf(typeof(ModClassData)) && !type.IsAbstract) {
+				ModClassData classData = (ModClassData)Activator.CreateInstance(type);
+				classData.SetData();
+				classData.Register();
+			}
+		}
 	}
 	
 	/// <summary>
