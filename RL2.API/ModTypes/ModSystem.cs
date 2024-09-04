@@ -57,20 +57,21 @@ public abstract class ModSystem : ModType
 	public virtual void ModifyAbilityData(AbilityType type, AbilityData data) {	}
 
 	/// <summary>
-	///
+	/// Allows for modifying <see cref="EnemyData"/>
 	/// </summary>
 	/// <param name="type"></param>
-	/// <param name="type"></param>
-	/// <param name="type"></param>
+	/// <param name="rank"></param>
+	/// <param name="data"></param>
 	public virtual void ModifyEnemyData(EnemyType type, EnemyRank rank, EnemyData data) { }
 
 	/// <summary>
-	/// 
+	/// Allows for modifying the enemies behaviour.<br></br>
+	/// Warning: When setting <paramref name="aiScript"/> to a new instance of a adifferent type, one must also replace <paramref name="logicController_SO"/> with the correctly built <see cref="LogicController_SO"/> object
 	/// </summary>
 	/// <param name="type"></param>
-	/// <param name="type"></param>
-	/// <param name="type"></param>
-	/// <param name="type"></param>
+	/// <param name="rank"></param>
+	/// <param name="aiScript"></param>
+	/// <param name="logicController_SO"></param>
 	public virtual void ModifyEnemyBehaviour(EnemyType type, EnemyRank rank, BaseAIScript aiScript, LogicController_SO logicController_SO) { }
 
 	/// <summary>
