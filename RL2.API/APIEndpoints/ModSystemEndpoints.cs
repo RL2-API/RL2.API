@@ -11,21 +11,12 @@ namespace RL2.ModLoader;
 public partial class RL2API
 {
 	/// <summary>
-	/// Stores the <see cref="GameManager"/> instance
-	/// </summary>
-	public static GameManager GameManagerInstance;
-
-	/// <summary>
 	/// Handles attaching <see cref="ModSystem"/> instances
 	/// </summary>
 	internal static Hook AttachModSystemInstances = new Hook(
 		typeof(GameManager).GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance),
 		(Action<GameManager> orig, GameManager self) => {
 			orig(self);
-			if (GameManagerInstance != null) {
-				return;
-			}
-			GameManagerInstance = self;
 			foreach (Mod mod in LoadedMods) {
 				foreach (Type modSystemType in mod.GetModTypes<ModSystem>()) {
 					ModSystem modSystem = (ModSystem)self.gameObject.AddComponent(modSystemType);
@@ -46,7 +37,7 @@ public partial class RL2API
 		typeof(CharacterCreator).GetMethod("ApplyRandomizeKitTrait", BindingFlags.Public | BindingFlags.Static),
 		(Action<CharacterData, bool, bool, bool> orig, CharacterData charData, bool randomizeSpell, bool excludeCurrentAbilities, bool useLineageSeed) => {
 			orig(charData, randomizeSpell, excludeCurrentAbilities, useLineageSeed);
-			foreach (ModSystem modSystem in GameManagerInstance!.GetComponents<ModSystem>()) {
+			foreach (ModSystem modSystem in GameManager.Instance.GetComponents<ModSystem>()) {
 				modSystem.ModifyCharacterRandomization(charData);
 			}
 		}
@@ -136,7 +127,7 @@ public partial class RL2API
 			ilCursor.Emit(OpCodes.Ldloc, 4);
 			ilCursor.Emit(OpCodes.Ldelem_Ref);
 			ilCursor.EmitDelegate((CharacterData characterData) => {
-				foreach (ModSystem modSystem in GameManagerInstance!.GetComponents<ModSystem>()) {
+				foreach (ModSystem modSystem in GameManager.Instance.GetComponents<ModSystem>()) {
 					modSystem.ModifyGeneratedCharacterData(characterData, false, false);
 				}
 			});
@@ -168,29 +159,10 @@ public partial class RL2API
 			ilCursor.Emit(OpCodes.Ldloc, 4);
 			ilCursor.Emit(OpCodes.Ldelem_Ref);
 			ilCursor.EmitDelegate((PlayerLookController lookData, CharacterData characterData) => {
-				foreach (ModSystem modSystem in GameManagerInstance!.GetComponents<ModSystem>()) {
+				foreach (ModSystem modSystem in GameManager.Instance.GetComponents<ModSystem>()) {
 					modSystem.ModifyGeneratedCharacterLook(lookData, characterData.Clone());
 				}
 			});
-		}
-	);
-
-	/// <summary>
-	/// Stores the <see cref="MapController"/> instance
-	/// </summary>
-	public static MapController MapControllerInstance;
-
-	/// <summary>
-	/// Handles setting <see cref="MapControllerInstance"/>
-	/// </summary>
-	internal static Hook SetMapControllerInstance = new Hook(
-		typeof(MapController).GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance),
-		(Action<MapController> orig, MapController self) => {
-			orig(self);
-			if (MapControllerInstance != null) {
-				return;
-			}
-			MapControllerInstance = self;
 		}
 	);
 
@@ -206,7 +178,7 @@ public partial class RL2API
 		typeof(MapController).GetMethod("GetSpecialIconPrefab", BindingFlags.Public | BindingFlags.Static),
 		(Func<GridPointManager, bool, bool, GameObject> orig, GridPointManager roomToCheck, bool getUsed, bool isMergeRoom) => {
 			Texture2D? modMapIconTexture = null;
-			foreach (ModSystem modSystem in GameManagerInstance.GetComponents<ModSystem>()) {
+			foreach (ModSystem modSystem in GameManager.Instance.GetComponents<ModSystem>()) {
 				if (modMapIconTexture != null) {
 					break;
 				}
@@ -217,7 +189,7 @@ public partial class RL2API
 				if (TextureHashToPrefab.ContainsKey(textureHash)) {
 					return TextureHashToPrefab[textureHash];
 				}
-				GameObject modMapIconObject = UnityEngine.Object.Instantiate((GameObject)typeof(MapController).GetField("m_specialRoomIconPrefab", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(MapControllerInstance));
+				GameObject modMapIconObject = UnityEngine.Object.Instantiate(MapController.m_instance.m_specialRoomIconPrefab);
 				Sprite sprite = Sprite.Create(modMapIconTexture, new Rect(0f, 0f, modMapIconTexture.width, modMapIconTexture.height), new Vector2(.5f, .5f));
 				modMapIconObject.GetComponent<SpriteRenderer>().sprite = sprite;
 				UnityEngine.Object.DontDestroyOnLoad(modMapIconObject);
@@ -237,7 +209,7 @@ public partial class RL2API
 				return ability;
 			}
 
-			foreach (ModSystem modSystem in GameManagerInstance.GetComponents<ModSystem>()) {
+			foreach (ModSystem modSystem in GameManager.Instance.GetComponents<ModSystem>()) {
 				modSystem.ModifyAbilityData(type, ability.AbilityData);
 			}
 
@@ -255,7 +227,7 @@ public partial class RL2API
 	internal static bool ModifyEnemyClassDataMethod(EnemyClassDataDictionary_TryGetValue orig, EnemyTypeEnemyClassDataDictionary self, EnemyType type, out EnemyClassData data) {
 		bool found =  orig(self, type, out data);
 		if (found) {
-			foreach (ModSystem modSystem in GameManagerInstance.GetComponents<ModSystem>()) {
+			foreach (ModSystem modSystem in GameManager.Instance.GetComponents<ModSystem>()) {
 				foreach (EnemyRank rank in Enum.GetValues(typeof(EnemyRank))) {
 					modSystem.ModifyEnemyData(type, rank, data.GetEnemyData(rank));
 					modSystem.ModifyEnemyBehaviour(type, rank, data.GetAIScript(rank), data.GetLogicController());

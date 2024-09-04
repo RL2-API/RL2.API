@@ -86,7 +86,7 @@ public partial class RL2API
 	);
 
 	internal static ILHook ActualResolve = new ILHook(
-		typeof(PlayerController).GetProperty("ActualResolve", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualResolve", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 			
@@ -113,7 +113,7 @@ public partial class RL2API
 	);
 	
 	internal static ILHook ActualDexterity = new ILHook(
-		typeof(PlayerController).GetProperty("ActualDexterity", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualDexterity", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -138,7 +138,7 @@ public partial class RL2API
 	);
 
 	internal static ILHook ActualCritChance = new ILHook(
-		typeof(PlayerController).GetProperty("ActualCritChance", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualCritChance", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -154,7 +154,7 @@ public partial class RL2API
 	);
 
 	internal static ILHook ActualCritDamage = new ILHook(
-		typeof(PlayerController).GetProperty("ActualCritDamage", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualCritDamage", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -170,7 +170,7 @@ public partial class RL2API
 	);
 
 	internal static ILHook ActualFocus = new ILHook(
-		typeof(PlayerController).GetProperty("ActualFocus", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualFocus", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -195,7 +195,7 @@ public partial class RL2API
 	);
 
 	internal static ILHook ActualMagicCritChance = new ILHook(
-		typeof(PlayerController).GetProperty("ActualMagicCritChance", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualMagicCritChance", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -211,7 +211,7 @@ public partial class RL2API
 	);
 
 	internal static ILHook ActualMagicCritDamage = new ILHook(
-		typeof(PlayerController).GetProperty("ActualMagicCritDamage", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualMagicCritDamage", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -228,7 +228,7 @@ public partial class RL2API
 	);
 
 	internal static ILHook ActualArmor = new ILHook(
-		typeof(PlayerController).GetProperty("ActualArmor", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualArmor", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -244,7 +244,7 @@ public partial class RL2API
 	);
 	
 	internal static ILHook ActualStrength = new ILHook(
-		typeof(PlayerController).GetProperty("ActualStrength", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualStrength", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -259,7 +259,7 @@ public partial class RL2API
 	);
 
 	internal static ILHook ActualMagic = new ILHook(
-		typeof(PlayerController).GetProperty("ActualMagic", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualMagic", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -274,7 +274,7 @@ public partial class RL2API
 	);
 
 	internal static ILHook ActualVitality = new ILHook(
-		typeof(PlayerController).GetProperty("ActualVitality", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualVitality", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -299,7 +299,7 @@ public partial class RL2API
 	);
 
 	internal static ILHook ActualMaxHealth = new ILHook(
-		typeof(PlayerController).GetProperty("ActualMaxHealth", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualMaxHealth", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -321,7 +321,7 @@ public partial class RL2API
 	);
 
 	internal static ILHook ActualMaxMana = new ILHook(
-		typeof(PlayerController).GetProperty("ActualMaxMana", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualMaxMana", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -337,14 +337,14 @@ public partial class RL2API
 	);
 
 	internal static Hook ActualRuneWeight = new Hook(
-		typeof(PlayerController).GetProperty("ActualRuneWeight", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualRuneWeight", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(Func<PlayerController, int> orig, PlayerController self) => {
 			return orig(self) + StatBonuses.RuneWeight;
 		}
 	);
 
 	internal static Hook ActualAllowedEquipmentWeight = new Hook(
-		typeof(PlayerController).GetProperty("ActualAllowedEquipmentWeight", BindingFlags.Public | BindingFlags.Instance).GetGetMethod(),
+		typeof(PlayerController).GetProperty("ActualAllowedEquipmentWeight", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(Func<PlayerController, int> orig, PlayerController self) => {
 			return orig(self) + StatBonuses.EquipmentWeight;
 		}
