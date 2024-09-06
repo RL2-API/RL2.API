@@ -1,6 +1,6 @@
 namespace RL2.ModLoader;
 
-public abstract class ModClassData
+public abstract class ModClassData : IRegistrable
 {
 	internal ClassData ClassData = new();
 	/// <summary>

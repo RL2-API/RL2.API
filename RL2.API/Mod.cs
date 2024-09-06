@@ -38,10 +38,14 @@ public abstract class Mod
 
 	internal void SetupContent() {
 		foreach (Type type in Content) {
-			if (type.IsSubclassOf(typeof(ModClassData)) && !type.IsAbstract) {
-				ModClassData classData = (ModClassData)Activator.CreateInstance(type);
-				classData.SetData();
-				classData.Register();
+			if (type.IsSubclassOf(typeof(GlobalType))) {
+				continue;
+			}
+
+			var instance = Activator.CreateInstance(type);
+
+			if (instance is IRegistrable registrable) {
+				registrable.Register();
 			}
 		}
 	}
