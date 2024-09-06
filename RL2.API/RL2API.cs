@@ -29,7 +29,11 @@ public partial class RL2API
 	/// <returns>An array of all mods that succeded to load</returns>
 	public Mod[] LoadAPICompliantMods() {
 		List<Mod> loadedMods = [];
-		ModManifest[] notDisabledModManifests = ModLoader.ModManifestToPath.Keys.Where(manifest => ModLoader.ModList?.Disabled.IndexOf(manifest.Name) == -1 && manifest.LoadAfter.Contains("RL2.API")).ToArray();
+		ModManifest[] notDisabledModManifests = ModLoader.ModManifestToPath.Keys.Where(
+			manifest => 
+				ModLoader.ModList?.Disabled.IndexOf(manifest.Name) == -1 && 
+				manifest.LoadAfter.Contains("RL2.API")
+		).ToArray();
 		Assembly?[] modAssemblies = GetEnabledModAssemblies(notDisabledModManifests);
 		for (int i = 0; i < modAssemblies.Length; i++) {
 			Mod? mod = TryLoadMod(modAssemblies[i], notDisabledModManifests[i]);
@@ -81,7 +85,7 @@ public partial class RL2API
 				modAssemblies[currentModID] = null;
 				continue;
 			}
-			if (modAssembly.GetTypes().Where(type => type.IsSubclassOf(typeof(Mod))).Count() != 1) {
+			if (modAssembly.GetTypes().Count(type => type.IsSubclassOf(typeof(Mod))) != 1) {
 				Mod.Log($"{modName} is not a valid mod assembly, as it should only contain a single Mod class");
 				modAssemblies[currentModID] = null;
 				continue;
@@ -134,7 +138,7 @@ public partial class RL2API
 	/// <returns>
 	/// Stored instance of found mod;
 	/// </returns>
-	public static T GetModInstance<T>() where T : Mod {
+	public static T? GetModInstance<T>() where T : Mod {
 		foreach (Mod mod in LoadedMods) {
 			if (mod is T) {
 				return (T)mod;
