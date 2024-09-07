@@ -3,32 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RL2.ModLoader", "RL2.ModLoader\RL2.ModLoader.csproj", "{B355F2BC-8635-44BE-B0A4-FC50302BDAF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RL2.API", "RL2.API\RL2.API.csproj", "{D6A16F78-575A-47AC-AEE8-A0E284621550}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RL2.API", "RL2.API\RL2.API.csproj", "{8AB49990-FFE4-4C6D-8575-8043ABEF7943}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleMod", "ExampleMod\ExampleMod.csproj", "{8C0376B4-BA53-417F-9B1C-F4A59931473F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RL2.ModLoader.Installer", "RL2.ModLoader.Installer\RL2.ModLoader.Installer.csproj", "{E2944685-52BB-4058-9FC3-BF21CD7E6903}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleMod", "ExampleMod\ExampleMod.csproj", "{F268CC23-2AD6-4696-869E-20CCC602E965}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B355F2BC-8635-44BE-B0A4-FC50302BDAF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B355F2BC-8635-44BE-B0A4-FC50302BDAF7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AB49990-FFE4-4C6D-8575-8043ABEF7943}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8AB49990-FFE4-4C6D-8575-8043ABEF7943}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C0376B4-BA53-417F-9B1C-F4A59931473F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C0376B4-BA53-417F-9B1C-F4A59931473F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E2944685-52BB-4058-9FC3-BF21CD7E6903}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2944685-52BB-4058-9FC3-BF21CD7E6903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6A16F78-575A-47AC-AEE8-A0E284621550}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6A16F78-575A-47AC-AEE8-A0E284621550}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F268CC23-2AD6-4696-869E-20CCC602E965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F268CC23-2AD6-4696-869E-20CCC602E965}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {29730484-6E08-471C-BF10-F7A457AF382A}
+		SolutionGuid = {DD0A8BC0-01BF-4F9B-BB2C-907C4D4B3AFF}
 	EndGlobalSection
 EndGlobal

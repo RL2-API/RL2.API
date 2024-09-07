@@ -20,10 +20,12 @@
 	<ItemGroup>
         <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2" PrivateAssets="all" />
 
-		<Reference Include="..\lib\*.dll" Publicize="true">
+		<Reference Include="..\lib\*.dll" Exclude="..\lib\Assembly-CSharp.dll">
 			<Private>false</Private>
 		</Reference>
-		<ProjectReference Include="..\RL2.ModLoader\RL2.ModLoader.csproj" />
+		<Reference Include="..\lib\Assembly-CSharp.dll" Publicize="true">
+			<Private>false</Private>
+		</Reference>
 	</ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">

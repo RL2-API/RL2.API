@@ -18,3 +18,4 @@ lib/*.dll
 !lib/Mono*.dll
 lib/Mono.Posix.dll
 lib/Mono.Security.dll
+!lib/RL2.ModLoader*
