@@ -2,7 +2,7 @@
 [![GitHub Release](https://img.shields.io/github/v/release/RL2-API/RL2.API.svg?logo=github&style=flat-square)](https://github.com/RL2-API/RL2.API/releases/latest)
 ![Docs](https://img.shields.io/badge/Documentation-Offline-orange?logo=github&style=flat-square)
 [![Website](https://img.shields.io/badge/Website-gray?logo=webtrees&logoColor=white&style=flat-square)](https://rl2-modloader.onrender.com/mods/RL2.API)
-![RL2.API Logo](https://raw.githubusercontent.com/RL2-API/RL2.ModLoader/main/Assets/ModLoaderIcon-NoText-700x700.png)
+![RL2.API Logo](https://raw.githubusercontent.com/RL2-API/RL2.ModLoader/main/Assets/ModLoaderIcon-NoText-700x700.png =200x200)
 
 
 RL2.API is a modding API for [Rogue Legacy 2](https://roguelegacy2.com). It requires [RL2.ModLoader](https://github.com/RL2-API/RL2.ModLoader) to function.
