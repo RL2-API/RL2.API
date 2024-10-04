@@ -1,8 +1,10 @@
-# RL2.API
-[![GitHub Release](https://img.shields.io/github/v/release/RL2-API/RL2.API.svg?logo=github&style=flat-square)](https://github.com/RL2-API/RL2.API/releases/latest)
-![Docs](https://img.shields.io/badge/Documentation-Offline-orange?logo=github&style=flat-square)
-[![Website](https://img.shields.io/badge/Website-gray?logo=webtrees&logoColor=white&style=flat-square)](https://rl2-modloader.onrender.com/mods/RL2.API)
-<br/><img src="https://raw.githubusercontent.com/RL2-API/RL2.ModLoader/main/Assets/ModLoaderIcon-NoText-700x700.png" width=350px height=350px  />
+<h1 align="center">
+    <img src="https://raw.githubusercontent.com/RL2-API/RL2.ModLoader/main/Assets/ModLoaderIcon-NoText-700x700.png" width=350px height=350px /><br/>
+    RL2.API<br/>
+    <a href="https://github.com/RL2-API/RL2.API/releases/latest"><img src="https://img.shields.io/github/v/release/RL2-API/RL2.API.svg?logo=github&style=flat-square" alt="Github Release"/></a>
+    <a href=""><img src="https://img.shields.io/badge/Documentation-Offline-orange?logo=github&style=flat-square" alt="Docs"/></a>
+    <a href="https://rl2-modloader.onrender.com/mods/RL2.API"><img src="https://img.shields.io/badge/Website-gray?logo=webtrees&logoColor=white&style=flat-square" alt="Website"/></a>
+</h1>
 
 
 RL2.API is a modding API for [Rogue Legacy 2](https://roguelegacy2.com). It requires [RL2.ModLoader](https://github.com/RL2-API/RL2.ModLoader) to function.
