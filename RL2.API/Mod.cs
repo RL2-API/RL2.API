@@ -16,15 +16,9 @@ public abstract class Mod
 	public string Path { get; internal set; }
 
 	/// <summary>
-	/// All types from this mod
+	/// All registrable types from this mod
 	/// </summary>
-	internal Type[] Content;
-
-	/// <summary>
-	/// Gets all types inheriting from T.
-	/// </summary>
-	/// <typeparam name="T">The type you want to get derived classes of</typeparam>
-	public Type[] GetModTypes<T>() where T : ModType => Content.Where(type => type.IsSubclassOf(typeof(T))).ToArray();
+	internal Type[] RegistrableContent;
 
 	/// <summary>
 	/// Ran right after loading all mods.
@@ -37,13 +31,8 @@ public abstract class Mod
 	public virtual void OnUnload() { }
 
 	internal void SetupContent() {
-		foreach (Type type in Content) {
-			if (type.IsSubclassOf(typeof(GlobalType))) {
-				continue;
-			}
-
+		foreach (Type type in Content) { 
 			var instance = Activator.CreateInstance(type);
-
 			if (instance is IRegistrable registrable) {
 				registrable.Register();
 			}
