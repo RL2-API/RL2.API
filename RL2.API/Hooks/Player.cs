@@ -22,6 +22,7 @@ public partial class RL2API
 		}
 	);
 
+	#region Death
 	/// <summary>
 	/// Handles death prevention for players
 	/// </summary>
@@ -51,8 +52,12 @@ public partial class RL2API
 			Player.OnKill_Invoke(self, killer);
 		}
 	);
+	#endregion
 
 	#region Stats
+	/// <summary>
+	/// Handles modifying Resolve
+	/// </summary>
 	internal static ILHook ActualResolve = new ILHook(
 		typeof(PlayerController).GetProperty("ActualResolve", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -80,6 +85,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying Dexterity
+	/// </summary>
 	internal static ILHook ActualDexterity = new ILHook(
 		typeof(PlayerController).GetProperty("ActualDexterity", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -105,6 +113,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying CritChance
+	/// </summary>
 	internal static ILHook ActualCritChance = new ILHook(
 		typeof(PlayerController).GetProperty("ActualCritChance", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -121,6 +132,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying CritDamage
+	/// </summary>
 	internal static ILHook ActualCritDamage = new ILHook(
 		typeof(PlayerController).GetProperty("ActualCritDamage", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -137,6 +151,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying Focus
+	/// </summary>
 	internal static ILHook ActualFocus = new ILHook(
 		typeof(PlayerController).GetProperty("ActualFocus", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -162,6 +179,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying MagicCritChance
+	/// </summary>
 	internal static ILHook ActualMagicCritChance = new ILHook(
 		typeof(PlayerController).GetProperty("ActualMagicCritChance", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -178,6 +198,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying MagicCritDamage
+	/// </summary>
 	internal static ILHook ActualMagicCritDamage = new ILHook(
 		typeof(PlayerController).GetProperty("ActualMagicCritDamage", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -195,6 +218,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying Armor
+	/// </summary>
 	internal static ILHook ArmorAdds = new ILHook(
 		typeof(PlayerController).GetProperty("ArmorAdds", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -223,7 +249,9 @@ public partial class RL2API
 		}
 	);
 
-	// REDO : Go one abstraction layer below, and check if BaseCharacterController self is PlayerController
+	/// <summary>
+	/// Handles modifying Strength
+	/// </summary>
 	internal static ILHook ActualStrength = new ILHook(
 		typeof(PlayerController).GetProperty("ActualStrength", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -266,6 +294,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying Magic
+	/// </summary>
 	internal static ILHook ActualMagic = new ILHook(
 		typeof(PlayerController).GetProperty("ActualMagic", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -308,6 +339,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying Vitality
+	/// </summary>
 	internal static ILHook ActualVitality = new ILHook(
 		typeof(PlayerController).GetProperty("ActualVitality", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -333,6 +367,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying MaxHealth
+	/// </summary>
 	internal static ILHook ActualMaxHealth = new ILHook(
 		typeof(PlayerController).GetProperty("ActualMaxHealth", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -355,6 +392,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying MaxMana
+	/// </summary>
 	internal static ILHook ActualMaxMana = new ILHook(
 		typeof(PlayerController).GetProperty("ActualMaxMana", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
@@ -380,6 +420,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying RuneWeight
+	/// </summary>
 	internal static Hook ActualRuneWeight = new Hook(
 		typeof(PlayerController).GetProperty("ActualRuneWeight", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(Func<PlayerController, int> orig, PlayerController self) => {
@@ -389,6 +432,9 @@ public partial class RL2API
 		}
 	);
 
+	/// <summary>
+	/// Handles modifying EquipmentWeight
+	/// </summary>
 	internal static Hook ActualAllowedEquipmentWeight = new Hook(
 		typeof(PlayerController).GetProperty("ActualAllowedEquipmentWeight", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(Func<PlayerController, int> orig, PlayerController self) => {
@@ -400,7 +446,7 @@ public partial class RL2API
 
 	#endregion
 
-
+	#region Character generation
 	/// <summary>
 	/// Handles calling <see cref="Player.ModifyCharacterRandomization"/>
 	/// </summary>
@@ -536,4 +582,5 @@ public partial class RL2API
 			});
 		}
 	);
+	#endregion
 }
