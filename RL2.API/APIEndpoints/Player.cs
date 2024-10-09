@@ -431,12 +431,12 @@ public class Player
 	/// <summary>
 	/// 
 	/// </summary>
-	public delegate void ModifyCharacterLook_delegate(PlayerLookController lookData, in CharacterData data);
+	public delegate void ModifyCharacterLook_delegate(PlayerLookController lookData, CharacterData data);
 
 	/// <inheritdoc cref="ModifyCharacterLook_delegate"/>
 	public static event ModifyCharacterLook_delegate? ModifyCharacterLook;
-	internal static void ModifyCharacterLook_Invoke(PlayerLookController lookData, in CharacterData data) {
-		ModifyCharacterLook?.Invoke(lookData, in data);
+	internal static void ModifyCharacterLook_Invoke(PlayerLookController lookData, CharacterData data) {
+		ModifyCharacterLook?.Invoke(lookData, data);
 	}
 	#endregion
 }

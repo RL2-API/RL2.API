@@ -578,7 +578,7 @@ public partial class RL2API
 			ilCursor.Emit(OpCodes.Ldloc, 4);
 			ilCursor.Emit(OpCodes.Ldelem_Ref);
 			ilCursor.EmitDelegate((PlayerLookController lookData, CharacterData characterData) => {
-				Player.ModifyCharacterLook_Invoke(lookData, in characterData);
+				Player.ModifyCharacterLook_Invoke(lookData, characterData.Clone());
 			});
 		}
 	);
