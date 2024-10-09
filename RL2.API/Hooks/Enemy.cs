@@ -30,6 +30,7 @@ public partial class RL2API
 		Enemy.OnSpawn_Invoke(self);
 	}
 
+	#region Death
 	/// <summary>
 	/// Handles calling <see cref="Enemy.PreKill"/>
 	/// </summary>
@@ -60,4 +61,26 @@ public partial class RL2API
 			Enemy.OnKill_Invoke(self, killer);
 		}
 	);
+	#endregion
+
+	#region
+	internal delegate bool EnemyClassDataDictionary_TryGetValue(EnemyTypeEnemyClassDataDictionary self, EnemyType key, out EnemyClassData data);
+
+	internal static Hook ModifyClassDataHook = new Hook(
+		typeof(EnemyTypeEnemyClassDataDictionary).GetMethod("TryGetValue", BindingFlags.Public | BindingFlags.Instance),
+		ModifyClassDataMethod
+	);
+
+	internal static bool ModifyClassDataMethod(EnemyClassDataDictionary_TryGetValue orig, EnemyTypeEnemyClassDataDictionary self, EnemyType type, out EnemyClassData data) {
+		bool found = orig(self, type, out data);
+		if (found) {
+			foreach (EnemyRank rank in Enum.GetValues(typeof(EnemyRank))) {
+				Enemy.ModifyData_Invoke(type, rank, data.GetEnemyData(rank));
+				Enemy.ModifyBehaviour_Invoke(type, rank, data.GetAIScript(rank), data.GetLogicController());
+			}
+		}	
+
+		return found;
+	}
+	#endregion
 }

@@ -21,6 +21,7 @@ public class Enemy
 		OnSpawn?.Invoke(enemy);
 	}
 
+	#region Death
 	/// <summary>
 	/// Determines whether the affected enemy should die.
 	/// </summary>
@@ -57,4 +58,39 @@ public class Enemy
 	internal static void OnKill_Invoke(EnemyController enemy, GameObject killer) {
 		OnKill?.Invoke(enemy, killer);
 	}
+	#endregion
+
+	#region 
+	/// <summary>
+	/// Allows for modifying <see cref="EnemyData"/>
+	/// </summary>
+	/// <param name="type"></param>
+	/// <param name="rank"></param>
+	/// <param name="data"></param>
+	public delegate void ModifyData_delegate(EnemyType type, EnemyRank rank, EnemyData data);
+
+	/// <inheritdoc cref="ModifyData_delegate"/>
+	public static event ModifyData_delegate? ModifyData;
+
+	internal static void ModifyData_Invoke(EnemyType type, EnemyRank rank, EnemyData data) {
+		ModifyData?.Invoke(type, rank, data);
+	}
+
+	/// <summary>
+	/// Allows for modifying the enemies behaviour.<br></br>
+	/// Warning: When setting <paramref name="aiScript"/> to a new instance of a adifferent type, one must also replace <paramref name="logicController_SO"/> with the correctly built <see cref="LogicController_SO"/> object
+	/// </summary>
+	/// <param name="type"></param>
+	/// <param name="rank"></param>
+	/// <param name="aiScript"></param>
+	/// <param name="logicController_SO"></param>
+	public delegate void ModifyBehaviour_delegate(EnemyType type, EnemyRank rank, BaseAIScript aiScript, LogicController_SO logicController_SO);
+
+	/// <inheritdoc cref="ModifyBehaviour_delegate"/>
+	public static event ModifyBehaviour_delegate? ModifyBehaviour;
+
+	internal static void ModifyBehaviour_Invoke(EnemyType type, EnemyRank rank, BaseAIScript aiScript, LogicController_SO logicController_SO) {
+		ModifyBehaviour?.Invoke(type, rank, aiScript, logicController_SO);
+	}
+	#endregion
 }
