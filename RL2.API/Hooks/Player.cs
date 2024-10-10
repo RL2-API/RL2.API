@@ -11,7 +11,7 @@ namespace RL2.ModLoader;
 public partial class RL2API
 {
 	/// <summary>
-	/// Handles calling <see cref="Enemy.OnSpawn"/>
+	/// Handles calling <see cref="Player.OnSpawn"/>
 	/// </summary>
 	internal static Hook OnSpawn_Player = new Hook(
 		typeof(PlayerController).GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance),
@@ -24,7 +24,7 @@ public partial class RL2API
 
 	#region Death
 	/// <summary>
-	/// Handles death prevention for players
+	///  Handles calling <seealso cref="Player.PreKill"/>
 	/// </summary>
 	internal static Hook PreKill_Player = new Hook(
 		typeof(PlayerController).GetMethod("KillCharacter", BindingFlags.Public | BindingFlags.Instance),
@@ -71,7 +71,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaResolve) => Player.ResolveFlat_Invoke(ref vanillaResolve));
+			cursor.EmitDelegate((float vanillaResolve) => Player.Stats.ResolveFlat_Invoke(ref vanillaResolve));
 
 			cursor.GotoNext(
 				MoveType.After,
@@ -81,7 +81,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaResolveMultiplier) => Player.ResolveMultiplier_Invoke(ref vanillaResolveMultiplier));
+			cursor.EmitDelegate((float vanillaResolveMultiplier) => Player.Stats.ResolveMultiplier_Invoke(ref vanillaResolveMultiplier));
 		}
 	);
 
@@ -100,7 +100,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaDexterity) => Player.DexterityFlat_Invoke(ref vanillaDexterity));
+			cursor.EmitDelegate((float vanillaDexterity) => Player.Stats.DexterityFlat_Invoke(ref vanillaDexterity));
 
 			cursor.GotoNext(
 				MoveType.After,
@@ -109,7 +109,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaDexterityMultiplier) => Player.DexterityMultiplier_Invoke(ref vanillaDexterityMultiplier));
+			cursor.EmitDelegate((float vanillaDexterityMultiplier) => Player.Stats.DexterityMultiplier_Invoke(ref vanillaDexterityMultiplier));
 		}
 	);
 
@@ -128,7 +128,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaCritChance) => Player.CritChance_Invoke(ref vanillaCritChance));
+			cursor.EmitDelegate((float vanillaCritChance) => Player.Stats.CritChance_Invoke(ref vanillaCritChance));
 		}
 	);
 
@@ -147,7 +147,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaCritDamage) => Player.CritDamage_Invoke(ref vanillaCritDamage));
+			cursor.EmitDelegate((float vanillaCritDamage) => Player.Stats.CritDamage_Invoke(ref vanillaCritDamage));
 		}
 	);
 
@@ -166,7 +166,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaFocus) => Player.FocusFlat_Invoke(ref vanillaFocus));
+			cursor.EmitDelegate((float vanillaFocus) => Player.Stats.FocusFlat_Invoke(ref vanillaFocus));
 
 			cursor.GotoNext(
 				MoveType.After,
@@ -175,7 +175,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaFocusMultiplier) => Player.FocusMultiplier_Invoke(ref vanillaFocusMultiplier));
+			cursor.EmitDelegate((float vanillaFocusMultiplier) => Player.Stats.FocusMultiplier_Invoke(ref vanillaFocusMultiplier));
 		}
 	);
 
@@ -194,7 +194,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaMagicCritChance) => Player.MagicCritChance_Invoke(ref vanillaMagicCritChance));
+			cursor.EmitDelegate((float vanillaMagicCritChance) => Player.Stats.MagicCritChance_Invoke(ref vanillaMagicCritChance));
 		}
 	);
 
@@ -214,7 +214,7 @@ public partial class RL2API
 			);
 
 
-			cursor.EmitDelegate((float vanillaMagicCritDamage) => Player.MagicCritDamage_Invoke(ref vanillaMagicCritDamage));
+			cursor.EmitDelegate((float vanillaMagicCritDamage) => Player.Stats.MagicCritDamage_Invoke(ref vanillaMagicCritDamage));
 		}
 	);
 
@@ -233,7 +233,7 @@ public partial class RL2API
 			);
 
 			cursor.EmitDelegate((int vanillaFlatArmor) => {
-				Player.ArmorFlat_Invoke(ref vanillaFlatArmor);
+				Player.Stats.ArmorFlat_Invoke(ref vanillaFlatArmor);
 				return vanillaFlatArmor;
 			});
 
@@ -243,7 +243,7 @@ public partial class RL2API
 			);
 
 			cursor.EmitDelegate((float vanillaArmorMultiplier) => {
-				Player.ArmorMultiplier_Invoke(ref vanillaArmorMultiplier);
+				Player.Stats.ArmorMultiplier_Invoke(ref vanillaArmorMultiplier);
 				return vanillaArmorMultiplier;
 			});
 		}
@@ -271,7 +271,7 @@ public partial class RL2API
 					return vanillaFlatStrength;
 				}
 
-				Player.StrengthFlat_Invoke(ref vanillaFlatStrength);
+				Player.Stats.StrengthFlat_Invoke(ref vanillaFlatStrength);
 				return vanillaFlatStrength;
 			});
 
@@ -288,7 +288,7 @@ public partial class RL2API
 					return vanillaStrengthMultiplier;
 				}
 
-				Player.StrengthMultiplier_Invoke(ref vanillaStrengthMultiplier);
+				Player.Stats.StrengthMultiplier_Invoke(ref vanillaStrengthMultiplier);
 				return vanillaStrengthMultiplier;
 			});
 		}
@@ -316,7 +316,7 @@ public partial class RL2API
 					return vanillaFlatIntelligence;
 				}
 
-				Player.StrengthFlat_Invoke(ref vanillaFlatIntelligence);
+				Player.Stats.StrengthFlat_Invoke(ref vanillaFlatIntelligence);
 				return vanillaFlatIntelligence;
 			});
 
@@ -333,7 +333,7 @@ public partial class RL2API
 					return vanillaIntelligenceMultiplier;
 				}
 
-				Player.StrengthMultiplier_Invoke(ref vanillaIntelligenceMultiplier);
+				Player.Stats.StrengthMultiplier_Invoke(ref vanillaIntelligenceMultiplier);
 				return vanillaIntelligenceMultiplier;
 			});
 		}
@@ -354,7 +354,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((int vanillaVitality) => Player.VitalityFlat_Invoke(ref vanillaVitality));
+			cursor.EmitDelegate((int vanillaVitality) => Player.Stats.VitalityFlat_Invoke(ref vanillaVitality));
 
 			cursor.GotoNext(
 				MoveType.After,
@@ -363,7 +363,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaVitalityMultiplier) => Player.VitalityMultiplier_Invoke(ref vanillaVitalityMultiplier));
+			cursor.EmitDelegate((float vanillaVitalityMultiplier) => Player.Stats.VitalityMultiplier_Invoke(ref vanillaVitalityMultiplier));
 		}
 	);
 
@@ -381,14 +381,14 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaMaxHealthMultiplier) => Player.MaxHealthMultiplier_Invoke(ref vanillaMaxHealthMultiplier));
+			cursor.EmitDelegate((float vanillaMaxHealthMultiplier) => Player.Stats.MaxHealthMultiplier_Invoke(ref vanillaMaxHealthMultiplier));
 
 			cursor.GotoNext(
 				MoveType.After,
 				i => i.MatchLdcI4(150)
 			);
 
-			cursor.EmitDelegate((int vanillaMaxHealth) => Player.MaxHealthFlat_Invoke(ref vanillaMaxHealth));
+			cursor.EmitDelegate((int vanillaMaxHealth) => Player.Stats.MaxHealthFlat_Invoke(ref vanillaMaxHealth));
 		}
 	);
 
@@ -407,7 +407,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaMaxMana) => Player.MaxManaMultiplier_Invoke(ref vanillaMaxMana));
+			cursor.EmitDelegate((float vanillaMaxMana) => Player.Stats.MaxManaMultiplier_Invoke(ref vanillaMaxMana));
 
 			cursor.GotoNext(
 				MoveType.After,
@@ -416,7 +416,7 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((int vanillaMaxMana) => Player.MaxManaFlat_Invoke(ref vanillaMaxMana));
+			cursor.EmitDelegate((int vanillaMaxMana) => Player.Stats.MaxManaFlat_Invoke(ref vanillaMaxMana));
 		}
 	);
 
@@ -427,7 +427,7 @@ public partial class RL2API
 		typeof(PlayerController).GetProperty("ActualRuneWeight", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(Func<PlayerController, int> orig, PlayerController self) => {
 			int vanillaRuneWeight = orig(self);
-			Player.EquipmentWeight_Invoke(ref vanillaRuneWeight);
+			Player.Stats.EquipmentWeight_Invoke(ref vanillaRuneWeight);
 			return vanillaRuneWeight;
 		}
 	);
@@ -439,7 +439,7 @@ public partial class RL2API
 		typeof(PlayerController).GetProperty("ActualAllowedEquipmentWeight", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(Func<PlayerController, int> orig, PlayerController self) => {
 			int vanillaEquipmentWeight = orig(self);
-			Player.EquipmentWeight_Invoke(ref vanillaEquipmentWeight);
+			Player.Stats.EquipmentWeight_Invoke(ref vanillaEquipmentWeight);
 			return vanillaEquipmentWeight;
 		}
 	);
@@ -448,19 +448,19 @@ public partial class RL2API
 
 	#region Character generation
 	/// <summary>
-	/// Handles calling <see cref="Player.ModifyCharacterRandomization"/>
+	/// Handles calling <see cref="Player.HeirGeneration.ModifyCharacterRandomization"/>
 	/// </summary>
 	internal static Hook ModifyCharacterRandomization = new Hook(
 		typeof(CharacterCreator).GetMethod("ApplyRandomizeKitTrait", BindingFlags.Public | BindingFlags.Static),
 		(Action<CharacterData, bool, bool, bool> orig, CharacterData charData, bool randomizeSpell, bool excludeCurrentAbilities, bool useLineageSeed) => {
 			orig(charData, randomizeSpell, excludeCurrentAbilities, useLineageSeed);
-			Player.ModifyCharacterRandomization_Invoke(charData);
+			Player.HeirGeneration.ModifyCharacterRandomization_Invoke(charData);
 		}
 	);
 
 
 	/// <summary>
-	/// Handles calling <see cref="Player.ModifyGeneratedCharacterData"/>
+	/// Handles calling <see cref="Player.HeirGeneration.ModifyGeneratedCharacterData"/>
 	/// </summary>
 	internal static ILHook ModifyGeneratedCharacterData = new ILHook(
 		typeof(LineageWindowController).GetMethod("CreateRandomCharacters", BindingFlags.NonPublic | BindingFlags.Instance),
@@ -548,7 +548,7 @@ public partial class RL2API
 			ilCursor.EmitDelegate((CharacterData characterData, int index, CharacterData[] array) => {
 				bool classLocked = index == array.Length - 1 && SaveManager.ModeSaveData.GetSoulShopObj(SoulShopType.ChooseYourClass).CurrentEquippedLevel > 0;
 				bool spellLocked = index == array.Length - 1 && SaveManager.ModeSaveData.GetSoulShopObj(SoulShopType.ChooseYourSpell).CurrentEquippedLevel > 0;
-				Player.ModifyGeneratedCharacterData_Invoke(characterData, classLocked, spellLocked);
+				Player.HeirGeneration.ModifyGeneratedCharacterData_Invoke(characterData, classLocked, spellLocked);
 			});
 		}
 	);
@@ -578,7 +578,7 @@ public partial class RL2API
 			ilCursor.Emit(OpCodes.Ldloc, 4);
 			ilCursor.Emit(OpCodes.Ldelem_Ref);
 			ilCursor.EmitDelegate((PlayerLookController lookData, CharacterData characterData) => {
-				Player.ModifyCharacterLook_Invoke(lookData, characterData.Clone());
+				Player.HeirGeneration.ModifyCharacterLook_Invoke(lookData, characterData.Clone());
 			});
 		}
 	);
