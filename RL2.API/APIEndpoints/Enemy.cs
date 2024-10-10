@@ -60,7 +60,7 @@ public class Enemy
 	}
 	#endregion
 
-	#region 
+	#region Enemy prefab manipulation
 	/// <summary>
 	/// Allows for modifying <see cref="EnemyData"/>
 	/// </summary>
