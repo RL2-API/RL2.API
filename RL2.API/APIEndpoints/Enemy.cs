@@ -6,7 +6,7 @@ namespace RL2.ModLoader.API;
 /// <summary>
 /// Provides endpoints for enemy related APIs
 /// </summary>
-public class Enemy
+public static class Enemy
 {
 	/// <summary>
 	/// Ran on enemy spawn
