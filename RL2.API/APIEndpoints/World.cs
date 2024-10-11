@@ -6,11 +6,13 @@ namespace RL2.ModLoader.API;
 /// <summary>
 /// Provides endpoints for game world related APIs
 /// </summary>
-public static class World {
+public static class World
+{
 	/// <summary>
 	/// Provides endpoints for map related APIs
 	/// </summary>
-	public static class Map {
+	public static class Map
+	{
 		/// <summary>
 		/// Allows assigning a custom map icon to a room
 		/// </summary>

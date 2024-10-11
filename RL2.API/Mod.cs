@@ -24,21 +24,21 @@ public abstract class Mod
 	/// Ran right after loading all mods.
 	/// </summary>
 	public virtual void OnLoad() { }
-	
+
 	/// <summary>
 	/// 
 	/// </summary>
 	public virtual void OnUnload() { }
 
 	internal void SetupContent() {
-		foreach (Type type in Content) { 
+		foreach (Type type in RegistrableContent) { 
 			var instance = Activator.CreateInstance(type);
 			if (instance is IRegistrable registrable) {
 				registrable.Register();
 			}
 		}
 	}
-	
+
 	/// <summary>
 	/// Logs the message with your "[YourModClassName]"
 	/// </summary>

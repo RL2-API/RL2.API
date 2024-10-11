@@ -78,7 +78,7 @@ public partial class RL2API
 				Enemy.ModifyData_Invoke(type, rank, data.GetEnemyData(rank));
 				Enemy.ModifyBehaviour_Invoke(type, rank, data.GetAIScript(rank), data.GetLogicController());
 			}
-		}	
+		}
 
 		return found;
 	}
