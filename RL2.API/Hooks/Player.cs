@@ -346,7 +346,7 @@ public partial class RL2API
 					return vanillaFlatIntelligence;
 				}
 
-				Player.Stats.StrengthFlat_Invoke(ref vanillaFlatIntelligence);
+				Player.Stats.IntelligenceFlat_Invoke(ref vanillaFlatIntelligence);
 				return vanillaFlatIntelligence;
 			});
 
@@ -363,7 +363,7 @@ public partial class RL2API
 					return vanillaIntelligenceMultiplier;
 				}
 
-				Player.Stats.StrengthMultiplier_Invoke(ref vanillaIntelligenceMultiplier);
+				Player.Stats.IntelligenceMultiplier_Invoke(ref vanillaIntelligenceMultiplier);
 				return vanillaIntelligenceMultiplier;
 			});
 		}
