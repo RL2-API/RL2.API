@@ -71,7 +71,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaResolve) => Player.Stats.ResolveFlat_Invoke(ref vanillaResolve));
+			cursor.EmitDelegate((float vanillaResolve) => {
+				Player.Stats.ResolveFlat_Invoke(ref vanillaResolve);
+				return vanillaResolve;
+			});
 
 			cursor.GotoNext(
 				MoveType.After,
@@ -81,7 +84,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaResolveMultiplier) => Player.Stats.ResolveMultiplier_Invoke(ref vanillaResolveMultiplier));
+			cursor.EmitDelegate((float vanillaResolveMultiplier) => {
+				Player.Stats.ResolveMultiplier_Invoke(ref vanillaResolveMultiplier);
+				return vanillaResolveMultiplier;
+			});
 		}
 	);
 
@@ -100,7 +106,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaDexterity) => Player.Stats.DexterityFlat_Invoke(ref vanillaDexterity));
+			cursor.EmitDelegate((float vanillaDexterity) => {
+				Player.Stats.DexterityFlat_Invoke(ref vanillaDexterity);
+				return vanillaDexterity;
+			});
 
 			cursor.GotoNext(
 				MoveType.After,
@@ -109,7 +118,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaDexterityMultiplier) => Player.Stats.DexterityMultiplier_Invoke(ref vanillaDexterityMultiplier));
+			cursor.EmitDelegate((float vanillaDexterityMultiplier) => {
+				Player.Stats.DexterityMultiplier_Invoke(ref vanillaDexterityMultiplier);
+				return vanillaDexterityMultiplier;
+			});
 		}
 	);
 
@@ -128,7 +140,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaCritChance) => Player.Stats.CritChance_Invoke(ref vanillaCritChance));
+			cursor.EmitDelegate((float vanillaCritChance) => {
+				Player.Stats.CritChance_Invoke(ref vanillaCritChance);
+				return vanillaCritChance;
+			});
 		}
 	);
 
@@ -147,7 +162,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaCritDamage) => Player.Stats.CritDamage_Invoke(ref vanillaCritDamage));
+			cursor.EmitDelegate((float vanillaCritDamage) => {
+				Player.Stats.CritDamage_Invoke(ref vanillaCritDamage);
+				return vanillaCritDamage;
+			});
 		}
 	);
 
@@ -166,7 +184,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaFocus) => Player.Stats.FocusFlat_Invoke(ref vanillaFocus));
+			cursor.EmitDelegate((float vanillaFocus) => {
+				Player.Stats.FocusFlat_Invoke(ref vanillaFocus);
+				return vanillaFocus;
+			});
 
 			cursor.GotoNext(
 				MoveType.After,
@@ -175,7 +196,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaFocusMultiplier) => Player.Stats.FocusMultiplier_Invoke(ref vanillaFocusMultiplier));
+			cursor.EmitDelegate((float vanillaFocusMultiplier) => {
+				Player.Stats.FocusMultiplier_Invoke(ref vanillaFocusMultiplier);
+				return vanillaFocusMultiplier;
+			});
 		}
 	);
 
@@ -194,7 +218,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaMagicCritChance) => Player.Stats.MagicCritChance_Invoke(ref vanillaMagicCritChance));
+			cursor.EmitDelegate((float vanillaMagicCritChance) => {
+				Player.Stats.MagicCritChance_Invoke(ref vanillaMagicCritChance);
+				return vanillaMagicCritChance;
+			});
 		}
 	);
 
@@ -214,7 +241,10 @@ public partial class RL2API
 			);
 
 
-			cursor.EmitDelegate((float vanillaMagicCritDamage) => Player.Stats.MagicCritDamage_Invoke(ref vanillaMagicCritDamage));
+			cursor.EmitDelegate((float vanillaMagicCritDamage) => {
+				Player.Stats.MagicCritDamage_Invoke(ref vanillaMagicCritDamage);
+				return vanillaMagicCritDamage;
+			});
 		}
 	);
 
@@ -222,7 +252,7 @@ public partial class RL2API
 	/// Handles modifying Armor
 	/// </summary>
 	internal static ILHook ArmorAdds = new ILHook(
-		typeof(PlayerController).GetProperty("ArmorAdds", BindingFlags.Public | BindingFlags.Instance).GetMethod,
+		typeof(PlayerController).GetMethod("InitializeArmorMods", BindingFlags.Public | BindingFlags.Instance),
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -253,7 +283,7 @@ public partial class RL2API
 	/// Handles modifying Strength
 	/// </summary>
 	internal static ILHook ActualStrength = new ILHook(
-		typeof(PlayerController).GetProperty("ActualStrength", BindingFlags.Public | BindingFlags.Instance).GetMethod,
+		typeof(BaseCharacterController).GetProperty("ActualStrength", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -298,7 +328,7 @@ public partial class RL2API
 	/// Handles modifying Magic
 	/// </summary>
 	internal static ILHook ActualMagic = new ILHook(
-		typeof(PlayerController).GetProperty("ActualMagic", BindingFlags.Public | BindingFlags.Instance).GetMethod,
+		typeof(BaseCharacterController).GetProperty("ActualMagic", BindingFlags.Public | BindingFlags.Instance).GetMethod,
 		(ILContext il) => {
 			ILCursor cursor = new ILCursor(il);
 
@@ -354,7 +384,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((int vanillaVitality) => Player.Stats.VitalityFlat_Invoke(ref vanillaVitality));
+			cursor.EmitDelegate((int vanillaVitality) => {
+				Player.Stats.VitalityFlat_Invoke(ref vanillaVitality);
+				return vanillaVitality;
+			});
 
 			cursor.GotoNext(
 				MoveType.After,
@@ -363,7 +396,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaVitalityMultiplier) => Player.Stats.VitalityMultiplier_Invoke(ref vanillaVitalityMultiplier));
+			cursor.EmitDelegate((float vanillaVitalityMultiplier) => {
+				Player.Stats.VitalityMultiplier_Invoke(ref vanillaVitalityMultiplier);
+				return vanillaVitalityMultiplier;
+			});
 		}
 	);
 
@@ -381,14 +417,20 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaMaxHealthMultiplier) => Player.Stats.MaxHealthMultiplier_Invoke(ref vanillaMaxHealthMultiplier));
+			cursor.EmitDelegate((float vanillaMaxHealthMultiplier) => {
+				Player.Stats.MaxHealthMultiplier_Invoke(ref vanillaMaxHealthMultiplier);
+				return vanillaMaxHealthMultiplier;
+			});
 
 			cursor.GotoNext(
 				MoveType.After,
 				i => i.MatchLdcI4(150)
 			);
 
-			cursor.EmitDelegate((int vanillaMaxHealth) => Player.Stats.MaxHealthFlat_Invoke(ref vanillaMaxHealth));
+			cursor.EmitDelegate((int vanillaMaxHealth) => {
+				Player.Stats.MaxHealthFlat_Invoke(ref vanillaMaxHealth);
+				return vanillaMaxHealth;
+			});
 		}
 	);
 
@@ -407,7 +449,10 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((float vanillaMaxMana) => Player.Stats.MaxManaMultiplier_Invoke(ref vanillaMaxMana));
+			cursor.EmitDelegate((float vanillaMaxMana) => {
+				Player.Stats.MaxManaMultiplier_Invoke(ref vanillaMaxMana);
+				return vanillaMaxMana;
+			});
 
 			cursor.GotoNext(
 				MoveType.After,
@@ -416,7 +461,9 @@ public partial class RL2API
 				i => i.MatchAdd()
 			);
 
-			cursor.EmitDelegate((int vanillaMaxMana) => Player.Stats.MaxManaFlat_Invoke(ref vanillaMaxMana));
+			cursor.EmitDelegate((int vanillaMaxMana) => {
+				Player.Stats.MaxManaFlat_Invoke(ref vanillaMaxMana);
+				return vanillaMaxMana;});
 		}
 	);
 
