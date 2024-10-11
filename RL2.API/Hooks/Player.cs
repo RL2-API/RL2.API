@@ -33,7 +33,7 @@ public partial class RL2API
 				return;
 			}
 
-			bool PreventDeath = Player.PreKill_Invoke(self, killer);
+			bool PreventDeath = !Player.PreKill_Invoke(self, killer);
 			if (PreventDeath) {
 				self.SetHealth(1f, additive: false, runEvents: true);
 				return;

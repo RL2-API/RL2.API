@@ -35,12 +35,16 @@ public static class Enemy
 
 	internal static bool PreKill_Invoke(EnemyController enemy, GameObject killer) {
 		if (PreKill is null) {
-			return false;
+			return true;
 		}
 
-		bool result = false;
+		bool result = true;
 		foreach (Delegate subscriber in PreKill.GetInvocationList()) {
-			result |= (bool)subscriber.DynamicInvoke(enemy, killer);
+			if (!result) {
+				break;
+			}
+
+			result &= (bool)subscriber.DynamicInvoke(enemy, killer);
 		}
 		return result;
 	}

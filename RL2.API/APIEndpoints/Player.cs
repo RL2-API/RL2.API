@@ -36,12 +36,16 @@ public static class Player
 
 	internal static bool PreKill_Invoke(PlayerController player, GameObject killer) {
 		if (PreKill is null) {
-			return false;
+			return true;
 		}
 
-		bool result = false;
+		bool result = true;
 		foreach (Delegate subscriber in PreKill.GetInvocationList()) {
-			result |= (bool)subscriber.DynamicInvoke(player, killer);
+			if (!result) {
+				break;
+			}
+
+			result &= (bool)subscriber.DynamicInvoke(player, killer);
 		}
 		return result;
 	}
