@@ -44,7 +44,7 @@ public abstract class Mod
 	/// </summary>
 	/// <param name="message"></param>
 	public static void Log(object message) {
-		string name = Assembly.GetCallingAssembly().GetName().Name == "RL2.API" ? "RL2.API" : Assembly.GetCallingAssembly().GetTypes().First(type => type.IsSubclassOf(typeof(Mod))).Name;
+		string name = Assembly.GetCallingAssembly().GetTypes().First(type => type.IsSubclassOf(typeof(Mod))).Name;
 		Debug.Log($"[{name}]: {message}");
 	}
 }
