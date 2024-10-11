@@ -1,4 +1,5 @@
 using System;
+using System.Security.Policy;
 using UnityEngine;
 
 namespace RL2.ModLoader.API;
@@ -444,6 +445,26 @@ public static class Player
 		public static event ModifyCharacterLook_delegate? ModifyCharacterLook;
 		internal static void ModifyCharacterLook_Invoke(PlayerLookController lookData, CharacterData data) {
 			ModifyCharacterLook?.Invoke(lookData, data);
+		}
+	}
+
+	/// <summary>
+	/// Stores events related to player abilities (weapons, spells, talents)
+	/// </summary>
+	public static class Ability
+	{
+		/// <summary>
+		/// Allows modifying ability data
+		/// </summary>
+		/// <param name="type">The queried ability</param>
+		/// <param name="data">Returned data of the ability</param>
+		public delegate void ModifyData_delegate(AbilityType type, AbilityData data);
+
+		/// <inheritdoc cref="ModifyData_delegate"/>
+		public static event ModifyData_delegate? ModifyData;
+
+		internal static void ModifyData_Invoke(AbilityType type, AbilityData data) {
+			ModifyData?.Invoke(type, data);
 		}
 	}
 }

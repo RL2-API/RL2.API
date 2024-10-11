@@ -583,4 +583,22 @@ public partial class RL2API
 		}
 	);
 	#endregion
+
+	#region Ability
+
+	internal static Hook ModifyAbilityDataHook = new Hook(
+		typeof(AbilityLibrary).GetMethod("GetAbility", BindingFlags.Public | BindingFlags.Static),
+		(Func<AbilityType, BaseAbility_RL> orig, AbilityType type) => {
+			BaseAbility_RL? ability = orig(type);
+			if (ability == null) {
+				return ability;
+			}
+
+			Player.Ability.ModifyData_Invoke(type, ability.AbilityData);
+
+			return ability;
+		}
+	);
+
+	#endregion
 }
