@@ -18,9 +18,10 @@ public static class World {
 		/// <param name="getUsed">Is the room "finished" (failed/completed Fairy Chest, empty relic room etc.)</param>
 		/// <param name="isMergeRoom">Is the room made out of multiple rooms</param>
 		/// <returns>
-		/// The texture used as the map icon
+		/// The texture used as the map icon <br/>	
+		/// <see langword="null"/> to follow vanilla logic
 		/// </returns>
-		public delegate Texture2D ModifyRoomIcon_delegate(GridPointManager roomToCheck, bool getUsed, bool isMergeRoom);
+		public delegate Texture2D? ModifyRoomIcon_delegate(GridPointManager roomToCheck, bool getUsed, bool isMergeRoom);
 
 		/// <inheritdoc cref="ModifyRoomIcon_delegate"/>
 		public static event ModifyRoomIcon_delegate? ModifyRoomIcon;
@@ -36,7 +37,7 @@ public static class World {
 					break;
 				}
 
-				modifiedIcon = (Texture2D)subscriber.DynamicInvoke(roomToCheck, getUsed, isMergeRoom);
+				modifiedIcon = (Texture2D?)subscriber.DynamicInvoke(roomToCheck, getUsed, isMergeRoom);
 			}
 			return modifiedIcon;
 		}
