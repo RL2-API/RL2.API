@@ -1,7 +1,7 @@
 {
 	"Name" : "ExampleMod",
 	"Author" : "TacoConKvass",
-	"Version" : "0.0.0-a",
+	"Version" : "1.0.0",
 	"ModAssembly" : "ExampleMod.dll",
 	"LoadAfter" : ["RL2.API"]
 }
