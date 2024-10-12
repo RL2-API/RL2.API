@@ -16,46 +16,35 @@ public abstract class Mod
 	public string Path { get; internal set; }
 
 	/// <summary>
-	/// All types from this mod
+	/// All registrable types from this mod
 	/// </summary>
-	internal Type[] Content;
-
-	/// <summary>
-	/// Gets all types inheriting from T.
-	/// </summary>
-	/// <typeparam name="T">The type you want to get derived classes of</typeparam>
-	public Type[] GetModTypes<T>() where T : ModType => Content.Where(type => type.IsSubclassOf(typeof(T))).ToArray();
+	internal Type[] RegistrableContent;
 
 	/// <summary>
 	/// Ran right after loading all mods.
 	/// </summary>
 	public virtual void OnLoad() { }
-	
+
 	/// <summary>
 	/// 
 	/// </summary>
 	public virtual void OnUnload() { }
 
 	internal void SetupContent() {
-		foreach (Type type in Content) {
-			if (type.IsSubclassOf(typeof(GlobalType))) {
-				continue;
-			}
-
+		foreach (Type type in RegistrableContent) { 
 			var instance = Activator.CreateInstance(type);
-
 			if (instance is IRegistrable registrable) {
 				registrable.Register();
 			}
 		}
 	}
-	
+
 	/// <summary>
 	/// Logs the message with your "[YourModClassName]"
 	/// </summary>
 	/// <param name="message"></param>
 	public static void Log(object message) {
-		string name = Assembly.GetCallingAssembly().GetName().Name == "RL2.API" ? "RL2.API" : Assembly.GetCallingAssembly().GetTypes().First(type => type.IsSubclassOf(typeof(Mod))).Name;
+		string name = Assembly.GetCallingAssembly().GetTypes().First(type => type.IsSubclassOf(typeof(Mod))).Name;
 		Debug.Log($"[{name}]: {message}");
 	}
 }

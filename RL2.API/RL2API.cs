@@ -21,7 +21,7 @@ public partial class RL2API
 	/// 
 	/// </summary>
 	public RL2API() {
-		Mod.Log("RL2.API loaded");
+		Log("RL2.API loaded");
 		LoadedMods = LoadAPICompliantMods();
 	}
 
@@ -63,19 +63,19 @@ public partial class RL2API
 			string modName = modManifest.Name;
 
 			if (modNames.IndexOf(modName) != -1) {
-				Mod.Log($"A newer version of {modName} is already loaded");
+				Log($"A newer version of {modName} is already loaded");
 				modAssemblies[currentModID] = null;
 				continue;
 			}
 
 			if (ModLoader.ModList?.Enabled.IndexOf(modName) == -1) {
-				Mod.Log($"New mod \"{modName}\" was found, and it was automatically enabled");
+				Log($"New mod \"{modName}\" was found, and it was automatically enabled");
 				ModLoader.ModList.Enabled.Add(modName);
 			}
 
 			string modAssemblyPath = ModLoader.ModManifestToPath?[modManifest] + "\\" + modManifest.ModAssembly;
 			if (!File.Exists(modAssemblyPath)) {
-				Mod.Log($"Assembly with path {modAssemblyPath} was not found");
+				Log($"Assembly with path {modAssemblyPath} was not found");
 				modAssemblies[currentModID] = null;
 				continue;
 			}
@@ -86,7 +86,7 @@ public partial class RL2API
 				continue;
 			}
 			if (modAssembly.GetTypes().Count(type => type.IsSubclassOf(typeof(Mod))) != 1) {
-				Mod.Log($"{modName} is not a valid mod assembly, as it should only contain a single Mod class");
+				Log($"{modName} is not a valid mod assembly, as it should only contain a single Mod class");
 				modAssemblies[currentModID] = null;
 				continue;
 			}
@@ -118,14 +118,14 @@ public partial class RL2API
 			mod = (Mod)Activator.CreateInstance(modType);
 		}
 		catch (Exception ex) {
-			Mod.Log($"Failed to load {manifest.Name}: {ex}");
+			Log($"Failed to load {manifest.Name}: {ex}");
 		}
 		if (mod == null) {
 			return null;
 		}
 
 		mod.Path = ModLoader.ModManifestToPath?[manifest] + "\\" ?? ModLoader.ModPath;
-		mod.Content = assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(ModType))).ToArray();
+		mod.RegistrableContent = assembly.GetTypes().Where(type => typeof(IRegistrable).IsAssignableFrom(type)).ToArray();
 		CommandManager.RegisterCommands(assembly);
 		mod.SetupContent();
 		return mod;
@@ -145,5 +145,9 @@ public partial class RL2API
 			}
 		}
 		return null;
+	}
+
+	internal static void Log(object message) {
+		UnityEngine.Debug.Log($"[RL2.API]: {message}");
 	}
 }
