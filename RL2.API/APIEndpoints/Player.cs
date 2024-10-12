@@ -88,13 +88,13 @@ public static class Player
 		/// 
 		/// </summary>
 		/// <param name="multiplicative"></param>
-		public delegate void ResolveMultiplier_delegate(ref float multiplicative);
+		public delegate void ResolveMultiplier_delegate(ref float multiplier;
 
 		/// <inheritdoc cref="ResolveMultiplier_delegate"/>
 		public static event ResolveMultiplier_delegate? ResolveMultiplier;
 
-		internal static void ResolveMultiplier_Invoke(ref float additive) {
-			ResolveMultiplier?.Invoke(ref additive);
+		internal static void ResolveMultiplier_Invoke(ref float multiplier) {
+			ResolveMultiplier?.Invoke(ref multiplier);
 		}
 		#endregion
 
@@ -116,13 +116,13 @@ public static class Player
 		/// 
 		/// </summary>
 		/// <param name="multiplicative"></param>
-		public delegate void DexterityMultiplier_delegate(ref float multiplicative);
+		public delegate void DexterityMultiplier_delegate(ref float multiplier;
 
 		/// <inheritdoc cref="DexterityMultiplier_delegate"/>
 		public static event DexterityMultiplier_delegate? DexterityMultiplier;
 
-		internal static void DexterityMultiplier_Invoke(ref float additive) {
-			DexterityMultiplier?.Invoke(ref additive);
+		internal static void DexterityMultiplier_Invoke(ref float multiplier) {
+			DexterityMultiplier?.Invoke(ref multiplier);
 		}
 		#endregion
 
@@ -174,13 +174,13 @@ public static class Player
 		/// 
 		/// </summary>
 		/// <param name="multiplicative"></param>
-		public delegate void FocusMultiplier_delegate(ref float multiplicative);
+		public delegate void FocusMultiplier_delegate(ref float multiplier;
 
 		/// <inheritdoc cref="FocusMultiplier_delegate"/>
 		public static event FocusMultiplier_delegate? FocusMultiplier;
 
-		internal static void FocusMultiplier_Invoke(ref float additive) {
-			FocusMultiplier?.Invoke(ref additive);
+		internal static void FocusMultiplier_Invoke(ref float multiplier) {
+			FocusMultiplier?.Invoke(ref multiplier);
 		}
 		#endregion
 
@@ -232,13 +232,13 @@ public static class Player
 		/// 
 		/// </summary>
 		/// <param name="multiplicative"></param>
-		public delegate void ArmorMultiplier_delegate(ref float multiplicative);
+		public delegate void ArmorMultiplier_delegate(ref float multiplier;
 
 		/// <inheritdoc cref="ArmorMultiplier_delegate"/>
 		public static event ArmorMultiplier_delegate? ArmorMultiplier;
 
-		internal static void ArmorMultiplier_Invoke(ref float additive) {
-			ArmorMultiplier?.Invoke(ref additive);
+		internal static void ArmorMultiplier_Invoke(ref float multiplier) {
+			ArmorMultiplier?.Invoke(ref multiplier);
 		}
 		#endregion
 
@@ -260,13 +260,13 @@ public static class Player
 		/// 
 		/// </summary>
 		/// <param name="multiplicative"></param>
-		public delegate void StrengthMultiplier_delegate(ref float multiplicative);
+		public delegate void StrengthMultiplier_delegate(ref float multiplier;
 
 		/// <inheritdoc cref="StrengthMultiplier_delegate"/>
 		public static event StrengthMultiplier_delegate? StrengthMultiplier;
 
-		internal static void StrengthMultiplier_Invoke(ref float additive) {
-			StrengthMultiplier?.Invoke(ref additive);
+		internal static void StrengthMultiplier_Invoke(ref float multiplier) {
+			StrengthMultiplier?.Invoke(ref multiplier);
 		}
 		#endregion
 
@@ -288,13 +288,13 @@ public static class Player
 		/// 
 		/// </summary>
 		/// <param name="multiplicative"></param>
-		public delegate void IntelligenceMultiplier_delegate(ref float multiplicative);
+		public delegate void IntelligenceMultiplier_delegate(ref float multiplier;
 
 		/// <inheritdoc cref="IntelligenceMultiplier_delegate"/>
 		public static event IntelligenceMultiplier_delegate? IntelligenceMultiplier;
 
-		internal static void IntelligenceMultiplier_Invoke(ref float additive) {
-			IntelligenceMultiplier?.Invoke(ref additive);
+		internal static void IntelligenceMultiplier_Invoke(ref float multiplier) {
+			IntelligenceMultiplier?.Invoke(ref multiplier);
 		}
 		#endregion
 
@@ -316,13 +316,13 @@ public static class Player
 		/// 
 		/// </summary>
 		/// <param name="multiplicative"></param>
-		public delegate void VitalityMultiplier_delegate(ref float multiplicative);
+		public delegate void VitalityMultiplier_delegate(ref float multiplier;
 
 		/// <inheritdoc cref="VitalityMultiplier_delegate"/>
 		public static event VitalityMultiplier_delegate? VitalityMultiplier;
 
-		internal static void VitalityMultiplier_Invoke(ref float additive) {
-			VitalityMultiplier?.Invoke(ref additive);
+		internal static void VitalityMultiplier_Invoke(ref float multiplier) {
+			VitalityMultiplier?.Invoke(ref multiplier);
 		}
 		#endregion
 
@@ -344,13 +344,13 @@ public static class Player
 		/// 
 		/// </summary>
 		/// <param name="multiplicative"></param>
-		public delegate void MaxHealthMultiplier_delegate(ref float multiplicative);
+		public delegate void MaxHealthMultiplier_delegate(ref float multiplier;
 
 		/// <inheritdoc cref="MaxHealthMultiplier_delegate"/>
 		public static event MaxHealthMultiplier_delegate? MaxHealthMultiplier;
 
-		internal static void MaxHealthMultiplier_Invoke(ref float additive) {
-			MaxHealthMultiplier?.Invoke(ref additive);
+		internal static void MaxHealthMultiplier_Invoke(ref float multiplier) {
+			MaxHealthMultiplier?.Invoke(ref multiplier);
 		}
 		#endregion
 
@@ -372,13 +372,13 @@ public static class Player
 		/// 
 		/// </summary>
 		/// <param name="multiplicative"></param>
-		public delegate void MaxManaMultiplier_delegate(ref float multiplicative);
+		public delegate void MaxManaMultiplier_delegate(ref float multiplier;
 
 		/// <inheritdoc cref="MaxManaMultiplier_delegate"/>
 		public static event MaxManaMultiplier_delegate? MaxManaMultiplier;
 
-		internal static void MaxManaMultiplier_Invoke(ref float additive) {
-			MaxManaMultiplier?.Invoke(ref additive);
+		internal static void MaxManaMultiplier_Invoke(ref float multiplier) {
+			MaxManaMultiplier?.Invoke(ref multiplier);
 		}
 		#endregion
 
@@ -425,6 +425,7 @@ public static class Player
 
 		/// <inheritdoc cref="ModifyCharacterRandomization_delegate"/>
 		public static event ModifyCharacterRandomization_delegate? ModifyCharacterRandomization;
+		
 		internal static void ModifyCharacterRandomization_Invoke(CharacterData data) {
 			ModifyCharacterRandomization?.Invoke(data);
 		}
@@ -432,12 +433,13 @@ public static class Player
 		/// <summary>
 		/// 
 		/// </summary>
-		public delegate void ModifyGeneratedCharacterData_delegate(CharacterData data, bool classLocked, bool spellLocked);
+		public delegate void ModifyCharacterData_delegate(CharacterData data, bool classLocked, bool spellLocked);
 
-		/// <inheritdoc cref="ModifyGeneratedCharacterData_delegate"/>
-		public static event ModifyGeneratedCharacterData_delegate? ModifyGeneratedCharacterData;
-		internal static void ModifyGeneratedCharacterData_Invoke(CharacterData data, bool classLocked, bool spellLocked) {
-			ModifyGeneratedCharacterData?.Invoke(data, classLocked, spellLocked);
+		/// <inheritdoc cref="ModifyCharacterData_delegate"/>
+		public static event ModifyCharacterData_delegate? ModifyCharacterData;
+		
+		internal static void ModifyGeneratedData_Invoke(CharacterData data, bool classLocked, bool spellLocked) {
+			ModifyCharacterData?.Invoke(data, classLocked, spellLocked);
 		}
 
 		/// <summary>
@@ -447,6 +449,7 @@ public static class Player
 
 		/// <inheritdoc cref="ModifyCharacterLook_delegate"/>
 		public static event ModifyCharacterLook_delegate? ModifyCharacterLook;
+		
 		internal static void ModifyCharacterLook_Invoke(PlayerLookController lookData, CharacterData data) {
 			ModifyCharacterLook?.Invoke(lookData, data);
 		}

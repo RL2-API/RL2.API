@@ -507,9 +507,9 @@ public partial class RL2API
 
 
 	/// <summary>
-	/// Handles calling <see cref="Player.HeirGeneration.ModifyGeneratedCharacterData"/>
+	/// Handles calling <see cref="Player.HeirGeneration.ModifyCharacterData"/>
 	/// </summary>
-	internal static ILHook ModifyGeneratedCharacterData = new ILHook(
+	internal static ILHook ModifyCharacterData = new ILHook(
 		typeof(LineageWindowController).GetMethod("CreateRandomCharacters", BindingFlags.NonPublic | BindingFlags.Instance),
 		(ILContext il) => {
 			ILCursor ilCursor = new ILCursor(il);
@@ -595,7 +595,7 @@ public partial class RL2API
 			ilCursor.EmitDelegate((CharacterData characterData, int index, CharacterData[] array) => {
 				bool classLocked = index == array.Length - 1 && SaveManager.ModeSaveData.GetSoulShopObj(SoulShopType.ChooseYourClass).CurrentEquippedLevel > 0;
 				bool spellLocked = index == array.Length - 1 && SaveManager.ModeSaveData.GetSoulShopObj(SoulShopType.ChooseYourSpell).CurrentEquippedLevel > 0;
-				Player.HeirGeneration.ModifyGeneratedCharacterData_Invoke(characterData, classLocked, spellLocked);
+				Player.HeirGeneration.ModifyCharacterData_Invoke(characterData, classLocked, spellLocked);
 			});
 		}
 	);
