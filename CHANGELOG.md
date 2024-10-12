@@ -1,5 +1,10 @@
 # RL2.API Changelog
 
+## v1.0.0
+Architecture rework:
+- Instead of subclassing ModX and GlobalX classes, modders should now create their own classes implementing the `IRegistrable` interface.
+- Inside the `IRegistrable.Register()` method of their classes, they should subscribe to events such as `Player.OnKill` where their code will be executed
+
 ## v0.2.0
 ### Bug fixes:
 - StatBonuses.(Strength|StrengthMultiplier|Intelligence|IntelligenceMultilplier) no longer apply to enemies
