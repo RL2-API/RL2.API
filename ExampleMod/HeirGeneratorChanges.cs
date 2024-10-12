@@ -16,7 +16,7 @@ public class HeirGeneratorChanges : IRegistrable
 			lookData.CurrentWeaponGeo = lookData.ArrowGeo;
 		};
 
-		Player.HeirGeneration.ModifyGeneratedCharacterData += (CharacterData data, bool classLocked, bool spellLocked) => {
+		Player.HeirGeneration.ModifyCharacterData += (CharacterData data, bool classLocked, bool spellLocked) => {
 			data.Name = "I have been edited :3";
 		};
 	}

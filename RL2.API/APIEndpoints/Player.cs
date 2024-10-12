@@ -87,8 +87,8 @@ public static class Player
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="multiplicative"></param>
-		public delegate void ResolveMultiplier_delegate(ref float multiplier;
+		/// <param name="multiplier"></param>
+		public delegate void ResolveMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="ResolveMultiplier_delegate"/>
 		public static event ResolveMultiplier_delegate? ResolveMultiplier;
@@ -115,8 +115,8 @@ public static class Player
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="multiplicative"></param>
-		public delegate void DexterityMultiplier_delegate(ref float multiplier;
+		/// <param name="multiplier"></param>
+		public delegate void DexterityMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="DexterityMultiplier_delegate"/>
 		public static event DexterityMultiplier_delegate? DexterityMultiplier;
@@ -173,8 +173,8 @@ public static class Player
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="multiplicative"></param>
-		public delegate void FocusMultiplier_delegate(ref float multiplier;
+		/// <param name="multiplier"></param>
+		public delegate void FocusMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="FocusMultiplier_delegate"/>
 		public static event FocusMultiplier_delegate? FocusMultiplier;
@@ -231,8 +231,8 @@ public static class Player
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="multiplicative"></param>
-		public delegate void ArmorMultiplier_delegate(ref float multiplier;
+		/// <param name="multiplier"></param>
+		public delegate void ArmorMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="ArmorMultiplier_delegate"/>
 		public static event ArmorMultiplier_delegate? ArmorMultiplier;
@@ -259,8 +259,8 @@ public static class Player
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="multiplicative"></param>
-		public delegate void StrengthMultiplier_delegate(ref float multiplier;
+		/// <param name="multiplier"></param>
+		public delegate void StrengthMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="StrengthMultiplier_delegate"/>
 		public static event StrengthMultiplier_delegate? StrengthMultiplier;
@@ -287,8 +287,8 @@ public static class Player
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="multiplicative"></param>
-		public delegate void IntelligenceMultiplier_delegate(ref float multiplier;
+		/// <param name="multiplier"></param>
+		public delegate void IntelligenceMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="IntelligenceMultiplier_delegate"/>
 		public static event IntelligenceMultiplier_delegate? IntelligenceMultiplier;
@@ -315,8 +315,8 @@ public static class Player
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="multiplicative"></param>
-		public delegate void VitalityMultiplier_delegate(ref float multiplier;
+		/// <param name="multiplier"></param>
+		public delegate void VitalityMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="VitalityMultiplier_delegate"/>
 		public static event VitalityMultiplier_delegate? VitalityMultiplier;
@@ -343,8 +343,8 @@ public static class Player
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="multiplicative"></param>
-		public delegate void MaxHealthMultiplier_delegate(ref float multiplier;
+		/// <param name="multiplier"></param>
+		public delegate void MaxHealthMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="MaxHealthMultiplier_delegate"/>
 		public static event MaxHealthMultiplier_delegate? MaxHealthMultiplier;
@@ -371,8 +371,8 @@ public static class Player
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="multiplicative"></param>
-		public delegate void MaxManaMultiplier_delegate(ref float multiplier;
+		/// <param name="multiplier"></param>
+		public delegate void MaxManaMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="MaxManaMultiplier_delegate"/>
 		public static event MaxManaMultiplier_delegate? MaxManaMultiplier;
@@ -438,7 +438,7 @@ public static class Player
 		/// <inheritdoc cref="ModifyCharacterData_delegate"/>
 		public static event ModifyCharacterData_delegate? ModifyCharacterData;
 		
-		internal static void ModifyGeneratedData_Invoke(CharacterData data, bool classLocked, bool spellLocked) {
+		internal static void ModifyCharacterData_Invoke(CharacterData data, bool classLocked, bool spellLocked) {
 			ModifyCharacterData?.Invoke(data, classLocked, spellLocked);
 		}
 
