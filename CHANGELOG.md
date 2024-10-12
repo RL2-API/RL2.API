@@ -87,6 +87,10 @@
 		World.Map.ModifyRoomIcon += (GridPointManager roomToCheck, bool getUsed, bool isMergeRoom) => { }
 		```
 
+### Deletions
+- ModClassData
+	- Awaits new implemenataion, doesn't work at the moment
+
 ## v0.2.0
 ### Bug fixes:
 - StatBonuses.(Strength|StrengthMultiplier|Intelligence|IntelligenceMultilplier) no longer apply to enemies
