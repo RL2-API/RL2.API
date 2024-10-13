@@ -72,9 +72,9 @@ public static class Player
 	{
 		#region Resolve
 		/// <summary>
-		/// 
+		/// Used to change Resolve by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void ResolveFlat_delegate(ref float additive);
 
 		/// <inheritdoc cref="ResolveFlat_delegate"/>
@@ -85,9 +85,9 @@ public static class Player
 		}
 
 		/// <summary>
-		/// 
+		/// Used to change Resolve scaling, by modifying the provided parameter
 		/// </summary>
-		/// <param name="multiplier"></param>
+		/// <param name="multiplier">The current stat scaling value</param>
 		public delegate void ResolveMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="ResolveMultiplier_delegate"/>
@@ -100,9 +100,9 @@ public static class Player
 
 		#region Dexterity
 		/// <summary>
-		/// 
+		/// Used to change Dexterity by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void DexterityFlat_delegate(ref float additive);
 
 		/// <inheritdoc cref="DexterityFlat_delegate"/>
@@ -113,9 +113,9 @@ public static class Player
 		}
 
 		/// <summary>
-		/// 
+		/// Used to change Dexterity scaling, by modifying the provided parameter
 		/// </summary>
-		/// <param name="multiplier"></param>
+		/// <param name="multiplier">The current stat scaling value</param>
 		public delegate void DexterityMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="DexterityMultiplier_delegate"/>
@@ -128,9 +128,9 @@ public static class Player
 
 		#region CritChance
 		/// <summary>
-		/// 
+		/// Used to change CritChance by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void CritChance_delegate(ref float additive);
 
 		/// <inheritdoc cref="CritChance_delegate"/>
@@ -143,9 +143,9 @@ public static class Player
 
 		#region CritDamage
 		/// <summary>
-		/// 
+		/// Used to change CritDamage by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void CritDamage_delegate(ref float additive);
 
 		/// <inheritdoc cref="CritDamage_delegate"/>
@@ -158,9 +158,9 @@ public static class Player
 
 		#region Focus
 		/// <summary>
-		/// 
+		/// Used to change Focus by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void FocusFlat_delegate(ref float additive);
 
 		/// <inheritdoc cref="FocusFlat_delegate"/>
@@ -171,9 +171,9 @@ public static class Player
 		}
 
 		/// <summary>
-		/// 
+		/// Used to change Focus scaling, by modifying the provided parameter
 		/// </summary>
-		/// <param name="multiplier"></param>
+		/// <param name="multiplier">The current stat scaling value</param>
 		public delegate void FocusMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="FocusMultiplier_delegate"/>
@@ -186,9 +186,9 @@ public static class Player
 
 		#region MagicCritChance
 		/// <summary>
-		/// 
+		/// Used to change MagicCritChance by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void MagicCritChance_delegate(ref float additive);
 
 		/// <inheritdoc cref="MagicCritChance_delegate"/>
@@ -201,9 +201,9 @@ public static class Player
 
 		#region MagicCritDamage
 		/// <summary>
-		/// 
+		/// Used to change MagicCritDamage by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void MagicCritDamage_delegate(ref float additive);
 
 		/// <inheritdoc cref="MagicCritDamage_delegate"/>
@@ -216,9 +216,9 @@ public static class Player
 
 		#region Armor
 		/// <summary>
-		/// 
+		/// Used to change Armor by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void ArmorFlat_delegate(ref int additive);
 
 		/// <inheritdoc cref="ArmorFlat_delegate"/>
@@ -229,9 +229,9 @@ public static class Player
 		}
 
 		/// <summary>
-		/// 
+		/// Used to change Armor scaling, by modifying the provided parameter
 		/// </summary>
-		/// <param name="multiplier"></param>
+		/// <param name="multiplier">The current stat scaling value</param>
 		public delegate void ArmorMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="ArmorMultiplier_delegate"/>
@@ -244,9 +244,9 @@ public static class Player
 
 		#region Strength
 		/// <summary>
-		/// 
+		/// Used to change Strength by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void StrengthFlat_delegate(ref float additive);
 
 		/// <inheritdoc cref="StrengthFlat_delegate"/>
@@ -257,9 +257,9 @@ public static class Player
 		}
 
 		/// <summary>
-		/// 
+		/// Used to change Strength scaling, by modifying the provided parameter
 		/// </summary>
-		/// <param name="multiplier"></param>
+		/// <param name="multiplier">The current stat scaling value</param>
 		public delegate void StrengthMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="StrengthMultiplier_delegate"/>
@@ -272,9 +272,9 @@ public static class Player
 
 		#region Intelligence
 		/// <summary>
-		/// 
+		/// Used to change Intelligence by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void IntelligenceFlat_delegate(ref float additive);
 
 		/// <inheritdoc cref="IntelligenceFlat_delegate"/>
@@ -285,9 +285,9 @@ public static class Player
 		}
 
 		/// <summary>
-		/// 
+		/// Used to change Intelligence scaling, by modifying the provided parameter
 		/// </summary>
-		/// <param name="multiplier"></param>
+		/// <param name="multiplier">The current stat scaling value</param>
 		public delegate void IntelligenceMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="IntelligenceMultiplier_delegate"/>
@@ -300,9 +300,9 @@ public static class Player
 
 		#region Vitality
 		/// <summary>
-		/// 
+		/// Used to change Vitality by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void VitalityFlat_delegate(ref int additive);
 
 		/// <inheritdoc cref="VitalityFlat_delegate"/>
@@ -313,9 +313,9 @@ public static class Player
 		}
 
 		/// <summary>
-		/// 
+		/// Used to change Vitality scaling, by modifying the provided parameter
 		/// </summary>
-		/// <param name="multiplier"></param>
+		/// <param name="multiplier">The current stat scaling value</param>
 		public delegate void VitalityMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="VitalityMultiplier_delegate"/>
@@ -328,9 +328,9 @@ public static class Player
 
 		#region MaxHealth
 		/// <summary>
-		/// 
+		/// Used to change max Health by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void MaxHealthFlat_delegate(ref int additive);
 
 		/// <inheritdoc cref="MaxHealthFlat_delegate"/>
@@ -341,9 +341,9 @@ public static class Player
 		}
 
 		/// <summary>
-		/// 
+		/// Used to change MaxHealth scaling, by modifying the provided parameter
 		/// </summary>
-		/// <param name="multiplier"></param>
+		/// <param name="multiplier">The current stat scaling value</param>
 		public delegate void MaxHealthMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="MaxHealthMultiplier_delegate"/>
@@ -356,9 +356,9 @@ public static class Player
 
 		#region MaxMana
 		/// <summary>
-		/// 
+		/// Used to change max Mana by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void MaxManaFlat_delegate(ref int additive);
 
 		/// <inheritdoc cref="MaxManaFlat_delegate"/>
@@ -369,9 +369,9 @@ public static class Player
 		}
 
 		/// <summary>
-		/// 
+		/// Used to change MaxMana scaling, by modifying the provided parameter
 		/// </summary>
-		/// <param name="multiplier"></param>
+		/// <param name="multiplier">The current stat scaling value</param>
 		public delegate void MaxManaMultiplier_delegate(ref float multiplier);
 
 		/// <inheritdoc cref="MaxManaMultiplier_delegate"/>
@@ -384,9 +384,9 @@ public static class Player
 
 		#region RuneWeight
 		/// <summary>
-		/// 
+		/// Used to change Rune weight by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void RuneWeight_delegate(ref int additive);
 
 		/// <inheritdoc cref="RuneWeight_delegate"/>
@@ -399,9 +399,9 @@ public static class Player
 
 		#region EquipmentWeight
 		/// <summary>
-		/// 
+		/// Used to change Equipment weight by a flat amount, by adding to the provided parameter 
 		/// </summary>
-		/// <param name="additive"></param>
+		/// <param name="additive">The current stat value, before applying stat scaling</param>
 		public delegate void EquipmentWeight_delegate(ref int additive);
 
 		/// <inheritdoc cref="EquipmentWeight_delegate"/>
@@ -419,8 +419,10 @@ public static class Player
 	public static class HeirGeneration
 	{
 		/// <summary>
-		/// 
+		/// Used to modify character data after character randomization by either the Contrarian trait or by the use of the Transmogrifier<br></br> 
+		/// Ran at the end of <see cref="CharacterCreator.ApplyRandomizeKitTrait"/>
 		/// </summary>
+		/// <param name="characterData">The randomized heirs CharacterData</param>
 		public delegate void ModifyCharacterRandomization_delegate(CharacterData data);
 
 		/// <inheritdoc cref="ModifyCharacterRandomization_delegate"/>
@@ -431,8 +433,11 @@ public static class Player
 		}
 
 		/// <summary>
-		/// 
+		/// Used to modify character data of generated heirs
 		/// </summary>
+		/// <param name="characterData">The generated heirs <see cref="CharacterData" /></param>
+		/// <param name="classLocked">Whether the heirs class was locked by a Soul Shop ugrade</param>
+		/// <param name="spellLocked">Whether the heirs spell was locked by a Soul Shop ugrade</param>
 		public delegate void ModifyCharacterData_delegate(CharacterData data, bool classLocked, bool spellLocked);
 
 		/// <inheritdoc cref="ModifyCharacterData_delegate"/>
@@ -443,8 +448,10 @@ public static class Player
 		}
 
 		/// <summary>
-		/// 
+		/// Used to modify look data of generated heirs
 		/// </summary>
+		/// <param name="lookData">The generated heirs <see cref="PlayerLookController" /></param>
+		/// <param name="characterData">The generated heirs <see cref="CharacterData" /></param>
 		public delegate void ModifyCharacterLook_delegate(PlayerLookController lookData, CharacterData data);
 
 		/// <inheritdoc cref="ModifyCharacterLook_delegate"/>
@@ -461,7 +468,7 @@ public static class Player
 	public static class Ability
 	{
 		/// <summary>
-		/// Allows modifying ability data
+		/// Used to modify ability data
 		/// </summary>
 		/// <param name="type">The queried ability</param>
 		/// <param name="data">Returned data of the ability</param>
