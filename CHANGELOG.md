@@ -1,5 +1,18 @@
 # RL2.API Changelog
 
+## v1.1.0
+### Changes:
+- RL2.API now requires RL2.ModLoader v1.0.3
+  - This is due to the fact that v1.0.3 introduced proper IDs for its Hook objects
+
+### Additions:
+- `Mod.ModManifest` property
+  - Holds the `ModManifest` object related to the mod
+- `RL2API.GetModInstance(string modName)` method
+  - Returns an instance of a mod with `modName` set as its name in its manifest, or `null` if not found
+- Mods can now specify which classes implementing `IRegistrable` belong to which mod
+  - This is important in case one assembly contains multiple mods
+
 ## v1.0.0
 ### Architecture rework:
 - Instead of subclassing ModX and GlobalX classes, modders should now create their own classes implementing the `IRegistrable` interface.
