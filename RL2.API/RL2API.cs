@@ -125,9 +125,11 @@ public partial class RL2API
 		}
 
 		mod.Path = ModLoader.ModManifestToPath?[manifest] + "\\" ?? ModLoader.ModPath;
-		mod.RegistrableContent = assembly.GetTypes().Where(type => typeof(IRegistrable).IsAssignableFrom(type)).ToArray();
+		mod.Manifest = manifest;
+		mod.RegistrableContent ??= assembly.GetTypes().Where(type => typeof(IRegistrable).IsAssignableFrom(type)).ToArray();
 		CommandManager.RegisterCommands(assembly);
-		mod.SetupContent();
+		ModLoader.OnLoad += mod.OnLoad;
+		ModLoader.OnUnload += mod.OnUnload;
 		return mod;
 	}
 
@@ -137,6 +139,7 @@ public partial class RL2API
 	/// <typeparam name="T">Wanted mod</typeparam>
 	/// <returns>
 	/// Stored instance of found mod;
+	/// <see langword="null"/> if not found
 	/// </returns>
 	public static T? GetModInstance<T>() where T : Mod {
 		foreach (Mod mod in LoadedMods) {
@@ -144,6 +147,24 @@ public partial class RL2API
 				return (T)mod;
 			}
 		}
+		return null;
+	}
+
+	/// <summary>
+	/// Retrieves the instance of the provided mod
+	/// </summary>
+	/// <param name="modName">The name of the mod you are searching for, specified in the mods manifest</param>
+	/// <returns>
+	/// Stored instance of found mod;
+	/// <see langword="null"/> if not found
+	/// </returns>
+	public static Mod? GetModInstance(string modName) {
+		foreach (Mod mod in LoadedMods) {
+			if (mod.Manifest.Name == modName) {
+				return mod;
+			}
+		}
+
 		return null;
 	}
 
