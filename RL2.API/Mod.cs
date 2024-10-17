@@ -13,12 +13,17 @@ public abstract class Mod
 	/// <summary>
 	/// Path to the mod, set at load
 	/// </summary>
-	public string Path { get; internal set; }
+	public string Path { get; internal set; } = "";
+
+	/// <summary>
+	/// The manifest object of this mod
+	/// </summary>
+	public ModManifest Manifest { get; internal set; } = new ModManifest();
 
 	/// <summary>
 	/// All registrable types from this mod
 	/// </summary>
-	internal Type[] RegistrableContent;
+	public Type[] RegistrableContent;
 
 	/// <summary>
 	/// Ran right after loading all mods.
@@ -26,11 +31,14 @@ public abstract class Mod
 	public virtual void OnLoad() { }
 
 	/// <summary>
-	/// 
+	/// Ran right before unlaoding all mods
 	/// </summary>
 	public virtual void OnUnload() { }
 
-	internal void SetupContent() {
+	/// <summary>
+	/// Registers all content instances
+	/// </summary>
+	public virtual void RegisterContent() {
 		foreach (Type type in RegistrableContent) { 
 			var instance = Activator.CreateInstance(type);
 			if (instance is IRegistrable registrable) {
