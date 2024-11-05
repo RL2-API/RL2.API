@@ -1,7 +1,8 @@
+using RL2.ModLoader;
 using System.IO;
 using UnityEngine;
 
-namespace RL2.ModLoader;
+namespace RL2.API;
 
 /// <summary>
 /// Store for all builtin RL2.API commands
@@ -43,7 +44,7 @@ public class BuiltinCommands
 			"</Project>"
 		};
 
-		string newModPath = ModLoader.ModPath + $"\\{modName}";
+		string newModPath = ModLoader.ModLoader.ModPath + $"\\{modName}";
 		if (Directory.Exists(newModPath)) {
 			RL2API.Log($"A mod with this name: {modName} already exists in your Mods directory");
 			return;

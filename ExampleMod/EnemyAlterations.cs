@@ -1,5 +1,4 @@
-using RL2.ModLoader;
-using RL2.ModLoader.API;
+using RL2.API;
 
 namespace ExampleMod;
 

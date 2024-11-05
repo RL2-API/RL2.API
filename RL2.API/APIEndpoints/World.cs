@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace RL2.ModLoader.API;
+namespace RL2.API;
 
 /// <summary>
 /// Provides endpoints for game world related APIs

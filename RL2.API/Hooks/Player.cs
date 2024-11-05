@@ -3,10 +3,9 @@ using MonoMod.RuntimeDetour;
 using System;
 using System.Reflection;
 using UnityEngine;
-using RL2.ModLoader.API;
 using Mono.Cecil.Cil;
 
-namespace RL2.ModLoader;
+namespace RL2.API;
 
 public partial class RL2API
 {

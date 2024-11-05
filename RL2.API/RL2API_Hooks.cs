@@ -2,7 +2,7 @@ using MonoMod.RuntimeDetour;
 using System;
 using System.Reflection;
 
-namespace RL2.ModLoader;
+namespace RL2.API;
 
 public partial class RL2API 
 {
@@ -16,7 +16,7 @@ public partial class RL2API
 		},
 		new HookConfig() {
 			ID = "RL2.API::RegisterContent",
-			After = ["RL2.ModLoader::OnGameLoad"] 
+			After = ["RL2.ModLoader.ModLoader::OnGameLoad"] 
 		}
 	);
 }

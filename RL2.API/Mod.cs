@@ -1,9 +1,10 @@
+using RL2.ModLoader;
 using System;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace RL2.ModLoader;
+namespace RL2.API;
 
 /// <summary>
 /// A clas required for your mod to be recognised as using the RL2.API

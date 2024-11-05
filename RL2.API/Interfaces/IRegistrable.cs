@@ -1,4 +1,4 @@
-namespace RL2.ModLoader;
+namespace RL2.API;
 
 /// <summary>
 /// Denotes a registrable content type

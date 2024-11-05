@@ -1,8 +1,7 @@
 using System;
-using System.Security.Policy;
 using UnityEngine;
 
-namespace RL2.ModLoader.API;
+namespace RL2.API;
 
 /// <summary>
 /// Provides endpoints for player related APIs

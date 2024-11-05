@@ -5,7 +5,7 @@
 		<Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>latest</LangVersion>
-        <RootNamespace>RL2.ModLoader</RootNamespace>
+        <RootNamespace>RL2.ModLoader.ModLoader</RootNamespace>
         <Configurations>Release</Configurations>
 	</PropertyGroup>
 

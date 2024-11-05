@@ -1,11 +1,10 @@
 using MonoMod.RuntimeDetour;
-using RL2.ModLoader.API;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-namespace RL2.ModLoader;
+namespace RL2.API;
 
 public partial class RL2API
 {

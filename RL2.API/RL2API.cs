@@ -1,10 +1,11 @@
+using RL2.ModLoader;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace RL2.ModLoader;
+namespace RL2.API;
 
 /// <summary>
 /// Main entrypoint for the RL2.API
@@ -29,9 +30,9 @@ public partial class RL2API
 	/// <returns>An array of all mods that succeded to load</returns>
 	public Mod[] LoadAPICompliantMods() {
 		List<Mod> loadedMods = [];
-		ModManifest[] notDisabledModManifests = ModLoader.ModManifestToPath.Keys.Where(
+		ModManifest[] notDisabledModManifests = ModLoader.ModLoader.ModManifestToPath.Keys.Where(
 			manifest => 
-				ModLoader.ModList?.Disabled.IndexOf(manifest.Name) == -1 && 
+				ModLoader.ModLoader.ModList?.Disabled.IndexOf(manifest.Name) == -1 && 
 				manifest.LoadAfter.Contains("RL2.API")
 		).ToArray();
 		Assembly?[] modAssemblies = GetEnabledModAssemblies(notDisabledModManifests);
@@ -39,7 +40,7 @@ public partial class RL2API
 			Mod? mod = TryLoadMod(modAssemblies[i], notDisabledModManifests[i]);
 			if (mod != null) {
 				loadedMods.Add(mod);
-				ModLoader.LoadedModNamesToVersions.Add(notDisabledModManifests[i].Name, notDisabledModManifests[i].SemVersion);
+				ModLoader.ModLoader.LoadedModNamesToVersions.Add(notDisabledModManifests[i].Name, notDisabledModManifests[i].SemVersion);
 				continue;
 			}
 		}
@@ -68,12 +69,12 @@ public partial class RL2API
 				continue;
 			}
 
-			if (ModLoader.ModList?.Enabled.IndexOf(modName) == -1) {
+			if (ModLoader.ModLoader.ModList?.Enabled.IndexOf(modName) == -1) {
 				Log($"New mod \"{modName}\" was found, and it was automatically enabled");
-				ModLoader.ModList.Enabled.Add(modName);
+				ModLoader.ModLoader.ModList.Enabled.Add(modName);
 			}
 
-			string modAssemblyPath = ModLoader.ModManifestToPath?[modManifest] + "\\" + modManifest.ModAssembly;
+			string modAssemblyPath = ModLoader.ModLoader.ModManifestToPath?[modManifest] + "\\" + modManifest.ModAssembly;
 			if (!File.Exists(modAssemblyPath)) {
 				Log($"Assembly with path {modAssemblyPath} was not found");
 				modAssemblies[currentModID] = null;
@@ -124,12 +125,12 @@ public partial class RL2API
 			return null;
 		}
 
-		mod.Path = ModLoader.ModManifestToPath?[manifest] + "\\" ?? ModLoader.ModPath;
+		mod.Path = ModLoader.ModLoader.ModManifestToPath?[manifest] + "\\" ?? ModLoader.ModLoader.ModPath;
 		mod.Manifest = manifest;
 		mod.RegistrableContent ??= assembly.GetTypes().Where(type => typeof(IRegistrable).IsAssignableFrom(type)).ToArray();
 		CommandManager.RegisterCommands(assembly);
-		ModLoader.OnLoad += mod.OnLoad;
-		ModLoader.OnUnload += mod.OnUnload;
+		ModLoader.ModLoader.OnLoad += mod.OnLoad;
+		ModLoader.ModLoader.OnUnload += mod.OnUnload;
 		return mod;
 	}
 
