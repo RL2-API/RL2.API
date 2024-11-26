@@ -7,7 +7,7 @@ namespace RL2.API;
 public partial class RL2API 
 {
 	internal static Hook OnGameLoad_Hook = new Hook(
-		typeof(GameManager).GetMethod("Run", BindingFlags.NonPublic | BindingFlags.Instance),
+		typeof(OnGameLoadManager).GetMethod("Run", BindingFlags.NonPublic | BindingFlags.Static),
 		(Action orig) => {
 			orig();
 			foreach (Mod mod in LoadedMods) {

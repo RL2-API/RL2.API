@@ -1,5 +1,9 @@
 # RL2.API Changelog
 
+## v1.1.1
+### Fixes:
+- Bad method signature in register content hook
+
 ## v1.1.0
 ### Changes:
 - RL2.API now requires RL2.ModLoader v1.0.3
