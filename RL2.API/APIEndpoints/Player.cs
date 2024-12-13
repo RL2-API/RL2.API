@@ -421,7 +421,7 @@ public static class Player
 		/// Used to modify character data after character randomization by either the Contrarian trait or by the use of the Transmogrifier<br></br> 
 		/// Ran at the end of <see cref="CharacterCreator.ApplyRandomizeKitTrait"/>
 		/// </summary>
-		/// <param name="characterData">The randomized heirs CharacterData</param>
+		/// <param name="data">The randomized heirs CharacterData</param>
 		public delegate void ModifyCharacterRandomization_delegate(CharacterData data);
 
 		/// <inheritdoc cref="ModifyCharacterRandomization_delegate"/>
@@ -434,7 +434,7 @@ public static class Player
 		/// <summary>
 		/// Used to modify character data of generated heirs
 		/// </summary>
-		/// <param name="characterData">The generated heirs <see cref="CharacterData" /></param>
+		/// <param name="data">The generated heirs <see cref="CharacterData" /></param>
 		/// <param name="classLocked">Whether the heirs class was locked by a Soul Shop ugrade</param>
 		/// <param name="spellLocked">Whether the heirs spell was locked by a Soul Shop ugrade</param>
 		public delegate void ModifyCharacterData_delegate(CharacterData data, bool classLocked, bool spellLocked);
@@ -450,7 +450,7 @@ public static class Player
 		/// Used to modify look data of generated heirs
 		/// </summary>
 		/// <param name="lookData">The generated heirs <see cref="PlayerLookController" /></param>
-		/// <param name="characterData">The generated heirs <see cref="CharacterData" /></param>
+		/// <param name="data">The generated heirs <see cref="CharacterData" /></param>
 		public delegate void ModifyCharacterLook_delegate(PlayerLookController lookData, CharacterData data);
 
 		/// <inheritdoc cref="ModifyCharacterLook_delegate"/>
