@@ -1,5 +1,9 @@
 # RL2.API Changelog
 
+## v1.1.2
+### Fixes:
+- Enemy.ModifyBehaviour now allows for completly replacing the values of `aiScript` and `logicController_SO`
+
 ## v1.1.1
 ### Fixes:
 - Bad method signature in register content hook
