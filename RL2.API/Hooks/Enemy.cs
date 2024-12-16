@@ -75,10 +75,12 @@ public partial class RL2API
 		if (found) {
 			foreach (EnemyRank rank in Enum.GetValues(typeof(EnemyRank))) {
 				Enemy.ModifyData_Invoke(type, rank, data.GetEnemyData(rank));
-				Enemy.ModifyBehaviour_Invoke(type, rank, data.GetAIScript(rank), data.GetLogicController());
 			}
+			Enemy.ModifyBehaviour_Invoke(type, EnemyRank.Basic, ref data.m_basicAIScript, ref data.m_enemyLogicController);
+			Enemy.ModifyBehaviour_Invoke(type, EnemyRank.Advanced, ref data.m_advancedAIScript, ref data.m_enemyLogicController);
+			Enemy.ModifyBehaviour_Invoke(type, EnemyRank.Expert, ref data.m_expertAIScript, ref data.m_enemyLogicController);
+			Enemy.ModifyBehaviour_Invoke(type, EnemyRank.Miniboss, ref data.m_minibossAIScript, ref data.m_enemyLogicController);
 		}
-
 		return found;
 	}
 	#endregion

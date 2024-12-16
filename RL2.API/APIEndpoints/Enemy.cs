@@ -88,13 +88,13 @@ public static class Enemy
 	/// <param name="rank">Enemy rank</param>
 	/// <param name="aiScript">Enemy's AI script object</param>
 	/// <param name="logicController_SO">Enemy's logic controller scriptable object. Handles chances of behaviour</param>
-	public delegate void ModifyBehaviour_delegate(EnemyType type, EnemyRank rank, BaseAIScript aiScript, LogicController_SO logicController_SO);
+	public delegate void ModifyBehaviour_delegate(EnemyType type, EnemyRank rank, ref BaseAIScript aiScript, ref LogicController_SO logicController_SO);
 
 	/// <inheritdoc cref="ModifyBehaviour_delegate"/>
 	public static event ModifyBehaviour_delegate? ModifyBehaviour;
 
-	internal static void ModifyBehaviour_Invoke(EnemyType type, EnemyRank rank, BaseAIScript aiScript, LogicController_SO logicController_SO) {
-		ModifyBehaviour?.Invoke(type, rank, aiScript, logicController_SO);
+	internal static void ModifyBehaviour_Invoke(EnemyType type, EnemyRank rank, ref BaseAIScript aiScript, ref LogicController_SO logicController_SO) {
+		ModifyBehaviour?.Invoke(type, rank, ref aiScript, ref logicController_SO);
 	}
 	#endregion
 }
