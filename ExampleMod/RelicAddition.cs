@@ -18,6 +18,9 @@ public class RelicAddition : IRegistrable {
 		CustomData.Description = "Raa";
 		CustomData.Description02 = "Ara ara";
 		TestRelic = Relics.Register(CustomData);
+		Player.PostUpdateStats += (PlayerController player) => {
+			player.DexterityAdd += SaveManager.PlayerSaveData.GetRelic((RelicType)TestRelic).Level * 10;
+		};
 	}
 
 	public Hook Test = new Hook(
