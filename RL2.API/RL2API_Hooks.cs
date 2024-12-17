@@ -6,12 +6,16 @@ namespace RL2.API;
 
 public partial class RL2API 
 {
+	internal static bool Loaded = false;
+
 	internal static Hook OnGameLoad_Hook = new Hook(
-		typeof(OnGameLoadManager).GetMethod("Run", BindingFlags.NonPublic | BindingFlags.Static),
-		(Action orig) => {
-			orig();
-			foreach (Mod mod in LoadedMods) {
-				mod.RegisterContent();
+		typeof(MainMenuWindowController).GetMethod("OnOpen", BindingFlags.NonPublic | BindingFlags.Instance),
+		(Action<MainMenuWindowController> orig, MainMenuWindowController self) => {
+			orig(self);
+			if (!Loaded) {
+				foreach (Mod mod in LoadedMods) {
+					mod.RegisterContent();
+				}
 			}
 		},
 		new HookConfig() {
