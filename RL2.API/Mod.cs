@@ -24,7 +24,7 @@ public abstract class Mod
 	/// <summary>
 	/// All registrable types from this mod
 	/// </summary>
-	public Type[] RegistrableContent;
+	public Type[]? RegistrableContent;
 
 	/// <summary>
 	/// Ran right after loading all mods.
@@ -40,7 +40,7 @@ public abstract class Mod
 	/// Registers all content instances
 	/// </summary>
 	public virtual void RegisterContent() {
-		foreach (Type type in RegistrableContent) { 
+		foreach (Type type in RegistrableContent ?? []) { 
 			var instance = Activator.CreateInstance(type);
 			if (instance is IRegistrable registrable) {
 				registrable.Register();
