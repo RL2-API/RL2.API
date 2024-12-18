@@ -28,7 +28,7 @@ public static class Relics {
 		// Add regular relic icon
 		Sprite relicSprite = IconLibrary.Instance.m_defaultSprite;
 		if (icon != null) {
-			relicSprite = Sprite.Create(icon, new Rect(0, 0, icon.width, icon.height),new Vector2(.5f, .5f));
+			relicSprite = Sprite.Create(icon, new Rect(0, 0, icon.width/2, icon.height/2),new Vector2(.5f, .5f));
 		}
 		IconLibrary.Instance.m_relicIconLibrary.Add((RelicType)LastRelicID, relicSprite);
 
@@ -55,5 +55,32 @@ public static class Relics {
 
 	internal static void ModifyData_Invoke(RelicType type, RelicData data) {
 		ModifyData?.Invoke(type, data);
+	}
+
+	/// <summary>
+	/// Allows running code after relic level change
+	/// </summary>
+	/// <param name="type">Relic type</param>
+	/// <param name="levelChange">Change of the relics level (how many copies of the relic the player picked up)</param>
+	public delegate void ApplyRelic_delegate(RelicType type, int levelChange);
+
+	/// <inheritdoc cref="ApplyRelic_delegate" />
+	public static event ApplyRelic_delegate? ApplyRelic;
+
+	internal static void ApplyRelic_Invoke(RelicType type, int levelChange) {
+		ApplyRelic?.Invoke(type, levelChange);
+	}
+
+	/// <summary>
+	/// Used to disable additional relic functionality when the relic is taken away
+	/// </summary>
+	/// <param name="type"></param>
+	public delegate void StopRelic_delegate(RelicType type);
+
+	/// <inheritdoc cref="StopRelic_delegate" />
+	public static event StopRelic_delegate? StopRelic;
+
+	internal static void StopRelic_Invoke(RelicType type) {
+		StopRelic?.Invoke(type);
 	}
 }
