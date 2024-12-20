@@ -21,6 +21,11 @@ public class RelicAddition : IRegistrable {
 		Player.PostUpdateStats += (PlayerController player) => {
 			player.DexterityTemporaryAdd += SaveManager.PlayerSaveData.GetRelic((RelicType)TestRelic).Level * 10;
 		};
+
+		Enemy.ModifyDamageTaken += (EnemyController enemyDamaged, IDamageObj damageSource, ref float damageTaken, ref CriticalStrikeType critType, bool trueDamage) => {
+			if (enemyDamaged.EnemyType != EnemyType.SwordKnight) return;
+			damageTaken += 200 * SaveManager.PlayerSaveData.GetRelic((RelicType)TestRelic).Level;
+		};
 	}
 
 	public Hook Test = new Hook(

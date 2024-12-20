@@ -97,4 +97,21 @@ public static class Enemy
 		ModifyBehaviour?.Invoke(type, rank, ref aiScript, ref logicController_SO);
 	}
 	#endregion
+
+	/// <summary>
+	///	Allows modders to modify the damage taken by enemies
+	/// </summary>
+	/// <param name="enemyDamaged">The enemy damaged</param>
+	/// <param name="damageSource">Object that damaged the enemy</param>
+	/// <param name="damageTaken">How much damage the enemy received</param>
+	/// <param name="critType">Critical strike type</param>
+	/// <param name="trueDamage">Set to true if the damage should not be affected by modifiers</param>
+	public delegate void ModifyDamageTaken_delegate(EnemyController enemyDamaged, IDamageObj damageSource, ref float damageTaken, ref CriticalStrikeType critType, bool trueDamage);
+
+	/// <inheritdoc cref="ModifyDamageTaken_delegate"/>
+	public static event ModifyDamageTaken_delegate? ModifyDamageTaken;
+
+	internal static void ModifyDamageTaken_Invoke(EnemyController enemyDamaged, IDamageObj damageSource, ref float damageTaken, ref CriticalStrikeType critType, bool trueDamage) {
+		ModifyDamageTaken?.Invoke(enemyDamaged, damageSource, ref damageTaken, ref critType, trueDamage);
+	}
 }

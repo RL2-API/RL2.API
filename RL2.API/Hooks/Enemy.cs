@@ -62,6 +62,19 @@ public partial class RL2API
 	);
 	#endregion
 
+	internal static Hook Enemy_ModifyDamageTaken_Hook = new Hook(
+		typeof(EnemyController).GetMethod("CalculateDamageTaken", BindingFlags.Public | BindingFlags.Instance),
+		Enemy_ModifyDamageTaken_Method
+	);
+
+	internal delegate float Enemy_ModifyDamageTaken_delegate(EnemyController self, IDamageObj damageObj, out CriticalStrikeType critType, out float damageBlocked, out float dmgBlockedByMana, float damageOverride, bool trueDamage, bool pureCalculation);
+
+	internal static float Enemy_ModifyDamageTaken_Method(Enemy_ModifyDamageTaken_delegate orig, EnemyController self, IDamageObj damageObj, out CriticalStrikeType critType, out float damageBlocked, out float dmgBlockedByMana, float damageOverride, bool trueDamage, bool pureCaclulation) {
+		float original = orig(self, damageObj, out critType, out damageBlocked, out dmgBlockedByMana, damageOverride, trueDamage, pureCaclulation);
+		Enemy.ModifyDamageTaken_Invoke(self, damageObj, ref original, ref critType, trueDamage);
+		return original;
+	}
+
 	#region
 	internal delegate bool EnemyClassDataDictionary_TryGetValue(EnemyTypeEnemyClassDataDictionary self, EnemyType key, out EnemyClassData data);
 
