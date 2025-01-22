@@ -64,8 +64,6 @@ public static class Player
 	}
 	#endregion
 
-	#region Stats
-
 	/// <summary>
 	/// Executed after all stats update. Use to perform stat increases.
 	/// </summary>
@@ -78,8 +76,6 @@ public static class Player
 	internal static void PostUpdateStats_Invoke(PlayerController player) {
 		PostUpdateStats?.Invoke(player);
 	}
-
-	#endregion
 
 	/// <summary>
 	/// Stores events related to heir generation
