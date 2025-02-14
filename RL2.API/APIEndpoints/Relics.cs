@@ -49,6 +49,7 @@ public static class Relics {
 		
 		SaveManager.PlayerSaveData.RelicObjTable[(RelicType)ID] = new RelicObj((RelicType)ID);
 
+		RL2API.Log($"Saved {data.Name} as {ID}");
 		return ID;
 	}
 
@@ -97,7 +98,7 @@ public static class Relics {
 		string path = ModLoader.ModLoader.ModPath + "\\SavedData";
 		if (!Directory.Exists(ModLoader.ModLoader.ModPath + "\\SavedData")) Directory.CreateDirectory(ModLoader.ModLoader.ModPath + "\\SavedData");
 		
-		path += "\\RelicIDs.json";
+		path = path + "\\RelicIDs.json";
 		if (!File.Exists(path)) return;
 
 		SavedRelicIDs = JsonParser.FromJson<Dictionary<string, int>>(File.ReadAllText(path));
