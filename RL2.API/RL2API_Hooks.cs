@@ -6,6 +6,9 @@ namespace RL2.API;
 
 public partial class RL2API 
 {
+	/// <summary>
+	/// Is content registered
+	/// </summary>
 	public static bool ContentRegistered = false;
 
 	internal static Hook OnGameLoad_Hook = new Hook(
@@ -13,9 +16,11 @@ public partial class RL2API
 		(Action<MainMenuWindowController> orig, MainMenuWindowController self) => {
 			orig(self);
 			if (!ContentRegistered) {
+				Relics.LoadSavedData();
 				foreach (Mod mod in LoadedMods) {
 					mod.RegisterContent();
 				}
+				Relics.SaveData();
 				ContentRegistered = true;
 			}
 		},
