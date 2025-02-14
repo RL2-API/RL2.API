@@ -1,3 +1,4 @@
+using RL2.API.DataStructures;
 using System;
 using UnityEngine;
 
@@ -103,19 +104,22 @@ public static class Enemy
 	/// </summary>
 	/// <param name="enemyDamaged">The enemy damaged</param>
 	/// <param name="damageSource">Object that damaged the enemy</param>
-	/// <param name="damageTaken">How much damage the enemy received. Do not multiply, use <paramref name="damageMultiplier"/></param>
-	/// <param name="damageMultiplier">Used for percentage based/multiplicative bonuses</param>
+	/// <param name="damageTaken">How much damage the enemy received</param>
+	/// <param name="damageTakenModifiers">Allows for modifying the damage taken</param>
 	/// <param name="critType">Critical strike type</param>
-	public delegate void ModifyDamageTaken_delegate(EnemyController enemyDamaged, IDamageObj damageSource, ref float damageTaken, ref float damageMultiplier, ref CriticalStrikeType critType);
+	public delegate void ModifyDamageTaken_delegate(EnemyController enemyDamaged, IDamageObj damageSource, float damageTaken, ref Modifiers damageTakenModifiers, ref CriticalStrikeType critType, bool trueDamage);
 
 	/// <inheritdoc cref="ModifyDamageTaken_delegate"/>
 	public static event ModifyDamageTaken_delegate? ModifyDamageTaken;
 
-	internal static void ModifyDamageTaken_Invoke(EnemyController enemyDamaged, IDamageObj damageSource, ref float damageTaken, ref CriticalStrikeType critType, bool trueDamage) {
-		if (!trueDamage) {
-			float damageMultiplier = 1f;
-			ModifyDamageTaken?.Invoke(enemyDamaged, damageSource, ref damageTaken, ref damageMultiplier, ref critType);
-			damageTaken *= damageMultiplier;
-		}
+	internal static void ModifyDamageTaken_Invoke(EnemyController enemyDamaged, IDamageObj damageSource, float damageTaken, ref CriticalStrikeType critType, bool trueDamage) {
+		if (trueDamage) return;
+
+		Modifiers modifiers = new Modifiers();
+		float damage = damageTaken;
+		ModifyDamageTaken?.Invoke(enemyDamaged, damageSource, damage, ref modifiers, ref critType, trueDamage);
+		damageTaken += modifiers.Additive;
+		damageTaken *= modifiers.Multiplicative;
+		damageTaken += modifiers.Flat;
 	}
 }

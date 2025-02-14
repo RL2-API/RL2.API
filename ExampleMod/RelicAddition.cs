@@ -1,7 +1,5 @@
-using MonoMod.RuntimeDetour;
 using RL2.API;
-using System;
-using System.Reflection;
+using RL2.API.DataStructures;
 using UnityEngine;
 
 public class RelicAddition : IRegistrable {
@@ -22,16 +20,9 @@ public class RelicAddition : IRegistrable {
 			player.DexterityTemporaryAdd += SaveManager.PlayerSaveData.GetRelic((RelicType)TestRelic).Level * 10;
 		};
 
-		Enemy.ModifyDamageTaken += (EnemyController enemyDamaged, IDamageObj damageSource, ref float damageTaken, ref CriticalStrikeType critType, bool trueDamage) => {
+		Enemy.ModifyDamageTaken += (EnemyController enemyDamaged, IDamageObj damageSource, float damageTaken, ref Modifiers damageTakenModifiers, ref CriticalStrikeType critType, bool trueDamage) => {
 			if (enemyDamaged.EnemyType != EnemyType.SwordKnight) return;
-			damageTaken += 200 * SaveManager.PlayerSaveData.GetRelic((RelicType)TestRelic).Level;
+			damageTakenModifiers.Flat += 200 * SaveManager.PlayerSaveData.GetRelic((RelicType)TestRelic).Level;
 		};
 	}
-
-	public Hook Test = new Hook(
-		typeof(RelicRoomPropController).GetProperty("LeftRelicType", BindingFlags.Public | BindingFlags.Instance).GetMethod,
-		(Func<RelicRoomPropController, RelicType> orig, RelicRoomPropController room) => {
-			return TestRelic;
-		}
-	);
 }
