@@ -1,8 +1,10 @@
 using JetBrains.Annotations;
 using Rewired.Utils.Libraries.TinyJson;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 namespace RL2.API;
@@ -14,9 +16,9 @@ public static class Relics {
 	/// <summary> 
 	/// Stores custom relics 
 	/// </summary>
-	internal static Dictionary<int, RelicData> CustomRelicStore = [];
+	internal static Dictionary<RelicType, RelicData> CustomRelicStore = [];
 
-	internal static Dictionary<string, int> SavedRelicIDs = [];
+	internal static Dictionary<string, RelicType> SavedRelicIDs = [];
 
 	internal static int LastRelicID = (int)RelicType.DeathMark;
 
@@ -26,28 +28,31 @@ public static class Relics {
 	/// <param name="data">Data of the custom relic</param>
 	/// <param name="icon">Small icon - displayed in the HUD</param>
 	/// <param name="iconBig">Big icon - displayed when picking up the relic</param>
-	public static int Register(RelicData data, Texture2D? icon = null, Texture2D? iconBig = null) {
+	public static RelicType Register(RelicData data, Texture2D? icon = null, Texture2D? iconBig = null) {
 		while (IconLibrary.Instance == null) { }
-		
-		int ID = SavedRelicIDs.TryGetValue(data.Name, out int value) ? value : ++LastRelicID;
-		SavedRelicIDs[data.Name] = ID;
+
+		string ModName = Assembly.GetCallingAssembly().GetTypes().Where((type) => type.IsSubclassOf(typeof(Mod))).FirstOrDefault().Name;
+		string name = ModName + data.Name;
+
+		RelicType ID = SavedRelicIDs.TryGetValue(name, out RelicType value) ? value : (RelicType)(++LastRelicID);
+		SavedRelicIDs[name] = ID;
 
 		CustomRelicStore[ID] = data;
 		
 		// Add regular relic icon
 		Sprite relicSprite = IconLibrary.Instance.m_defaultSprite;
 		if (icon != null) {
-			relicSprite = Sprite.Create(icon, new Rect(0, 0, icon.width/2, icon.height/2),new Vector2(.5f, .5f));
+			relicSprite = Sprite.Create(icon, new Rect(0, 0, icon.width/2, icon.height/2), new Vector2(.5f, .5f));
 		}
-		IconLibrary.Instance.m_relicIconLibrary.Add((RelicType)ID, relicSprite);
+		IconLibrary.Instance.m_relicIconLibrary.Add(ID, relicSprite);
 
 		Sprite relicSpriteBig = IconLibrary.Instance.m_defaultSprite;
 		if (iconBig != null) {
 			relicSpriteBig = Sprite.Create(iconBig, new Rect(0, 0, iconBig.width, iconBig.height),new Vector2(.5f, .5f));
 		}
-		IconLibrary.Instance.m_relicLargeIconLibrary.Add((RelicType)ID, relicSpriteBig);
+		IconLibrary.Instance.m_relicLargeIconLibrary.Add(ID, relicSpriteBig);
 		
-		SaveManager.PlayerSaveData.RelicObjTable[(RelicType)ID] = new RelicObj((RelicType)ID);
+		SaveManager.PlayerSaveData.RelicObjTable[ID] = new RelicObj(ID);
 
 		RL2API.Log($"Saved {data.Name} as {ID}");
 		return ID;
@@ -101,10 +106,10 @@ public static class Relics {
 		path = path + "\\RelicIDs.json";
 		if (!File.Exists(path)) return;
 
-		SavedRelicIDs = JsonParser.FromJson<Dictionary<string, int>>(File.ReadAllText(path));
+		SavedRelicIDs = JsonParser.FromJson<Dictionary<string, RelicType>>(File.ReadAllText(path));
 		var sorted = SavedRelicIDs.Values.ToList();
 		sorted.Sort();
-		LastRelicID = sorted.Last();
+		LastRelicID = (int)sorted.Last();
 	}
 
 	internal static void SaveData() {

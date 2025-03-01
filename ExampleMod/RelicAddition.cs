@@ -3,7 +3,7 @@ using RL2.API.DataStructures;
 using UnityEngine;
 
 public class RelicAddition : IRegistrable {
-	public static int TestRelic;
+	public static RelicType TestRelic;
 
 	public void Register() {
 		RelicData CustomData = ScriptableObject.CreateInstance<RelicData>();
@@ -17,12 +17,12 @@ public class RelicAddition : IRegistrable {
 		CustomData.Description02 = "Ara ara";
 		TestRelic = Relics.Register(CustomData);
 		Player.PostUpdateStats += (PlayerController player) => {
-			player.DexterityTemporaryAdd += SaveManager.PlayerSaveData.GetRelic((RelicType)TestRelic).Level * 10;
+			player.DexterityTemporaryAdd += SaveManager.PlayerSaveData.GetRelic(TestRelic).Level * 10;
 		};
 
 		Enemy.ModifyDamageTaken += (EnemyController enemyDamaged, IDamageObj damageSource, float damageTaken, ref Modifiers damageTakenModifiers, ref CriticalStrikeType critType, bool trueDamage) => {
 			if (enemyDamaged.EnemyType != EnemyType.SwordKnight) return;
-			damageTakenModifiers.Flat += 200 * SaveManager.PlayerSaveData.GetRelic((RelicType)TestRelic).Level;
+			damageTakenModifiers.Flat += 200 * SaveManager.PlayerSaveData.GetRelic(TestRelic).Level;
 		};
 	}
 }
