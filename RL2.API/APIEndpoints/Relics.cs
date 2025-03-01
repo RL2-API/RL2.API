@@ -31,8 +31,9 @@ public static class Relics {
 	public static RelicType Register(RelicData data, Texture2D? icon = null, Texture2D? iconBig = null) {
 		while (IconLibrary.Instance == null) { }
 
-		string ModName = Assembly.GetCallingAssembly().GetTypes().Where((type) => type.IsSubclassOf(typeof(Mod))).FirstOrDefault().Name;
-		string name = ModName + data.Name;
+		Type modType = Assembly.GetCallingAssembly().GetTypes().Where((type) => type.IsSubclassOf(typeof(Mod))).FirstOrDefault();
+		string modName = RL2API.GetModInstance(modType)!.Manifest.Name;
+		string name = modName + data.Name;
 
 		RelicType ID = SavedRelicIDs.TryGetValue(name, out RelicType value) ? value : (RelicType)(++LastRelicID);
 		SavedRelicIDs[name] = ID;

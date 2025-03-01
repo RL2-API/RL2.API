@@ -169,6 +169,16 @@ public partial class RL2API
 		return null;
 	}
 
+	public static Mod? GetModInstance(Type modType) {
+		foreach (Mod mod in LoadedMods) {
+			if (mod.GetType() == modType) {
+				return mod;
+			}
+		}
+
+		return null;
+	}
+
 	internal static void Log(object message) {
 		UnityEngine.Debug.Log($"[RL2.API]: {message}");
 	}
