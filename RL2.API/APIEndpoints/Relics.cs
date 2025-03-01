@@ -59,7 +59,17 @@ public static class Relics {
 		return ID;
 	}
 
-	/// <summary> 
+	/// <summary>
+	/// Gets the RelicType of a custom relic
+	/// </summary>
+	/// <param name="name">Name of the searched relic in the 'ModName/RelicName' format</param>
+	/// <returns><see cref="RelicType"/> if relic is found, <see langword="null"/> if not found </returns>
+	public static RelicType? GetRelicType(string name) {
+		if (SavedRelicIDs.TryGetValue(name, out RelicType value)) return value;
+		return null;
+	}
+
+ 	/// <summary> 
 	///	Allows modifying relic data
 	/// </summary>
 	/// <param name="type"> Relic type </param>
