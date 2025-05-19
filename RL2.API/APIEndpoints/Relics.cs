@@ -120,7 +120,7 @@ public static class Relics {
 		SavedRelicIDs = JsonParser.FromJson<Dictionary<string, RelicType>>(File.ReadAllText(path));
 		var sorted = SavedRelicIDs.Values.ToList();
 		sorted.Sort();
-		LastRelicID = (int)sorted.Last();
+		LastRelicID = (int)sorted.LastOrDefault();
 	}
 
 	internal static void SaveData() {
