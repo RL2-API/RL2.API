@@ -12,7 +12,7 @@ public partial class RL2API {
 		(Func<RelicType, RelicData> orig, RelicType type) => {
 			RelicData data = orig(type);
 			if (data == null) {
-				data = Relics.CustomRelicStore[(int)type];
+				data = Relics.CustomRelicStore[type];
 			}
 			Relics.ModifyData_Invoke(type, data);
 			return data;
