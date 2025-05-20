@@ -1,18 +1,13 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RL2.API;
 
 /// <summary>
-/// Provides endpoints for game world related APIs
+/// Provides endpoints for map related APIs
 /// </summary>
-public static class World
-{
-	/// <summary>
-	/// Provides endpoints for map related APIs
-	/// </summary>
-	public static class Map
-	{
+public static class Map {
 		/// <summary>
 		/// Allows assigning a custom map icon to a room
 		/// </summary>
@@ -44,4 +39,3 @@ public static class World
 			return modifiedIcon;
 		}
 	}
-}
