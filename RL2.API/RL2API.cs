@@ -169,6 +169,11 @@ public partial class RL2API
 		return null;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="modType"></param>
+	/// <returns></returns>
 	public static Mod? GetModInstance(Type modType) {
 		foreach (Mod mod in LoadedMods) {
 			if (mod.GetType() == modType) {
