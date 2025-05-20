@@ -8,7 +8,7 @@ public class AlterScar : IRegistrable {
 		Scars.ModifySummonRules += AlterArmada;
 	}
 
-	internal Scars.ModifyScarSummonRules_delegate AlterArmada = (ChallengeType challenge, ref List<BaseSummonRule> rules) => {
+	internal Scars.ModifySummonRules_delegate AlterArmada = (ChallengeType challenge, ref List<BaseSummonRule> rules) => {
 		if (challenge == ChallengeType.BigBattle) {
 			var count = rules.Count - 1;
 			for (var i = count - 10; i > 6; i--) {
