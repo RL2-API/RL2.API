@@ -9,8 +9,10 @@ namespace RL2.API;
 public static class Scars
 {
 	/// <summary>
-	/// 
+	/// Allows modifying rule chains of Scar challenges
 	/// </summary>
+	/// <param name="challenge">Scar challenge type</param>
+	/// <param name="rules">List of rules that get executed in the challenge</param>
 	public delegate void ModifySummonRules_delegate(ChallengeType challenge, ref List<BaseSummonRule> rules);
 
 	/// <inheritdoc cref="ModifySummonRules_delegate"/>

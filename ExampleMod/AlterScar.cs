@@ -16,7 +16,7 @@ public class AlterScar : IRegistrable {
 			}
 
 			List<BaseSummonRule> newRules = [
-				new SetSummonPoolLevel_Rule() {
+				new SetEnemyLevel_Rule() {
 					Level = 12,
 					SetLevelToPlayer = false
 				},
