@@ -3,8 +3,8 @@
 [Bb]in
 [Oo]bj
 
-# Setup tool config
-RL2.ModLoader.DevSetup/config
+# Setup tool
+RL2.ModLoader.DevSetup
 
 # Packaged files
 package
@@ -14,8 +14,4 @@ package
 *.sublime-project
 
 # Libraries
-lib/*.dll
-!lib/Mono*.dll
-lib/Mono.Posix.dll
-lib/Mono.Security.dll
-!lib/RL2.ModLoader*
+lib
