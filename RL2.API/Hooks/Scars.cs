@@ -10,7 +10,17 @@ namespace RL2.API;
 
 public partial class RL2API
 {
-	internal static ILHook OnSummonRuleControllerDeserializationFinished_Hook = new ILHook(
+	internal static Dictionary<string, string> RuleNameToFullName = [];
+
+	internal static string GetFullName(string namespaceQualifiedName) {
+		if (RuleNameToFullName.TryGetValue(namespaceQualifiedName, out string fullName)) {
+			return fullName;
+		}
+		if (namespaceQualifiedName.StartsWith("RL2.API")) return namespaceQualifiedName + RL2API_FullTypeNameSuffix;
+		return namespaceQualifiedName + AssemblyCsharp_FullTypeNameSuffix;
+	}
+
+	internal static ILHook SummonRuleControllerAfterDeserialized_ILHook = new ILHook(
 		typeof(SummonRuleController).GetMethod("OnAfterDeserialize", BindingFlags.Public | BindingFlags.Instance),
 		(ILContext il) => {
 			ILCursor cursor = new(il);
@@ -19,7 +29,7 @@ public partial class RL2API
 
 			cursor.Remove();
 			cursor.EmitDelegate((EnemySummonSerializedData serialized) => {
-				return serialized.DataType + AssemblyCsharp_FullTypeNameSuffix;
+				return GetFullName(serialized.DataType);
 			});
 
 			if (!cursor.TryGotoNext(MoveType.Before, ins => ins.MatchRet())) return;
