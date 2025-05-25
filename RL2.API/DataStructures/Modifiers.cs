@@ -3,7 +3,8 @@ namespace RL2.API.DataStructures;
 /// <summary>
 /// Modifiers
 /// </summary>
-public class Modifiers() {
+public class Modifiers()
+{
 	/// <summary>
 	/// An additive bonus, applied before multiplicative bonuses.
 	/// </summary>

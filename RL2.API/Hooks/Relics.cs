@@ -6,7 +6,8 @@ using System.Reflection;
 
 namespace RL2.API;
 
-public partial class RL2API {
+public partial class RL2API
+{
 	internal static Hook ModiftRelicData_Hook = new Hook(
 		typeof(RelicLibrary).GetMethod("GetRelicData", BindingFlags.Public | BindingFlags.Static),
 		(Func<RelicType, RelicData> orig, RelicType type) => {

@@ -40,7 +40,7 @@ public abstract class Mod
 	/// Registers all content instances
 	/// </summary>
 	public virtual void RegisterContent() {
-		foreach (Type type in RegistrableContent ?? []) { 
+		foreach (Type type in RegistrableContent ?? []) {
 			var instance = Activator.CreateInstance(type);
 			if (instance is IRegistrable registrable) {
 				registrable.Register();

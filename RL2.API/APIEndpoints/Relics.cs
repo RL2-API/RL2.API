@@ -12,7 +12,8 @@ namespace RL2.API;
 /// <summary>
 ///	Provides endpoints for Relic related APIs
 /// </summary>
-public static class Relics {
+public static class Relics
+{
 	/// <summary> 
 	/// Stores custom relics 
 	/// </summary>
@@ -39,20 +40,20 @@ public static class Relics {
 		SavedRelicIDs[name] = ID;
 
 		CustomRelicStore[ID] = data;
-		
+
 		// Add regular relic icon
 		Sprite relicSprite = IconLibrary.Instance.m_defaultSprite;
 		if (icon != null) {
-			relicSprite = Sprite.Create(icon, new Rect(0, 0, icon.width/2, icon.height/2), new Vector2(.5f, .5f));
+			relicSprite = Sprite.Create(icon, new Rect(0, 0, icon.width / 2, icon.height / 2), new Vector2(.5f, .5f));
 		}
 		IconLibrary.Instance.m_relicIconLibrary.Add(ID, relicSprite);
 
 		Sprite relicSpriteBig = IconLibrary.Instance.m_defaultSprite;
 		if (iconBig != null) {
-			relicSpriteBig = Sprite.Create(iconBig, new Rect(0, 0, iconBig.width, iconBig.height),new Vector2(.5f, .5f));
+			relicSpriteBig = Sprite.Create(iconBig, new Rect(0, 0, iconBig.width, iconBig.height), new Vector2(.5f, .5f));
 		}
 		IconLibrary.Instance.m_relicLargeIconLibrary.Add(ID, relicSpriteBig);
-		
+
 		SaveManager.PlayerSaveData.RelicObjTable[ID] = new RelicObj(ID);
 
 		RL2API.Log($"Saved {data.Name} as {ID}");
@@ -69,7 +70,7 @@ public static class Relics {
 		return null;
 	}
 
- 	/// <summary> 
+	/// <summary> 
 	///	Allows modifying relic data
 	/// </summary>
 	/// <param name="type"> Relic type </param>
@@ -113,7 +114,7 @@ public static class Relics {
 	internal static void LoadSavedData() {
 		string path = ModLoader.ModLoader.ModPath + "\\SavedData";
 		if (!Directory.Exists(ModLoader.ModLoader.ModPath + "\\SavedData")) Directory.CreateDirectory(ModLoader.ModLoader.ModPath + "\\SavedData");
-		
+
 		path = path + "\\RelicIDs.json";
 		if (!File.Exists(path)) return;
 

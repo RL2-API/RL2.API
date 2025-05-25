@@ -7,7 +7,8 @@ namespace RL2.API;
 /// <summary>
 /// Provides endpoints for map related APIs
 /// </summary>
-public static class Map {
+public static class Map
+{
 	/// <summary>
 	/// Allows assigning a custom map icon to a room
 	/// </summary>

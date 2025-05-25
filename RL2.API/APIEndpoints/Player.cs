@@ -91,7 +91,7 @@ public static class Player
 
 		/// <inheritdoc cref="ModifyCharacterRandomization_delegate"/>
 		public static event ModifyCharacterRandomization_delegate? ModifyCharacterRandomization;
-		
+
 		internal static void ModifyCharacterRandomization_Invoke(CharacterData data) {
 			ModifyCharacterRandomization?.Invoke(data);
 		}
@@ -106,7 +106,7 @@ public static class Player
 
 		/// <inheritdoc cref="ModifyCharacterData_delegate"/>
 		public static event ModifyCharacterData_delegate? ModifyCharacterData;
-		
+
 		internal static void ModifyCharacterData_Invoke(CharacterData data, bool classLocked, bool spellLocked) {
 			ModifyCharacterData?.Invoke(data, classLocked, spellLocked);
 		}
@@ -120,7 +120,7 @@ public static class Player
 
 		/// <inheritdoc cref="ModifyCharacterLook_delegate"/>
 		public static event ModifyCharacterLook_delegate? ModifyCharacterLook;
-		
+
 		internal static void ModifyCharacterLook_Invoke(PlayerLookController lookData, CharacterData data) {
 			ModifyCharacterLook?.Invoke(lookData, data);
 		}

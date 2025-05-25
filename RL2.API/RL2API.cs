@@ -31,8 +31,8 @@ public partial class RL2API
 	public Mod[] LoadAPICompliantMods() {
 		List<Mod> loadedMods = [];
 		ModManifest[] notDisabledModManifests = ModLoader.ModLoader.ModManifestToPath.Keys.Where(
-			manifest => 
-				ModLoader.ModLoader.ModList?.Disabled.IndexOf(manifest.Name) == -1 && 
+			manifest =>
+				ModLoader.ModLoader.ModList?.Disabled.IndexOf(manifest.Name) == -1 &&
 				manifest.LoadAfter.Contains("RL2.API")
 		).ToArray();
 		Assembly?[] modAssemblies = GetEnabledModAssemblies(notDisabledModManifests);
