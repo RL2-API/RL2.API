@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace ExampleMod;
 
-public class AlterScar : IRegistrable {
+public class AlterScar : IRegistrable
+{
 	void IRegistrable.Register() {
 		Scars.ModifySummonRules += AlterArmada;
 	}
@@ -20,42 +21,42 @@ public class AlterScar : IRegistrable {
 					Level = 12,
 					SetLevelToPlayer = false
 				},
-				
+
 				new SetSummonPool_Rule() {
 					EnemyPool = [new(EnemyType.SpellswordBoss, EnemyRank.Basic)],
 					IsBiomeSpecific = false,
 					FlyingOnly = false
 				},
 				new SummonEnemy_Rule() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
-				
+
 				new SetSummonPool_Rule() {
 					EnemyPool = [new(EnemyType.SkeletonBossA, EnemyRank.Basic)],
 					IsBiomeSpecific = false,
 					FlyingOnly = false
 				},
 				new SummonEnemy_Rule() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
-				
+
 				new SetSummonPool_Rule() {
 					EnemyPool = [new(EnemyType.DancingBoss, EnemyRank.Basic)],
 					IsBiomeSpecific = false,
 					FlyingOnly = false
 				},
 				new SummonEnemy_Rule() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
-				
+
 				new SetSummonPool_Rule() {
 					EnemyPool = [new(EnemyType.StudyBoss, EnemyRank.Basic)],
 					IsBiomeSpecific = false,
 					FlyingOnly = false
 				},
 				new SummonEnemy_Rule() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
-				
+
 				new SetSummonPool_Rule() {
 					EnemyPool = [new(EnemyType.EyeballBoss_Bottom, EnemyRank.Basic)],
 					IsBiomeSpecific = false,
 					FlyingOnly = false
 				},
 				new SummonEnemy_Rule() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
-				
+
 				new SetSummonPool_Rule() {
 					EnemyPool = [new(EnemyType.CaveBoss, EnemyRank.Basic)],
 					IsBiomeSpecific = false,

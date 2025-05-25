@@ -2,7 +2,8 @@ using RL2.API;
 using RL2.API.DataStructures;
 using UnityEngine;
 
-public class RelicAddition : IRegistrable {
+public class RelicAddition : IRegistrable
+{
 	public static RelicType TestRelic;
 
 	public void Register() {

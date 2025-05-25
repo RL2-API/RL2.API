@@ -23,9 +23,6 @@
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<ItemGroup>
 			<Assets Include="$(ProjectDir)\Assets\*.*" />
-		</ItemGroup>
-		
-		<ItemGroup>
 			<Source Include="$(ProjectDir)\**\*.*" Exclude="$(ProjectDir)\obj\**\*.*;$(ProjectDir)\bin\**\*.*;$(ProjectDir)ExampleMod.mod.json" />
 		</ItemGroup>
 		
@@ -35,7 +32,6 @@
 		<Copy SourceFiles="@(Source)" DestinationFolder="$(TargetDir)\ExampleMod\src\%(RecursiveDir)" />
 		<Copy SourceFiles="@(Assets)" DestinationFolder="$(TargetDir)\ExampleMod\Assets" />
 		<Delete Files="$(TargetDir)\ExampleMod.pdb;$(TargetDir)\ExampleMod.dll" />
-        <Delete Files="$(TargetDir)\RL2.API.dll;$(TargetDir)\RL2.API.xml;$(TargetDir)\RL2.API.pdb" />
 	</Target>
 
 </Project>

@@ -2,7 +2,7 @@ using RL2.API;
 
 namespace ExampleMod;
 
-public class HeirGeneratorChanges : IRegistrable 
+public class HeirGeneratorChanges : IRegistrable
 {
 	void IRegistrable.Register() {
 		// All Contrarian heirs have cannons and Transmogrifier always rolls a cannon
