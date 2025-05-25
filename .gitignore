@@ -2,6 +2,7 @@
 .vs
 [Bb]in
 [Oo]bj
+*.csproj.user
 
 # Setup tool
 RL2.ModLoader.DevSetup
