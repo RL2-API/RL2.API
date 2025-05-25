@@ -24,14 +24,13 @@
 		<ItemGroup>
 			<Assets Include="$(ProjectDir)\Assets\*.*" />
 			<Source Include="$(ProjectDir)\**\*.*" Exclude="$(ProjectDir)\obj\**\*.*;$(ProjectDir)\bin\**\*.*;$(ProjectDir)ExampleMod.mod.json" />
+			<Compiled Include="$(TargetDir)\ExampleMod.*"  />
 		</ItemGroup>
 		
 		<Copy SourceFiles="$(ProjectDir)\ExampleMod.mod.json" DestinationFolder="$(TargetDir)\ExampleMod" />
-		<Copy SourceFiles="$(TargetDir)\ExampleMod.pdb" DestinationFolder="$(TargetDir)\ExampleMod" />
-		<Copy SourceFiles="$(TargetDir)\ExampleMod.dll" DestinationFolder="$(TargetDir)\ExampleMod" />
+		<Copy SourceFiles="@(Compiled)" DestinationFolder="$(TargetDir)\ExampleMod" />
 		<Copy SourceFiles="@(Source)" DestinationFolder="$(TargetDir)\ExampleMod\src\%(RecursiveDir)" />
 		<Copy SourceFiles="@(Assets)" DestinationFolder="$(TargetDir)\ExampleMod\Assets" />
-		<Delete Files="$(TargetDir)\ExampleMod.pdb;$(TargetDir)\ExampleMod.dll" />
 	</Target>
 
 </Project>

@@ -1,21 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <Import Project="../RL2.ModLoader.targets" />
-	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
-		<Nullable>enable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<LangVersion>latest</LangVersion>
-        <RootNamespace>RL2.ModLoader.ModLoader</RootNamespace>
-        <Configurations>Release</Configurations>
-	</PropertyGroup>
 
-	<PropertyGroup>
-		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
-		<BaseOutputPath>../bin</BaseOutputPath>
-		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-	</PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RootNamespace>RL2.API</RootNamespace>
+        <Configurations>Release</Configurations>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <UseCommonOutputDirectory>true</UseCommonOutputDirectory>
+        <BaseOutputPath>../bin</BaseOutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
@@ -25,11 +26,14 @@
         <Publicize Include="Assembly-CSharp"/>
     </ItemGroup>
 
-    <Target Name="CopyToMods" AfterTargets="PostBuildEvent">
-        <Copy 
-            SourceFiles="$(ProjectDir)\RL2.API.mod.json;$(TargetDir)\RL2.API.dll;$(TargetDir)\RL2.API.xml;$(TargetDir)\RL2.API.pdb" 
-            DestinationFolder="$(RL2_DataPath)\Mods\RL2.API" 
-        />
+    <Target Name="OrganiseOutput" AfterTargets="PostBuild">
+        <ItemGroup>
+            <Compiled Include="$(TargetDir)RL2.*" />
+            <ModJson Include="$(ProjectDir)*.mod.json" />
+        </ItemGroup>
+
+        <Move SourceFiles="@(Compiled)" DestinationFolder="$(TargetDir)RL2.API\" />
+        <Copy SourceFiles="@(ModJson)" DestinationFolder="$(TargetDir)RL2.API\" />
     </Target>
-    
+
 </Project>
