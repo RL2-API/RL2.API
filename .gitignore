@@ -5,6 +5,7 @@
 
 # Setup tool
 RL2.ModLoader.DevSetup
+RL2.ModLoader.targets
 
 # Packaged files
 package
@@ -12,6 +13,3 @@ package
 # Sublime text project
 *.sublime-workspace
 *.sublime-project
-
-# Libraries
-lib

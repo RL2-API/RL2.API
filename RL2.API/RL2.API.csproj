@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	
+    <Import Project="../RL2.ModLoader.targets" />
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
 		<Nullable>enable</Nullable>
@@ -17,19 +17,19 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
-	<ItemGroup>
-        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2" PrivateAssets="all" />
+    <ItemGroup>
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <Publicize Include="Assembly-CSharp"/>
+    </ItemGroup>
 
-		<Reference Include="..\lib\*.dll" Exclude="..\lib\Assembly-CSharp.dll">
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="..\lib\Assembly-CSharp.dll" Publicize="true">
-			<Private>false</Private>
-		</Reference>
-	</ItemGroup>
-
-    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="$(ProjectDir)\RL2.API.mod.json;$(TargetDir)\RL2.API.dll;$(TargetDir)\RL2.API.xml;$(TargetDir)\RL2.API.pdb" DestinationFolder="$(TargetDir)\RL2.API" />
+    <Target Name="CopyToMods" AfterTargets="PostBuildEvent">
+        <Copy 
+            SourceFiles="$(ProjectDir)\RL2.API.mod.json;$(TargetDir)\RL2.API.dll;$(TargetDir)\RL2.API.xml;$(TargetDir)\RL2.API.pdb" 
+            DestinationFolder="$(RL2_DataPath)\Mods\RL2.API" 
+        />
     </Target>
     
 </Project>

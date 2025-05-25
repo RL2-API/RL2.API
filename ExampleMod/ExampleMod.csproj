@@ -1,4 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../RL2.ModLoader.targets" />
 
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
@@ -16,9 +17,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Reference Include="..\lib\*.dll">
-			<Private>false</Private>
-		</Reference>
         <ProjectReference Include="..\RL2.API\RL2.API.csproj" />
 	</ItemGroup>
 
