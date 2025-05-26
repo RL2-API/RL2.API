@@ -10,6 +10,10 @@
         <Message Text="Copying $(AssemblyName) to the Mods directory..." Importance="high"/>
         <Copy SourceFiles="@(Compiled)" DestinationFolder="$(RL2_ModsPath)$(AssemblyName)" />
         <Copy SourceFiles="@(ModJson)" DestinationFolder="$(RL2_ModsPath)$(AssemblyName)" />
+        
+        <Message Text="Reorganising $(AssemblyName)'s output..." Importance="high"/>
+        <Copy SourceFiles="@(Compiled)" DestinationFolder="$(TargetDir)$(AssemblyName)" />
+        <Copy SourceFiles="@(ModJson)" DestinationFolder="$(TargetDir)$(AssemblyName)" />
     </Target>
 
 </Project>
