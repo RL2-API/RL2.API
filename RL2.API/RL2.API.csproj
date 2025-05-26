@@ -26,14 +26,17 @@
         <Publicize Include="Assembly-CSharp"/>
     </ItemGroup>
 
-    <Target Name="OrganiseOutput" AfterTargets="PostBuild">
+    <Target Name="OrganiseOutput" AfterTargets="PostBuildEvent">
         <ItemGroup>
             <Compiled Include="$(TargetDir)RL2.*" />
             <ModJson Include="$(ProjectDir)*.mod.json" />
         </ItemGroup>
 
-        <Move SourceFiles="@(Compiled)" DestinationFolder="$(TargetDir)RL2.API\" />
+        <Copy SourceFiles="@(Compiled)" DestinationFolder="$(TargetDir)RL2.API\" />
         <Copy SourceFiles="@(ModJson)" DestinationFolder="$(TargetDir)RL2.API\" />
+        
+        <Copy SourceFiles="@(Compiled)" DestinationFolder="$(RL2_ModsPath)RL2.API\" />
+        <Copy SourceFiles="@(ModJson)" DestinationFolder="$(RL2_ModsPath)RL2.API\" />
     </Target>
 
 </Project>

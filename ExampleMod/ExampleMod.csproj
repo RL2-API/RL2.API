@@ -31,6 +31,13 @@
 		<Copy SourceFiles="@(Compiled)" DestinationFolder="$(TargetDir)\ExampleMod" />
 		<Copy SourceFiles="@(Source)" DestinationFolder="$(TargetDir)\ExampleMod\src\%(RecursiveDir)" />
 		<Copy SourceFiles="@(Assets)" DestinationFolder="$(TargetDir)\ExampleMod\Assets" />
-	</Target>
+
+        <!--
+        <Copy SourceFiles="@(Compiled)" DestinationFolder="$(RL2_ModsPath)ExampleMod\" />
+        <Copy SourceFiles="@(ModJson)" DestinationFolder="$(RL2_ModsPath)ExampleMod\" />
+		<Copy SourceFiles="@(Source)" DestinationFolder="$(RL2_ModsPath)ExampleMod\src\%(RecursiveDir)" />
+		<Copy SourceFiles="@(Assets)" DestinationFolder="$(RL2_ModsPath)ExampleMod\Assets" />
+        -->        
+    </Target>
 
 </Project>
