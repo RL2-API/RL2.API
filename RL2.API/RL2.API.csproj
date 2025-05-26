@@ -8,6 +8,8 @@
         <LangVersion>latest</LangVersion>
         <RootNamespace>RL2.API</RootNamespace>
         <Configurations>Release</Configurations>
+
+        <NoWarn>CS0436</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -19,24 +21,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-        </PackageReference>
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" />
         <Publicize Include="Assembly-CSharp"/>
     </ItemGroup>
-
-    <Target Name="OrganiseOutput" AfterTargets="PostBuildEvent">
-        <ItemGroup>
-            <Compiled Include="$(TargetDir)RL2.*" />
-            <ModJson Include="$(ProjectDir)*.mod.json" />
-        </ItemGroup>
-
-        <Copy SourceFiles="@(Compiled)" DestinationFolder="$(TargetDir)RL2.API\" />
-        <Copy SourceFiles="@(ModJson)" DestinationFolder="$(TargetDir)RL2.API\" />
-        
-        <Copy SourceFiles="@(Compiled)" DestinationFolder="$(RL2_ModsPath)RL2.API\" />
-        <Copy SourceFiles="@(ModJson)" DestinationFolder="$(RL2_ModsPath)RL2.API\" />
-    </Target>
 
 </Project>

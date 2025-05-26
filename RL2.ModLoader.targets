@@ -1,0 +1,15 @@
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="RL2.Dev.targets" />
+
+    <Target Name="OrganiseOutput" AfterTargets="PostBuildEvent">
+        <ItemGroup>
+            <Compiled Include="$(TargetDir)$(AssemblyName).*"/>
+            <ModJson Include="$(ProjectDir)*.mod.json" />
+        </ItemGroup>
+        
+        <Message Text="Copying $(AssemblyName) to the Mods directory..." Importance="high"/>
+        <Copy SourceFiles="@(Compiled)" DestinationFolder="$(RL2_ModsPath)$(AssemblyName)" />
+        <Copy SourceFiles="@(ModJson)" DestinationFolder="$(RL2_ModsPath)$(AssemblyName)" />
+    </Target>
+
+</Project>
