@@ -1,7 +1,7 @@
 namespace RL2.API.DataStructures;
 
 /// <summary>
-/// Modifiers
+/// Modifiers. Full formula is <code>((value + <see cref="Additive"/>) * <see cref="Multiplicative"/>) + Flat</code>
 /// </summary>
 public class Modifiers()
 {
@@ -15,7 +15,7 @@ public class Modifiers()
 	/// </summary>
 	public float Multiplicative = 1f;
 	/// <summary>
-	/// Additional damage. Not affected by multipliers.
+	/// Additional bonus. Not affected by multipliers.
 	/// </summary>
 	public float Flat = 0f;
 }
