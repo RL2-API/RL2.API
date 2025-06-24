@@ -22,7 +22,7 @@
 
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" />
-        <Publicize Include="Assembly-CSharp"/>
+        <Publicize Include="Assembly-CSharp" />
     </ItemGroup>
 
 </Project>
