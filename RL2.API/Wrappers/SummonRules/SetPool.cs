@@ -1,6 +1,6 @@
 namespace RL2.API;
 
-public class SetSummonPool_Rule : SetSummonPool_SummonRule
+public class SetPool_Rule : SetSummonPool_SummonRule
 {
 	public EnemyTypeAndRank[] EnemyPool {
 		get => m_enemiesToSummonArray;
