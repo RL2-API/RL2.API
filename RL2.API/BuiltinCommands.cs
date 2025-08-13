@@ -46,7 +46,7 @@ public class BuiltinCommands
 	}
 
 	internal static void EnsureTargetsFiles() {
-		ModLoader.ModLoader.EnsureTargetsFile();
+		ModLoader.BuiltinCommands.EnsureTargetsFile();
 
 		string targetsPath = ModLoader.ModLoader.ModSources + "\\RL2.API.targets";
 		if (File.Exists(targetsPath)) return;
