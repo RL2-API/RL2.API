@@ -2,6 +2,9 @@ using RL2.API.DataStructures;
 
 namespace RL2.API;
 
+/// <summary>
+/// Allows modifying the players stats
+/// </summary>
 public struct StatBonuses {
 	/// <summary> </summary>
 	public Modifiers Armor;
