@@ -1,5 +1,4 @@
 using RL2.API;
-using RL2.API.SummonRules;
 using System.Collections.Generic;
 
 namespace ExampleMod;
@@ -18,52 +17,52 @@ public class AlterScar : IRegistrable
 			}
 
 			List<BaseSummonRule> newRules = [
-				new SetEnemyLevel() {
+				new SummonRule.SetEnemyLevel() {
 					Level = 12,
 					SetToRoomLevel = false
 				},
 
-				new SetEnemyPool() {
+				new SummonRule.SetEnemyPool() {
 					EnemyPool = [new(EnemyType.SpellswordBoss, EnemyRank.Basic)],
 					IsBiomeSpecific = false,
 					FlyingOnly = false
 				},
-				new SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
+				new SummonRule.SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
 
-				new SetEnemyPool() {
+				new SummonRule.SetEnemyPool() {
 					EnemyPool = [new(EnemyType.SkeletonBossA, EnemyRank.Basic)],
 					IsBiomeSpecific = false,
 					FlyingOnly = false
 				},
-				new SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
+				new SummonRule.SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
 
-				new SetEnemyPool() {
+				new SummonRule.SetEnemyPool() {
 					EnemyPool = [new(EnemyType.DancingBoss, EnemyRank.Basic)],
 					IsBiomeSpecific = false,
 					FlyingOnly = false
 				},
-				new SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
+				new SummonRule.SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
 
-				new SetEnemyPool() {
+				new SummonRule.SetEnemyPool() {
 					EnemyPool = [new(EnemyType.StudyBoss, EnemyRank.Basic)],
 					IsBiomeSpecific = false,
 					FlyingOnly = false
 				},
-				new SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
+				new SummonRule.SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
 
-				new SetEnemyPool() {
+				new SummonRule.SetEnemyPool() {
 					EnemyPool = [new(EnemyType.EyeballBoss_Bottom, EnemyRank.Basic)],
 					IsBiomeSpecific = false,
 					FlyingOnly = false
 				},
-				new SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
+				new SummonRule.SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
 
-				new SetEnemyPool() {
+				new SummonRule.SetEnemyPool() {
 					EnemyPool = [new(EnemyType.CaveBoss, EnemyRank.Basic)],
 					IsBiomeSpecific = false,
 					FlyingOnly = false
 				},
-				new SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
+				new SummonRule.SummonEnemies() { SummonValue = 1, SummonDelay = 0, RandomizeOnce = true, SpawnFast = false, SpawnAsCommander = false },
 			];
 
 			rules.InsertRange(6, newRules);

@@ -1,14 +1,16 @@
-namespace RL2.API.SummonRules;
+namespace RL2.API;
 
-/// <summary>
-/// PLays music
-/// </summary>
-public class PLayMusic : PlayMusic_SummonRule {
+public static partial class SummonRule {
 	/// <summary>
-	/// Which track to play
+	/// PLays music
 	/// </summary>
-	public SongID SongID {
-		get => m_songID; 
-		set => m_songID = value;
+	public class PLayMusic : PlayMusic_SummonRule {
+		/// <summary>
+		/// Which track to play
+		/// </summary>
+		public SongID SongID {
+			get => m_songID; 
+			set => m_songID = value;
+		}
 	}
 }

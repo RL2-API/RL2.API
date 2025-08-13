@@ -1,22 +1,24 @@
-namespace RL2.API.SummonRules;
+namespace RL2.API;
 
-/// <summary>
-/// Kills all enemies in the room
-/// </summary>
-public class KillAllEnemies : KillAllEnemies_SummonRule {
+public static partial class SummonRule {
 	/// <summary>
-	/// Whether to kill all non-summoned enemies
+	/// Kills all enemies in the room
 	/// </summary>
-	public bool KillAllNonSummonedEnemies {
-		get => m_killAllNonSummonedEnemies;
-		set => m_killAllNonSummonedEnemies = value;
-	}
+	public class KillAllEnemies : KillAllEnemies_SummonRule {
+		/// <summary>
+		/// Whether to kill all non-summoned enemies
+		/// </summary>
+		public bool KillAllNonSummonedEnemies {
+			get => m_killAllNonSummonedEnemies;
+			set => m_killAllNonSummonedEnemies = value;
+		}
 
-	/// <summary>
-	/// Whether to kill all summoned enemies
-	/// </summary>
-	public bool KillAllSummonedEnemies {
-		get => m_killAllSummonedEnemies;
-		set => m_killAllSummonedEnemies = value;
+		/// <summary>
+		/// Whether to kill all summoned enemies
+		/// </summary>
+		public bool KillAllSummonedEnemies {
+			get => m_killAllSummonedEnemies;
+			set => m_killAllSummonedEnemies = value;
+		}
 	}
 }
