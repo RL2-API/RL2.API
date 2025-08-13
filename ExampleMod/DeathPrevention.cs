@@ -7,7 +7,7 @@ public class DeathPrevention : IRegistrable
 {
 	void IRegistrable.Register() {
 		// Player can't die in any way
-		Player.PreKill += (PlayerController player, GameObject killer) => killer.TryGetComponent<EnemyController>(out _);
+		Player.PreKill += (PlayerController player, GameObject killer) => killer == null ? true : killer.TryGetComponent<EnemyController>(out _);
 
 		// No Eyeball enemy can die
 		Enemy.PreKill += (EnemyController enemy, GameObject killer) => {
