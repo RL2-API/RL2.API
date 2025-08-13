@@ -37,8 +37,7 @@ public static class Relics
 		while (IconLibrary.Instance == null) { }
 
 		// Find the full name of the Relic and its ID
-		Type modType = Assembly.GetCallingAssembly().GetTypes().Where((type) => type.IsSubclassOf(typeof(Mod))).FirstOrDefault();
-		string modName = RL2API.GetModInstance(modType)!.Manifest.Name;
+		string modName = RL2API.AssemblyToMod[Assembly.GetCallingAssembly()].Manifest.Name;
 		string name = modName + data.Name;
 
 		RelicType ID = SavedRelicIDs.TryGetValue(name, out RelicType value) ? value : (RelicType)(++LastRelicID);
