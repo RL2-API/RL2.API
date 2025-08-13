@@ -5,7 +5,7 @@ namespace RL2.API;
 /// <summary>
 /// Allows modifying the players stats
 /// </summary>
-public struct StatBonuses {
+internal struct StatBonuses {
 	/// <summary> </summary>
 	public Modifiers Armor;
 	/// <summary> </summary>
