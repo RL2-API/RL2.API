@@ -17,6 +17,11 @@ public abstract class Mod
 	public string Path { get; internal set; } = "";
 
 	/// <summary>
+	/// The .dll file of this mod
+	/// </summary>
+	public Assembly Code { get; internal set; }
+
+	/// <summary>
 	/// The manifest object of this mod
 	/// </summary>
 	public ModManifest Manifest { get; internal set; } = new ModManifest();

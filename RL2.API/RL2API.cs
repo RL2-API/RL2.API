@@ -19,6 +19,11 @@ public partial class RL2API
 	public static Mod[] LoadedMods = [];
 
 	/// <summary>
+	/// Contains assembly - mod instance pairs
+	/// </summary>
+	public static Dictionary<Assembly, Mod> AssemblyToMod = [];
+
+	/// <summary>
 	/// 
 	/// </summary>
 	public RL2API() {
@@ -128,6 +133,8 @@ public partial class RL2API
 		mod.Path = ModLoader.ModLoader.ModManifestToPath?[manifest] + "\\" ?? ModLoader.ModLoader.ModPath;
 		mod.Manifest = manifest;
 		mod.RegistrableContent ??= assembly.GetTypes().Where(type => typeof(IRegistrable).IsAssignableFrom(type)).ToArray();
+		mod.Code = assembly;
+		AssemblyToMod[assembly] = mod;
 		CommandManager.RegisterCommands(assembly);
 		ModLoader.ModLoader.OnLoad += mod.OnLoad;
 		ModLoader.ModLoader.OnUnload += mod.OnUnload;
