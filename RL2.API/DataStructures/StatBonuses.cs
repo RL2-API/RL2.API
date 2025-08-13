@@ -1,3 +1,4 @@
+/*
 using RL2.API.DataStructures;
 
 namespace RL2.API;
@@ -45,3 +46,4 @@ internal struct StatBonuses {
 	/// <summary> </summary>
 	public Modifiers Dashes;
 }
+*/
