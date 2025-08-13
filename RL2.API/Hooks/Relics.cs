@@ -39,6 +39,9 @@ public partial class RL2API
 		typeof(RelicObj).GetMethod("ApplyRelic", BindingFlags.Public | BindingFlags.Instance),
 		static (Action<RelicObj, int> orig, RelicObj self, int levelChange) => {
 			orig(self, levelChange);
+			if (Relics.SavedRelicNames.TryGetValue(self.RelicType, out string name)) {
+				Relics.SavedFoundState[name] = true;
+			}
 			Relics.ApplyRelic_Invoke(self.RelicType, levelChange);
 		},
 		new HookConfig() {

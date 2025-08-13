@@ -21,6 +21,10 @@ public static class Relics
 
 	internal static Dictionary<string, RelicType> SavedRelicIDs = [];
 
+	internal static Dictionary<RelicType, string> SavedRelicNames = [];
+
+	internal static Dictionary<string, bool> SavedFoundState = [];
+
 	internal static int LastRelicID = (int)RelicType.DeathMark;
 
 	/// <summary>
@@ -32,16 +36,18 @@ public static class Relics
 	public static RelicType Register(RelicData data, Texture2D? icon = null, Texture2D? iconBig = null) {
 		while (IconLibrary.Instance == null) { }
 
+		// Find the full name of the Relic and its ID
 		Type modType = Assembly.GetCallingAssembly().GetTypes().Where((type) => type.IsSubclassOf(typeof(Mod))).FirstOrDefault();
 		string modName = RL2API.GetModInstance(modType)!.Manifest.Name;
 		string name = modName + data.Name;
 
 		RelicType ID = SavedRelicIDs.TryGetValue(name, out RelicType value) ? value : (RelicType)(++LastRelicID);
 		SavedRelicIDs[name] = ID;
+		SavedRelicNames[ID] = name;
 
 		CustomRelicStore[ID] = data;
 
-		// Add regular relic icon
+		// Add Relic icons
 		Sprite relicSprite = IconLibrary.Instance.m_defaultSprite;
 		if (icon != null) {
 			relicSprite = Sprite.Create(icon, new Rect(0, 0, icon.width / 2, icon.height / 2), new Vector2(.5f, .5f));
@@ -54,7 +60,13 @@ public static class Relics
 		}
 		IconLibrary.Instance.m_relicLargeIconLibrary.Add(ID, relicSpriteBig);
 
-		SaveManager.PlayerSaveData.RelicObjTable[ID] = new RelicObj(ID);
+		// Manage seen state
+		RelicObj obj = new RelicObj(ID) { 
+			WasSeen = SavedFoundState.TryGetValue(name, out bool seen) ? seen : false 
+		};
+		SaveManager.PlayerSaveData.RelicObjTable[ID] = obj;
+		SavedFoundState[name] = obj.WasSeen;
+
 
 		RL2API.Log($"Saved {data.Name} as {ID}");
 		return ID;
@@ -115,17 +127,24 @@ public static class Relics
 		string path = ModLoader.ModLoader.ModPath + "\\SavedData";
 		if (!Directory.Exists(ModLoader.ModLoader.ModPath + "\\SavedData")) Directory.CreateDirectory(ModLoader.ModLoader.ModPath + "\\SavedData");
 
-		path = path + "\\RelicIDs.json";
-		if (!File.Exists(path)) return;
+		string savedIDsPath = path + "\\RelicIDs.json";
+		if (File.Exists(savedIDsPath)) {
+			SavedRelicIDs = JsonParser.FromJson<Dictionary<string, RelicType>>(File.ReadAllText(savedIDsPath));
+			var sorted = SavedRelicIDs.Values.ToList();
+			sorted.Sort();
+			LastRelicID = (int)sorted.LastOrDefault();
+		}
 
-		SavedRelicIDs = JsonParser.FromJson<Dictionary<string, RelicType>>(File.ReadAllText(path));
-		var sorted = SavedRelicIDs.Values.ToList();
-		sorted.Sort();
-		LastRelicID = (int)sorted.LastOrDefault();
+		string savedFoundStatePath = path + "\\RelicFoundState.json";
+		if (File.Exists(savedFoundStatePath)) {
+			SavedFoundState = JsonParser.FromJson<Dictionary<string, bool>>(File.ReadAllText(savedFoundStatePath));
+		}
 	}
 
 	internal static void SaveData() {
-		string path = ModLoader.ModLoader.ModPath + "\\SavedData\\RelicIDs.json";
-		File.WriteAllText(path, JsonWriter.ToJson(SavedRelicIDs));
+		string savedIDsPath = ModLoader.ModLoader.ModPath + "\\SavedData\\RelicIDs.json";
+		File.WriteAllText(savedIDsPath, JsonWriter.ToJson(SavedRelicIDs));
+		string savedFoundStatePath = ModLoader.ModLoader.ModPath + "\\SavedData\\RelicFoundState.json";
+		File.WriteAllText(savedFoundStatePath, JsonWriter.ToJson(SavedRelicIDs));
 	}
 }
