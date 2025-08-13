@@ -40,7 +40,7 @@ public class SummonEnemies : SummonEnemy_SummonRule
 	/// <summary>
 	/// Total summon value availble to spend. <br></br>
 	/// Look at the specific enemy's <see cref="EnemyData.SummonValue"/> to figure out what to set it as. <br></br>
-	/// Summoning will continue until there is no more <see cref="SummonValue"/> available or all enemies are too expensive to be spawned
+	/// Summoning will continue until there is no more <see cref="SummonValue"/> available
 	/// </summary>
 	public float SummonValue {
 		get => m_summonValue;
