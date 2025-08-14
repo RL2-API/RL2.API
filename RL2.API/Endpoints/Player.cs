@@ -133,7 +133,8 @@ public static partial class Player
 			typeof(PlayerController).GetMethod("InitializeAllMods", BindingFlags.Public | BindingFlags.Instance),
 			Method,
 			new HookConfig() {
-				ID = "RL2.API::PostUpdateStats"
+				ID = "RL2.API::Player.PostUpdateStats",
+				ManualApply = true,
 			}
 		);
 
