@@ -1,4 +1,4 @@
-namespace RL2;
+namespace RL2.API;
 
 public static partial class SummonRule {
 	/// <summary>

@@ -19,7 +19,7 @@ public abstract class Mod
 	/// <summary>
 	/// The .dll file of this mod
 	/// </summary>
-	public Assembly Code { get; internal set; }
+	public Assembly? Code { get; internal set; }
 
 	/// <summary>
 	/// The manifest object of this mod
