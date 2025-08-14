@@ -29,6 +29,8 @@ public partial class RL2API
 	public RL2API() {
 		Log("RL2.API loaded");
 		LoadedMods = LoadAPICompliantMods();
+		ModLoader.ModLoader.OnUnload += Relics.SaveData;
+		ModLoader.ModLoader.OnUnload += Traits.SaveData;
 	}
 
 	/// <summary></summary>

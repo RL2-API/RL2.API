@@ -141,6 +141,7 @@ public static class Relics
 	}
 
 	internal static void SaveData() {
+		RL2API.Log("Saving Relic data...");
 		string savedIDsPath = ModLoader.ModLoader.ModPath + "\\SavedData\\Relic_Type.json";
 		File.WriteAllText(savedIDsPath, JsonWriter.ToJson(SavedRelicIDs));
 		string savedFoundStatePath = ModLoader.ModLoader.ModPath + "\\SavedData\\Relic_FoundState.json";

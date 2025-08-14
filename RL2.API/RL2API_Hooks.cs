@@ -20,7 +20,6 @@ public partial class RL2API
 				foreach (Mod mod in LoadedMods) {
 					mod.RegisterContent();
 				}
-				Relics.SaveData();
 				ContentRegistered = true;
 			}
 		},
