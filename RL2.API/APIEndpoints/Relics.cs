@@ -38,7 +38,7 @@ public static class Relics
 
 		// Find the full name of the Relic and its ID
 		string modName = RL2API.AssemblyToMod[Assembly.GetCallingAssembly()].Manifest.Name;
-		string name = modName + data.Name;
+		string name = modName + "/" + data.Name;
 
 		RelicType ID = SavedRelicIDs.TryGetValue(name, out RelicType value) ? value : (RelicType)(++LastRelicID);
 		SavedRelicIDs[name] = ID;
@@ -126,7 +126,7 @@ public static class Relics
 		string path = ModLoader.ModLoader.ModPath + "\\SavedData";
 		if (!Directory.Exists(ModLoader.ModLoader.ModPath + "\\SavedData")) Directory.CreateDirectory(ModLoader.ModLoader.ModPath + "\\SavedData");
 
-		string savedIDsPath = path + "\\RelicIDs.json";
+		string savedIDsPath = path + "\\Relic_Type.json";
 		if (File.Exists(savedIDsPath)) {
 			SavedRelicIDs = JsonParser.FromJson<Dictionary<string, RelicType>>(File.ReadAllText(savedIDsPath));
 			var sorted = SavedRelicIDs.Values.ToList();
@@ -134,16 +134,16 @@ public static class Relics
 			LastRelicID = (int)sorted.LastOrDefault();
 		}
 
-		string savedFoundStatePath = path + "\\RelicFoundState.json";
+		string savedFoundStatePath = path + "\\Relic_FoundState.json";
 		if (File.Exists(savedFoundStatePath)) {
 			SavedFoundState = JsonParser.FromJson<Dictionary<string, bool>>(File.ReadAllText(savedFoundStatePath));
 		}
 	}
 
 	internal static void SaveData() {
-		string savedIDsPath = ModLoader.ModLoader.ModPath + "\\SavedData\\RelicIDs.json";
+		string savedIDsPath = ModLoader.ModLoader.ModPath + "\\SavedData\\Relic_Type.json";
 		File.WriteAllText(savedIDsPath, JsonWriter.ToJson(SavedRelicIDs));
-		string savedFoundStatePath = ModLoader.ModLoader.ModPath + "\\SavedData\\RelicFoundState.json";
+		string savedFoundStatePath = ModLoader.ModLoader.ModPath + "\\SavedData\\Relic_FoundState.json";
 		File.WriteAllText(savedFoundStatePath, JsonWriter.ToJson(SavedRelicIDs));
 	}
 }
