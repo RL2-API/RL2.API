@@ -107,6 +107,7 @@ public static class Enemy
 	/// <param name="damageTaken">How much damage the enemy received</param>
 	/// <param name="damageTakenModifiers">Allows for modifying the damage taken</param>
 	/// <param name="critType">Critical strike type</param>
+	/// <param name="trueDamage">Whether the damege shouldn't be modified</param>
 	public delegate void ModifyDamageTaken_delegate(EnemyController enemyDamaged, IDamageObj damageSource, float damageTaken, ref Modifiers damageTakenModifiers, ref CriticalStrikeType critType, bool trueDamage);
 
 	/// <inheritdoc cref="ModifyDamageTaken_delegate"/>
