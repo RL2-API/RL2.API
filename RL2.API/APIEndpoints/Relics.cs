@@ -122,29 +122,7 @@ public static class Relics
 		StopRelic?.Invoke(type);
 	}
 
-	internal static void LoadSavedData() {
-		string path = ModLoader.ModLoader.ModPath + "\\SavedData";
-		if (!Directory.Exists(ModLoader.ModLoader.ModPath + "\\SavedData")) Directory.CreateDirectory(ModLoader.ModLoader.ModPath + "\\SavedData");
+	internal static void LoadData() { }
 
-		string savedIDsPath = path + "\\Relic_Type.json";
-		if (File.Exists(savedIDsPath)) {
-			SavedRelicIDs = JsonParser.FromJson<Dictionary<string, RelicType>>(File.ReadAllText(savedIDsPath));
-			var sorted = SavedRelicIDs.Values.ToList();
-			sorted.Sort();
-			LastRelicID = (int)sorted.LastOrDefault();
-		}
-
-		string savedFoundStatePath = path + "\\Relic_FoundState.json";
-		if (File.Exists(savedFoundStatePath)) {
-			SavedFoundState = JsonParser.FromJson<Dictionary<string, bool>>(File.ReadAllText(savedFoundStatePath));
-		}
-	}
-
-	internal static void SaveData() {
-		RL2API.Log("Saving Relic data...");
-		string savedIDsPath = ModLoader.ModLoader.ModPath + "\\SavedData\\Relic_Type.json";
-		File.WriteAllText(savedIDsPath, JsonWriter.ToJson(SavedRelicIDs));
-		string savedFoundStatePath = ModLoader.ModLoader.ModPath + "\\SavedData\\Relic_FoundState.json";
-		File.WriteAllText(savedFoundStatePath, JsonWriter.ToJson(SavedRelicIDs));
-	}
+	internal static void SaveData() { }
 }
