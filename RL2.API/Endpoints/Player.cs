@@ -19,6 +19,7 @@ public static partial class Player
 		OnKill.Hook,
 		PostUpdateStats.Hook,
 		..HeirGeneration.Hooks,
+		..Ability.Hooks,
 	];
 
 	/// <inheritdoc cref="Definition"/>
