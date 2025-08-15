@@ -46,6 +46,8 @@ public static class Map {
 		);
 
 		internal static GameObject Method(Func<GridPointManager, bool, bool, GameObject> orig, GridPointManager roomToCheck, bool getUsed, bool isMergeRoom) {
+			GameObject gameObject = orig(roomToCheck, getUsed, isMergeRoom);
+			
 			Texture2D? modMapIconTexture = null;
 			foreach (Delegate subscriber in Event?.GetInvocationList() ?? []) {
 				if (modMapIconTexture != null) {
@@ -67,7 +69,8 @@ public static class Map {
 				MapIconTextureHashToPrefab.Add(textureHash, modMapIconObject);
 				return modMapIconObject;
 			}
-			return orig(roomToCheck, getUsed, isMergeRoom);
+
+			return gameObject;
 		}
 	}
 }
