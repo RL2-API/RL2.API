@@ -105,7 +105,28 @@ public static class Relics
 		}
 
 		internal static void SaveModdedData() {
-			
+			// Nothing has been loaded, so there is nothing to save
+			if (FirstLoad) return;
+
+			// Save Relic types
+			string directory = Path.Combine(SaveManager.GetConfigPath(), "RL2.API");
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+			directory = Path.Combine(directory, "Relics");
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+			string saveTypes = Path.Combine(directory, "Types.json");
+			File.WriteAllText(saveTypes, JsonWriter.ToJson(SavedTypes));
+
+			// Save found state
+			directory = Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
+			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+			directory = Path.Combine(directory, "Relics");
+			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+			string savedFoundState = Path.Combine(directory, "FoundState.json");
+			File.WriteAllText(savedFoundState, JsonWriter.ToJson(SavedFoundState));
 		}
 	}
 
@@ -133,16 +154,13 @@ public static class Relics
 			LOAD_RESULT result = orig(currentProfile, loadAccountData);
 			SavedFoundState.Clear();
 			
-			string directory = Path.Combine(SaveManager.GetConfigPath(), "RL2.API");
+			string directory = Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
 			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			directory = Path.Combine(directory, "Relics");
 			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
-			string savedFoundState = Path.Combine(
-				SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API", "Relics", "FoundState.json"
-			);
-
+			string savedFoundState = Path.Combine(directory, "FoundState.json");
 			if (File.Exists(savedFoundState)) {
 				SavedFoundState = JsonParser.FromJson<Dictionary<string, bool>>(File.ReadAllText(savedFoundState));
 			}
@@ -153,10 +171,13 @@ public static class Relics
 		}
 
 		internal static void LoadSavedModdedTypes() {
-			string savedTypes = Path.Combine(
-				SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API", "Relics", "Types.json"
-			);
+			string directory = Path.Combine(SaveManager.GetConfigPath(), "RL2.API");
+			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
+			directory = Path.Combine(directory, "Relics");
+			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+			string savedTypes = Path.Combine(directory, "Types.json");
 			if (File.Exists(savedTypes)) {
 				SavedTypes = JsonParser.FromJson<Dictionary<string, RelicType>>(File.ReadAllText(savedTypes));
 				var sorted = SavedTypes.Values.ToList();
