@@ -19,13 +19,13 @@ public static partial class Player
 			ModifyCharacterLook.Hook,
 		];
 
-		/// <inheritdoc cref="Definition"/>
+		/// <summary>
+		/// Used to modify character data after character randomization by either the Contrarian trait or by the use of the Transmogrifier<br></br> 
+		/// Ran at the end of <see cref="CharacterCreator.ApplyRandomizeKitTrait"/>
+		/// </summary>
 		public static class ModifyCharacterRandomization
 		{
-			/// <summary>
-			/// Used to modify character data after character randomization by either the Contrarian trait or by the use of the Transmogrifier<br></br> 
-			/// Ran at the end of <see cref="CharacterCreator.ApplyRandomizeKitTrait"/>
-			/// </summary>
+			/// <inheritdoc cref="ModifyCharacterRandomization"/>
 			/// <param name="data">The randomized heirs CharacterData</param>
 			public delegate void Definition(CharacterData data);
 
@@ -47,12 +47,12 @@ public static partial class Player
 			}
 		}
 
-		/// <inheritdoc cref="Definition"/>
+		/// <summary>
+		/// Used to modify character data of generated heirs
+		/// </summary>
 		public static class ModifyCharacterData
 		{
-			/// <summary>
-			/// Used to modify character data of generated heirs
-			/// </summary>
+			/// <inheritdoc cref="ModifyCharacterData"/>
 			/// <param name="data">The generated heirs <see cref="CharacterData" /></param>
 			/// <param name="classLocked">Whether the heirs class was locked by a Soul Shop ugrade</param>
 			/// <param name="spellLocked">Whether the heirs spell was locked by a Soul Shop ugrade</param>
@@ -161,12 +161,12 @@ public static partial class Player
 			}
 		}
 
-		/// <inheritdoc cref="Definition"/>
+		/// <summary>
+		/// Used to modify look data of generated heirs
+		/// </summary>
 		public static class ModifyCharacterLook
 		{
-			/// <summary>
-			/// Used to modify look data of generated heirs
-			/// </summary>
+			/// <inheritdoc cref="ModifyCharacterLook"/>
 			/// <param name="lookData">The generated heirs <see cref="PlayerLookController" /></param>
 			/// <param name="data">The generated heirs <see cref="CharacterData" /></param>
 			public delegate void Definition(PlayerLookController lookData, CharacterData data);

@@ -34,12 +34,12 @@ public static class Scars
 		RuleNameToFullName[type.FullName] = type.AssemblyQualifiedName;
 	}
 
-	/// <inheritdoc cref="Definition"/>
+	/// <summary>
+	/// Allows modifying rule chains of Scar challenges
+	/// </summary>
 	public static class ModifySummonRules
 	{
-		/// <summary>
-		/// Allows modifying rule chains of Scar challenges
-		/// </summary>
+		/// <inheritdoc cref="Definition"/>
 		/// <param name="challenge">Scar challenge type</param>
 		/// <param name="rules">List of rules that get executed in the challenge</param>
 		public delegate void Definition(ChallengeType challenge, ref List<BaseSummonRule> rules);

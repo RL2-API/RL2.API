@@ -15,12 +15,14 @@ public static class Map
 		ModifyRoomIcon.Hook
 	];
 
-	/// <inheritdoc cref="Definition" />
+	internal static Dictionary<string, GameObject> MapIconTextureHashToPrefab = new Dictionary<string, GameObject>();
+
+	/// <summary>
+	/// Allows assigning a custom map icon to a room
+	/// </summary>
 	public static class ModifyRoomIcon
 	{
-		/// <summary>
-		/// Allows assigning a custom map icon to a room
-		/// </summary>
+		/// <inheritdoc cref="ModifyRoomIcon" />
 		/// <param name="roomToCheck">Room to modify the map icon for</param>
 		/// <param name="getUsed">Is the room "finished" (failed/completed Fairy Chest, empty relic room etc.)</param>
 		/// <param name="isMergeRoom">Is the room made out of multiple rooms</param>
@@ -32,11 +34,6 @@ public static class Map
 
 		/// <inheritdoc cref="Definition"/>
 		public static event Definition? Event;
-
-		/// <summary>
-		/// Stores map icons as prefabs, accessed by a hash produced from pixel values of the texture
-		/// </summary>
-		internal static Dictionary<string, GameObject> MapIconTextureHashToPrefab = new Dictionary<string, GameObject>();
 
 		internal static Hook Hook = new Hook(
 			typeof(MapController).GetMethod("GetSpecialIconPrefab", BindingFlags.Public | BindingFlags.Static),

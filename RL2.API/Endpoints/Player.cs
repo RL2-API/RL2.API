@@ -22,12 +22,12 @@ public static partial class Player
 		..Ability.Hooks,
 	];
 
-	/// <inheritdoc cref="Definition"/>
+	/// <summary>
+	/// Ran on player spawn
+	/// </summary>
 	public static class OnSpawn
 	{
-		/// <summary>
-		/// Ran on player spawn
-		/// </summary>
+		/// <inheritdoc cref="OnSpawn"/>
 		/// <param name="player">The instance of the player that was spawned</param>
 		public delegate void Definition(PlayerController player);
 

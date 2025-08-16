@@ -21,12 +21,12 @@ public static class Enemy
 		ModifyBehaviour.Hook
 	];
 
-	/// <inheritdoc cref="Definition" />
+	/// <summary>
+	/// Ran on enemy spawn
+	/// </summary>
 	public static class OnSpawn
 	{
-		/// <summary>
-		/// Ran on enemy spawn
-		/// </summary>
+		/// <inheritdoc cref="OnSpawn" />
 		/// <param name="enemy">The instance of the enemy that was spawned</param>
 		public delegate void Definition(EnemyController enemy);
 
@@ -53,12 +53,12 @@ public static class Enemy
 		}
 	}
 
-	/// <inheritdoc cref="Definition" />
+	/// <summary>
+	/// Determines whether the affected enemy should die.
+	/// </summary>
 	public static class PreKill
 	{
-		/// <summary>
-		/// Determines whether the affected enemy should die.
-		/// </summary>
+		/// <inheritdoc cref="PreKill" />
 		/// <param name="enemy">Affected enemy</param>
 		/// <param name="killer">GameObject responsible for the enemy's death</param>
 		/// <returns>If the enemy should die</returns>
@@ -94,12 +94,12 @@ public static class Enemy
 		}
 	}
 
-	/// <inheritdoc cref="Definition" />
+	/// <summary>
+	/// Ran after the enemy dies
+	/// </summary>
 	public static class OnKill
 	{
-		/// <summary>
-		/// Ran after the enemy dies
-		/// </summary>
+		/// <inheritdoc cref="OnKill" />
 		/// <param name="enemy">Affected enemy</param>
 		/// <param name="killer">GameObject responsible for the enemy's death</param>
 		public delegate void Definition(EnemyController enemy, GameObject killer);
@@ -122,12 +122,12 @@ public static class Enemy
 		}
 	}
 
-	/// <inheritdoc cref="Definition" />
+	/// <summary>
+	///	Allows modders to modify the damage taken by enemies
+	/// </summary>
 	public static class ModifyDamageTaken
 	{
-		/// <summary>
-		///	Allows modders to modify the damage taken by enemies
-		/// </summary>
+		/// <inheritdoc cref="ModifyDamageTaken" />
 		/// <param name="enemyDamaged">The enemy damaged</param>
 		/// <param name="damageSource">Object that damaged the enemy</param>
 		/// <param name="damageTaken">How much damage the enemy received</param>
@@ -163,12 +163,12 @@ public static class Enemy
 
 	}
 
-	/// <inheritdoc cref="Definition" />
+	/// <summary>
+	/// Allows for modifying <see cref="EnemyData"/>
+	/// </summary>
 	public static class ModifyData
 	{
-		/// <summary>
-		/// Allows for modifying <see cref="EnemyData"/>
-		/// </summary>
+		/// <inheritdoc cref="ModifyData" />
 		/// <param name="type">Enemy type</param>
 		/// <param name="rank">Enemy rank</param>
 		/// <param name="data">Enemy data</param>
@@ -199,7 +199,9 @@ public static class Enemy
 		}
 	}
 
-	/// <inheritdoc cref="Definition" />
+	/// <summary>
+	/// Allows for modifying the enemies behaviour.<br></br>
+	/// </summary>
 	public static class ModifyBehaviour
 	{
 		/// <summary>

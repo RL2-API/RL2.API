@@ -16,12 +16,12 @@ public static partial class Player
 			ModifyData.Hook,
 		];
 
-		/// <inheritdoc cref="Definition"/>
+		/// <summary>
+		/// Used to modify ability data
+		/// </summary>
 		public static class ModifyData
 		{
-			/// <summary>
-			/// Used to modify ability data
-			/// </summary>
+			/// <inheritdoc cref="ModifyData"/>
 			/// <param name="type">The queried ability</param>
 			/// <param name="data">Returned data of the ability</param>
 			public delegate void Definition(AbilityType type, AbilityData data);
