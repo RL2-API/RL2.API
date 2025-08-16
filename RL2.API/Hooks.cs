@@ -7,6 +7,7 @@ internal static class Hooks
 	internal static IDetour[] List = [
 		..Player.Hooks,
 		..Map.Hooks,
+		..Enemy.Hooks,
 	];
 
 	internal static void Apply() {
