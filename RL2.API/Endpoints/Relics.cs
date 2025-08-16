@@ -76,13 +76,13 @@ public static class Relics
 		RL2API.Log($"Saved {data.Name} as {type}");
 		return type;
 	}
-
-	/// <inheritdoc cref="Definition"/>
+	
+	/// <summary>
+	/// Ran when Relic data is being loaded. <br></br>
+	/// Current save profile canm be accessed via <see cref="SaveManager.CurrentProfile"/>
+	/// </summary>
 	public static class SaveData {
-		/// <summary>
-		/// Ran when Relic data is being loaded. <br></br>
-		/// Current save profile canm be accessed via <see cref="SaveManager.CurrentProfile"/>
-		/// </summary>
+		/// <inheritdoc cref="SaveData"/>
 		public delegate void Definition();
 
 		/// <inheritdoc cref="Definition"/>
@@ -109,12 +109,12 @@ public static class Relics
 		}
 	}
 
-	/// <inheritdoc cref="Definition"/>
+	/// <summary>
+	/// Ran when Relic data is being loaded.
+	/// </summary>
 	public static class LoadData
 	{
-		/// <summary>
-		/// Ran when Relic data is being loaded.
-		/// </summary>
+		/// <inheritdoc cref="LoadData"/>
 		public delegate void Definition();
 
 		/// <inheritdoc cref="Definition"/>
@@ -170,16 +170,17 @@ public static class Relics
 		}
 	}
 
-	/// <inheritdoc cref="Definition"/>
-	public static class ModifyData{
-		/// <summary> 
-		///	Allows for modifying Relic data
-		/// </summary>
+	/// <summary> 
+	///	Allows for modifying Relic data
+	/// </summary>
+	public static class ModifyData
+	{
+		/// <inheritdoc cref="ModifyData"/>
 		/// <param name="type"> Relic type </param>
 		/// <param name="data"> Relic data </param>
 		public delegate void Definition(RelicType type, RelicData data);
 
-		/// <inheritdoc href="Definition" />
+		/// <inheritdoc cref="Definition" />
 		public static event Definition? Event;
 
 		internal static Hook Hook = new Hook(
@@ -201,11 +202,12 @@ public static class Relics
 		}
 	}
 
-	/// <inheritdoc cref="Definition"/>
-	public static class ExtendTypeArray {
-		/// <summary>
-		/// Allows extending the <see cref="RelicType_RL.TypeArray"/>
-		/// </summary>
+	/// <summary>
+	/// Allows extending the <see cref="RelicType_RL.TypeArray"/>
+	/// </summary>
+	public static class ExtendTypeArray
+	{
+		/// <inheritdoc cref="ExtendTypeArray"/>
 		/// <param name="list"></param>
 		public delegate void Definition(ref List<RelicType> list);
 
@@ -229,11 +231,12 @@ public static class Relics
 		}
 	}
 
-	/// <inheritdoc cref="Definition"/>
-	public static class ApplyEffect {
-		/// <summary>
-		/// Used to disable additional Relic functionality when the Relic is taken away
-		/// </summary>
+	/// <summary>
+	/// Used to disable additional Relic functionality when the Relic is taken away
+	/// </summary>
+	public static class ApplyEffect
+	{
+		/// <inheritdoc cref="Definition"/>
 		/// <param name="type">Activated Relic</param>
 		public delegate void Definition(RelicType type);
 
@@ -258,11 +261,12 @@ public static class Relics
 		}
 	}
 
-	/// <inheritdoc cref="Definition"/>
-	public static class StopEffect {
-		/// <summary>
-		/// Allows running code after Relic level change
-		/// </summary>
+	/// <summary>
+	/// Allows running code after Relic level change
+	/// </summary>
+	public static class StopEffect
+	{
+		/// <inheritdoc cref="Definition"/>
 		/// <param name="type">Activated Relic</param>
 		public delegate void Definition(RelicType type);
 
