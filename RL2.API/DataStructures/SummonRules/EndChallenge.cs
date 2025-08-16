@@ -1,10 +1,12 @@
 namespace RL2.API;
 
-public static partial class SummonRule {
+public static partial class SummonRule
+{
 	/// <summary>
 	/// Ends the Scar Challenge
 	/// </summary>
-	public class EndChallenge : EndChallenge_SummonRule {
+	public class EndChallenge : EndChallenge_SummonRule
+	{
 		/// <summary>
 		/// Which Scar Challenge to mark as completed
 		/// </summary>

@@ -1,10 +1,12 @@
 namespace RL2.API;
 
-public static partial class SummonRule {
+public static partial class SummonRule
+{
 	/// <summary>
 	/// Kills all enemies in the room
 	/// </summary>
-	public class KillAllEnemies : KillAllEnemies_SummonRule {
+	public class KillAllEnemies : KillAllEnemies_SummonRule
+	{
 		/// <summary>
 		/// Whether to kill all non-summoned enemies
 		/// </summary>

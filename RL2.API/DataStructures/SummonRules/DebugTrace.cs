@@ -1,6 +1,7 @@
 namespace RL2.API;
 
-public static partial class SummonRule {
+public static partial class SummonRule
+{
 	/// <summary>
 	/// Logs information to the log file
 	/// </summary>
@@ -9,9 +10,9 @@ public static partial class SummonRule {
 		/// <summary>
 		/// The logged message
 		/// </summary>
-		public string Message { 
-			get => m_debugString; 
-			set => m_debugString = value; 
+		public string Message {
+			get => m_debugString;
+			set => m_debugString = value;
 		}
 	}
 }

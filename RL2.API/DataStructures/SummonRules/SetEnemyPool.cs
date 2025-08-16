@@ -1,6 +1,7 @@
 namespace RL2.API;
 
-public static partial class SummonRule {
+public static partial class SummonRule
+{
 	/// <summary>
 	/// Sets the pool of enemies to be spawned
 	/// </summary>
