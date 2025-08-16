@@ -49,6 +49,7 @@ public partial class RL2API
 				mod.RegisterContent();
 		};
 		RL2ModLoader.OnUnload += Hooks.Undo;
+		RL2ModLoader.OnUnload += Relics.SaveData.SaveModdedData;
 
 		ModManifest[] api_dependent_manifests = ParseModManifests();
 		Type[] mod_types = GetModTypes(api_dependent_manifests);
