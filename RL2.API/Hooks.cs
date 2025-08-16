@@ -8,6 +8,7 @@ internal static class Hooks
 		..Player.Hooks,
 		..Map.Hooks,
 		..Enemy.Hooks,
+		..Scars.Hooks,
 	];
 
 	internal static void Apply() {
