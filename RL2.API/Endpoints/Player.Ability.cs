@@ -5,17 +5,20 @@ using static RL2.API.Player;
 
 namespace RL2.API;
 
-public static partial class Player {
+public static partial class Player
+{
 	/// <summary>
 	/// Stores events related to player abilities (weapons, spells, talents)
 	/// </summary>
-	public static class Ability {
+	public static class Ability
+	{
 		internal static IDetour[] Hooks = [
 			ModifyData.Hook,
 		];
 
 		/// <inheritdoc cref="Definition"/>
-		public static class ModifyData {
+		public static class ModifyData
+		{
 			/// <summary>
 			/// Used to modify ability data
 			/// </summary>

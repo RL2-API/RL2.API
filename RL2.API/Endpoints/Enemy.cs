@@ -22,7 +22,8 @@ public static class Enemy
 	];
 
 	/// <inheritdoc cref="Definition" />
-	public static class OnSpawn {
+	public static class OnSpawn
+	{
 		/// <summary>
 		/// Ran on enemy spawn
 		/// </summary>
@@ -53,7 +54,8 @@ public static class Enemy
 	}
 
 	/// <inheritdoc cref="Definition" />
-	public static class PreKill {
+	public static class PreKill
+	{
 		/// <summary>
 		/// Determines whether the affected enemy should die.
 		/// </summary>
@@ -93,7 +95,8 @@ public static class Enemy
 	}
 
 	/// <inheritdoc cref="Definition" />
-	public static class OnKill {
+	public static class OnKill
+	{
 		/// <summary>
 		/// Ran after the enemy dies
 		/// </summary>
@@ -120,7 +123,8 @@ public static class Enemy
 	}
 
 	/// <inheritdoc cref="Definition" />
-	public static class ModifyDamageTaken {
+	public static class ModifyDamageTaken
+	{
 		/// <summary>
 		///	Allows modders to modify the damage taken by enemies
 		/// </summary>
@@ -196,7 +200,8 @@ public static class Enemy
 	}
 
 	/// <inheritdoc cref="Definition" />
-	public static class ModifyBehaviour {
+	public static class ModifyBehaviour
+	{
 		/// <summary>
 		/// Allows for modifying the enemies behaviour.<br></br>
 		/// Warning: When setting <paramref name="aiScript"/> to a new instance of a adifferent type, one must also replace <paramref name="logicController_SO"/> with the correctly built <see cref="LogicController_SO"/> object

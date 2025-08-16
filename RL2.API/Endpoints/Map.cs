@@ -9,13 +9,15 @@ namespace RL2.API;
 /// <summary>
 /// Provides endpoints for map related APIs
 /// </summary>
-public static class Map {
+public static class Map
+{
 	internal static IDetour[] Hooks = [
-		ModifyRoomIcon.Hook	
+		ModifyRoomIcon.Hook
 	];
 
 	/// <inheritdoc cref="Definition" />
-	public static class ModifyRoomIcon {
+	public static class ModifyRoomIcon
+	{
 		/// <summary>
 		/// Allows assigning a custom map icon to a room
 		/// </summary>
@@ -47,7 +49,7 @@ public static class Map {
 
 		internal static GameObject Method(Func<GridPointManager, bool, bool, GameObject> orig, GridPointManager roomToCheck, bool getUsed, bool isMergeRoom) {
 			GameObject gameObject = orig(roomToCheck, getUsed, isMergeRoom);
-			
+
 			Texture2D? modMapIconTexture = null;
 			foreach (Delegate subscriber in Event?.GetInvocationList() ?? []) {
 				if (modMapIconTexture != null) {

@@ -35,7 +35,8 @@ public static class Scars
 	}
 
 	/// <inheritdoc cref="Definition"/>
-	public static class ModifySummonRules {
+	public static class ModifySummonRules
+	{
 		/// <summary>
 		/// Allows modifying rule chains of Scar challenges
 		/// </summary>
@@ -51,9 +52,10 @@ public static class Scars
 			Method,
 			new ILHookConfig() {
 				ID = "RL2.API::Scars.ModifySummonRules",
-				ManualApply	= true,
+				ManualApply = true,
 			}
 		);
+
 		internal static void Method(ILContext il) {
 			ILCursor cursor = new ILCursor(il);
 
