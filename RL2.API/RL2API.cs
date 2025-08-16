@@ -43,12 +43,16 @@ public partial class RL2API
 		Log("Starting loading...");
 		Manifest = RL2ModLoader.ModManifestToPath.Keys.FirstOrDefault(m => m.Name == "RL2.API");
 
+		RL2ModLoader.OnLoad += Hooks.Apply;
+		RL2ModLoader.OnLoad += () => {
+			foreach (Mod mod in LoadedMods)
+				mod.RegisterContent();
+		};
+		RL2ModLoader.OnUnload += Hooks.Undo;
+
 		ModManifest[] api_dependent_manifests = ParseModManifests();
 		Type[] mod_types = GetModTypes(api_dependent_manifests);
 		LoadedMods = LoadMods(mod_types);
-
-		RL2ModLoader.OnLoad += Hooks.Apply;
-		RL2ModLoader.OnUnload += Hooks.Undo;
 	}
 
 	internal static ModManifest[] ParseModManifests() {
