@@ -350,8 +350,8 @@ public static class Relics
 			}
 		);
 
-		internal static void Method(Action<RelicObj, int> orig, RelicObj self, int levelChange) {
-			orig(self, levelChange);
+		internal static void Method(Action<RelicObj> orig, RelicObj self) {
+			orig(self);
 			Event?.Invoke(self.RelicType);
 		}
 	}
