@@ -76,7 +76,18 @@ public static class Relics
 		RL2API.Log($"Saved {data.Name} as {type}");
 		return type;
 	}
-	
+
+	/// <summary>
+	/// Retrieves the <see cref="RelicType"/> of a modded Relic
+	/// </summary>
+	/// <param name="relicName">Name of the Relic in the format "Mod Name From Manifest/RelicName"</param>
+	/// <returns><see cref="RelicType.None"/> if relic was not found</returns>
+	public static RelicType GetType(string relicName) {
+		RelicType type = RelicType.None;
+		SavedTypes.TryGetValue(relicName, out type);
+		return type;
+	}
+
 	/// <summary>
 	/// Ran when Relic data is being loaded. <br></br>
 	/// Current save profile canm be accessed via <see cref="SaveManager.CurrentProfile"/>
