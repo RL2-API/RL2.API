@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace ExampleMod;
 
-public class ExampleRegisterer : IRegistrable {
+public class ExampleTrait : BaseTrait, IRegistrable
+{
 	public static TraitType MyTrait;
+	public override TraitType TraitType => MyTrait;
 
 	void IRegistrable.Register() {
 		TraitData data = ScriptableObject.CreateInstance<TraitData>();
@@ -17,31 +19,29 @@ public class ExampleRegisterer : IRegistrable {
 		data.GoldBonus = .1f;
 
 		Traits.LoadContent.Event += () => {
-			MyTrait = Traits.Register<TraitAddition>(data);
+			MyTrait = Traits.Register<ExampleTrait>(data);
 		};
 
 		Player.HeirGeneration.ModifyCharacterData.Event += ModifyCharacterData_Event;
 
-		Player.PostUpdateStats.Event += PostUpdateStats_Event;
+		// Player.PostUpdateStats.Event += PostUpdateStats_Event;
+
+		Traits.ApplyEffect.Event += ApplyEffect_Event;
+	}
+
+	private void ApplyEffect_Event(TraitType type) {
+		if (type != MyTrait) return;
+
+		Mod.Log("Applied TestTrait");
 	}
 
 	private void PostUpdateStats_Event(PlayerController player) {
-		player.CritChanceTemporaryAdd += .1f;
+		if (TraitManager.IsTraitActive(MyTrait))
+			player.CritChanceTemporaryAdd += .1f;
 	}
 
 	private void ModifyCharacterData_Event(CharacterData data, bool classLocked, bool spellLocked) {
-		Mod.Log(MyTrait);
-		data.TraitOne = ExampleRegisterer.MyTrait;
-	}
-}
-
-public class TraitAddition : BaseTrait {
-	public override TraitType TraitType => ExampleRegisterer.MyTrait;
-
-	IEnumerator Start() {
-		WaitRL_Yield wait = new WaitRL_Yield(5);
-		wait.Reset();
-		yield return wait;
-		Mod.Log("Mamałyga");
+		if (classLocked)
+			data.TraitOne = MyTrait;
 	}
 }

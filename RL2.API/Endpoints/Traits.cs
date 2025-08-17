@@ -27,7 +27,7 @@ public static class Traits
 	internal static Dictionary<TraitType, BaseTrait> ModdedStore = [];
 
 	internal static Dictionary<string, TraitType> NameToType = [];
-	
+
 	internal static Dictionary<TraitType, string> TypeToName = [];
 
 	internal static Dictionary<string, TraitSeenState> NameToFoundState = [];
@@ -37,7 +37,8 @@ public static class Traits
 	internal static bool FirstLoad = true;
 
 	/// <summary></summary>
-	public struct ExtraData {
+	public struct ExtraData
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -105,7 +106,8 @@ public static class Traits
 	/// <summary>
 	/// Allows modifying Trait data
 	/// </summary>
-	public static class ModifyData {
+	public static class ModifyData
+	{
 		/// <inheritdoc cref="ModifyData"/>
 		/// <param name="type">Trait type</param>
 		/// <param name="data">Trait data</param>
@@ -129,7 +131,7 @@ public static class Traits
 				ModdedStore.TryGetValue(type, out BaseTrait trait);
 				data = trait?.m_traitData;
 			}
-			if (data != null) 
+			if (data != null)
 				Event?.Invoke(type, data);
 
 			return data;
@@ -139,7 +141,8 @@ public static class Traits
 	/// <summary>
 	/// Allows modifying the <see cref="BaseTrait"/> object
 	/// </summary>
-	public static class ModifyTraitObj {
+	public static class ModifyTraitObj
+	{
 		/// <inheritdoc cref="ModifyTraitObj"/>
 		/// <param name="trait">The retreived <see cref="BaseTrait"/> object</param>
 		public delegate void Definition(BaseTrait trait);
@@ -160,6 +163,7 @@ public static class Traits
 			BaseTrait? trait = orig(type);
 			if (trait == null)
 				ModdedStore.TryGetValue(type, out trait);
+
 			if (trait != null)
 				Event?.Invoke(trait);
 
@@ -170,7 +174,8 @@ public static class Traits
 	/// <summary>
 	/// 
 	/// </summary>
-	public static class ApplyEffect {
+	public static class ApplyEffect
+	{
 		/// <inheritdoc cref="ApplyEffect"/>
 		/// <param name="type"></param>
 		public delegate void Definition(TraitType type);
@@ -189,7 +194,6 @@ public static class Traits
 
 		internal static void Method(Action<TraitManager, TraitType, bool> orig, TraitManager self, TraitType type, bool isTraitOne) {
 			orig(self, type, isTraitOne);
-
 			Event?.Invoke(type);
 		}
 	}
@@ -197,7 +201,8 @@ public static class Traits
 	/// <summary>
 	/// Allows extending the <see cref="TraitType_RL.TypeArray"/>
 	/// </summary>
-	public static class ExtendTypeArray {
+	public static class ExtendTypeArray
+	{
 		/// <inheritdoc cref="ExtendTypeArray"/>
 		/// <param name="list"></param>
 		public delegate void Definition(ref List<TraitType> list);
@@ -226,7 +231,8 @@ public static class Traits
 	/// Ran when Trait data is being saved. <br></br>
 	/// Current save profile canm be accessed via <see cref="SaveManager.CurrentProfile"/>
 	/// </summary>
-	public static class SaveData {
+	public static class SaveData
+	{
 		/// <inheritdoc cref="SaveData"/>
 		public delegate void Definition();
 
@@ -255,7 +261,8 @@ public static class Traits
 	/// <summary>
 	/// Ran when Trait data is being loaded for the first time.
 	/// </summary>
-	public static class LoadData {
+	public static class LoadData
+	{
 		/// <inheritdoc cref="LoadData"/>
 		public delegate void Definition();
 
@@ -278,15 +285,15 @@ public static class Traits
 
 			if (FirstLoad) LoadSavedTypes();
 			else {
-				foreach ((string name, TraitSeenState state) in NameToFoundState) 
+				foreach ((string name, TraitSeenState state) in NameToFoundState)
 					SaveManager.PlayerSaveData.TraitSeenTable[NameToType[name]] = state;
 			}
 
 			Event?.Invoke();
-			
+
 			return result;
 		}
-		
+
 		internal static void LoadSavedTypes() {
 			string directory = Path.Combine(SaveFileSystem.PersistentDataPath, "Saves", "RL2.API");
 			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);

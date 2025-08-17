@@ -20,7 +20,7 @@ public class RelicAddition : IRegistrable
 		CustomData.Title = "Relic of Test";
 		CustomData.Description = "Raa";
 		CustomData.Description02 = "Ara ara";
-		Relics.LoadContent.Event += () => { 
+		Relics.LoadContent.Event += () => {
 			TestRelic = Relics.Register(CustomData);
 		};
 

@@ -94,7 +94,8 @@ public static class Relics
 	/// Ran when Relic data is being saved. <br></br>
 	/// Current save profile canm be accessed via <see cref="SaveManager.CurrentProfile"/>
 	/// </summary>
-	public static class SaveData {
+	public static class SaveData
+	{
 		/// <inheritdoc cref="SaveData"/>
 		public delegate void Definition();
 
@@ -211,7 +212,8 @@ public static class Relics
 	/// Use to register Relics with <see cref="Relics.Register(RelicData, Texture2D?, Texture2D?)"/>
 	/// </summary>
 	/// <remarks>This is ran only once for the entire game session</remarks>
-	public static class LoadContent {
+	public static class LoadContent
+	{
 		/// <inheritdoc cref="LoadContent"/>
 		public delegate void Definition();
 
