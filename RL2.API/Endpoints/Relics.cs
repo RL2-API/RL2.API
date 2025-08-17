@@ -167,12 +167,12 @@ public static class Relics
 			NameToFoundState.Clear();
 			LoadFoundState();
 
-			if (FirstLoad) LoadSavedModdedTypes();
+			if (FirstLoad) LoadModdedTypes();
 
 			return result;
 		}
 
-		internal static void LoadSavedModdedTypes() {
+		internal static void LoadModdedTypes() {
 			string directory = Path.Combine(SaveManager.GetConfigPath(), "RL2.API");
 			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
