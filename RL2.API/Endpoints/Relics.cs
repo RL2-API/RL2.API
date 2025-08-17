@@ -165,17 +165,7 @@ public static class Relics
 		internal static LOAD_RESULT Method(Func<int, bool, LOAD_RESULT> orig, int currentProfile, bool loadAccountData) {
 			LOAD_RESULT result = orig(currentProfile, loadAccountData);
 			NameToFoundState.Clear();
-			
-			string directory = Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
-			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
-
-			directory = Path.Combine(directory, "Relics");
-			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
-
-			string savedFoundState = Path.Combine(directory, "FoundState.json");
-			if (File.Exists(savedFoundState)) {
-				NameToFoundState = JsonParser.FromJson<Dictionary<string, bool>>(File.ReadAllText(savedFoundState));
-			}
+			LoadFoundState();
 
 			if (FirstLoad) LoadSavedModdedTypes();
 
@@ -200,6 +190,19 @@ public static class Relics
 
 			FirstLoad = false;
 			Event?.Invoke();
+		}
+
+		internal static void LoadFoundState() {
+			string directory = Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
+			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+			directory = Path.Combine(directory, "Relics");
+			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+			string savedFoundState = Path.Combine(directory, "FoundState.json");
+			if (File.Exists(savedFoundState)) {
+				NameToFoundState = JsonParser.FromJson<Dictionary<string, bool>>(File.ReadAllText(savedFoundState));
+			}
 		}
 	}
 
