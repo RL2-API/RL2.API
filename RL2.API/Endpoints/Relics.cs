@@ -18,6 +18,7 @@ public static class Relics
 	internal static IDetour[] Hooks = [
 		SaveData.Hook,
 		LoadData.Hook,
+		LoadContent.Hook,
 		ModifyData.Hook,
 		ExtendTypeArray.Hook,
 		ApplyEffect.Hook,
