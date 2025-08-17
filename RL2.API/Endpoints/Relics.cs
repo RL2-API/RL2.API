@@ -122,7 +122,7 @@ public static class Relics
 			if (FirstLoad) return;
 
 			// Save Relic types
-			string directory = Path.Combine(SaveManager.GetConfigPath(), "RL2.API");
+			string directory = Path.Combine(SaveFileSystem.PersistentDataPath, "Saves", "RL2.API");
 			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			directory = Path.Combine(directory, "Relics");
@@ -133,10 +133,10 @@ public static class Relics
 
 			// Save found state
 			directory = Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
-			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			directory = Path.Combine(directory, "Relics");
-			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			string savedFoundState = Path.Combine(directory, "FoundState.json");
 			File.WriteAllText(savedFoundState, JsonWriter.ToJson(NameToFoundState));
@@ -177,11 +177,11 @@ public static class Relics
 		}
 
 		internal static void LoadSavedTypes() {
-			string directory = Path.Combine(SaveManager.GetConfigPath(), "RL2.API");
-			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
+			string directory = Path.Combine(SaveFileSystem.PersistentDataPath, "Saves", "RL2.API");
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			directory = Path.Combine(directory, "Relics");
-			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			string savedTypes = Path.Combine(directory, "Types.json");
 			if (File.Exists(savedTypes)) {
@@ -195,10 +195,10 @@ public static class Relics
 
 		internal static void LoadFoundState() {
 			string directory = Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
-			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			directory = Path.Combine(directory, "Relics");
-			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			string savedFoundState = Path.Combine(directory, "FoundState.json");
 			if (File.Exists(savedFoundState)) {
