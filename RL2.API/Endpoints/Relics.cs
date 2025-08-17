@@ -260,7 +260,7 @@ public static class Relics
 
 		internal static RelicType[] Method(Func<RelicType[]> orig) {
 			List<RelicType> original = orig().ToList();
-			original.AddRange(ModdedStore.Keys.Cast<RelicType>());
+			original.AddRange(ModdedStore.Keys);
 			Event?.Invoke(ref original);
 			return original.ToArray();
 		}
