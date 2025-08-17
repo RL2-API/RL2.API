@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Linq;
 using Rewired.Utils.Libraries.TinyJson;
+using UnityEngine.XR;
 
 namespace RL2.API;
 
@@ -142,7 +143,8 @@ public static class Relics
 	}
 
 	/// <summary>
-	/// Ran when Relic data is being loaded for the first time.
+	/// Ran when Relic save data is being loaded <br></br>
+	/// This includes loading saved Relic types if it's the first load, as well as the Relic's 'found' state.
 	/// </summary>
 	public static class LoadData
 	{
@@ -166,12 +168,14 @@ public static class Relics
 			NameToFoundState.Clear();
 			LoadFoundState();
 
-			if (FirstLoad) LoadModdedTypes();
+			if (FirstLoad) LoadSavedTypes();
+
+			Event?.Invoke();
 
 			return result;
 		}
 
-		internal static void LoadModdedTypes() {
+		internal static void LoadSavedTypes() {
 			string directory = Path.Combine(SaveManager.GetConfigPath(), "RL2.API");
 			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
@@ -186,9 +190,6 @@ public static class Relics
 				if (sorted.Count > 0)
 					LastType = (int)sorted.Last();
 			}
-
-			FirstLoad = false;
-			Event?.Invoke();
 		}
 
 		internal static void LoadFoundState() {
@@ -202,6 +203,37 @@ public static class Relics
 			if (File.Exists(savedFoundState)) {
 				NameToFoundState = JsonParser.FromJson<Dictionary<string, bool>>(File.ReadAllText(savedFoundState));
 			}
+		}
+	}
+
+	/// <summary>
+	/// Use to register Relics with <see cref="Relics.Register(RelicData, Texture2D?, Texture2D?)"/>
+	/// </summary>
+	/// <remarks>This is ran only once for the entire game session</remarks>
+	public static class LoadContent {
+		/// <inheritdoc cref="LoadContent"/>
+		public delegate void Definition();
+
+		/// <inheritdoc cref="Definition"/>
+		public static event Definition? Event;
+
+		internal static Hook Hook = new Hook(
+			typeof(SaveManager).GetMethod(nameof(SaveManager.LoadAllGameData), BindingFlags.Public | BindingFlags.Static),
+			Method,
+			new HookConfig() {
+				ID = "RL2.API::Relics.LoadContent",
+				ManualApply = true,
+				After = ["RL2.API::Relics.LoadData"]
+			}
+		);
+
+		internal static LOAD_RESULT Method(Func<int, bool, LOAD_RESULT> orig, int currentProfile, bool loadAccountData) {
+			LOAD_RESULT result = orig(currentProfile, loadAccountData);
+
+			if (FirstLoad) Event?.Invoke();
+			FirstLoad = false;
+
+			return result;
 		}
 	}
 
