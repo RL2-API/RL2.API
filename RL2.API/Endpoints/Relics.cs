@@ -142,7 +142,7 @@ public static class Relics
 	}
 
 	/// <summary>
-	/// Ran when Relic data is being loaded.<br></br>
+	/// Ran when Relic data is being loaded for the first time. <br></br>
 	/// Current save profile canm be accessed via <see cref="SaveManager.CurrentProfile"/>
 	/// </summary>
 	public static class LoadData
