@@ -25,11 +25,11 @@ public static class Relics
 
 	internal static Dictionary<RelicType, RelicData> ModdedStore = [];
 
-	internal static Dictionary<string, RelicType> SavedTypes = [];
+	internal static Dictionary<string, RelicType> NameToType = [];
 
-	internal static Dictionary<RelicType, string> SavedNames = [];
+	internal static Dictionary<RelicType, string> TypeToName = [];
 
-	internal static Dictionary<string, bool> SavedFoundState = [];
+	internal static Dictionary<string, bool> NameToFoundState = [];
 
 	internal static int LastType = (int)RelicType.DeathMark;
 
@@ -47,9 +47,9 @@ public static class Relics
 		string modName = RL2API.AssemblyToMod[Assembly.GetCallingAssembly()].Manifest.Name;
 		string name = modName + "/" + data.Name;
 
-		RelicType type = SavedTypes.TryGetValue(name, out RelicType value) ? value : (RelicType)(++LastType);
-		SavedTypes[name] = type;
-		SavedNames[type] = name;
+		RelicType type = NameToType.TryGetValue(name, out RelicType value) ? value : (RelicType)(++LastType);
+		NameToType[name] = type;
+		TypeToName[type] = name;
 
 		ModdedStore[type] = data;
 
@@ -68,10 +68,10 @@ public static class Relics
 
 		// Manage seen state
 		RelicObj obj = new RelicObj(type) {
-			WasSeen = SavedFoundState.TryGetValue(name, out bool seen) ? seen : false
+			WasSeen = NameToFoundState.TryGetValue(name, out bool seen) ? seen : false
 		};
 		SaveManager.PlayerSaveData.RelicObjTable[type] = obj;
-		SavedFoundState[name] = obj.WasSeen;
+		NameToFoundState[name] = obj.WasSeen;
 
 		RL2API.Log($"Saved {data.Name} as {type}");
 		return type;
@@ -84,7 +84,7 @@ public static class Relics
 	/// <returns><see cref="RelicType.None"/> if relic was not found</returns>
 	public static RelicType GetType(string relicName) {
 		RelicType type = RelicType.None;
-		SavedTypes.TryGetValue(relicName, out type);
+		NameToType.TryGetValue(relicName, out type);
 		return type;
 	}
 
@@ -127,7 +127,7 @@ public static class Relics
 			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			string saveTypes = Path.Combine(directory, "Types.json");
-			File.WriteAllText(saveTypes, JsonWriter.ToJson(SavedTypes));
+			File.WriteAllText(saveTypes, JsonWriter.ToJson(NameToType));
 
 			// Save found state
 			directory = Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
@@ -137,7 +137,7 @@ public static class Relics
 			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			string savedFoundState = Path.Combine(directory, "FoundState.json");
-			File.WriteAllText(savedFoundState, JsonWriter.ToJson(SavedFoundState));
+			File.WriteAllText(savedFoundState, JsonWriter.ToJson(NameToFoundState));
 		}
 	}
 
@@ -163,7 +163,7 @@ public static class Relics
 
 		internal static LOAD_RESULT Method(Func<int, bool, LOAD_RESULT> orig, int currentProfile, bool loadAccountData) {
 			LOAD_RESULT result = orig(currentProfile, loadAccountData);
-			SavedFoundState.Clear();
+			NameToFoundState.Clear();
 			
 			string directory = Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
 			if (Directory.Exists(directory)) Directory.CreateDirectory(directory);
@@ -173,7 +173,7 @@ public static class Relics
 
 			string savedFoundState = Path.Combine(directory, "FoundState.json");
 			if (File.Exists(savedFoundState)) {
-				SavedFoundState = JsonParser.FromJson<Dictionary<string, bool>>(File.ReadAllText(savedFoundState));
+				NameToFoundState = JsonParser.FromJson<Dictionary<string, bool>>(File.ReadAllText(savedFoundState));
 			}
 
 			if (FirstLoad) LoadSavedModdedTypes();
@@ -190,8 +190,8 @@ public static class Relics
 
 			string savedTypes = Path.Combine(directory, "Types.json");
 			if (File.Exists(savedTypes)) {
-				SavedTypes = JsonParser.FromJson<Dictionary<string, RelicType>>(File.ReadAllText(savedTypes));
-				var sorted = SavedTypes.Values.ToList();
+				NameToType = JsonParser.FromJson<Dictionary<string, RelicType>>(File.ReadAllText(savedTypes));
+				var sorted = NameToType.Values.ToList();
 				sorted.Sort();
 				if (sorted.Count > 0)
 					LastType = (int)sorted.Last();
@@ -286,8 +286,8 @@ public static class Relics
 
 		internal static void Method(Action<RelicObj, int> orig, RelicObj self, int levelChange) {
 			orig(self, levelChange);
-			if (SavedNames.TryGetValue(self.RelicType, out string name)) {
-				SavedFoundState[name] = true;
+			if (TypeToName.TryGetValue(self.RelicType, out string name)) {
+				NameToFoundState[name] = true;
 			}
 			Event?.Invoke(self.RelicType);
 		}
