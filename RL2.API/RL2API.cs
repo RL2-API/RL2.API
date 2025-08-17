@@ -46,6 +46,7 @@ public partial class RL2API
 		RL2ModLoader.OnLoad += Hooks.Apply;
 		RL2ModLoader.OnUnload += Hooks.Undo;
 		RL2ModLoader.OnUnload += Relics.SaveData.SaveModdedData;
+		RL2ModLoader.OnUnload += Traits.SaveData.SaveModdedData;
 
 		ModManifest[] api_dependent_manifests = ParseModManifests();
 		Type[] mod_types = GetModTypes(api_dependent_manifests);
