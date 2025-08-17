@@ -81,7 +81,7 @@ public static class Relics
 	/// Retrieves the <see cref="RelicType"/> of a modded Relic
 	/// </summary>
 	/// <param name="relicName">Name of the Relic in the format "Mod Name From Manifest/RelicName"</param>
-	/// <returns><see cref="RelicType.None"/> if relic was not found</returns>
+	/// <returns><see cref="RelicType.None"/> if Relic was not found</returns>
 	public static RelicType GetType(string relicName) {
 		RelicType type = RelicType.None;
 		NameToType.TryGetValue(relicName, out type);
