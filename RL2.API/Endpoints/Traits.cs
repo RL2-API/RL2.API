@@ -73,9 +73,9 @@ public static class Traits
 
 		GameObject traitObject = new GameObject();
 		UnityEngine.Object.DontDestroyOnLoad(traitObject);
-		traitObject.SetActive(false);
 
 		T trait = traitObject.AddComponent<T>();
+		trait.enabled = false;
 		trait.m_traitData = data;
 		trait.m_incompatibleTraits = extraData?.IncompatibleTraits ?? [];
 		trait.m_postProcessOverrideController = extraData?.PostProcessOverride;

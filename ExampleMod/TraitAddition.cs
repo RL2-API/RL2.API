@@ -24,9 +24,15 @@ public class ExampleTrait : BaseTrait, IRegistrable
 
 		Player.HeirGeneration.ModifyCharacterData.Event += ModifyCharacterData_Event;
 
-		// Player.PostUpdateStats.Event += PostUpdateStats_Event;
+		Player.PostUpdateStats.Event += PostUpdateStats_Event;
 
 		Traits.ApplyEffect.Event += ApplyEffect_Event;
+	}
+
+	void Awake() {
+		if (!PlayerManager.IsInstantiated) return;
+
+		Mod.Log("Test Trait instantiated!");
 	}
 
 	private void ApplyEffect_Event(TraitType type) {
