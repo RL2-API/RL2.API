@@ -1,3 +1,5 @@
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
 using System.Collections.Generic;
@@ -6,7 +8,6 @@ using System;
 using System.IO;
 using System.Linq;
 using Rewired.Utils.Libraries.TinyJson;
-using UnityEngine.XR;
 
 namespace RL2.API;
 
@@ -20,6 +21,7 @@ public static class Relics
 		LoadData.Hook,
 		LoadContent.Hook,
 		ModifyData.Hook,
+		ModifyData.ILHook,
 		ExtendTypeArray.Hook,
 		ApplyEffect.Hook,
 		StopEffect.Hook,
@@ -254,7 +256,7 @@ public static class Relics
 		public static event Definition? Event;
 
 		internal static Hook Hook = new Hook(
-			typeof(RelicLibrary).GetMethod("GetRelicData", BindingFlags.Public | BindingFlags.Static),
+			typeof(RelicLibrary).GetMethod(nameof(RelicLibrary.GetRelicData), BindingFlags.Public | BindingFlags.Static),
 			Method,
 			new HookConfig() {
 				ID = "RL2.API::Relics.ModifyData",
@@ -269,6 +271,26 @@ public static class Relics
 			}
 			Event?.Invoke(type, data);
 			return data;
+		}
+
+		internal static ILHook ILHook = new ILHook(
+			typeof(RelicLibrary).GetMethod(nameof(RelicLibrary.GetRelicData), BindingFlags.Public | BindingFlags.Static),
+			Patch,
+			new ILHookConfig() {
+				ID = "RL2.API::IL::Relics.ModifyData",
+				ManualApply = true,
+			}
+		);
+
+		internal static void Patch(ILContext il) {
+			ILCursor cursor = new ILCursor(il);
+
+			if (cursor.TryGotoNext(MoveType.Before, i => i.MatchBrfalse(out _))) {
+				cursor.Emit(OpCodes.Ldarg_0);
+				cursor.EmitDelegate(ModdedStore.ContainsKey);
+
+				cursor.Emit(OpCodes.Or);
+			}
 		}
 	}
 
