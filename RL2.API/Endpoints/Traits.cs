@@ -37,7 +37,7 @@ public static class Traits
 	internal static bool FirstLoad = true;
 
 	/// <summary>
-	/// Extra data for Traits, not necessary
+	/// Extra data for Traits, optional
 	/// </summary>
 	public struct ExtraData
 	{
@@ -56,10 +56,10 @@ public static class Traits
 	}
 
 	/// <summary>
-	/// 
+	/// Registers a new Trait
 	/// </summary>
-	/// <typeparam name="T"></typeparam>
-	/// <returns></returns>
+	/// <typeparam name="T">The Trait class</typeparam>
+	/// <returns><see cref="TraitType"/> of the newly registered Trait</returns>
 	public static TraitType Register<T>(TraitData data, ExtraData? extraData = null, Texture2D? icon = null) where T : BaseTrait {
 		while (IconLibrary.Instance == null) { }
 
@@ -333,7 +333,7 @@ public static class Traits
 	}
 
 	/// <summary>
-	/// Use to register Traits with <see cref="Traits.Register{T}(TraitData, ExtraData?)"/>
+	/// Use to register Traits with <see cref="Traits.Register{T}(TraitData, ExtraData?, Texture2D?)"/>
 	/// </summary>
 	/// <remarks>This is ran only once for the entire game session</remarks>
 	public static class LoadContent
