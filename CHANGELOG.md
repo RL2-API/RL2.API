@@ -1,5 +1,40 @@
 # RL2.API Changelog
 
+## v2.0.0
+### Changes
+- All API endpoints are now accessed via `(Container/s).(Name).Event`
+    - Example `Player.Ability.ModifyData` -> `Player.Ability.ModifyData.Event`
+
+### Additions
+- Modded Relics!
+    - `Relics.Register`
+    - `Relics.GetType`
+    - `Relics.SaveData`
+    - `Relics.LoadData`
+    - `Relics.LoadContent`
+    - `Relics.ModifyData`
+    - `Relics.ExtendTypeArray`
+    - `Relics.ApplyEffect`
+    - `Relics.StopEffect`
+  - Modded Traits!
+    - `Traits.Register`
+    - `Traits.GetType`
+    - `Traits.SaveData`
+    - `Traits.LoadData`
+    - `Traits.LoadContent`
+    - `Traits.ModifyData`
+    - `Traits.ModifyTraitObj`
+    - `Traits.ExtendTypeArray`
+    - `Relics.ApplyEffect`
+- `Scars.ModifySummonRules`
+- `Scars.RegisterCustomRule`
+
+### Deletions
+- `Player.(StatName)` endpoints.
+    - For stat modification use `Player.PostUpdateStats.Event`
+    - We are aware this disallows modifying Strength and Intelligence, but we are working on readding access to modifying those
+    - Health can be modified via Vitality
+
 ## v1.1.2
 ### Fixes:
 - Enemy.ModifyBehaviour now allows for completly replacing the values of `aiScript` and `logicController_SO`
