@@ -1,10 +1,12 @@
 namespace RL2.API;
 
-public static partial class SummonRule {
+public static partial class SummonRule
+{
 	/// <summary>
 	/// Triggers slowed time
 	/// </summary>
-	public class SlowTime : SlowTime_SummonRule {
+	public class SlowTime : SlowTime_SummonRule
+	{
 		/// <summary>
 		/// How fast timem will be moving
 		/// </summary>

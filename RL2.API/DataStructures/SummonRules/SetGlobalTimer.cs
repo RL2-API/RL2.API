@@ -1,10 +1,12 @@
 namespace RL2.API;
 
-public static partial class SummonRule {
+public static partial class SummonRule
+{
 	/// <summary>
 	/// Can triggers several actions on the global timer, which broadcast their respective events on <see cref="UIMessenger"/>
 	/// </summary>
-	public class SetGlobalTimer : SetGlobalTimer_SummonRule {
+	public class SetGlobalTimer : SetGlobalTimer_SummonRule
+	{
 		/// <summary>
 		/// Whether the timer should be started <br></br>
 		/// Broadcasts <see cref="UIEvent.StartGlobalTimer"/> with no <see cref="System.EventArgs"/> provided

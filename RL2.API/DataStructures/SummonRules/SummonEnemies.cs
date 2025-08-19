@@ -1,6 +1,7 @@
 namespace RL2.API;
 
-public static partial class SummonRule {
+public static partial class SummonRule
+{
 	/// <summary>
 	/// Summons enemies
 	/// </summary>
