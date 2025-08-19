@@ -179,7 +179,7 @@ public static class Traits
 	}
 
 	/// <summary>
-	/// 
+	/// Triggered when a Trait is applied
 	/// </summary>
 	public static class ApplyEffect
 	{

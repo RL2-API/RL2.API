@@ -49,12 +49,12 @@ public static partial class Player
 		}
 	}
 
-	/// <inheritdoc cref="Definition"/>
+	/// <summary>
+	/// Determines whether the affected player should die.
+	/// </summary>
 	public static class PreKill
 	{
-		/// <summary>
-		/// Determines whether the affected player should die.
-		/// </summary>
+		/// <inheritdoc cref="PreKill"/>
 		/// <param name="player">Affected player</param>
 		/// <param name="killer">GameObject responsible for the player's death</param>
 		/// <returns>If the player should die - <c>false</c> to prevent death</returns>
@@ -90,12 +90,12 @@ public static partial class Player
 		}
 	}
 
-	/// <inheritdoc cref="Definition"/>
+	/// <summary>
+	/// Ran after the player dies
+	/// </summary>
 	public static class OnKill
 	{
-		/// <summary>
-		/// Ran after the player dies
-		/// </summary>
+		/// <inheritdoc cref="OnKill"/>
 		/// <param name="player">Affected player</param>
 		/// <param name="killer">GameObject responsible for the player's death</param>
 		public delegate void Definition(PlayerController player, GameObject killer);
@@ -118,12 +118,12 @@ public static partial class Player
 		}
 	}
 
-	/// <inheritdoc cref="Definition"/>
+	/// <summary>
+	/// Executed after all stats update. Use to perform stat increases.
+	/// </summary>
 	public static class PostUpdateStats
 	{
-		/// <summary>
-		/// Executed after all stats update. Use to perform stat increases.
-		/// </summary>
+		/// <inheritdoc cref="PostUpdateStats"/>
 		/// <param name="player">The player</param>
 		public delegate void Definition(PlayerController player);
 
