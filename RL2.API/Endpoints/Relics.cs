@@ -72,7 +72,7 @@ public static class Relics
 
 		// Manage seen state
 		RelicObj obj = new RelicObj(type) {
-			WasSeen = NameToFoundState.TryGetValue(name, out bool seen) ? seen : false
+			WasSeen = NameToFoundState.TryGetValue(name, out bool seen) ? seen : true
 		};
 		SaveManager.PlayerSaveData.RelicObjTable[type] = obj;
 		NameToFoundState[name] = obj.WasSeen;

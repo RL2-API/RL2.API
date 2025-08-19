@@ -68,7 +68,7 @@ public static class Traits
 		NameToType[name] = type;
 		TypeToName[type] = name;
 
-		TraitSeenState seen = NameToFoundState.TryGetValue(name, out TraitSeenState savedState) ? savedState : TraitSeenState.NeverSeen;
+		TraitSeenState seen = NameToFoundState.TryGetValue(name, out TraitSeenState savedState) ? savedState : TraitSeenState.SeenTwice;
 		NameToFoundState[name] = seen;
 
 		GameObject traitObject = new GameObject();
