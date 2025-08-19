@@ -16,16 +16,16 @@
     - `Relics.ExtendTypeArray`
     - `Relics.ApplyEffect`
     - `Relics.StopEffect`
-  - Modded Traits!
-    - `Traits.Register`
-    - `Traits.GetType`
-    - `Traits.SaveData`
-    - `Traits.LoadData`
-    - `Traits.LoadContent`
-    - `Traits.ModifyData`
-    - `Traits.ModifyTraitObj`
-    - `Traits.ExtendTypeArray`
-    - `Relics.ApplyEffect`
+- Modded Traits!
+  - `Traits.Register`
+  - `Traits.GetType`
+  - `Traits.SaveData`
+  - `Traits.LoadData`
+  - `Traits.LoadContent`
+  - `Traits.ModifyData`
+  - `Traits.ModifyTraitObj`
+  - `Traits.ExtendTypeArray`
+  - `Traits.ApplyEffect`
 - `Scars.ModifySummonRules`
 - `Scars.RegisterCustomRule`
 
