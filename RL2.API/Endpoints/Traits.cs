@@ -262,7 +262,30 @@ public static class Traits
 			return result;
 		}
 
-		internal static void SaveModdedData() { }
+		internal static void SaveModdedData() {
+			// Nothing has been loaded, so there is nothing to save
+			if (FirstLoad) return;
+
+			// Save Trait types
+			string directory = Path.Combine(SaveFileSystem.PersistentDataPath, "Saves", "RL2.API");
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+			directory = Path.Combine(directory, "Traits");
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+			string saveTypes = Path.Combine(directory, "Types.json");
+			File.WriteAllText(saveTypes, JsonWriter.ToJson(NameToType));
+
+			// Save found state
+			directory = Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+			directory = Path.Combine(directory, "Traits");
+			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+			string savedFoundState = Path.Combine(directory, "FoundState.json");
+			File.WriteAllText(savedFoundState, JsonWriter.ToJson(NameToFoundState));
+		}
 	}
 
 	/// <summary>
