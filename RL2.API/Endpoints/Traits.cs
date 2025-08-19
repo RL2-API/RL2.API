@@ -36,19 +36,21 @@ public static class Traits
 
 	internal static bool FirstLoad = true;
 
-	/// <summary></summary>
+	/// <summary>
+	/// Extra data for Traits, not necessary
+	/// </summary>
 	public struct ExtraData
 	{
 		/// <summary>
-		/// 
+		/// Which Trait this trait is incompatible with 
 		/// </summary>
 		public TraitType[] IncompatibleTraits;
 		/// <summary>
-		/// 
+		/// Post processing
 		/// </summary>
 		public MobilePostProcessOverrideController PostProcessOverride;
 		/// <summary>
-		/// 
+		/// Post processing mask
 		/// </summary>
 		public SpriteRenderer TraitMask;
 	}
@@ -58,7 +60,7 @@ public static class Traits
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	/// <returns></returns>
-	public static TraitType Register<T>(TraitData data, ExtraData? extraData = null) where T : BaseTrait {
+	public static TraitType Register<T>(TraitData data, ExtraData? extraData = null, Texture2D? icon = null) where T : BaseTrait {
 		while (IconLibrary.Instance == null) { }
 
 		string modName = RL2API.AssemblyToMod[Assembly.GetCallingAssembly()].Manifest.Name;
@@ -85,7 +87,12 @@ public static class Traits
 
 		TraitManager.TraitSpawnOddsTable[type] = new Vector3Int(0, 0, (int)seen);
 		SaveManager.PlayerSaveData.TraitSeenTable[type] = seen;
-		IconLibrary.Instance.m_traitIconLibrary[type] = IconLibrary.Instance.m_defaultSprite;
+		
+		Sprite traitIcon = IconLibrary.Instance.m_defaultSprite;
+		if (icon != null) {
+			traitIcon = Sprite.Create(icon, new Rect(0, 0, icon.width / 2, icon.height / 2), new Vector2(.5f, .5f));
+		}
+		IconLibrary.Instance.m_traitIconLibrary[type] = traitIcon;
 
 		RL2API.Log($"Saved Trait {data.Name} as {type}");
 
