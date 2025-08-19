@@ -87,7 +87,7 @@ public static class Traits
 
 		TraitManager.TraitSpawnOddsTable[type] = new Vector3Int(0, 0, (int)seen);
 		SaveManager.PlayerSaveData.TraitSeenTable[type] = seen;
-		
+
 		Sprite traitIcon = IconLibrary.Instance.m_defaultSprite;
 		if (icon != null) {
 			traitIcon = Sprite.Create(icon, new Rect(0, 0, icon.width / 2, icon.height / 2), new Vector2(.5f, .5f));
