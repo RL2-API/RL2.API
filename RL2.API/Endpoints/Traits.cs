@@ -6,6 +6,8 @@ using System.Linq;
 using System.Reflection;
 using Rewired.Utils.Libraries.TinyJson;
 using UnityEngine;
+using MonoMod.Cil;
+using Mono.Cecil.Cil;
 
 namespace RL2.API;
 
@@ -19,6 +21,7 @@ public static class Traits
 		LoadData.Hook,
 		LoadContent.Hook,
 		ApplyEffect.Hook,
+		StopEffect.ILHook,
 		ModifyData.Hook,
 		ModifyTraitObj.Hook,
 		ExtendTypeArray.Hook,
@@ -202,6 +205,39 @@ public static class Traits
 		internal static void Method(Action<TraitManager, TraitType, bool> orig, TraitManager self, TraitType type, bool isTraitOne) {
 			orig(self, type, isTraitOne);
 			Event?.Invoke(type);
+		}
+	}
+
+	/// <summary>
+	/// Triggered when a Trait is disabled on player death
+	/// </summary>
+	public static class StopEffect
+	{
+		/// <inheritdoc cref="StopEffect"/>
+		/// <param name="type"></param>
+		public delegate void Definition(TraitType type);
+
+		/// <inheritdoc cref="Definition"/>
+		public static event Definition? Event;
+
+		internal static ILHook ILHook = new ILHook(
+			typeof(PlayerDeathWindowController).GetMethod(nameof(PlayerDeathWindowController.OnOpen), BindingFlags.NonPublic | BindingFlags.Instance),
+			Method,
+			new ILHookConfig() {
+				ID = "RL2.API::Traits.ApplyEffect",
+				ManualApply = true,
+			}
+		);
+
+		internal static void Method(ILContext il) {
+			ILCursor cursor = new ILCursor(il);
+
+			if (cursor.TryGotoNext(MoveType.After, i => i.MatchCallvirt<BaseTrait>(nameof(BaseTrait.DisableOnDeath)))) {
+				cursor.Emit(OpCodes.Ldloc_3);
+				cursor.EmitDelegate((List<BaseTrait>.Enumerator enumerator) => {
+					Event?.Invoke(enumerator.Current.TraitType);
+				});
+			}
 		}
 	}
 

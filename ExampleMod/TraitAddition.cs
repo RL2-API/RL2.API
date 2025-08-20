@@ -27,6 +27,14 @@ public class ExampleTrait : BaseTrait, IRegistrable
 		Player.PostUpdateStats.Event += PostUpdateStats_Event;
 
 		Traits.ApplyEffect.Event += ApplyEffect_Event;
+
+		Traits.StopEffect.Event += StopEffect_Event;
+	}
+
+	private void StopEffect_Event(TraitType type) {
+		if (type != MyTrait) return;
+
+		Mod.Log("TestTrait stopeed!");
 	}
 
 	void Awake() {
