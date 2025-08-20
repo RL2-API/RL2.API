@@ -26,6 +26,7 @@
   - `Traits.ModifyTraitObj`
   - `Traits.ExtendTypeArray`
   - `Traits.ApplyEffect`
+  - `Traits.StopEffect`
 - `Scars.ModifySummonRules`
 - `Scars.RegisterCustomRule`
 
