@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="../RL2.ModLoader.targets" />
+    <Import Project="../../RL2.ModLoader.targets" />
 
     <PropertyGroup>
         <TargetFramework>net48</TargetFramework>
