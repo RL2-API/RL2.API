@@ -267,7 +267,7 @@ public static class Relics
 		internal static RelicData Method(Func<RelicType, RelicData> orig, RelicType type) {
 			RelicData data = orig(type);
 			if (data == null) {
-				data = Relics.ModdedStore[type];
+				ModdedStore.TryGetValue(type, out data);
 			}
 			Event?.Invoke(type, data);
 			return data;
