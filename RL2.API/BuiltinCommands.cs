@@ -24,20 +24,20 @@ public class BuiltinCommands
 		string name = args[0];
 		string authors = args.Length == 1 ? "" : string.Join(", ", args.Skip(1));
 
-		string newModPath = ModLoader.ModLoader.ModPath + $"\\{name}";
+		string newModPath = Path.Combine(ModLoader.ModLoader.ModPath, name).FixSeparator();
 		if (Directory.Exists(newModPath)) {
 			RL2API.Log($"A mod with this name: {name} already exists in your Mods directory");
 			return;
 		}
 
-		newModPath = ModLoader.ModLoader.ModSources + $"\\{name}";
+		newModPath = Path.Combine(ModLoader.ModLoader.ModSources, name).FixSeparator();
 		if (Directory.Exists(newModPath)) {
 			RL2API.Log($"A mod with this name: {name} already exists in your ModSources directory");
 			return;
 		}
 
 		Directory.CreateDirectory(newModPath);
-		newModPath += $"\\{name}";
+		newModPath = Path.Combine(newModPath, name);
 		EnsureTargetsFiles();
 		GenerateCsproj(newModPath);
 		GenerateManifest(newModPath, name, authors);
@@ -48,7 +48,7 @@ public class BuiltinCommands
 	internal static void EnsureTargetsFiles() {
 		ModLoader.BuiltinCommands.EnsureTargetsFile();
 
-		string targetsPath = ModLoader.ModLoader.ModSources + "\\RL2.API.targets";
+		string targetsPath = Path.Combine(ModLoader.ModLoader.ModSources, "RL2.API.targets").FixSeparator();
 		if (File.Exists(targetsPath)) return;
 
 		ModManifest apiManifest = ModLoader.ModLoader.ModManifestToPath.Keys.Where(manifest => manifest.Name == "RL2.API").First();
@@ -59,7 +59,7 @@ public class BuiltinCommands
 				<Import Project="RL2.ModLoader.targets" />
 
 				<PropertyGroup>
-					<RL2API_Path>{RL2API_Path}\</RL2API_Path>
+					<RL2API_Path>{RL2API_Path.FixSeparator()}\</RL2API_Path>
 				</PropertyGroup>
 
 				<ItemGroup>
@@ -116,5 +116,13 @@ public class BuiltinCommands
 			}
 			"""
 		);
+	}
+}
+
+internal static class PathExtensions {
+	internal static string FixSeparator(this string path) {
+		return path
+			.Replace('\\', Path.DirectorySeparatorChar)
+			.Replace('/', Path.DirectorySeparatorChar);
 	}
 }
