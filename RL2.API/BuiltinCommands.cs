@@ -56,7 +56,7 @@ public class BuiltinCommands
 		File.WriteAllText(targetsPath,
 			$"""
 			<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-				<Import Project="RL2.Mods.targets" />
+				<Import Project="RL2.ModLoader.targets" />
 
 				<PropertyGroup>
 					<RL2API_Path>{RL2API_Path}\</RL2API_Path>
