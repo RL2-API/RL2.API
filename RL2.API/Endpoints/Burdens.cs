@@ -3,21 +3,235 @@ using Collections = System.Collections.Generic;
 using MM = MonoMod.RuntimeDetour;
 using Cil = MonoMod.Cil;
 using IL = Mono.Cecil.Cil;
+using UnityE = UnityEngine;
+using TinyJson = Rewired.Utils.Libraries.TinyJson;
+using IO = System.IO;
 
 namespace RL2.API;
 
 /// <summary> </summary>
 public static class Burdens {
 	internal static MM.IDetour[] Hooks = [
-		SilenceMissingDataLogs!,
+		SilenceMissingDataLogs.ILHook,
+		AddBurdensToElpis.ILHook,
+		SaveData.Hook,
+		LoadData.Hook,
+		LoadContent.Hook,
 		ModifyData.Hook,
+		ExtendTypeArray.Hook,
 	];
 
 	internal static Collections.Dictionary<BurdenType, BurdenData> ModdedStore = [];
 
-	/// <summary> </summary>
-	public static class ModifyData
-	{
+	internal static Collections.Dictionary<string, BurdenType> NameToType = [];
+
+	internal static Collections.Dictionary<BurdenType, string> TypeToName = [];
+
+	internal static Collections.Dictionary<string, FoundState> NameToFoundState = [];
+
+	internal static int LastType = (int)BurdenType.UnlockNG;
+
+	internal static bool FirstLoad = true;
+
+	/// <summary>
+	/// Registers custom Burdens
+	/// </summary>
+	/// <param name="data"></param>
+	/// <param name="icon"></param>
+	/// <returns></returns>
+	public static BurdenType Register(BurdenData data, UnityE.Texture2D? icon = null) {
+		while (IconLibrary.Instance == null) { }
+
+		string modName = RL2API.AssemblyToMod[Reflect.Assembly.GetCallingAssembly()].Manifest.Name;
+		string name = modName + "/" + data.Name;
+
+		BurdenType type = NameToType.TryGetValue(name, out BurdenType value) ? value : (BurdenType)(++LastType);
+		NameToType[name] = type;
+		TypeToName[type] = name;
+
+		ModdedStore[type] = data;
+
+		// Add Burden icons
+		UnityE.Sprite burdenSprite = IconLibrary.Instance.m_defaultSprite;
+		if (icon != null) {
+			burdenSprite = UnityE.Sprite.Create(icon, new UnityE.Rect(0, 0, icon.width / 2, icon.height / 2), new UnityE.Vector2(.5f, .5f));
+		}
+		IconLibrary.Instance.m_burdenIconLibrary.Add(type, burdenSprite);
+
+
+		// Manage seen state
+		BurdenObj obj = new BurdenObj(type) {
+			FoundState = NameToFoundState.TryGetValue(name, out FoundState seen) ? seen : FoundState.FoundButNotViewed
+		};
+		SaveManager.PlayerSaveData.BurdenObjTable[type] = obj;
+		NameToFoundState[name] = obj.FoundState;
+
+		RL2API.Log($"Saved Burden '{data.Name}' as {type}");
+		return type;
+	}
+
+	/// <summary>
+	/// Retrieves the <see cref="BurdenType"/> of a modded Burden
+	/// </summary>
+	/// <param name="burdenName">Name of the Burden in the format "Mod Name From Manifest/BurdenName"</param>
+	/// <returns><see cref="BurdenType.None"/> if Burden was not found</returns>
+	public static BurdenType GetType(string burdenName) {
+		BurdenType type = BurdenType.None;
+		NameToType.TryGetValue(burdenName, out type);
+		return type;
+	}
+
+	/// <summary>
+	/// Ran when Burden data is being saved. <br></br>
+	/// Current save profile canm be accessed via <see cref="SaveManager.CurrentProfile"/>
+	/// </summary>
+	public static class SaveData {
+		/// <inheritdoc cref="SaveData"/>
+		public delegate void Definition();
+
+		/// <inheritdoc cref="Definition"/>
+		public static event Definition? Event;
+
+		internal static MM.Hook Hook = new MM.Hook(
+			typeof(SaveManager).GetMethod(nameof(SaveManager.LoadAllGameData), Reflect.BindingFlags.Public | Reflect.BindingFlags.Static),
+			Method,
+			new MM.HookConfig() {
+				ID = "RL2.API::Burdens.SaveData",
+				ManualApply = true,
+			}
+		);
+
+		internal static LOAD_RESULT Method(System.Func<int, bool, LOAD_RESULT> orig, int currentProfile, bool loadAccountData) {
+			SaveModdedData();
+			Event?.Invoke();
+			LOAD_RESULT result = orig(currentProfile, loadAccountData);
+			return result;
+		}
+
+		internal static void SaveModdedData() {
+			// Nothing has been loaded, so there is nothing to save
+			if (FirstLoad) return;
+
+			// Save Burden types
+			string directory = IO.Path.Combine(SaveFileSystem.PersistentDataPath, "Saves", "RL2.API");
+			if (!IO.Directory.Exists(directory)) IO.Directory.CreateDirectory(directory);
+
+			directory = IO.Path.Combine(directory, "Burdens");
+			if (!IO.Directory.Exists(directory)) IO.Directory.CreateDirectory(directory);
+
+			string saveTypes = IO.Path.Combine(directory, "Types.json");
+			IO.File.WriteAllText(saveTypes, TinyJson.JsonWriter.ToJson(NameToType));
+
+			// Save found state
+			directory = IO.Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
+			if (!IO.Directory.Exists(directory)) IO.Directory.CreateDirectory(directory);
+
+			directory = IO.Path.Combine(directory, "Burdens");
+			if (!IO.Directory.Exists(directory)) IO.Directory.CreateDirectory(directory);
+
+			string savedFoundState = IO.Path.Combine(directory, "FoundState.json");
+			IO.File.WriteAllText(savedFoundState, TinyJson.JsonWriter.ToJson(NameToFoundState));
+		}
+	}
+
+	/// <summary>
+	/// Ran when Burden save data is being loaded <br></br>
+	/// This includes loading saved Burden types if it's the first load, as well as the Burden's 'found' state.
+	/// </summary>
+	public static class LoadData {
+		/// <inheritdoc cref="LoadData"/>
+		public delegate void Definition();
+
+		/// <inheritdoc cref="Definition"/>
+		public static event Definition? Event;
+
+		internal static MM.Hook Hook = new MM.Hook(
+			typeof(SaveManager).GetMethod(nameof(SaveManager.LoadAllGameData), Reflect.BindingFlags.Public | Reflect.BindingFlags.Static),
+			Method,
+			new MM.HookConfig() {
+				ID = "RL2.API::Burdens.LoadData",
+				ManualApply = true,
+			}
+		);
+
+		internal static LOAD_RESULT Method(System.Func<int, bool, LOAD_RESULT> orig, int currentProfile, bool loadAccountData) {
+			LOAD_RESULT result = orig(currentProfile, loadAccountData);
+			NameToFoundState.Clear();
+			LoadFoundState();
+
+			if (FirstLoad) LoadSavedTypes();
+
+			Event?.Invoke();
+
+			return result;
+		}
+
+		internal static void LoadSavedTypes() {
+			string directory = IO.Path.Combine(SaveFileSystem.PersistentDataPath, "Saves", "RL2.API");
+			if (!IO.Directory.Exists(directory)) IO.Directory.CreateDirectory(directory);
+
+			directory = IO.Path.Combine(directory, "Burdens");
+			if (!IO.Directory.Exists(directory)) IO.Directory.CreateDirectory(directory);
+
+			string savedTypes = IO.Path.Combine(directory, "Types.json");
+			if (IO.File.Exists(savedTypes)) {
+				NameToType = TinyJson.JsonParser.FromJson<Collections.Dictionary<string, BurdenType>>(IO.File.ReadAllText(savedTypes));
+				var sorted = System.Linq.Enumerable.ToList(NameToType.Values);
+				sorted.Sort();
+				if (sorted.Count > 0)
+					LastType = (int)sorted[sorted.Count - 1];
+			}
+		}
+
+		internal static void LoadFoundState() {
+			string directory = IO.Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
+			if (!IO.Directory.Exists(directory)) IO.Directory.CreateDirectory(directory);
+
+			directory = IO.Path.Combine(directory, "Burdens");
+			if (!IO.Directory.Exists(directory)) IO.Directory.CreateDirectory(directory);
+
+			string savedFoundState = IO.Path.Combine(directory, "FoundState.json");
+			if (IO.File.Exists(savedFoundState)) {
+				NameToFoundState = TinyJson.JsonParser.FromJson<Collections.Dictionary<string, FoundState>>(IO.File.ReadAllText(savedFoundState));
+			}
+		}
+	}
+
+	/// <summary>
+	/// Use to register Burdens with <see cref="Burdens.Register(BurdenData, UnityE.Texture2D?)"/>
+	/// </summary>
+	/// <remarks>This is ran only once for the entire game session</remarks>
+	public static class LoadContent {
+		/// <inheritdoc cref="LoadContent"/>
+		public delegate void Definition();
+
+		/// <inheritdoc cref="Definition"/>
+		public static event Definition? Event;
+
+		internal static MM.Hook Hook = new MM.Hook(
+			typeof(SaveManager).GetMethod(nameof(SaveManager.LoadAllGameData), Reflect.BindingFlags.Public | Reflect.BindingFlags.Static),
+			Method,
+			new MM.HookConfig() {
+				ID = "RL2.API::Burdens.LoadContent",
+				ManualApply = true,
+				After = ["RL2.API::Burdens.LoadData"]
+			}
+		);
+
+		internal static LOAD_RESULT Method(System.Func<int, bool, LOAD_RESULT> orig, int currentProfile, bool loadAccountData) {
+			LOAD_RESULT result = orig(currentProfile, loadAccountData);
+
+			if (FirstLoad) Event?.Invoke();
+			FirstLoad = false;
+
+			return result;
+		}
+	}
+
+	/// <summary> 
+	///	Allows for modifying Burden data
+	/// </summary>
+	public static class ModifyData {
 		/// <summary> </summary>
 		public delegate void Definition(BurdenType type, BurdenData data);
 
@@ -47,8 +261,7 @@ public static class Burdens {
 	/// <summary>
 	/// Allows extending the <see cref="BurdenType_RL.TypeArray"/>
 	/// </summary>
-	public static class ExtendTypeArray
-	{
+	public static class ExtendTypeArray {
 		/// <inheritdoc cref="ExtendTypeArray"/>
 		/// <param name="list"></param>
 		public delegate void Definition(ref Collections.List<BurdenType> list);
@@ -73,24 +286,55 @@ public static class Burdens {
 		}
 	}
 
+	internal static class AddBurdensToElpis {
+		internal static MM.ILHook ILHook = new MM.ILHook(
+			typeof(NewGamePlusOmniUIWindowController).GetMethod(nameof(NewGamePlusOmniUIWindowController.CreateEntries), Reflect.BindingFlags.NonPublic | Reflect.BindingFlags.Instance),
+			Patch,
+			new MM.ILHookConfig() {
+				ID = "RL2.API::IL::Burdens.AddBurdensToElpis",
+				ManualApply = true,
+			}
+		);
 
-	internal static MM.ILHook SilenceMissingDataLogs = new MM.ILHook(
-		typeof(BurdenLibrary).GetMethod(nameof(BurdenLibrary.GetBurdenData), Reflect.BindingFlags.Public | Reflect.BindingFlags.Static),
-		SilenceMissingDataLogsPatch,
-		new MM.ILHookConfig() {
-			ID = "RL2.API::IL::Burdens.",
-			ManualApply = true,
+		internal static void Patch(Cil.ILContext il) {
+			var cursor = new Cil.ILCursor(il);
+
+			if (cursor.TryGotoNext(Cil.MoveType.Before, i => Cil.ILPatternMatchingExt.MatchStloc(i, 0))) {
+				cursor.EmitDelegate(ModifyEntryArray);
+			}
 		}
-	);
 
-	internal static void SilenceMissingDataLogsPatch(Cil.ILContext il) {
-		var cursor = new Cil.ILCursor(il);
+		private static System.Array ModifyEntryArray(System.Array original_array) {
+			BurdenType[] new_order = new BurdenType[ModdedStore.Keys.Count + original_array.Length];
+			int ng_plus_entry = original_array.Length - 1;
 
-		if (cursor.TryGotoNext(Cil.MoveType.Before, i => Cil.ILPatternMatchingExt.MatchBrfalse(i, out _))) {
-			cursor.Emit(IL.OpCodes.Ldarg_0);
-			cursor.EmitDelegate(ModdedStore.ContainsKey);
+			original_array.CopyTo(new_order, 0);
+			ModdedStore.Keys.CopyTo(new_order, ng_plus_entry);
 
-			cursor.Emit(IL.OpCodes.Or);
+			return new_order;
+		}
+	}
+
+	internal static class SilenceMissingDataLogs
+	{
+		internal static MM.ILHook ILHook = new MM.ILHook(
+			typeof(BurdenLibrary).GetMethod(nameof(BurdenLibrary.GetBurdenData), Reflect.BindingFlags.Public | Reflect.BindingFlags.Static),
+			Patch,
+			new MM.ILHookConfig() {
+				ID = "RL2.API::IL::Burdens.SilenceMissingDataLogs",
+				ManualApply = true,
+			}
+		);
+
+		internal static void Patch(Cil.ILContext il) {
+			var cursor = new Cil.ILCursor(il);
+
+			if (cursor.TryGotoNext(Cil.MoveType.Before, i => Cil.ILPatternMatchingExt.MatchBrfalse(i, out _))) {
+				cursor.Emit(IL.OpCodes.Ldarg_0);
+				cursor.EmitDelegate(ModdedStore.ContainsKey);
+
+				cursor.Emit(IL.OpCodes.Or);
+			}
 		}
 	}
 }

@@ -11,6 +11,7 @@ internal static class Hooks
 		..Scars.Hooks,
 		..Relics.Hooks,
 		..Traits.Hooks,
+		..Burdens.Hooks,
 	];
 
 	internal static void Apply() {
