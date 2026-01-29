@@ -18,10 +18,8 @@ RL2.API is a modding API for [Rogue Legacy 2](https://roguelegacy2.com). It requ
 
 ## Build from source
 1. Make sure you installed [RL2.ModLoader](https://github.com/RL2-API/RL2.ModLoader)
-2. Clone this repository
-3. Run `setup.sh`
-    - This will download and run [RL2.ModLoader.DevSetup](https://github.com/RL2-API/RL2.ModLoader.DevSetup)
-4. Build the project either via Visual Studio, or `dotnet build -c Release`
+2. Clone this repository into the `GameInstallation\Rogue Legacy 2_Data\ModSources` directory
+3. Build the project either via Visual Studio, or `dotnet build -c Release`
     - This will build the mod and copy it to the proper directory, so that it's ready to be enabled in game.
 
 ## Using RL2.API as a dependency
