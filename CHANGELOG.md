@@ -1,5 +1,15 @@
 # RL2.API Changelog
 
+## v2.1.0
+### Additions
+- Modded Burdens!
+    - `Relics.Register`
+    - `Relics.GetType`
+    - `Relics.SaveData`
+    - `Relics.LoadData`
+    - `Relics.LoadContent`
+    - `Relics.ModifyData`
+    - `Relics.ExtendTypeArray`
 ## v2.0.0
 ### Changes
 - All API endpoints are now accessed via `(Container/s).(Name).Event`
