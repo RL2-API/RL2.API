@@ -97,7 +97,7 @@ public static class Traits
 		}
 		IconLibrary.Instance.m_traitIconLibrary[type] = traitIcon;
 
-		RL2API.Log($"Saved Trait {data.Name} as {type}");
+		RL2API.Log($"Saved Trait '{data.Name}' as {type}");
 
 		return type;
 	}

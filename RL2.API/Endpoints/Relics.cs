@@ -77,7 +77,7 @@ public static class Relics
 		SaveManager.PlayerSaveData.RelicObjTable[type] = obj;
 		NameToFoundState[name] = obj.WasSeen;
 
-		RL2API.Log($"Saved {data.Name} as {type}");
+		RL2API.Log($"Saved Relic '{data.Name}' as {type}");
 		return type;
 	}
 
