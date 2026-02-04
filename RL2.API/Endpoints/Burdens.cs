@@ -6,6 +6,7 @@ using IL = Mono.Cecil.Cil;
 using UnityE = UnityEngine;
 using TinyJson = Rewired.Utils.Libraries.TinyJson;
 using IO = System.IO;
+using Loader = RL2.ModLoader;
 
 namespace RL2.API;
 
@@ -19,6 +20,7 @@ public static class Burdens {
 		LoadContent.Hook,
 		ModifyData.Hook,
 		ExtendTypeArray.Hook,
+		SetFoundState.Hook,
 	];
 
 	internal static Collections.Dictionary<BurdenType, BurdenData> ModdedStore = [];
@@ -33,13 +35,56 @@ public static class Burdens {
 
 	internal static bool FirstLoad = true;
 
+	/// <summary> </summary>
+	public struct Data {
+		/// <summary> </summary>
+		public string Name;
+		/// <summary> </summary>
+		public int MaxBurdenLevel;
+		/// <summary> </summary>
+		public int InitialBurdenCost;
+		/// <summary> </summary>
+		public float ScalingBurdenCost;
+		/// <summary> </summary>
+		public bool Disabled;
+		/// <summary> </summary>
+		public float StatsGain;
+		/// <summary> </summary>
+		public string Title;
+		/// <summary> </summary>
+		public string Description;
+		/// <summary> </summary>
+		public string FlavourText;
+		/// <summary> </summary>
+		public string Hint;
+		/// <summary> </summary>
+		public string? IconPath;
+		/// <summary> </summary>
+		public FoundState DefaultFoundState;
+
+		internal BurdenData ToScriptableObject() {
+			var data = UnityE.ScriptableObject.CreateInstance<BurdenData>();			
+			data.Name = Name;
+			data.MaxBurdenLevel = MaxBurdenLevel;
+			data.InitialBurdenCost = InitialBurdenCost;
+			data.ScalingBurdenCost = ScalingBurdenCost;
+			data.Disabled = Disabled;
+			data.StatsGain = StatsGain;
+			data.Title = Title;
+			data.Description = Description;
+			data.Description2 = FlavourText;
+			return data;
+		}
+	}
+
 	/// <summary>
 	/// Registers custom Burdens
 	/// </summary>
 	/// <param name="data"></param>
 	/// <param name="icon"></param>
+	/// <param name="found_state">Default <see cref="FoundState"/></param>
 	/// <returns></returns>
-	public static BurdenType Register(BurdenData data, UnityE.Texture2D? icon = null) {
+	public static BurdenType Register(BurdenData data, UnityE.Texture2D? icon = null, FoundState found_state = FoundState.NotFound) {
 		while (IconLibrary.Instance == null) { }
 
 		string modName = RL2API.AssemblyToMod[Reflect.Assembly.GetCallingAssembly()].Manifest.Name;
@@ -61,13 +106,25 @@ public static class Burdens {
 
 		// Manage seen state
 		BurdenObj obj = new BurdenObj(type) {
-			FoundState = NameToFoundState.TryGetValue(name, out FoundState seen) ? seen : FoundState.FoundButNotViewed
+			FoundState = NameToFoundState.TryGetValue(name, out FoundState seen) ? seen : found_state
 		};
 		SaveManager.PlayerSaveData.BurdenObjTable[type] = obj;
 		NameToFoundState[name] = obj.FoundState;
 
 		RL2API.Log($"Saved Burden '{data.Name}' as {type}");
 		return type;
+	}
+
+	/// <inheritdoc cref="Register(BurdenData, UnityE.Texture2D?, FoundState)"/>
+	/// <param name="data"></param>
+	/// <returns></returns>
+	public static BurdenType Register(Data data) {
+		var scriptable_object = data.ToScriptableObject();
+		return Register(
+			scriptable_object, 
+			data.IconPath is null ? null : Loader.TextureExtension.LoadTexture(data.IconPath), 
+			data.DefaultFoundState
+		);
 	}
 
 	/// <summary>
@@ -198,7 +255,7 @@ public static class Burdens {
 	}
 
 	/// <summary>
-	/// Use to register Burdens with <see cref="Burdens.Register(BurdenData, UnityE.Texture2D?)"/>
+	/// Use to register Burdens with <see cref="Burdens.Register(BurdenData, UnityE.Texture2D?, FoundState)"/>
 	/// </summary>
 	/// <remarks>This is ran only once for the entire game session</remarks>
 	public static class LoadContent {
