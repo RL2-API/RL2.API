@@ -286,6 +286,44 @@ public static class Burdens {
 		}
 	}
 
+	/// <summary>
+	/// Allows hijacking of the <see cref="BurdenManager.SetFoundState(BurdenType, FoundState, bool)"/> method
+	/// by modifying the provided parameters
+	/// </summary>
+	public static class SetFoundState {
+		/// <inheritdoc cref="SetFoundState"/>
+		/// <param name="type"></param>
+		/// <param name="state"></param>
+		/// <param name="override_values"></param>
+		public delegate void Definition(BurdenType type, ref FoundState state, ref bool override_values);
+		 
+		/// <inheritdoc cref="Definition"/>
+		public static event Definition? Event;
+
+		internal static MM.Hook Hook = new MM.Hook(
+			typeof(BurdenManager).GetMethod(nameof(BurdenManager.SetFoundState), Reflect.BindingFlags.Public | Reflect.BindingFlags.Static),
+			Method,
+			new MM.HookConfig() {
+				ID = "RL2.API::Burdens.SetFoundState",
+				ManualApply = true,
+			}
+		);
+
+		internal static void Method(System.Action<BurdenType, FoundState, bool> orig, BurdenType type, FoundState state, bool override_values) {
+			Event?.Invoke(type, ref state, ref override_values);
+			
+			if (!TypeToName.TryGetValue(type, out string name)) {
+				orig(type, state, override_values);
+				return;
+			}
+
+			BurdenObj burden = BurdenManager.GetBurden(type);
+			if (!burden.IsNativeNull() && (override_values || state > burden.FoundState)) {
+				burden.FoundState = state;
+			}
+		}
+	}
+
 	internal static class AddBurdensToElpis {
 		internal static MM.ILHook ILHook = new MM.ILHook(
 			typeof(NewGamePlusOmniUIWindowController).GetMethod(nameof(NewGamePlusOmniUIWindowController.CreateEntries), Reflect.BindingFlags.NonPublic | Reflect.BindingFlags.Instance),
@@ -315,8 +353,7 @@ public static class Burdens {
 		}
 	}
 
-	internal static class SilenceMissingDataLogs
-	{
+	internal static class SilenceMissingDataLogs {
 		internal static MM.ILHook ILHook = new MM.ILHook(
 			typeof(BurdenLibrary).GetMethod(nameof(BurdenLibrary.GetBurdenData), Reflect.BindingFlags.Public | Reflect.BindingFlags.Static),
 			Patch,
