@@ -379,4 +379,34 @@ public static class Relics
 			Event?.Invoke(self.RelicType);
 		}
 	}
+
+	/// <summary> Allows hijacking the Relic seens state change by modifying the provided parameters </summary>
+	public static class SetSeen {
+		/// <inheritdoc cref="Definition"/>
+		/// <param name="relic"></param>
+		/// <param name="seen"></param>
+		public delegate void Definition(RelicObj relic, ref bool seen);
+
+		/// <inheritdoc cref="Definition" />
+		public static event Definition? Event;
+
+		internal static Hook Hook = new Hook(
+			typeof(RelicObj).GetProperty(nameof(RelicObj.WasSeen), BindingFlags.Public | BindingFlags.Instance).SetMethod,
+			Method,
+			new HookConfig() {
+				ID = "RL2.API::Relics.SetSeen",
+				ManualApply = true,
+			}
+		);
+
+		internal static void Method(Action<RelicObj, bool> orig, RelicObj self, bool state) {
+			Event?.Invoke(self, ref state);
+			if (!TypeToName.TryGetValue(self.RelicType, out string name)) {
+				orig(self, state);
+				return;
+			};
+
+			NameToFoundState[name] = state;
+		}
+	}
 }
