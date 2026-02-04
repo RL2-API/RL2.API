@@ -45,7 +45,8 @@ public static class Relics
 	/// <param name="data">Data of the custom Relic</param>
 	/// <param name="icon">Small icon - displayed in the HUD</param>
 	/// <param name="iconBig">Big icon - displayed when picking up the Relic</param>
-	public static RelicType Register(RelicData data, Texture2D? icon = null, Texture2D? iconBig = null) {
+	/// <param name="seen_by_default"></param>
+	public static RelicType Register(RelicData data, Texture2D? icon = null, Texture2D? iconBig = null, bool seen_by_default = false) {
 		while (IconLibrary.Instance == null) { }
 
 		string modName = RL2API.AssemblyToMod[Assembly.GetCallingAssembly()].Manifest.Name;
@@ -72,7 +73,7 @@ public static class Relics
 
 		// Manage seen state
 		RelicObj obj = new RelicObj(type) {
-			WasSeen = NameToFoundState.TryGetValue(name, out bool seen) ? seen : true
+			m_wasSeen = NameToFoundState.TryGetValue(name, out bool seen) ? seen : seen_by_default
 		};
 		SaveManager.PlayerSaveData.RelicObjTable[type] = obj;
 		NameToFoundState[name] = obj.WasSeen;
