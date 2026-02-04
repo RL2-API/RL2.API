@@ -328,7 +328,7 @@ public static class Relics
 	/// </summary>
 	public static class ApplyEffect
 	{
-		/// <inheritdoc cref="Definition"/>
+		/// <inheritdoc cref="ApplyEffect"/>
 		/// <param name="type">Activated Relic</param>
 		public delegate void Definition(RelicType type);
 
@@ -358,7 +358,7 @@ public static class Relics
 	/// </summary>
 	public static class StopEffect
 	{
-		/// <inheritdoc cref="Definition"/>
+		/// <inheritdoc cref="StopEffect"/>
 		/// <param name="type">Activated Relic</param>
 		public delegate void Definition(RelicType type);
 
