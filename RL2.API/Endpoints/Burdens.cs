@@ -21,6 +21,7 @@ public static class Burdens {
 		ModifyData.Hook,
 		ExtendTypeArray.Hook,
 		SetFoundState.Hook,
+		ModifyUnlocked.Hook,
 	];
 
 	internal static Collections.Dictionary<BurdenType, BurdenData> ModdedStore = [];
@@ -37,6 +38,10 @@ public static class Burdens {
 
 	/// <summary> </summary>
 	public struct Data {
+		#pragma warning disable
+		public Data() {}
+		#pragma warning restore
+
 		/// <summary> </summary>
 		public string Name;
 		/// <summary> </summary>
@@ -46,7 +51,7 @@ public static class Burdens {
 		/// <summary> </summary>
 		public float ScalingBurdenCost;
 		/// <summary> </summary>
-		public bool Disabled;
+		public bool Disabled = false;
 		/// <summary> </summary>
 		public float StatsGain;
 		/// <summary> </summary>
@@ -60,7 +65,7 @@ public static class Burdens {
 		/// <summary> </summary>
 		public string? IconPath;
 		/// <summary> </summary>
-		public FoundState DefaultFoundState;
+		public FoundState DefaultFoundState = FoundState.NotFound;
 
 		internal BurdenData ToScriptableObject() {
 			var data = UnityE.ScriptableObject.CreateInstance<BurdenData>();			
@@ -73,6 +78,7 @@ public static class Burdens {
 			data.Title = Title;
 			data.Description = Description;
 			data.Description2 = FlavourText;
+			data.Hint = Hint;
 			return data;
 		}
 	}
@@ -257,7 +263,7 @@ public static class Burdens {
 	}
 
 	/// <summary>
-	/// Use to register Burdens with <see cref="Burdens.Register(BurdenData, UnityE.Texture2D?, FoundState)"/>
+	/// Use to register Burdens with <see cref="Burdens.Register(BurdenData, UnityE.Texture2D?, FoundState, Reflect.Assembly?)"/>
 	/// </summary>
 	/// <remarks>This is ran only once for the entire game session</remarks>
 	public static class LoadContent {
@@ -379,9 +385,43 @@ public static class Burdens {
 			BurdenObj burden = BurdenManager.GetBurden(type);
 			if (!burden.IsNativeNull() && (override_values || state > burden.FoundState)) {
 				burden.FoundState = state;
+				NameToFoundState[name] = state;
 			}
 		}
 	}
+
+	/// <summary>
+	/// Allows modifying the "Unlocked" state of a Burden
+	/// </summary>
+	public static class ModifyUnlocked {
+		/// <inheritdoc cref="ModifyUnlocked"/>
+		/// <param name="type"></param>
+		/// <param name="unlocked"></param>
+		public delegate void Definition(BurdenType type, ref bool unlocked);
+
+		/// <inheritdoc cref="Definition"/>
+		public static event Definition? Event;
+
+		internal static MM.Hook Hook = new MM.Hook(
+			typeof(BurdenManager).GetMethod(nameof(BurdenManager.IsBurdenUnlocked), Reflect.BindingFlags.Public | Reflect.BindingFlags.Static),
+			Method,
+			new MM.HookConfig() {
+				
+				ID = "RL2.API::Burdens.ModifyUnlocked",
+				ManualApply = true,
+			}
+		);
+
+		internal static bool Method(System.Func<BurdenType, bool> orig, BurdenType type) {
+			bool result = orig(type);
+			if (TypeToName.TryGetValue(type, out string name)) {
+				result = NameToFoundState[name] > FoundState.NotFound && !ModdedStore[type].Disabled;
+			}
+			Event?.Invoke(type, ref result);
+
+			return result;
+		}
+	} 
 
 	internal static class AddBurdensToElpis {
 		internal static MM.ILHook ILHook = new MM.ILHook(
