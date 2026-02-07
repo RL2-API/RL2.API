@@ -212,7 +212,7 @@ public static class Relics
 	}
 
 	/// <summary>
-	/// Use to register Relics with <see cref="Relics.Register(RelicData, Texture2D?, Texture2D?)"/>
+	/// Use to register Relics with <see cref="Relics.Register(RelicData, Texture2D?, Texture2D?, bool)"/>
 	/// </summary>
 	/// <remarks>This is ran only once for the entire game session</remarks>
 	public static class LoadContent
