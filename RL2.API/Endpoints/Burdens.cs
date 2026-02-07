@@ -83,11 +83,13 @@ public static class Burdens {
 	/// <param name="data"></param>
 	/// <param name="icon"></param>
 	/// <param name="found_state">Default <see cref="FoundState"/></param>
+	/// <param name="mod_assembly"></param>
 	/// <returns></returns>
-	public static BurdenType Register(BurdenData data, UnityE.Texture2D? icon = null, FoundState found_state = FoundState.NotFound) {
+	public static BurdenType Register(BurdenData data, UnityE.Texture2D? icon = null, FoundState found_state = FoundState.NotFound, Reflect.Assembly? mod_assembly = null) {
 		while (IconLibrary.Instance == null) { }
 
-		string modName = RL2API.AssemblyToMod[Reflect.Assembly.GetCallingAssembly()].Manifest.Name;
+		mod_assembly = mod_assembly ?? Reflect.Assembly.GetCallingAssembly();
+		string modName = RL2API.AssemblyToMod[mod_assembly].Manifest.Name;
 		string name = modName + "/" + data.Name;
 
 		BurdenType type = NameToType.TryGetValue(name, out BurdenType value) ? value : (BurdenType)(++LastType);
@@ -103,7 +105,6 @@ public static class Burdens {
 		}
 		IconLibrary.Instance.m_burdenIconLibrary.Add(type, burdenSprite);
 
-
 		// Manage seen state
 		BurdenObj obj = new BurdenObj(type) {
 			FoundState = NameToFoundState.TryGetValue(name, out FoundState seen) ? seen : found_state
@@ -115,7 +116,7 @@ public static class Burdens {
 		return type;
 	}
 
-	/// <inheritdoc cref="Register(BurdenData, UnityE.Texture2D?, FoundState)"/>
+	/// <inheritdoc cref="Register(BurdenData, UnityE.Texture2D?, FoundState, Reflect.Assembly?)"/>
 	/// <param name="data"></param>
 	/// <returns></returns>
 	public static BurdenType Register(Data data) {
@@ -123,7 +124,8 @@ public static class Burdens {
 		return Register(
 			scriptable_object, 
 			data.IconPath is null ? null : Loader.TextureExtension.LoadTexture(data.IconPath), 
-			data.DefaultFoundState
+			data.DefaultFoundState,
+			Reflect.Assembly.GetCallingAssembly()
 		);
 	}
 
