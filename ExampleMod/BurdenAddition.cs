@@ -1,5 +1,6 @@
 using RL2.API;
 using RL2.API.DataStructures;
+using UnityEngine;
 
 public class BurdenAddition : IRegistrable
 {
@@ -14,19 +15,29 @@ public class BurdenAddition : IRegistrable
 			StatsGain = .1f,
 			Title = "Burden of No-U",
 			Description = "Enemies take 200 damage less per level",
-			FlavourText = "222- Enemies take 200 damage less per level -222",
+			FlavourText = "The Knight's armor protects all enemies",
 			IconPath = null,
-			DefaultFoundState = FoundState.FoundAndViewed,
-			Hint = "Monke",
+			DefaultFoundState = FoundState.NotFound,
+			Hint = "A Knight guards his secrets well...",
 		};
 
 		Burdens.LoadContent.Event += () => {
 			Burdens.Register(CustomData);
 		};
 
+		Enemy.OnKill.Event += (EnemyController enemy, GameObject killer) => {
+			if (enemy.EnemyType != EnemyType.SwordKnight) return;
+
+			BurdenType type = Burdens.GetType("ExampleMod/Burden of No-U");
+			if (BurdenManager.GetFoundState(type) == FoundState.NotFound) {
+				Mod.Log("Unlocking Burden");
+				BurdenManager.SetFoundState(type, FoundState.FoundButNotViewed, overrideValues: true);
+			}
+		};
+
 		Enemy.ModifyDamageTaken.Event += (EnemyController enemyDamaged, IDamageObj damageSource, float damageTaken, ref CriticalStrikeType critType, ref Modifiers damageTakenModifiers) => {
 			int level = SaveManager.PlayerSaveData.GetBurden(Burdens.GetType("ExampleMod/Burden of No-U")).CurrentLevel;
-			if (level > 0) { }
+			if (level > 0) {
 			damageTakenModifiers.Flat -= 200 * level;
 		};
 	}
