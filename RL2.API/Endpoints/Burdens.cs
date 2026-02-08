@@ -67,7 +67,8 @@ public static class Burdens {
 		/// <summary> </summary>
 		public FoundState DefaultFoundState = FoundState.NotFound;
 
-		internal BurdenData ToScriptableObject() {
+		/// <summary> </summary>		
+		public BurdenData ToScriptableObject() {
 			var data = UnityE.ScriptableObject.CreateInstance<BurdenData>();			
 			data.Name = Name;
 			data.MaxBurdenLevel = MaxBurdenLevel;

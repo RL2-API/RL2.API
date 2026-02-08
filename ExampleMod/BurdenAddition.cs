@@ -38,7 +38,8 @@ public class BurdenAddition : IRegistrable
 		Enemy.ModifyDamageTaken.Event += (EnemyController enemyDamaged, IDamageObj damageSource, float damageTaken, ref CriticalStrikeType critType, ref Modifiers damageTakenModifiers) => {
 			int level = SaveManager.PlayerSaveData.GetBurden(Burdens.GetType("ExampleMod/Burden of No-U")).CurrentLevel;
 			if (level > 0) {
-			damageTakenModifiers.Flat -= 200 * level;
+				damageTakenModifiers.Flat -= 200 * level;				
+			}
 		};
 	}
 }
