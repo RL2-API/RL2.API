@@ -80,6 +80,7 @@ public partial class RL2API
 			}
 
 			string assembly_path = Path.Combine(RL2ModLoader.ModManifestToPath[manifest], manifest.ModAssembly);
+			string pdb_path = assembly_path.Replace(".dll", ".pdb");
 			if (!File.Exists(assembly_path)) {
 				Log($"Mod assembly {assembly_path} was not found");
 				continue;
@@ -88,7 +89,10 @@ public partial class RL2API
 			byte[] assembly_file = File.ReadAllBytes(assembly_path);
 			Assembly found_assembly = null!;
 			try {
-				found_assembly = Assembly.Load(assembly_file);
+				if (File.Exists(pdb_path))
+					found_assembly = Assembly.Load(assembly_file, File.ReadAllBytes(pdb_path));
+				else
+					found_assembly = Assembly.Load(assembly_file);
 			}
 			catch (Exception ex) {
 				Log($"Failed to load assembly {assembly_path}: {ex}");
