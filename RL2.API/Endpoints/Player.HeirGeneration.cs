@@ -61,6 +61,14 @@ public static partial class Player
 			/// <inheritdoc cref="Definition"/>
 			public static event Definition? Event;
 
+			/// <inheritdoc cref="ModifyCharacterData"/>
+			/// <param name="data">Character data to modify</param>
+			/// <param name="index">Index of the heir from the selection (0, 1, 2)</param>
+			public delegate void Definition_v2(CharacterData data, int index);
+
+			/// <inheritdoc cref="Definition_v2" />
+			public static event Definition_v2? Event_v2;
+
 			internal static ILHook Hook = new ILHook(
 				typeof(LineageWindowController).GetMethod("CreateRandomCharacters", BindingFlags.NonPublic | BindingFlags.Instance),
 				Method,
@@ -157,6 +165,7 @@ public static partial class Player
 					bool classLocked = index == array.Length - 1 && SaveManager.ModeSaveData.GetSoulShopObj(SoulShopType.ChooseYourClass).CurrentEquippedLevel > 0;
 					bool spellLocked = index == array.Length - 1 && SaveManager.ModeSaveData.GetSoulShopObj(SoulShopType.ChooseYourSpell).CurrentEquippedLevel > 0;
 					Event?.Invoke(characterData, classLocked, spellLocked);
+					Event_v2?.Invoke(characterData, index);
 				}
 			}
 		}
