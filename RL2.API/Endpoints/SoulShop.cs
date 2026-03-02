@@ -88,8 +88,8 @@ public static class SoulShop {
 
 	/// <summary></summary>
 	public struct Entry {
-		/// <summary></summary>
-		public string? IconPath;
+		// /// <summary></summary>
+		// public string? IconPath;
 		/// <summary></summary>
 		public bool IsToggle;
 
