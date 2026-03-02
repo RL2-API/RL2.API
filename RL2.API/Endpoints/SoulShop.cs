@@ -204,7 +204,8 @@ public static class SoulShop {
 
 		}
 	}
-	
+
+	/// <summary></summary>	
 	public static class ModifyData {
 		/// <inheritdoc cref="ModifyData" />
 		public delegate void Definition(SoulShopType type, SoulShopData data);
@@ -232,6 +233,9 @@ public static class SoulShop {
 		}
 	}
 
+	/// <summary>
+	/// Allows modifying the <see cref="SoulShopObj"/> tied to Soul Shop upgrades
+	/// </summary>
 	public static class ModifyObj {
 		/// <inheritdoc cref="ModifyObj" />
 		public delegate void Definition(SoulShopType type, SoulShopObj obj);

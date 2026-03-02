@@ -201,6 +201,7 @@ public static class Burdens {
 		}
 	}
 
+	/// <summary> </summary>
 	public static class DeleteData {
 		/// <inheritdoc cref="DeleteData"/>
 		/// <param name="save_batch"></param>
