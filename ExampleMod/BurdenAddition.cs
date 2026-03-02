@@ -32,6 +32,7 @@ public class BurdenAddition : IRegistrable
 			if (BurdenManager.GetFoundState(type) == FoundState.NotFound) {
 				Mod.Log("Unlocking Burden");
 				BurdenManager.SetFoundState(type, FoundState.FoundButNotViewed, overrideValues: true);
+				Messenger<UIMessenger, UIEvent>.Broadcast(UIEvent.DisplayObjectiveCompleteHUD, null, new InsightObjectiveCompleteHUDEventArgs(InsightType.None, discovered: true, titleTextOverride: "Burden Unlocked", subtitleTextOverride: "A new Burden has been unlocked"));
 			}
 		};
 

@@ -20,6 +20,7 @@ public static class Relics
 		SaveData.Hook,
 		LoadData.Hook,
 		LoadContent.Hook,
+		DeleteData.Hook,
 		ModifyData.Hook,
 		ModifyData.ILHook,
 		ExtendTypeArray.Hook,
@@ -78,7 +79,7 @@ public static class Relics
 		SaveManager.PlayerSaveData.RelicObjTable[type] = obj;
 		NameToFoundState[name] = obj.WasSeen;
 
-		RL2API.Log($"Saved Relic '{data.Name}' as {type}");
+		RL2API.Log($"Saved Relic '{name}' as {type}");
 		return type;
 	}
 
@@ -95,7 +96,7 @@ public static class Relics
 
 	/// <summary>
 	/// Ran when Relic data is being saved. <br></br>
-	/// Current save profile canm be accessed via <see cref="SaveManager.CurrentProfile"/>
+	/// Current save profile canm be accessed via <see cref="RL2.API.Hooks.PreviousProfile"/>
 	/// </summary>
 	public static class SaveData
 	{
@@ -136,7 +137,7 @@ public static class Relics
 			File.WriteAllText(saveTypes, JsonWriter.ToJson(NameToType));
 
 			// Save found state
-			directory = Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
+			directory = Path.Combine(SaveManager.GetSaveDirectoryPath(API.Hooks.PreviousProfile, false), "RL2.API");
 			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			directory = Path.Combine(directory, "Relics");
@@ -144,6 +145,39 @@ public static class Relics
 
 			string savedFoundState = Path.Combine(directory, "FoundState.json");
 			File.WriteAllText(savedFoundState, JsonWriter.ToJson(NameToFoundState));
+		}
+	}
+
+	/// <summary>  </summary>
+	public static class DeleteData {
+		/// <inheritdoc cref="DeleteData" />
+		public delegate void Definition(SaveFileSystem.SaveBatch save_batch, int profile, SaveDataType save_type);
+
+		/// <inheritdoc cref="Definition" />
+		public static event Definition? Event;
+
+		internal static Hook Hook = new Hook(
+			typeof(SaveManager).GetMethod(nameof(SaveManager.DeleteSaveFile), BindingFlags.Public | BindingFlags.Static),
+			Wrapper,
+			new HookConfig() {
+				ID = "RL2.API::Burdens.DeleteData",
+				ManualApply = true,
+			}
+		);
+
+		internal static void Procedure(int profile, SaveDataType save_type) {
+			if (save_type != SaveDataType.Player) return;
+
+			string saved_path = Path.Combine(SaveManager.GetSaveDirectoryPath(profile, false), "RL2.API", "Relics", "FoundState.json");
+			if (File.Exists(saved_path)) { 
+				File.Delete(saved_path);
+			}
+		}
+
+		static void Wrapper(Definition orig, SaveFileSystem.SaveBatch batch, int profile, SaveDataType save_type) {
+			orig(batch, profile, save_type);
+			Procedure(profile, save_type);
+			Event?.Invoke(batch, profile, save_type);
 		}
 	}
 

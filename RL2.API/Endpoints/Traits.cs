@@ -20,6 +20,7 @@ public static class Traits
 		SaveData.Hook,
 		LoadData.Hook,
 		LoadContent.Hook,
+		DeleteData.Hook,
 		ApplyEffect.Hook,
 		StopEffect.ILHook,
 		ModifyData.Hook,
@@ -97,7 +98,7 @@ public static class Traits
 		}
 		IconLibrary.Instance.m_traitIconLibrary[type] = traitIcon;
 
-		RL2API.Log($"Saved Trait '{data.Name}' as {type}");
+		RL2API.Log($"Saved Trait '{name}' as {type}");
 
 		return type;
 	}
@@ -272,7 +273,7 @@ public static class Traits
 
 	/// <summary>
 	/// Ran when Trait data is being saved. <br></br>
-	/// Current save profile canm be accessed via <see cref="SaveManager.CurrentProfile"/>
+	/// Current save profile canm be accessed via <see cref="RL2.API.Hooks.PreviousProfile"/>
 	/// </summary>
 	public static class SaveData
 	{
@@ -313,7 +314,7 @@ public static class Traits
 			File.WriteAllText(saveTypes, JsonWriter.ToJson(NameToType));
 
 			// Save found state
-			directory = Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
+			directory = Path.Combine(SaveManager.GetSaveDirectoryPath(API.Hooks.PreviousProfile, false), "RL2.API");
 			if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
 			directory = Path.Combine(directory, "Traits");
@@ -422,4 +423,39 @@ public static class Traits
 			return result;
 		}
 	}
+
+	
+	/// <summary>  </summary>
+	public static class DeleteData {
+		/// <inheritdoc cref="DeleteData" />
+		public delegate void Definition(SaveFileSystem.SaveBatch save_batch, int profile, SaveDataType save_type);
+
+		/// <inheritdoc cref="Definition" />
+		public static event Definition? Event;
+
+		internal static Hook Hook = new Hook(
+			typeof(SaveManager).GetMethod(nameof(SaveManager.DeleteSaveFile), BindingFlags.Public | BindingFlags.Static),
+			Wrapper,
+			new HookConfig() {
+				ID = "RL2.API::Burdens.DeleteData",
+				ManualApply = true,
+			}
+		);
+
+		internal static void Procedure(int profile, SaveDataType save_type) {
+			if (save_type != SaveDataType.Player) return;
+
+			string saved_path = Path.Combine(SaveManager.GetSaveDirectoryPath(profile, false), "RL2.API", "Traits", "FoundState.json");
+			if (File.Exists(saved_path)) { 
+				File.Delete(saved_path);
+			}
+		}
+
+		static void Wrapper(Definition orig, SaveFileSystem.SaveBatch batch, int profile, SaveDataType save_type) {
+			orig(batch, profile, save_type);
+			Procedure(profile, save_type);
+			Event?.Invoke(batch, profile, save_type);
+		}
+	}
+
 }

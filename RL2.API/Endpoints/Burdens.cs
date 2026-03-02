@@ -18,6 +18,7 @@ public static class Burdens {
 		SaveData.Hook,
 		LoadData.Hook,
 		LoadContent.Hook,
+		DeleteData.Hook,
 		ModifyData.Hook,
 		ExtendTypeArray.Hook,
 		SetFoundState.Hook,
@@ -119,7 +120,7 @@ public static class Burdens {
 		SaveManager.PlayerSaveData.BurdenObjTable[type] = obj;
 		NameToFoundState[name] = obj.FoundState;
 
-		RL2API.Log($"Saved Burden '{data.Name}' as {type}");
+		RL2API.Log($"Saved Burden '{name}' as {type}");
 		return type;
 	}
 
@@ -149,7 +150,7 @@ public static class Burdens {
 
 	/// <summary>
 	/// Ran when Burden data is being saved. <br></br>
-	/// Current save profile canm be accessed via <see cref="SaveManager.CurrentProfile"/>
+	/// Current save profile canm be accessed via <see cref="RL2.API.Hooks.PreviousProfile"/>
 	/// </summary>
 	public static class SaveData {
 		/// <inheritdoc cref="SaveData"/>
@@ -189,7 +190,7 @@ public static class Burdens {
 			IO.File.WriteAllText(saveTypes, TinyJson.JsonWriter.ToJson(NameToType));
 
 			// Save found state
-			directory = IO.Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API");
+			directory = IO.Path.Combine(SaveManager.GetSaveDirectoryPath(API.Hooks.PreviousProfile, false), "RL2.API");
 			if (!IO.Directory.Exists(directory)) IO.Directory.CreateDirectory(directory);
 
 			directory = IO.Path.Combine(directory, "Burdens");
@@ -197,6 +198,40 @@ public static class Burdens {
 
 			string savedFoundState = IO.Path.Combine(directory, "FoundState.json");
 			IO.File.WriteAllText(savedFoundState, TinyJson.JsonWriter.ToJson(NameToFoundState));
+		}
+	}
+
+	public static class DeleteData {
+		/// <inheritdoc cref="DeleteData"/>
+		/// <param name="save_batch"></param>
+		/// <param name="profile"></param>
+		/// <param name="save_type"></param>
+		public delegate void Definition(SaveFileSystem.SaveBatch save_batch, int profile, SaveDataType save_type);
+
+		/// <inheritdoc cref="Definition" />
+		public static event Definition? Event;
+
+		internal static MM.Hook Hook = new MM.Hook(
+			typeof(SaveManager).GetMethod(nameof(SaveManager.DeleteSaveFile), Reflect.BindingFlags.Public | Reflect.BindingFlags.Static),
+			Wrapper,
+			new MM.HookConfig() {
+				ID = "RL2.API::Burdens.DeleteData",
+				ManualApply = true,
+			}
+		);
+
+		internal static void Procedure(int profile, SaveDataType save_type) {
+			if (save_type != SaveDataType.Player) return;	
+
+			string saved_path = IO.Path.Combine(SaveManager.GetSaveDirectoryPath(profile, false), "RL2.API", "Burdens", "FoundState.json");
+			if (IO.File.Exists(saved_path)) {
+				IO.File.Delete(saved_path);
+			}
+		}
+
+		static void Wrapper(Definition orig, SaveFileSystem.SaveBatch batch, int profile, SaveDataType save_type) {
+			orig(batch, profile, save_type);
+			Event?.Invoke(batch, profile, save_type);
 		}
 	}
 
@@ -415,8 +450,8 @@ public static class Burdens {
 
 		internal static bool Method(System.Func<BurdenType, bool> orig, BurdenType type) {
 			bool result = orig(type);
-			if (TypeToName.TryGetValue(type, out string name)) {
-				result = NameToFoundState[name] > FoundState.NotFound && !ModdedStore[type].Disabled;
+			if (TypeToName.TryGetValue(type, out string name) && NameToFoundState.TryGetValue(name, out FoundState state)) {
+				result = state > FoundState.NotFound && !ModdedStore[type].Disabled;
 			}
 			Event?.Invoke(type, ref result);
 
