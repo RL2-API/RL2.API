@@ -2,14 +2,40 @@
 
 ## v2.1.0
 ### Additions
+All content addition related APIs now expose a `DeleteData` hook (listed below), which is triggered on save file deletion
+
 - Modded Burdens!
     - `Relics.Register`
     - `Relics.GetType`
     - `Relics.SaveData`
+	- `Relics.DeleteData`
     - `Relics.LoadData`
     - `Relics.LoadContent`
     - `Relics.ModifyData`
     - `Relics.ExtendTypeArray`
+- Modded Soul Shop upgrades!
+	- `SoulShop.Register`
+    - `SoulShop.GetType`
+    - `SoulShop.SaveData`
+    - `SoulShop.LoadData`
+    - `SoulShop.LoadContent`
+	- `SoulShop.DeleteData`
+    - `SoulShop.ModifyData`
+    - `SoulShop.ModifyEntryArray`
+	- `SoulShop.ModifyObj`
+	- `SoulShop.OnOpen`
+	- `SoulShop.OnClose`
+- `Player.HeirGeneration.ModifyCharacterData.Event_v2`
+	- Provides index of the Heir instead of `lockedClass` and `lockedSpell` booleans
+- `Relics.DeleteData`
+- `Relics.SetSeen`
+	- Triggered when setting a Relic's seen status
+- `Traits.DeleteData`
+
+### Changes
+- RL2.API now attempts to load the mods' PDB (*Portable DeBugging*) files if present
+	- This allows modders to use a debugger to set breakpoints in their mods, greatly enhancing their debugging capabilities
+
 ## v2.0.0
 ### Changes
 - All API endpoints are now accessed via `(Container/s).(Name).Event`
