@@ -406,13 +406,11 @@ public static class SoulShop {
 		}
 
 		internal static void LoadLevels() {
-			RL2API.Log($"Current: {SaveManager.CurrentProfile}");
 			string savedLevels = IO.Path.Combine(SaveManager.GetSaveDirectoryPath(SaveManager.CurrentProfile, false), "RL2.API", "SoulShop", "Levels.json");
 			if (IO.File.Exists(savedLevels)) {
 				TypeToLevel = TinyJson.JsonParser.FromJson<Collections.Dictionary<string, Levels>>(IO.File.ReadAllText(savedLevels));
 				
 				foreach ((var key, var value) in TypeToLevel) {
-					RL2API.Log($"{key}: Owned {value.Max} Set {value.Current}");
 					ModdedObjStore[(SoulShopType)int.Parse(key)].m_equippedLevel = value.Current;
 					ModdedObjStore[(SoulShopType)int.Parse(key)].m_ownedLevel = value.Max;
 				}
