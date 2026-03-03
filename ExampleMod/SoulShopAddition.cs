@@ -1,3 +1,4 @@
+using RL2.API;
 using API = RL2.API;
 
 public struct SoulShopAdd : API.IRegistrable {
@@ -20,7 +21,8 @@ public struct SoulShopAdd : API.IRegistrable {
 					Title = "Nyeh Nyeh Nyeh",
 				}, 
 				new API.SoulShop.Entry() { 
-					IsToggle = false,				}
+					IsToggle = false,
+				}
 			);
 			
 			API.SoulShop.Register(
@@ -39,7 +41,10 @@ public struct SoulShopAdd : API.IRegistrable {
 				}, 
 				new API.SoulShop.Entry() { 
 					IsToggle = true,
-				}
+				},
+				RL2.ModLoader.TextureExtension.LoadTexture(
+					System.IO.Path.Combine(RL2API.GetModInstance(nameof(ExampleMod))!.Path, "TestIcon.png")
+				)
 			);
 		};
 

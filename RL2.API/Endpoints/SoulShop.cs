@@ -117,8 +117,9 @@ public static class SoulShop {
 	/// <summary> Registers your custom Soul Shop upgrade </summary>
 	/// <param name="data"></param>
 	/// <param name="entry"></param>
+	/// <param name="icon"></param>
 	/// <returns></returns>
-	public static SoulShopType Register(Data data, Entry entry) {					
+	public static SoulShopType Register(Data data, Entry entry, UnityEngine.Texture2D? icon = null) {					
 		string name = $"{RL2API.AssemblyToManifest[System.Reflection.Assembly.GetCallingAssembly()].Name}/{data.Name}";
 		SoulShopType type = NameToType.TryGetValue(name, out var t) ? t : NameToType[name] = (SoulShopType)(LastType++);
 		
@@ -134,6 +135,13 @@ public static class SoulShop {
 			m_ownedLevel = owned,
 		};
 		EntryStore[type] = entry;
+		
+		if (icon != null) {
+			IconLibrary.Instance.m_soulShopIconLibrary.Add(
+				type, 
+				UnityEngine.Sprite.Create(icon, new UnityEngine.Rect(0, 0, icon.width, icon.height), new UnityEngine.Vector2(0.5f, 0.5f))
+			);
+		}
 
 		RL2API.Log($"Saved SoulShop upgrade '{name}' as '{type}'");
 
@@ -415,7 +423,7 @@ public static class SoulShop {
 	}
 
 	/// <summary>
-	/// Use to register SoulShop  with <see cref="SoulShop.Register(Data, Entry)"/>
+	/// Use to register SoulShop  with <see cref="SoulShop.Register(Data, Entry, UnityEngine.Texture2D?)"/>
 	/// </summary>
 	/// <remarks>This is ran only once for the entire game session</remarks>
 	public static class LoadContent {
