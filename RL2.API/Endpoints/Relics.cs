@@ -64,13 +64,13 @@ public static class Relics
 		if (icon != null) {
 			relicSprite = Sprite.Create(icon, new Rect(0, 0, icon.width / 2, icon.height / 2), new Vector2(.5f, .5f));
 		}
-		IconLibrary.Instance.m_relicIconLibrary.Add(type, relicSprite);
+		IconLibrary.Instance.m_relicIconLibrary[type] = relicSprite;
 
 		Sprite relicSpriteBig = IconLibrary.Instance.m_defaultSprite;
 		if (iconBig != null) {
 			relicSpriteBig = Sprite.Create(iconBig, new Rect(0, 0, iconBig.width, iconBig.height), new Vector2(.5f, .5f));
 		}
-		IconLibrary.Instance.m_relicLargeIconLibrary.Add(type, relicSpriteBig);
+		IconLibrary.Instance.m_relicLargeIconLibrary[type] = relicSpriteBig;
 
 		// Manage seen state
 		RelicObj obj = new RelicObj(type) {
