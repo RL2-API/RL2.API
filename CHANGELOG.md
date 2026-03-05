@@ -5,14 +5,14 @@
 All content addition related APIs now expose a `DeleteData` hook (listed below), which is triggered on save file deletion
 
 - Modded Burdens!
-    - `Relics.Register`
-    - `Relics.GetType`
-    - `Relics.SaveData`
-	- `Relics.DeleteData`
-    - `Relics.LoadData`
-    - `Relics.LoadContent`
-    - `Relics.ModifyData`
-    - `Relics.ExtendTypeArray`
+    - `Burdens.Register`
+    - `Burdens.GetType`
+    - `Burdens.SaveData`
+	- `Burdens.DeleteData`
+    - `Burdens.LoadData`
+    - `Burdens.LoadContent`
+    - `Burdens.ModifyData`
+    - `Burdens.ExtendTypeArray`
 - Modded Soul Shop upgrades!
 	- `SoulShop.Register`
     - `SoulShop.GetType`
@@ -33,7 +33,7 @@ All content addition related APIs now expose a `DeleteData` hook (listed below),
 - `Traits.DeleteData`
 
 ### Changes
-- RL2.API now attempts to load the mods' PDB (*Portable DeBugging*) files if present
+- RL2.API now attempts to load the mod's PDB (*Portable DeBugging*) file if present
 	- This allows modders to use a debugger to set breakpoints in their mods, greatly enhancing their debugging capabilities
 
 ## v2.0.0
